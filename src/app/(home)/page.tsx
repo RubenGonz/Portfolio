@@ -1,18 +1,6 @@
 export default function Home() {
 
-  // Template provisional
-
   return <>
-    <header className="header">
-      <div className="logo">500VPROYECT 9 N° 27</div>
-      <nav className="nav">
-        <a href="#sobre-mi">SOBRE MÍ</a>
-        <a href="#proyectos">PROYECTOS</a>
-        <a href="#habilidades">HABILIDADES</a>
-        <a href="#contacto">CONTACTO</a>
-      </nav>
-    </header>
-
     {/*  Hero principal */}
     <section className="hero">
       <div className="hero-text">
@@ -53,7 +41,7 @@ export default function Home() {
         </div>
       </div>
     </section>
-    
+
     {/*  Habilidades */}
     <section id="habilidades" className="section">
       <h2><span className="number">03</span> HABILIDADES</h2>
@@ -64,10 +52,5 @@ export default function Home() {
         <li>Node.js</li>
       </ul>
     </section>
-
-    {/*  Footer */}
-    <footer id="contacto" className="footer">
-      <p>© 20XX - Tu Nombre</p>
-    </footer>
   </>
 }

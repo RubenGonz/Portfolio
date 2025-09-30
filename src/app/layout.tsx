@@ -9,7 +9,17 @@ export const metadata: Metadata = {
     default: "RubenGonz",
   },
   description: "Portfolio personal de RubenGonz, desarrollador web especializado en React, Next.js y Angular.",
-  keywords: ["RubenGonz", "portfolio", "desarrollador web", "React", "Next.js"],
+  keywords: [
+    "Rubén González Rodríguez",
+    "Ruben Gonzalez Rodriguez",
+    "RubenGonz",
+    "portfolio desarrollador web",
+    "desarrollador web",
+    "React",
+    "Next.js",
+    "frontend developer",
+    "React developer"
+  ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
