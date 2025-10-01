@@ -1,14 +1,10 @@
+import { Hero } from "@/components";
+
 export default function Home() {
 
   return <>
     {/*  Hero principal */}
-    <section className="hero">
-      <div className="hero-text">
-        <h1>EL TIPO TRAS <br />LA PANTALLA</h1>
-        <p>Soy <span className="highlight">web developer</span></p>
-        <a href="#sobre-mi" className="btn">MÁS SOBRE MÍ</a>
-      </div>
-    </section>
+    <Hero />
 
     {/*  Sobre mí */}
     <section id="sobre-mi" className="section">
