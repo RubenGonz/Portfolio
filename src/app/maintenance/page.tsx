@@ -5,10 +5,10 @@ export default function MaintenancePage() {
         md:bg-[url('/error/mantenimiento-desktop-2.webp')]">
     <div className="flex flex-col items-center justify-center text-center
           w-full max-w-5xl
-          px-4 sm:px-6 md:px-10
+          px-6 md:px-10
           py-10 md:py-20">
       <h1 className="font-n27 font-bold text-primary text-shadow-primary
-            text-3xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-8xl
+            text-5xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-8xl
             mb-6 sm:mb-8 md:mb-10 leading-tight">
         Web en desarrollo
       </h1>
