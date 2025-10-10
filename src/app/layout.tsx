@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import MaintenancePage from "./maintenance/page";
 import { inputMono, n27 } from "@/config/fonts/fonts";
 
 export const metadata: Metadata = {
@@ -23,9 +24,12 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+
+  const maintenance = process.env.MAINTENANCE_MODE === "true";
+
   return <html lang="en">
     <body className={`${inputMono.variable} ${n27.variable} font-inputmono`}>
-      {children}
+      {maintenance ? <MaintenancePage /> : children}
     </body>
   </html>
 }
