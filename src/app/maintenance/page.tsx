@@ -1,8 +1,8 @@
 export default function MaintenancePage() {
   return <main className="min-h-screen bg-surface bg-cover bg-center bg-no-repeat
         flex items-center justify-center
-        bg-[url('/error/mantenimiento-mobile-2.png')]
-        md:bg-[url('/error/mantenimiento-desktop-2.png')]">
+        bg-[url('/error/mantenimiento-mobile-2.webp')]
+        md:bg-[url('/error/mantenimiento-desktop-2.webp')]">
     <div className="flex flex-col items-center justify-center text-center
           w-full max-w-5xl
           px-4 sm:px-6 md:px-10
