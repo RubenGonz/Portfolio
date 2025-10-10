@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { geistMono, geistSans } from "@/config/fonts";
+import { inputMono, n27 } from "@/config/fonts/fonts";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="en">
-    <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <body className={`${inputMono.variable} ${n27.variable} font-inputmono`}>
       {children}
     </body>
   </html>
