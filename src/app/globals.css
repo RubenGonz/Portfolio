@@ -1,15 +1,19 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-primary: #b799ff;      /* Color principal, destacado en botones, enlaces */
+  --color-secondary: #c965ea;    /* Color secundario, acentos y hover */
+  --color-background: #f9f9f9;   /* Fondo principal de la web */
+  --color-surface: #202020;      /* Fondos de secciones oscuras o tarjetas */
+  --color-text: #0b0d0d;         /* Color de texto principal */
+
+  --font-inputmono: InputMono, monospace;
+  --font-n27: N27, monospace;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,21 +23,23 @@
   }
 }
 
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+.text-shadow-primary {
+  text-shadow: 0 0 3px theme(colors.primary); 
 }
 
 /* Template provisional */
 /* Reset básico */
-
-body {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  background: #fff;
-  color: #222;
-  line-height: 1.6;
-}
 
 /* Hero */
 .hero {
