@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   keywords: [
     "Rubén González Rodríguez",
     "Ruben Gonzalez Rodriguez",
+    "Rubén González",
+    "Ruben Gonzalez",
     "RubenGonz",
     "portfolio desarrollador web",
     "desarrollador web",
@@ -21,6 +23,31 @@ export const metadata: Metadata = {
     "frontend developer",
     "React developer"
   ],
+  authors: [{ name: "Rubén González Rodríguez", url: "https://www.rubengonz.com" }],
+  creator: "Rubén González Rodríguez",
+  publisher: "Rubén González Rodríguez",
+  openGraph: {
+    title: "RubenGonz Portfolio",
+    description: "Portfolio personal de RubenGonz, desarrollador web especializado en React, Next.js y Angular.",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+    siteName: "RubenGonz",
+    images: [
+      {
+        url: "/logos/logo-negro.png",
+        width: 1920,
+        height: 1080,
+        alt: "RubenGonz Portfolio",
+      },
+    ],
+    locale: "es_ES",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "RubenGonz Portfolio",
+    description: "Portfolio personal de RubenGonz, desarrollador web especializado en React, Next.js y Angular.",
+    images: ["/logos/logo-negro.png"],
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
