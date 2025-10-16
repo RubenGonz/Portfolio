@@ -3,8 +3,12 @@ import "./globals.css";
 import MaintenancePage from "./maintenance/page";
 import { inputMono, n27 } from "@/config/fonts/fonts";
 
+if (!process.env.NEXT_PUBLIC_SITE_URL) {
+  throw new Error("NEXT_PUBLIC_SITE_URL no está definida");
+}
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL),
   title: {
     template: "%s | RubenGonz",
     default: "RubenGonz",
@@ -29,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "RubenGonz",
     description: "Portfolio personal de RubenGonz, desarrollador web especializado en React, Next.js y Angular.",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+    url: process.env.NEXT_PUBLIC_SITE_URL,
     siteName: "RubenGonz",
     images: [
       {
