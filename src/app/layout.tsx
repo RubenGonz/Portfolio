@@ -4,7 +4,7 @@ import MaintenancePage from "./maintenance/page";
 import { inputMono, n27 } from "@/config/fonts/fonts";
 
 if (!process.env.NEXT_PUBLIC_SITE_URL) {
-  throw new Error("NEXT_PUBLIC_SITE_URL no está definida");
+  throw new Error("NEXT_PUBLIC_SITE_URL is not defined");
 }
 
 export const metadata: Metadata = {
