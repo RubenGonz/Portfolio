@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   creator: "Rubén González Rodríguez",
   publisher: "Rubén González Rodríguez",
   openGraph: {
-    title: "RubenGonz Portfolio",
+    title: "RubenGonz",
     description: "Portfolio personal de RubenGonz, desarrollador web especializado en React, Next.js y Angular.",
     url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
     siteName: "RubenGonz",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
         url: "/logos/logo-negro.png",
         width: 1920,
         height: 1080,
-        alt: "RubenGonz Portfolio",
+        alt: "RubenGonz",
       },
     ],
     locale: "es_ES",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "RubenGonz Portfolio",
+    title: "RubenGonz",
     description: "Portfolio personal de RubenGonz, desarrollador web especializado en React, Next.js y Angular.",
     images: ["/logos/logo-negro.png"],
   },
