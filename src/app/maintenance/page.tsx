@@ -1,8 +1,12 @@
 export default function MaintenancePage() {
-  return <main className="min-h-screen bg-surface bg-cover bg-center bg-no-repeat
-        flex items-center justify-center
-        bg-[url('/error/mantenimiento-mobile-2.webp')]
-        md:bg-[url('/error/mantenimiento-desktop-2.webp')]">
+  
+  return <main className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat 
+    bg-[url('/error/mantenimiento-mobile-1.png')] md:bg-[url('/error/mantenimiento-desktop-1.png')]">
+    
+    {/* Background gradient layer positioned behind the main content */}
+    <div className="absolute inset-0 bg-gradient-to-r from-text to-surface -z-10"></div>
+
+    {/* Content */}
     <div className="flex flex-col items-center justify-center text-center
           w-full max-w-5xl
           px-6 md:px-10
