@@ -6,6 +6,8 @@ export default function Home() {
     {/*  Hero principal */}
     <Hero />
 
+    <div className="bg-amber-50">------------------------------</div>
+
     {/*  Sobre mí */}
     <section id="sobre-mi" className="section">
       <h2><span className="number">01</span> SOBRE MÍ</h2>
