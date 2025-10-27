@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const Hero = () => {
-  return <section className="min-h-screen flex justify-center items-center bg-surface text-white px-6
+  return <section className="min-h-screen flex justify-center items-center bg-soft-black text-light px-6
   md:flex-row md:px-16">
     {/* Contenedor que miestar la imagen */}
     {/* <div
@@ -14,19 +14,19 @@ export const Hero = () => {
 
     {/* Texto principal */}
     <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
-      <h1 className="font-n27 text-primary font-bold italic text-4xl md:text-6xl mb-7">
+      <h1 className="font-n27 text-brand font-bold italic text-4xl md:text-6xl mb-7">
         Soy web <br /> developer
       </h1>
-      <p className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-200 font-semibold text-xl">
-  Este es un texto <br /> con gradiente.
-</p>
+      <p className="text-transparent bg-clip-text bg-linear-to-r from-red-500 to-red-200 font-semibold text-xl">
+        Este es un texto <br /> con gradiente.
+      </p>
       <p className="text-md mb-7">
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe quae explicabo incidunt, dolorum modi laboriosam laudantium cum. Esse numquam, expedita suscipit amet quam assumenda repellat dolor fugit blanditiis a praesentium!
       </p>
       <div className="flex font-n27">
         <Link
           href="#sobre-mi"
-          className="bg-blue-600 text-white px-6 py-3 rounded text-lg
+          className="bg-blue-600 text-light px-6 py-3 rounded text-lg
           rounded-s-full"
         >
           MÁS SOBRE MÍ
@@ -34,13 +34,11 @@ export const Hero = () => {
         <div className="bg-amber-300 rounded-e-full">s</div>
         <Link
           href="#github"
-          className="bg-blue-600 text-white px-6 py-3 text-lg
+          className="bg-blue-600 text-light px-6 py-3 text-lg
           rounded-full"
         >
-          
         </Link>
       </div>
-
     </div>
 
     {/* Placeholder para la imagen */}

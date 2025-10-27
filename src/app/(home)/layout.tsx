@@ -1,11 +1,11 @@
 import { Footer, Header } from "@/components";
 
 export default function HomeLayout({ children }: { children: React.ReactNode }) {
-  return <div className="bg-surface">
+  return <>
     <Header />
 
     {children}
 
     <Footer />
-  </div>
+  </>
 }

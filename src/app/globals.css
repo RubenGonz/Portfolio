@@ -1,11 +1,12 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-primary: #b799ff;      /* Color principal, destacado en botones, enlaces */
-  --color-secondary: #c965ea;    /* Color secundario, acentos y hover */
-  --color-background: #f9f9f9;   /* Fondo principal de la web */
-  --color-surface: #202020;      /* Fondos de secciones oscuras o tarjetas */
-  --color-text: #0b0d0d;         /* Color de texto principal */
+  --color-brand: #b799ff;         /* Main brand color */
+  --color-brand-sec: #c965ea;     /* Secondary brand color */
+  --color-deep-black: #0b0d0d;    /* Main black bg */
+  --color-soft-black: #202020;    /* Secondary black bg */
+  --color-light: #f9f9f9;         /* White */
 
   --font-inputmono: InputMono, monospace;
   --font-n27: N27, monospace;
@@ -34,8 +35,8 @@ body {
   line-height: 1.6;
 }
 
-.text-shadow-primary {
-  text-shadow: 0 0 3px theme(colors.primary); 
+.text-shadow-brand {
+  text-shadow: 0 0 3px theme(colors.brand); 
 }
 
 /* Template provisional */

@@ -19,7 +19,7 @@ export const Sidebar = ({ open, setOpen, navLinks }: Props) => {
     {open && <div onClick={() => setOpen(false)} className="fade-in fixed top-0 left-0 w-screen h-screen z-10 backdrop-blur-xs" />}
 
     {/* SideMenu */}
-    <nav className={`fixed p-5 right-0 top-0 w-[500px] h-screen bg-surface z-20 shadow-2xl transform transition-all duration-300 ${!open ? "translate-x-full" : ""}`}>
+    <nav className={`fixed p-5 right-0 top-0 w-[500px] h-screen bg-soft-black z-20 shadow-2xl transform transition-all duration-300 ${!open ? "translate-x-full" : ""}`}>
 
       <div onClick={() => setOpen(false)}>X</div>
 
@@ -28,7 +28,7 @@ export const Sidebar = ({ open, setOpen, navLinks }: Props) => {
         <ThemeSelector />
         <button
           onClick={() => setOpen(true)}
-          className="hover:text-primary transition-colors"
+          className="hover:text-brand transition-colors"
         >
           Login
         </button>

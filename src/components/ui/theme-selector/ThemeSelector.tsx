@@ -20,7 +20,7 @@ export const ThemeSelector = () => {
       onChange={() => setTheme(isDark ? "light" : "dark")}
     />
     {/* Fondo del toggle */}
-    <div className="w-16 h-8 border border-primary rounded-full transition-colors duration-300" />
+    <div className="w-16 h-8 border border-brand rounded-full transition-colors duration-300" />
 
     <div className="absolute top-1 left-1 w-6 h-6 rounded-full transition-all duration-500 peer-checked:translate-x-8">
       {/* Sol */}

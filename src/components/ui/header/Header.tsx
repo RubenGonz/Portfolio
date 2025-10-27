@@ -26,8 +26,8 @@ export const Header = () => {
     { label: "CONTACTO", href: "/contact" },
   ]
 
-  return <header className={`fixed h-20 w-full flex justify-between items-center py-2 px-5 z-50 text-white transition-all duration-100 
-    ${scrolled ? "bg-surface shadow" : "bg-transparent shadow-none"}`
+  return <header className={`fixed h-20 w-full flex justify-between items-center py-2 px-5 z-50 text-light transition-all duration-100 
+    ${scrolled ? "bg-soft-black shadow" : "bg-transparent shadow-none"}`
   }>
     {/* Logo */}
     <Link href={"/"} className="h-full flex items-center">
@@ -56,7 +56,7 @@ export const Header = () => {
         <ThemeSelector />
         <button
           onClick={() => setOpen(true)}
-          className="hover:text-primary transition-colors"
+          className="hover:text-brand transition-colors"
         >
           Login
         </button>
@@ -65,7 +65,7 @@ export const Header = () => {
       {/* Botón hamburguesa móvil */}
       <button
         onClick={() => setOpen(true)}
-        className="md:hidden z-20 p-2 rounded hover:bg-white/10 transition-colors"
+        className="md:hidden z-20 p-2 rounded hover:bg-light/10 transition-colors"
         aria-label="Abrir menú"
       >
         Menu
