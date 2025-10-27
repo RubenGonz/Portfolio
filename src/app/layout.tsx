@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import MaintenancePage from "./maintenance/page";
 import { inputMono, n27 } from "@/config/fonts/fonts";
+import { Providers } from "@/components";
 
 if (!process.env.NEXT_PUBLIC_SITE_URL) {
   throw new Error("NEXT_PUBLIC_SITE_URL is not defined");
@@ -58,9 +59,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 
   const maintenance = process.env.MAINTENANCE_MODE === "true";
 
-  return <html lang="en">
+  return <html lang="en" suppressHydrationWarning>
     <body className={`${inputMono.variable} ${n27.variable} font-inputmono`}>
-      {maintenance ? <MaintenancePage /> : children}
+      <Providers>
+        {maintenance ? <MaintenancePage /> : children}
+      </Providers>      
     </body>
   </html>
 }

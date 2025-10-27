@@ -1,5 +1,7 @@
 export { Hero } from "./hero/Hero";
 
+export { Providers } from "./providers/Providers";
+
 export { Footer } from "./ui/footer/Footer";
 export { Header } from "./ui/header/Header";
 export { LanguajeSelector } from "./ui/languaje-selector/LanguajeSelector";
