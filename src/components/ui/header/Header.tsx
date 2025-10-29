@@ -55,7 +55,7 @@ export const Header = () => {
         <LanguajeSelector />
         <ThemeSelector />
         <button
-          onClick={() => setOpen(true)}
+          onClick={() => setOpen(!open)}
           className="hover:text-brand transition-colors"
         >
           Login
@@ -64,7 +64,7 @@ export const Header = () => {
 
       {/* Botón hamburguesa móvil */}
       <button
-        onClick={() => setOpen(true)}
+        onClick={() => setOpen(!open)}
         className="md:hidden z-20 p-2 rounded hover:bg-light/10 transition-colors"
         aria-label="Abrir menú"
       >
