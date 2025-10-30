@@ -5,5 +5,6 @@ export { Providers } from "./providers/Providers";
 export { Footer } from "./ui/footer/Footer";
 export { Header } from "./ui/header/Header";
 export { LanguajeSelector } from "./ui/languaje-selector/LanguajeSelector";
+export { LoginButton } from "./ui/login-button/LoginButton";
 export { Sidebar } from "./ui/sidebar/Sidebar";
 export { ThemeSelector } from "./ui/theme-selector/ThemeSelector";

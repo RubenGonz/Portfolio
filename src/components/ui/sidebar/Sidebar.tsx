@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { LanguajeSelector } from "../languaje-selector/LanguajeSelector";
 import { ThemeSelector } from "../theme-selector/ThemeSelector";
+import { LoginButton } from "../login-button/LoginButton";
 
 interface Props {
   open: boolean;
@@ -21,9 +22,7 @@ export const Sidebar = ({ open, setOpen, navLinks }: Props) => {
       <div className="flex flex-col items-end gap-5">
         <div onClick={() => setOpen(!open)}>X</div>
 
-        <button onClick={() => setOpen(!open)} className="hover:text-brand transition-colors">
-          Login
-        </button>
+        <LoginButton />
 
         <ThemeSelector />
 

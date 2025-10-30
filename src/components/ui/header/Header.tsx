@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Sidebar } from "../sidebar/Sidebar";
 import { LanguajeSelector } from "../languaje-selector/LanguajeSelector";
 import { ThemeSelector } from "../theme-selector/ThemeSelector";
+import { LoginButton } from "../login-button/LoginButton";
 
 export const Header = () => {
 
@@ -26,7 +27,7 @@ export const Header = () => {
     { label: "CONTACTO", href: "/contact" },
   ]
 
-  return <header className={`fixed h-20 w-full flex justify-between items-center py-2 px-5 z-50 text-light transition-all duration-100 
+  return <header className={`fixed h-20 w-full flex justify-between items-center py-2 px-5 z-50 text-light transition-all duration-300 
     ${scrolled ? "bg-soft-black shadow" : "bg-transparent shadow-none"}`
   }>
     {/* Logo */}
@@ -40,7 +41,7 @@ export const Header = () => {
       />
     </Link>
 
-    {/* Nav centrado (solo desktop) */}
+    {/* Nav */}
     <nav className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-10">
       {navLinks.map(({ label, href }) => (
         <Link key={href} href={href}>
@@ -53,25 +54,20 @@ export const Header = () => {
       {/* Desktop */}
       <div className="hidden md:flex items-center gap-3">
         <LanguajeSelector />
+
         <ThemeSelector />
-        <button
-          onClick={() => setOpen(!open)}
-          className="hover:text-brand transition-colors"
-        >
-          Login
-        </button>
+
+        <LoginButton />
       </div>
 
       {/* Botón hamburguesa móvil */}
       <button
         onClick={() => setOpen(!open)}
         className="md:hidden z-20 p-2 rounded hover:bg-light/10 transition-colors"
-        aria-label="Abrir menú"
       >
         Menu
       </button>
 
-      {/* Sidebar móvil */}
       <Sidebar open={open} setOpen={setOpen} navLinks={navLinks} />
     </div>
   </header>
