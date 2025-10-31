@@ -19,7 +19,7 @@ export const LanguajeSelector = () => {
 
   return <div className="relative">
     <button
-      className="flex items-center gap-2 px-2 text-sm text-gray-800 dark:text-gray-200 cursor-pointer"
+      className="flex items-center gap-2 px-2 text-sm  cursor-pointer"
       onClick={() => setOpen(!open)}
     >
       <span className="uppercase">{selectedLang}</span>
@@ -31,15 +31,17 @@ export const LanguajeSelector = () => {
     </button>
 
     {/* Dropdown */}
-    {open && <div className="absolute right-0 mt-2 w-28 bg-white dark:bg-gray-700 rounded-lg shadow-md ring-1 ring-black ring-opacity-5 z-10">
-      <ul className="py-1 text-sm text-gray-700 dark:text-gray-200">
-        {languages.map((lng) => <li key={lng.code}>
+    {open && <div className="absolute right-0 mt-2 w-28 bg-light dark:bg-soft-black rounded-lg shadow-md ring-1 ring-brand ring-opacity-5 z-10">
+      <ul className="py-1 text-sm">
+        {languages.map((lng, i) => <li key={lng.code}>
+          <hr className={`mx-4 h-[0.5px] bg-linear-to-r from-transparent via-soft-black dark:via-white to-transparent border-0 ${i === 0 ? "hidden" : ""}`} />
           <button
             onClick={() => selectLang(lng.code)}
-            className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+            className={`w-full text-left px-4 py-2 cursor-pointer ${selectedLang === lng.code ? "text-brand" : ""}`}
           >
             {lng.label}
           </button>
+          <hr className={`mx-4 h-[0.5px] bg-linear-to-r from-transparent via-soft-black dark:via-white to-transparent border-0 ${i === languages.length - 1 ? "hidden" : ""}`} />
         </li>)}
       </ul>
     </div>}

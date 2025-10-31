@@ -27,24 +27,31 @@ export const Header = () => {
     { label: "CONTACTO", href: "/contact" },
   ]
 
-  return <header className={`fixed h-20 w-full flex justify-between items-center py-2 px-5 z-50 text-light transition-all duration-300 
-    ${scrolled ? "bg-soft-black shadow" : "bg-transparent shadow-none"}`
+  return <header className={`fixed h-20 w-full flex justify-between items-center py-2 px-5 z-50 transition-all duration-300 
+    ${scrolled ? "dark:bg-soft-black bg-light shadow" : "bg-transparent shadow-none"}`
   }>
     {/* Logo */}
     <Link href={"/"} className="h-full flex items-center">
       <Image
-        src={"/logos/logo-blanco.png"}
-        alt={"RubenGonz logo"}
-        width={1920}
-        height={1080}
-        className="h-full w-auto object-contain"
-      />
+    src="/logos/logo-negro.png"
+    alt="RubenGonz logo dark"
+    width={1920}
+    height={1080}
+    className="h-full w-auto object-contain dark:hidden"
+  />
+  <Image
+    src="/logos/logo-blanco.png"
+    alt="RubenGonz logo light"
+    width={1920}
+    height={1080}
+    className="h-full w-auto object-contain hidden dark:block"
+  />
     </Link>
 
     {/* Nav */}
     <nav className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-10">
       {navLinks.map(({ label, href }) => (
-        <Link key={href} href={href}>
+        <Link key={href} href={href} className="hover:text-brand">
           {label}
         </Link>
       ))}
