@@ -30,7 +30,6 @@ body {
   background: var(--color-background);
   color: var(--color-foreground);
   line-height: 1.6;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .text-shadow-brand {

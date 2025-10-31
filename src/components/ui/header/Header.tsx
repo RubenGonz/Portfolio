@@ -27,7 +27,7 @@ export const Header = () => {
     { label: "CONTACTO", href: "/contact" },
   ]
 
-  return <header className={`fixed h-20 w-full flex justify-between items-center py-2 px-5 z-50 transition-all duration-300 
+  return <header className={`fixed h-20 w-full flex justify-between items-center py-2 px-5 z-50 transition-[background-color,box-shadow] duration-300 
     ${scrolled ? "dark:bg-soft-black bg-light shadow" : "bg-transparent shadow-none"}`
   }>
     {/* Logo */}

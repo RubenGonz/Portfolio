@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const Hero = () => {
-  return <section className="min-h-screen flex justify-center items-center bg-soft-black text-light pl-6 md:flex-row md:pl-20">
+  return <section className="min-h-screen flex justify-center items-center bg-gray-200 dark:bg-soft-black pl-6 md:flex-row md:pl-20">
     {/* Bg Image */}
-    <div className="absolute top-0 right-0 w-7/10 h-full bg-[url('/bg/CodingBg.png')] opacity-10 bg-cover bg-center"
+    <div className="absolute top-0 right-0 w-7/10 h-full bg-[url('/bg/CodingBg.png')] opacity-25 dark:opacity-10 bg-cover bg-center"
       style={{
         maskImage: "linear-gradient(300deg, white 40%, transparent 60%)",
         WebkitMaskImage: "linear-gradient(300deg, white 40%, transparent 60%)",
@@ -26,14 +26,14 @@ export const Hero = () => {
       </p>
 
       <div className="flex font-n27">
-        <Link href="#sobre-mi" className="bg-blue-600 text-light px-6 py-3 rounded text-lg rounded-s-full">
+        <Link href="#sobre-mi" className="bg-brand text-light px-6 py-3 rounded text-lg rounded-s-full">
           MÁS SOBRE MÍ
         </Link>
 
         <Link href="https://github.com/RubenGonz" target="_blank" rel="noopener noreferrer"
-          className="bg-blue-600 text-light px-6 py-3 text-lg rounded-full">Github</Link>
+          className="bg-brand text-light px-6 py-3 text-lg rounded-full">Github</Link>
         <Link href="https://www.linkedin.com/in/ruben-gonz/" target="_blank" rel="noopener noreferrer"
-          className="bg-blue-600 text-light px-6 py-3 text-lg rounded-full">Linkedin</Link>
+          className="bg-brand text-light px-6 py-3 text-lg rounded-full">Linkedin</Link>
       </div>
     </div>
 
