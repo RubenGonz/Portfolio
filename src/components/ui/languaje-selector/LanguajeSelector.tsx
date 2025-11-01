@@ -1,5 +1,6 @@
 "use client";
 
+import { ChevronIcon } from "@/components/svg/chevron-icon/ChevronIcon";
 import { useState } from "react";
 
 export const LanguajeSelector = () => {
@@ -24,10 +25,7 @@ export const LanguajeSelector = () => {
     >
       <span className="uppercase">{selectedLang}</span>
 
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"
-        className={`w-4 h-4 mb-0.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`}>
-        <path stroke="currentColor" strokeWidth="1" d="m1 1 4 4 4-4" />
-      </svg>
+      <ChevronIcon size={16} className={`mb-0.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
     </button>
 
     {/* Dropdown */}
@@ -35,12 +33,13 @@ export const LanguajeSelector = () => {
       <ul className="py-1 text-sm">
         {languages.map((lng, i) => <li key={lng.code}>
           <hr className={`mx-4 h-[0.5px] bg-linear-to-r from-transparent via-soft-black dark:via-white to-transparent border-0 ${i === 0 ? "hidden" : ""}`} />
-          <button
-            onClick={() => selectLang(lng.code)}
+          
+          <button onClick={() => selectLang(lng.code)}
             className={`w-full text-left px-4 py-2 cursor-pointer ${selectedLang === lng.code ? "text-brand" : ""}`}
           >
             {lng.label}
           </button>
+          
           <hr className={`mx-4 h-[0.5px] bg-linear-to-r from-transparent via-soft-black dark:via-white to-transparent border-0 ${i === languages.length - 1 ? "hidden" : ""}`} />
         </li>)}
       </ul>
