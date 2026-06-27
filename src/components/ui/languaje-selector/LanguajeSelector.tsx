@@ -1,5 +1,2 @@
-export const LanguajeSelector = () => {
-    return <div>
-        Idioma
-    </div>
-};
+// Pending implementation
+export const LanguajeSelector = () => null;

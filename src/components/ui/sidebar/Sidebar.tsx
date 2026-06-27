@@ -1,6 +1,6 @@
-"use client"
+"use client";
+
 import Link from "next/link";
-import { LanguajeSelector } from "../languaje-selector/LanguajeSelector";
 import { ThemeSelector } from "../theme-selector/ThemeSelector";
 
 interface Props {
@@ -10,37 +10,52 @@ interface Props {
 }
 
 export const Sidebar = ({ open, setOpen, navLinks }: Props) => {
+  return (
+    <>
+      {/* Backdrop */}
+      {open && (
+        <div
+          onClick={() => setOpen(false)}
+          className="fixed inset-0 z-10 bg-black/50 backdrop-blur-sm"
+          aria-hidden="true"
+        />
+      )}
 
-  return <>
-    {/* Background black */}
-    {open && <div className="fixed top-0 left-0 w-screen h-screen z-10 bg-black opacity-30" />}
+      {/* Side panel */}
+      <nav
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menú de navegación"
+        className={`fixed right-0 top-0 h-screen w-full max-w-sm bg-soft-black z-20 shadow-2xl
+          transform transition-transform duration-300
+          ${open ? "translate-x-0" : "translate-x-full"}`}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between p-5 border-b border-gray-700">
+          <ThemeSelector />
+          <button
+            onClick={() => setOpen(false)}
+            aria-label="Cerrar menú"
+            className="text-light hover:text-brand transition-colors p-2 rounded"
+          >
+            ✕
+          </button>
+        </div>
 
-    {/* Blur */}
-    {open && <div onClick={() => setOpen(false)} className="fade-in fixed top-0 left-0 w-screen h-screen z-10 backdrop-blur-xs" />}
-
-    {/* SideMenu */}
-    <nav className={`fixed p-5 right-0 top-0 w-[500px] h-screen bg-soft-black z-20 shadow-2xl transform transition-all duration-300 ${!open ? "translate-x-full" : ""}`}>
-
-      <div onClick={() => setOpen(false)}>X</div>
-
-      <div className="hidden md:flex items-center gap-3">
-        <LanguajeSelector />
-        <ThemeSelector />
-        <button
-          onClick={() => setOpen(true)}
-          className="hover:text-brand transition-colors"
-        >
-          Login
-        </button>
-      </div>
-
-      {/* Menu */}
-      {navLinks.map(({ label, href }) => (
-        <Link key={href} href={href} onClick={() => setOpen(false)}
-          className="flex items-center mt-10 p-2 hover:bg-gray-800 rounded transition-all">
-          {label}
-        </Link>
-      ))}
-    </nav>
-  </>
+        {/* Nav links */}
+        <div className="flex flex-col p-5 gap-2">
+          {navLinks.map(({ label, href }) => (
+            <Link
+              key={href}
+              href={href}
+              onClick={() => setOpen(false)}
+              className="text-light text-lg py-3 px-4 hover:bg-gray-800 rounded transition-colors"
+            >
+              {label}
+            </Link>
+          ))}
+        </div>
+      </nav>
+    </>
+  );
 };
