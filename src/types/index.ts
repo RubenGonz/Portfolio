@@ -1,19 +1,20 @@
 export interface Project {
-  id: string;
+  slug: string;
   title: string;
-  description: string;
+  shortDescription: string;
+  fullDescription: string;
   tags: string[];
   url?: string;
   repoUrl?: string;
-  imageUrl?: string;
   featured: boolean;
   year: number;
+  status: "live" | "in-progress" | "archived";
+  highlights: string[];
 }
 
-export interface Skill {
+export interface StackItem {
   name: string;
-  category: "frontend" | "backend" | "database" | "tools" | "other";
-  level?: "learning" | "comfortable" | "proficient";
+  tier: "professional" | "active" | "familiar";
 }
 
 export interface ContactMessage {

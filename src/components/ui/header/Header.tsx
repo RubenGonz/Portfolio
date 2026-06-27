@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Sidebar } from "../sidebar/Sidebar";
-import { LanguajeSelector } from "../languaje-selector/LanguajeSelector";
 import { ThemeSelector } from "../theme-selector/ThemeSelector";
 
 export const Header = () => {
@@ -20,10 +19,10 @@ export const Header = () => {
   }, []);
 
   const navLinks = [
-    { label: "SOBRE MÍ", href: "/#sobre-mi" },
-    { label: "PROYECTOS", href: "/#proyectos" },
-    { label: "HABILIDADES", href: "/#habilidades" },
-    { label: "CONTACTO", href: "/contact" },
+    { label: "Projects", href: "/#projects" },
+    { label: "About", href: "/#about" },
+    { label: "Stack", href: "/#stack" },
+    { label: "Contact", href: "/#contact" },
   ]
 
   return <header className={`fixed h-20 w-full flex justify-between items-center py-2 px-5 z-50 text-light transition-all duration-100 
@@ -52,14 +51,7 @@ export const Header = () => {
     <div className="flex items-center gap-3">
       {/* Desktop */}
       <div className="hidden md:flex items-center gap-3">
-        <LanguajeSelector />
         <ThemeSelector />
-        <button
-          onClick={() => setOpen(true)}
-          className="hover:text-brand transition-colors"
-        >
-          Login
-        </button>
       </div>
 
       {/* Botón hamburguesa móvil */}
