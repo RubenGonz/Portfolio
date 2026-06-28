@@ -25,7 +25,7 @@ body {
 }
 
 .text-shadow-brand {
-  text-shadow: 0 0 3px theme(colors.brand);
+  text-shadow: 0 0 3px var(--color-brand);
 }
 
 /* Legacy styles — used by /about, /projects, /skills stub pages */
