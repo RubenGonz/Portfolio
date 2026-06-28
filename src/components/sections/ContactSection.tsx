@@ -1,51 +1,63 @@
 export const ContactSection = () => {
   return (
-    <section id="contact" className="px-6 md:px-16 py-32 max-w-5xl mx-auto">
+    <section id="contact" className="px-6 md:px-16 py-28 pb-36 max-w-5xl mx-auto">
       {/* Section label */}
-      <p className="font-inputmono text-gray-600 text-xs tracking-widest uppercase mb-12">
-        04 — Contact
+      <p className="font-inputmono text-gray-700 text-[9px] tracking-[0.2em] uppercase mb-1">
+        {"// Contact"}
       </p>
+      <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-10" />
 
-      <div className="max-w-xl">
-        <h2 className="font-n27 font-bold italic text-light text-3xl md:text-4xl mb-6">
-          Let&apos;s work together
-        </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 max-w-4xl relative">
+        {/* Decorative number */}
+        <span className="absolute -top-2 right-0 font-n27 font-bold italic text-[80px] leading-none text-white/[0.02] select-none pointer-events-none">
+          04
+        </span>
 
-        <p className="font-inputmono text-gray-400 text-sm leading-relaxed mb-10">
-          I&apos;m open to full-time roles, freelance projects and collaborations.
-          Feel free to reach out.
-        </p>
-
-        {/* Direct links */}
-        <div className="flex flex-col gap-3 mb-12">
-          <a
-            href="mailto:ruben.gonzalez.rodriguez00@gmail.com"
-            className="font-inputmono text-sm text-gray-400 hover:text-brand transition-colors"
-          >
-            ruben.gonzalez.rodriguez00@gmail.com ↗
-          </a>
-          <a
-            href="https://linkedin.com/in/ruben-gonz"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-inputmono text-sm text-gray-400 hover:text-brand transition-colors"
-          >
-            linkedin.com/in/ruben-gonz ↗
-          </a>
-          <a
-            href="https://github.com/RubenGonz"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-inputmono text-sm text-gray-400 hover:text-brand transition-colors"
-          >
-            github.com/RubenGonz ↗
-          </a>
+        {/* Left: headline + links */}
+        <div>
+          <h2 className="font-n27 font-bold italic text-light text-4xl md:text-5xl mb-3 leading-tight tracking-tight">
+            Let&apos;s talk.
+          </h2>
+          <p className="font-inputmono text-gray-600 text-xs leading-relaxed mb-8">
+            Open to full-time roles, freelance and collaborations.<br />
+            Based in Elche, Spain.
+          </p>
+          <div className="flex flex-col gap-3">
+            <a
+              href="mailto:ruben.gonzalez.rodriguez00@gmail.com"
+              className="font-inputmono text-xs text-gray-500 hover:text-gray-200 transition-colors flex items-center gap-2"
+            >
+              <span className="text-gray-700">→</span>
+              ruben.gonzalez.rodriguez00@gmail.com
+            </a>
+            <a
+              href="https://linkedin.com/in/ruben-gonz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-inputmono text-xs text-gray-600 hover:text-gray-300 transition-colors flex items-center gap-2"
+            >
+              <span className="text-gray-800">→</span>
+              linkedin.com/in/ruben-gonz ↗
+            </a>
+            <a
+              href="https://github.com/RubenGonz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-inputmono text-xs text-gray-600 hover:text-gray-300 transition-colors flex items-center gap-2"
+            >
+              <span className="text-gray-800">→</span>
+              github.com/RubenGonz ↗
+            </a>
+          </div>
         </div>
 
-        {/* Form — backend pending */}
+        {/* Right: form */}
         <form className="flex flex-col gap-4">
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="contact-email" className="font-inputmono text-xs text-gray-600 uppercase tracking-widest">
+            <label
+              htmlFor="contact-email"
+              className="font-inputmono text-[8px] text-gray-700 uppercase tracking-[0.18em]"
+            >
               Your email
             </label>
             <input
@@ -53,31 +65,35 @@ export const ContactSection = () => {
               type="email"
               name="email"
               required
-              className="font-inputmono text-sm bg-transparent border border-gray-800 text-light px-4 py-3
-                focus:outline-none focus:border-brand transition-colors"
+              className="font-inputmono text-xs bg-white/[0.01] border border-white/6 text-light px-4 py-3
+                focus:outline-none focus:border-brand/40 transition-colors"
             />
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="contact-message" className="font-inputmono text-xs text-gray-600 uppercase tracking-widest">
+            <label
+              htmlFor="contact-message"
+              className="font-inputmono text-[8px] text-gray-700 uppercase tracking-[0.18em]"
+            >
               Message
             </label>
             <textarea
               id="contact-message"
               name="message"
-              rows={4}
+              rows={5}
               required
-              className="font-inputmono text-sm bg-transparent border border-gray-800 text-light px-4 py-3
-                focus:outline-none focus:border-brand transition-colors resize-none"
+              className="font-inputmono text-xs bg-white/[0.01] border border-white/6 text-light px-4 py-3
+                focus:outline-none focus:border-brand/40 transition-colors resize-none"
             />
           </div>
 
           <button
             type="submit"
-            className="font-inputmono text-sm font-semibold px-6 py-3 bg-brand text-soft-black
-              hover:bg-brand/90 transition-colors w-fit"
+            className="font-inputmono text-xs font-bold px-5 py-3 tracking-wide w-fit
+              bg-gradient-to-r from-brand-sec to-brand text-deep-black
+              hover:opacity-90 transition-opacity"
           >
-            Send message
+            Send message →
           </button>
         </form>
       </div>

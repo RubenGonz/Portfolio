@@ -62,8 +62,9 @@ export default async function ProjectPage({ params }: Props) {
             href={project.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-inputmono text-sm px-5 py-2.5 bg-brand text-soft-black font-semibold
-              hover:bg-brand/90 transition-colors"
+            className="font-inputmono text-xs font-bold px-5 py-3 tracking-wide
+              bg-gradient-to-r from-brand-sec to-brand text-deep-black
+              hover:opacity-90 transition-opacity"
           >
             View live ↗
           </a>
@@ -73,8 +74,8 @@ export default async function ProjectPage({ params }: Props) {
             href={project.repoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-inputmono text-sm px-5 py-2.5 border border-gray-700 text-gray-300
-              hover:border-brand hover:text-brand transition-colors"
+            className="font-inputmono text-xs px-5 py-3 border border-white/8 text-gray-500
+              hover:border-brand/40 hover:text-gray-300 transition-colors tracking-wide"
           >
             GitHub ↗
           </a>
@@ -86,7 +87,7 @@ export default async function ProjectPage({ params }: Props) {
         {project.tags.map((tag) => (
           <span
             key={tag}
-            className="font-inputmono text-xs text-gray-500 border border-gray-800 px-2 py-1"
+            className="font-inputmono text-[9px] text-gray-600 border border-white/5 bg-white/[0.02] px-2 py-1"
           >
             {tag}
           </span>
