@@ -85,8 +85,9 @@ export const AboutSection = () => {
     }, 250);
   };
 
-  // Auto-rotate continuously until user interacts
+  // Auto-rotate on desktop only — on mobile the layout shifts when text length changes
   useEffect(() => {
+    if (window.matchMedia("(max-width: 767px)").matches) return;
     const ids = timelineItems.map((t) => t.id);
     let i = 1;
     const interval = setInterval(() => {
