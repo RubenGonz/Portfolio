@@ -17,7 +17,7 @@ const TickerStrip = () => (
   <div className="border-t border-b border-white/[0.04] py-2.5 overflow-hidden">
     <div
       className="flex whitespace-nowrap w-max"
-      style={{ animation: "ticker 28s linear infinite" }}
+      style={{ animation: "ticker 60s linear infinite" }}
     >
       {/* Duplicate so the loop is seamless — translate to -50% = one full copy */}
       <span className="font-inputmono text-[9px] text-gray-800 tracking-[0.15em]">{TICKER_TEXT}</span>
