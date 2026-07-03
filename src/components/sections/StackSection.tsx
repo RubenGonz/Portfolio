@@ -43,8 +43,8 @@ const categories: Category[] = [
     items: [
       { name: "PostgreSQL", tier: "active" },
       { name: "Prisma",     tier: "active" },
-      { name: "MongoDB",    tier: "familiar" },
-      { name: "MySQL",      tier: "familiar" },
+      { name: "MongoDB",    tier: "active" },
+      { name: "MySQL",      tier: "active" },
       { name: "Firebase",   tier: "familiar" },
       { name: "SQLite",     tier: "familiar" },
     ],
@@ -58,7 +58,7 @@ const categories: Category[] = [
       { name: "Scrum / Agile",          tier: "professional" },
       { name: "React Testing Library",  tier: "active" },
       { name: "Vercel",                 tier: "active" },
-      { name: "Docker",                 tier: "familiar" },
+      { name: "Docker",                 tier: "active" },
       { name: "CI/CD",                  tier: "familiar" },
       { name: "GitHub Actions",         tier: "familiar" },
     ],
@@ -93,12 +93,14 @@ export const StackSection = () => {
         <div className="grid grid-cols-1 min-[768px]:grid-cols-2 gap-10 min-[768px]:gap-x-16 min-[768px]:gap-y-12">
           {categories.map(({ label, description, items }) => (
             <div key={label}>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-3 h-px bg-gradient-to-r from-brand-sec to-brand" />
-                <span className="font-inputmono text-[9px] text-gray-400 uppercase tracking-widest">
-                  {label}
-                </span>
-                <span className="font-inputmono text-[9px] text-gray-800">— {description}</span>
+              <div className="mb-4">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <div className="w-3 h-px bg-gradient-to-r from-brand-sec to-brand" />
+                  <span className="font-n27 font-bold italic text-light text-sm tracking-wide">
+                    {label}
+                  </span>
+                </div>
+                <p className="font-inputmono text-[9px] text-gray-700 pl-5">{description}</p>
               </div>
 
               <div className="flex flex-wrap gap-2">
