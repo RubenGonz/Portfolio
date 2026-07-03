@@ -108,33 +108,36 @@ export const AboutSection = () => {
   const activeItem = timelineItems.find((item) => item.id === activeId) ?? timelineItems[0];
 
   return (
-    <section id="about" className="px-6 md:px-16 py-28 max-w-5xl mx-auto">
-      {/* Section label */}
+    <section id="about" className="px-6 md:px-16 py-16 md:py-28 max-w-5xl mx-auto">
       <p className="font-inputmono text-gray-700 text-[9px] tracking-[0.2em] uppercase mb-1">
         {"// About"}
       </p>
-      <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-10" />
+      <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8 md:mb-10" />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 max-w-4xl relative">
+      <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 max-w-4xl relative">
         {/* Decorative number */}
-        <span className="absolute -top-2 right-0 font-n27 font-bold italic text-[80px] leading-none text-white/[0.02] select-none pointer-events-none">
+        <span className="absolute -top-2 right-0 font-n27 font-bold italic text-[60px] md:text-[80px] leading-none text-white/[0.02] select-none pointer-events-none">
           02
         </span>
 
         {/* Left: dynamic text */}
         <div
-          className="flex flex-col gap-4 min-h-[180px] transition-opacity duration-250 ease-in-out"
+          className="flex flex-col gap-4 transition-opacity duration-250 ease-in-out"
           style={{ opacity: fading ? 0 : 1 }}
         >
           {activeItem.content.paragraphs.map((para, i) => (
-            <p key={i} className="font-inputmono text-gray-400 text-sm leading-relaxed">
+            <p key={i} className="font-inputmono text-gray-400 text-xs md:text-sm leading-relaxed">
               {para}
             </p>
           ))}
         </div>
 
-        {/* Right: interactive timeline */}
-        <div className="relative pl-7 flex flex-col gap-6">
+        {/* Right: interactive timeline — hint text on mobile */}
+        <div>
+          <p className="font-inputmono text-[9px] text-gray-700 mb-4 md:hidden">
+            tap to explore timeline →
+          </p>
+          <div className="relative pl-7 flex flex-col gap-5 md:gap-6">
           {/* Vertical line — dedicated element so dots can center on it precisely */}
           <div className="absolute left-0 top-1 bottom-1 w-px bg-white/6" />
 
@@ -183,6 +186,7 @@ export const AboutSection = () => {
               </button>
             );
           })}
+          </div>
         </div>
       </div>
     </section>

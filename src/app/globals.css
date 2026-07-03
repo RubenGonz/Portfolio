@@ -13,6 +13,10 @@
   --font-n27: N27, monospace;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--color-deep-black);
   color: var(--color-light);

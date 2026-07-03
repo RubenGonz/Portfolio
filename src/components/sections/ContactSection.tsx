@@ -1,33 +1,31 @@
 export const ContactSection = () => {
   return (
-    <section id="contact" className="px-6 md:px-16 py-28 pb-36 max-w-5xl mx-auto">
-      {/* Section label */}
+    <section id="contact" className="px-6 md:px-16 py-16 md:py-28 max-w-5xl mx-auto">
       <p className="font-inputmono text-gray-700 text-[9px] tracking-[0.2em] uppercase mb-1">
         {"// Contact"}
       </p>
-      <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-10" />
+      <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8 md:mb-10" />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 max-w-4xl relative">
-        {/* Decorative number */}
-        <span className="absolute -top-2 right-0 font-n27 font-bold italic text-[80px] leading-none text-white/[0.02] select-none pointer-events-none">
+      <div className="flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-16 max-w-4xl relative">
+        <span className="absolute -top-2 right-0 font-n27 font-bold italic text-[60px] md:text-[80px] leading-none text-white/[0.02] select-none pointer-events-none">
           04
         </span>
 
         {/* Left: headline + links */}
         <div>
-          <h2 className="font-n27 font-bold italic text-light text-4xl md:text-5xl mb-3 leading-tight tracking-tight">
+          <h2 className="font-n27 font-bold italic text-light text-3xl md:text-5xl mb-2 md:mb-3 leading-tight tracking-tight">
             Let&apos;s talk.
           </h2>
-          <p className="font-inputmono text-gray-600 text-xs leading-relaxed mb-8">
+          <p className="font-inputmono text-gray-600 text-xs leading-relaxed mb-6 md:mb-8">
             Open to full-time roles, freelance and collaborations.<br />
             Based in Elche, Spain.
           </p>
           <div className="flex flex-col gap-3">
             <a
               href="mailto:ruben.gonzalez.rodriguez00@gmail.com"
-              className="font-inputmono text-xs text-gray-500 hover:text-gray-200 transition-colors flex items-center gap-2"
+              className="font-inputmono text-xs text-gray-500 hover:text-gray-200 transition-colors flex items-center gap-2 break-all"
             >
-              <span className="text-gray-700">→</span>
+              <span className="text-gray-700 shrink-0">→</span>
               ruben.gonzalez.rodriguez00@gmail.com
             </a>
             <a
@@ -36,7 +34,7 @@ export const ContactSection = () => {
               rel="noopener noreferrer"
               className="font-inputmono text-xs text-gray-600 hover:text-gray-300 transition-colors flex items-center gap-2"
             >
-              <span className="text-gray-800">→</span>
+              <span className="text-gray-800 shrink-0">→</span>
               linkedin.com/in/ruben-gonz ↗
             </a>
             <a
@@ -45,7 +43,7 @@ export const ContactSection = () => {
               rel="noopener noreferrer"
               className="font-inputmono text-xs text-gray-600 hover:text-gray-300 transition-colors flex items-center gap-2"
             >
-              <span className="text-gray-800">→</span>
+              <span className="text-gray-800 shrink-0">→</span>
               github.com/RubenGonz ↗
             </a>
           </div>
@@ -89,7 +87,7 @@ export const ContactSection = () => {
 
           <button
             type="submit"
-            className="font-inputmono text-xs font-bold px-5 py-3 tracking-wide w-fit
+            className="font-inputmono text-xs font-bold px-5 py-3 tracking-wide w-full md:w-fit
               bg-gradient-to-r from-brand-sec to-brand text-deep-black
               hover:opacity-90 transition-opacity"
           >

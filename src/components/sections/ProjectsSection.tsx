@@ -3,17 +3,14 @@ import { projects } from "@/data/projects";
 
 export const ProjectsSection = () => {
   return (
-    <section id="projects" className="px-6 md:px-16 py-28 max-w-5xl mx-auto">
-      {/* Section label */}
+    <section id="projects" className="px-6 md:px-16 py-16 md:py-28 max-w-5xl mx-auto">
       <p className="font-inputmono text-gray-700 text-[9px] tracking-[0.2em] uppercase mb-1">
         {"// Projects"}
       </p>
-      <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-10" />
+      <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8 md:mb-10" />
 
-      {/* Project cards */}
-      <div className="flex flex-col gap-6 relative">
-        {/* Decorative section number */}
-        <span className="absolute -top-2 right-0 font-n27 font-bold italic text-[80px] leading-none text-white/[0.02] select-none pointer-events-none">
+      <div className="flex flex-col gap-4 md:gap-6 relative">
+        <span className="absolute -top-2 right-0 font-n27 font-bold italic text-[60px] md:text-[80px] leading-none text-white/[0.02] select-none pointer-events-none">
           01
         </span>
 
@@ -24,13 +21,12 @@ export const ProjectsSection = () => {
             className="group block border border-white/7 bg-surface overflow-hidden
               hover:border-brand/30 transition-colors duration-300"
           >
-            {/* Gradient accent top border */}
             <div className="h-[2px] bg-gradient-to-r from-brand-sec via-brand to-transparent" />
 
-            <div className="p-7">
-              <div className="flex items-start justify-between gap-4 mb-4">
+            <div className="p-5 md:p-7">
+              <div className="flex items-start justify-between gap-4 mb-3 md:mb-4">
                 <div>
-                  <h3 className="font-n27 font-bold italic text-light text-xl md:text-2xl
+                  <h3 className="font-n27 font-bold italic text-light text-lg md:text-2xl
                     group-hover:text-brand transition-colors">
                     {project.title}
                   </h3>
@@ -56,7 +52,7 @@ export const ProjectsSection = () => {
                 </span>
               </div>
 
-              <p className="font-inputmono text-gray-500 text-xs leading-relaxed mb-5 max-w-2xl">
+              <p className="font-inputmono text-gray-500 text-xs leading-relaxed mb-4 md:mb-5">
                 {project.shortDescription}
               </p>
 
