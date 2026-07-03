@@ -90,7 +90,7 @@ export const StackSection = () => {
           03
         </span>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-x-16 md:gap-y-12 max-w-4xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-x-16 md:gap-y-12">
           {categories.map(({ label, description, items }) => (
             <div key={label}>
               <div className="flex items-center gap-2 mb-4">
