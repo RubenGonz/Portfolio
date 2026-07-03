@@ -31,7 +31,11 @@ export const Sidebar = ({ open, setOpen, navLinks }: Props) => {
       >
         {/* Panel header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-white/5">
-          <span className="font-n27 font-bold italic text-base bg-gradient-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"{ rubengonz }"}</span>
+          <span className="font-n27 font-bold italic text-base flex items-center gap-1">
+            <span className="bg-gradient-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"{"}</span>
+            <span className="text-light">rubengonz</span>
+            <span className="bg-gradient-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"}"}</span>
+          </span>
           <button
             onClick={() => setOpen(false)}
             aria-label="Close menu"

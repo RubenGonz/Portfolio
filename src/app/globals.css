@@ -28,6 +28,11 @@ body {
   50%, 100% { opacity: 0; }
 }
 
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 .text-shadow-brand {
   text-shadow: 0 0 3px var(--color-brand);
 }
