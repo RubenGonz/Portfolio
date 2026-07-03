@@ -120,9 +120,9 @@ export const AboutSection = () => {
           02
         </span>
 
-        {/* Left: dynamic text */}
+        {/* Left: dynamic text — second on mobile, first on desktop */}
         <div
-          className="flex flex-col gap-4 transition-opacity duration-250 ease-in-out"
+          className="flex flex-col gap-4 transition-opacity duration-250 ease-in-out order-2 md:order-1"
           style={{ opacity: fading ? 0 : 1 }}
         >
           {activeItem.content.paragraphs.map((para, i) => (
@@ -132,8 +132,8 @@ export const AboutSection = () => {
           ))}
         </div>
 
-        {/* Right: interactive timeline — hint text on mobile */}
-        <div>
+        {/* Right: interactive timeline — first on mobile, second on desktop */}
+        <div className="order-1 md:order-2">
           <p className="font-inputmono text-[9px] text-gray-700 mb-4 md:hidden">
             tap to explore timeline →
           </p>
