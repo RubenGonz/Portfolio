@@ -28,10 +28,14 @@ export const Header = () => {
       ${scrolled ? "bg-deep-black/90 backdrop-blur-md border-white/5" : "bg-transparent border-transparent"}`}
     >
       {/* Logo */}
-      <Link href="/" className="flex items-center gap-1.5 group">
-        <span className="font-n27 font-bold italic text-xl leading-none bg-gradient-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"{"}</span>
-        <span className="font-n27 font-bold italic text-sm tracking-wide text-light">rubengonz</span>
-        <span className="font-n27 font-bold italic text-xl leading-none bg-gradient-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"}"}</span>
+      <Link href="/" className="flex items-center group" aria-label="RubenGonz — Home">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logos/Recurso5.svg"
+          alt="RubenGonz"
+          height={28}
+          className="h-7 w-auto opacity-90 group-hover:opacity-100 transition-opacity"
+        />
       </Link>
 
       {/* Nav centrado (solo desktop) */}

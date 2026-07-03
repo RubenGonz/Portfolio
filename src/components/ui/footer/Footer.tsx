@@ -6,9 +6,8 @@ export const Footer = () => {
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-0">
         {/* Left: wordmark + tagline */}
         <div>
-          <span className="font-n27 font-bold italic text-base bg-gradient-to-br from-brand-sec to-brand bg-clip-text text-transparent">
-            {"{ rubengonz }"}
-          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logos/Recurso5.svg" alt="RubenGonz" className="h-6 w-auto opacity-80" />
           <p className="font-inputmono text-[10px] text-gray-700 mt-1.5">
             Frontend Developer · Elche, Spain
           </p>

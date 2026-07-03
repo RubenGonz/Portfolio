@@ -4,7 +4,6 @@ import {
   AboutSection,
   StackSection,
   ContactSection,
-  Footer,
 } from "@/components";
 
 const Divider = () => (
@@ -39,7 +38,6 @@ export default function Home() {
       <StackSection />
       <Divider />
       <ContactSection />
-      <Footer />
     </>
   );
 }
