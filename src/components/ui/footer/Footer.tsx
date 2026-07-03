@@ -6,7 +6,7 @@ export const Footer = () => {
       <div className="max-w-5xl mx-auto flex flex-col gap-6">
         {/* Row 1: wordmark left, social links right */}
         <div className="flex items-center justify-between">
-          <span className="font-n27 font-bold italic text-base bg-gradient-to-br from-brand-sec to-brand bg-clip-text text-transparent">
+          <span className="font-n27 font-bold italic text-base text-light">
             {"{ rubengonz }"}
           </span>
           <div className="flex items-center gap-5">
@@ -30,7 +30,7 @@ export const Footer = () => {
         </div>
 
         {/* Row 2: copyright left, nav links right */}
-        <div className="flex items-center justify-between border-t border-white/[0.04] pt-5">
+        <div className="flex items-center justify-between border-t border-white/10 pt-5">
           <p className="font-inputmono text-[9px] text-gray-800">
             © {year} Rubén González Rodríguez · Elche, Spain
           </p>

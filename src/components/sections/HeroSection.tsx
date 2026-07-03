@@ -83,7 +83,8 @@ export const HeroSection = () => {
               href="/cv-ruben-gonzalez.pdf"
               download
               className="font-inputmono text-xs px-5 py-3 border border-white/20 text-gray-400 text-center
-                hover:border-brand/50 hover:text-gray-200 transition-colors tracking-wide"
+                hover:border-brand/50 hover:text-gray-200 transition-colors tracking-wide
+                shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
             >
               Download CV ↓
             </a>
