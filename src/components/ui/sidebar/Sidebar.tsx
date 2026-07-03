@@ -31,8 +31,7 @@ export const Sidebar = ({ open, setOpen, navLinks }: Props) => {
       >
         {/* Panel header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-white/5">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logos/Recurso5.svg" alt="RubenGonz" className="h-6 w-auto opacity-90" />
+          <span className="font-n27 font-bold italic text-base bg-gradient-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"{ rubengonz }"}</span>
           <button
             onClick={() => setOpen(false)}
             aria-label="Close menu"

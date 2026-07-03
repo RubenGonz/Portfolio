@@ -45,7 +45,7 @@ export const HeroSection = () => {
           <div className="flex items-center gap-2 mb-4 md:mb-5 font-inputmono overflow-hidden">
             <span className="text-gray-700 text-xs shrink-0">~/portfolio</span>
             <span className="text-gray-600 text-xs shrink-0">$</span>
-            <span className="text-gray-500 text-xs italic truncate">Rubén González Rodríguez</span>
+            <span className="text-gray-300 text-xs italic truncate">Rubén González Rodríguez</span>
             <span className="text-brand text-xs shrink-0 animate-[blink_1.1s_step-end_infinite]">▌</span>
           </div>
 
@@ -82,8 +82,8 @@ export const HeroSection = () => {
             <a
               href="/cv-ruben-gonzalez.pdf"
               download
-              className="font-inputmono text-xs px-5 py-3 border border-white/8 text-gray-400 text-center
-                hover:border-brand/40 hover:text-gray-200 transition-colors tracking-wide"
+              className="font-inputmono text-xs px-5 py-3 border border-white/20 text-gray-400 text-center
+                hover:border-brand/50 hover:text-gray-200 transition-colors tracking-wide"
             >
               Download CV ↓
             </a>
