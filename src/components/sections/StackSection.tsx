@@ -11,34 +11,56 @@ const categories: Category[] = [
     label: "Frontend",
     description: "UI & client-side",
     items: [
-      { name: "React",           tier: "professional" },
-      { name: "Angular",         tier: "professional" },
-      { name: "TypeScript",      tier: "professional" },
-      { name: "Next.js",         tier: "active" },
-      { name: "Tailwind CSS",    tier: "active" },
-      { name: "Redux / Zustand", tier: "familiar" },
+      { name: "React",          tier: "professional" },
+      { name: "Angular",        tier: "professional" },
+      { name: "TypeScript",     tier: "professional" },
+      { name: "Next.js",        tier: "active" },
+      { name: "Tailwind CSS",   tier: "active" },
+      { name: "Redux / Zustand",tier: "active" },
+      { name: "React Query",    tier: "active" },
+      { name: "React Router",   tier: "active" },
+      { name: "NextAuth",       tier: "familiar" },
+      { name: "SASS",           tier: "familiar" },
     ],
   },
   {
     label: "Backend",
-    description: "Server & data",
+    description: "Server & APIs",
     items: [
-      { name: "Node.js",    tier: "active" },
-      { name: "Express",    tier: "active" },
+      { name: "Node.js",       tier: "active" },
+      { name: "Express",       tier: "active" },
+      { name: "REST APIs",     tier: "professional" },
+      { name: "JWT / OAuth",   tier: "active" },
+      { name: "GraphQL",       tier: "familiar" },
+      { name: "WebSockets",    tier: "familiar" },
+      { name: "Serverless",    tier: "familiar" },
+      { name: "i18n",          tier: "active" },
+    ],
+  },
+  {
+    label: "Database",
+    description: "Storage & ORM",
+    items: [
       { name: "PostgreSQL", tier: "active" },
       { name: "Prisma",     tier: "active" },
-      { name: "GraphQL",    tier: "familiar" },
       { name: "MongoDB",    tier: "familiar" },
+      { name: "MySQL",      tier: "familiar" },
+      { name: "Firebase",   tier: "familiar" },
+      { name: "SQLite",     tier: "familiar" },
     ],
   },
   {
     label: "Tooling",
-    description: "Workflow & ops",
+    description: "Workflow & DevOps",
     items: [
-      { name: "Git",          tier: "professional" },
-      { name: "Jest",         tier: "professional" },
-      { name: "Scrum / Agile", tier: "professional" },
-      { name: "Docker",       tier: "familiar" },
+      { name: "Git",                    tier: "professional" },
+      { name: "Jest",                   tier: "professional" },
+      { name: "Scrum / Agile",          tier: "professional" },
+      { name: "React Testing Library",  tier: "active" },
+      { name: "Vercel",                 tier: "active" },
+      { name: "Docker",                 tier: "familiar" },
+      { name: "CI/CD",                  tier: "familiar" },
+      { name: "GitHub Actions",         tier: "familiar" },
     ],
   },
 ];
@@ -68,11 +90,9 @@ export const StackSection = () => {
           03
         </span>
 
-        {/* Category grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 max-w-4xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-x-16 md:gap-y-12 max-w-4xl">
           {categories.map(({ label, description, items }) => (
             <div key={label}>
-              {/* Category header */}
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-3 h-px bg-gradient-to-r from-brand-sec to-brand" />
                 <span className="font-inputmono text-[9px] text-gray-400 uppercase tracking-widest">
@@ -81,7 +101,6 @@ export const StackSection = () => {
                 <span className="font-inputmono text-[9px] text-gray-800">— {description}</span>
               </div>
 
-              {/* Pills */}
               <div className="flex flex-wrap gap-2">
                 {items.map(({ name, tier }) => (
                   <span
@@ -93,18 +112,6 @@ export const StackSection = () => {
                   </span>
                 ))}
               </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Legend */}
-        <div className="flex items-center gap-5 mt-10 md:mt-12">
-          {(["professional", "active", "familiar"] as const).map((tier) => (
-            <div key={tier} className="flex items-center gap-1.5">
-              <span className={`w-1.5 h-1.5 rounded-full ${tierDot[tier]}`} />
-              <span className="font-inputmono text-[8px] text-gray-800 capitalize tracking-wider">
-                {tier === "professional" ? "Production" : tier === "active" ? "Active" : "Exposure"}
-              </span>
             </div>
           ))}
         </div>
