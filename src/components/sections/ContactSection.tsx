@@ -1,7 +1,7 @@
 export const ContactSection = () => {
   return (
     <section id="contact" className="px-6 md:px-16 py-16 md:py-28 max-w-5xl mx-auto">
-      <p className="font-inputmono text-gray-700 text-[9px] tracking-[0.2em] uppercase mb-1">
+      <p className="font-inputmono text-gray-700 text-[11px] tracking-[0.2em] uppercase mb-1">
         {"// Contact"}
       </p>
       <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8 md:mb-10" />
@@ -18,7 +18,7 @@ export const ContactSection = () => {
           </h2>
           <p className="font-inputmono text-gray-600 text-xs leading-relaxed mb-6 md:mb-8">
             Open to full-time roles, freelance and collaborations.<br />
-            Based in Elche, Spain.
+            Based in Elche, Spain. I usually reply within 24 hours.
           </p>
           <div className="flex flex-col gap-3">
             <a
@@ -54,7 +54,7 @@ export const ContactSection = () => {
           <div className="flex flex-col gap-1.5">
             <label
               htmlFor="contact-email"
-              className="font-inputmono text-[8px] text-gray-700 uppercase tracking-[0.18em]"
+              className="font-inputmono text-[11px] text-gray-700 uppercase tracking-[0.18em]"
             >
               Your email
             </label>
@@ -71,7 +71,7 @@ export const ContactSection = () => {
           <div className="flex flex-col gap-1.5">
             <label
               htmlFor="contact-message"
-              className="font-inputmono text-[8px] text-gray-700 uppercase tracking-[0.18em]"
+              className="font-inputmono text-[11px] text-gray-700 uppercase tracking-[0.18em]"
             >
               Message
             </label>

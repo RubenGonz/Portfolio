@@ -110,7 +110,7 @@ export const AboutSection = () => {
 
   return (
     <section id="about" className="px-6 md:px-16 py-16 md:py-28 max-w-5xl mx-auto">
-      <p className="font-inputmono text-gray-700 text-[9px] tracking-[0.2em] uppercase mb-1">
+      <p className="font-inputmono text-gray-700 text-[11px] tracking-[0.2em] uppercase mb-1">
         {"// About"}
       </p>
       <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8 md:mb-10" />
@@ -135,7 +135,7 @@ export const AboutSection = () => {
 
         {/* Right: interactive timeline — first on mobile, second on desktop */}
         <div className="order-1 md:order-2">
-          <p className="font-inputmono text-[9px] text-gray-700 mb-4 md:hidden">
+          <p className="font-inputmono text-[11px] text-gray-700 mb-4 md:hidden">
             tap to explore timeline →
           </p>
           <div className="relative pl-7 flex flex-col gap-5 md:gap-6">
@@ -161,7 +161,7 @@ export const AboutSection = () => {
                     }`}
                 />
 
-                <p className={`font-inputmono text-[9px] tracking-widest mb-0.5 transition-colors duration-150
+                <p className={`font-inputmono text-[11px] tracking-widest mb-0.5 transition-colors duration-150
                   ${isSelected
                     ? active === "current" ? "text-brand" : "text-gray-400"
                     : "text-gray-700 group-hover:text-gray-500"
@@ -179,7 +179,7 @@ export const AboutSection = () => {
                   )}
                 </p>
                 {subtitle && (
-                  <p className={`font-inputmono text-[10px] mt-0.5 transition-colors duration-150
+                  <p className={`font-inputmono text-[11px] mt-0.5 transition-colors duration-150
                     ${isSelected ? "text-gray-600" : "text-gray-800"}`}>
                     {subtitle}
                   </p>

@@ -24,10 +24,10 @@ export const projects: Project[] = [
     ],
     role: "Design, architecture & full-stack development",
     images: [
-      { src: "/images/projects/portfolio/portfolio-1.png", alt: "Portfolio — Hero section" },
-      { src: "/images/projects/portfolio/about.png", alt: "Portfolio — About section" },
-      { src: "/images/projects/portfolio/stack.png", alt: "Portfolio — Stack section" },
-      { src: "/images/projects/portfolio/contact.png", alt: "Portfolio — Contact section" },
+      { src: "/images/projects/portfolio/portfolio-1.webp", alt: "Portfolio — Hero section" },
+      { src: "/images/projects/portfolio/about.webp", alt: "Portfolio — About section" },
+      { src: "/images/projects/portfolio/stack.webp", alt: "Portfolio — Stack section" },
+      { src: "/images/projects/portfolio/contact.webp", alt: "Portfolio — Contact section" },
     ],
   },
 ];

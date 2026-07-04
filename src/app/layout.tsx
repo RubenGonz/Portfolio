@@ -36,14 +36,6 @@ export const metadata: Metadata = {
     description: "Frontend developer with production experience in React and Angular. Building full-stack with Next.js and Node.js. Based in Elche, Spain.",
     url: process.env.NEXT_PUBLIC_SITE_URL,
     siteName: "RubenGonz",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "RubenGonz — Frontend Developer",
-      },
-    ],
     locale: "en_US",
     type: "website",
   },
@@ -51,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "RubenGonz — Frontend Developer",
     description: "Frontend developer with production experience in React and Angular. Building full-stack with Next.js and Node.js.",
-    images: ["/og-image.png"],
+    images: ["/opengraph-image"],
   },
 };
 

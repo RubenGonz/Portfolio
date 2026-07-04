@@ -58,7 +58,7 @@ export default async function ProjectPage({ params }: Props) {
           {/* Back */}
           <Link
             href="/#projects"
-            className="font-inputmono text-[10px] text-gray-600 hover:text-gray-300
+            className="font-inputmono text-[11px] text-gray-600 hover:text-gray-300
               transition-colors mb-10 inline-flex items-center gap-2 tracking-widest uppercase"
           >
             <span className="text-brand">←</span> All projects
@@ -71,23 +71,23 @@ export default async function ProjectPage({ params }: Props) {
             <div>
               {/* Year + status + role */}
               <div className="flex flex-wrap items-center gap-3 mb-5">
-                <span className="font-inputmono text-[9px] text-gray-700 tracking-widest">
+                <span className="font-inputmono text-[11px] text-gray-700 tracking-widest">
                   {project.year}
                 </span>
                 {project.status === "in-progress" && (
-                  <span className="font-inputmono text-[8px] text-brand border border-brand/20 bg-brand/8 px-2 py-0.5 tracking-widest uppercase">
+                  <span className="font-inputmono text-[11px] text-brand border border-brand/20 bg-brand/8 px-2 py-0.5 tracking-widest uppercase">
                     In progress
                   </span>
                 )}
                 {project.status === "live" && (
-                  <span className="font-inputmono text-[8px] text-green-500 border border-green-500/20 bg-green-500/8 px-2 py-0.5 tracking-widest uppercase">
+                  <span className="font-inputmono text-[11px] text-green-500 border border-green-500/20 bg-green-500/8 px-2 py-0.5 tracking-widest uppercase">
                     Live
                   </span>
                 )}
                 {project.role && (
                   <>
                     <span className="text-gray-800 text-[9px]">·</span>
-                    <span className="font-inputmono text-[9px] text-gray-600">{project.role}</span>
+                    <span className="font-inputmono text-[11px] text-gray-600">{project.role}</span>
                   </>
                 )}
               </div>
@@ -107,7 +107,7 @@ export default async function ProjectPage({ params }: Props) {
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="font-inputmono text-[9px] text-gray-600 border border-white/5 bg-white/[0.02] px-2 py-1"
+                    className="font-inputmono text-[11px] text-gray-600 border border-white/5 bg-white/[0.02] px-2 py-1"
                   >
                     {tag}
                   </span>
@@ -156,7 +156,7 @@ export default async function ProjectPage({ params }: Props) {
 
         {/* About the project */}
         <section>
-          <p className="font-inputmono text-gray-700 text-[9px] tracking-[0.2em] uppercase mb-1">
+          <p className="font-inputmono text-gray-700 text-[11px] tracking-[0.2em] uppercase mb-1">
             {"// About"}
           </p>
           <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8" />
@@ -172,7 +172,7 @@ export default async function ProjectPage({ params }: Props) {
         {/* Technical highlights */}
         {project.highlights.length > 0 && (
           <section>
-            <p className="font-inputmono text-gray-700 text-[9px] tracking-[0.2em] uppercase mb-1">
+            <p className="font-inputmono text-gray-700 text-[11px] tracking-[0.2em] uppercase mb-1">
               {"// Technical highlights"}
             </p>
             <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8" />
@@ -193,7 +193,7 @@ export default async function ProjectPage({ params }: Props) {
         {/* Project navigation */}
         {(prev || next) && (
           <section>
-            <p className="font-inputmono text-gray-700 text-[9px] tracking-[0.2em] uppercase mb-1">
+            <p className="font-inputmono text-gray-700 text-[11px] tracking-[0.2em] uppercase mb-1">
               {"// More projects"}
             </p>
             <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8" />
@@ -204,7 +204,7 @@ export default async function ProjectPage({ params }: Props) {
                   className="group flex flex-col gap-1 border border-white/5 bg-white/[0.01]
                     px-5 py-4 hover:border-brand/30 transition-colors"
                 >
-                  <span className="font-inputmono text-[9px] text-gray-700 tracking-widest">← Previous</span>
+                  <span className="font-inputmono text-[11px] text-gray-700 tracking-widest">← Previous</span>
                   <span className="font-n27 font-bold italic text-gray-400 text-lg group-hover:text-light transition-colors">
                     {prev.title}
                   </span>
@@ -217,7 +217,7 @@ export default async function ProjectPage({ params }: Props) {
                     px-5 py-4 hover:border-brand/30 transition-colors min-[640px]:text-right
                     min-[640px]:col-start-2"
                 >
-                  <span className="font-inputmono text-[9px] text-gray-700 tracking-widest">Next →</span>
+                  <span className="font-inputmono text-[11px] text-gray-700 tracking-widest">Next →</span>
                   <span className="font-n27 font-bold italic text-gray-400 text-lg group-hover:text-light transition-colors">
                     {next.title}
                   </span>

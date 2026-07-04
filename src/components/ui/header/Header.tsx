@@ -52,7 +52,7 @@ export const Header = () => {
         <div className="hidden md:flex items-center gap-3">
           <div className="flex items-center gap-1.5 border border-brand/30 px-3 py-1 rounded-full">
             <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
-            <span className="font-inputmono text-[9px] text-brand tracking-widest uppercase">Available</span>
+            <span className="font-inputmono text-[11px] text-brand tracking-widest uppercase">Available</span>
           </div>
           <ThemeSelector />
         </div>
@@ -60,7 +60,7 @@ export const Header = () => {
         {/* Hamburguesa móvil */}
         <button
           onClick={() => setOpen(true)}
-          className="md:hidden z-20 p-2 rounded hover:bg-light/10 transition-colors font-inputmono text-xs text-gray-400"
+          className="md:hidden z-20 p-2 rounded hover:bg-light/10 transition-colors font-inputmono text-xs text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50"
           aria-label="Open menu"
         >
           Menu

@@ -65,11 +65,11 @@ export const Sidebar = ({ open, setOpen, navLinks }: Props) => {
         <div className="px-6 py-5 border-t border-white/5">
           <div className="flex items-center gap-1.5 mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
-            <span className="font-inputmono text-[9px] text-brand tracking-widest uppercase">Available for work</span>
+            <span className="font-inputmono text-[11px] text-brand tracking-widest uppercase">Available for work</span>
           </div>
           <a
             href="mailto:ruben.gonzalez.rodriguez00@gmail.com"
-            className="font-inputmono text-[10px] text-gray-700 hover:text-gray-400 transition-colors break-all"
+            className="font-inputmono text-[11px] text-gray-700 hover:text-gray-400 transition-colors break-all"
           >
             ruben.gonzalez.rodriguez00@gmail.com
           </a>

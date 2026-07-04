@@ -37,6 +37,7 @@ export const ProjectGallery = ({ images }: Props) => {
               key={i}
               onClick={() => setActive(i)}
               className={`relative flex-1 aspect-video overflow-hidden border transition-all duration-200
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50
                 ${i === active
                   ? "border-brand/60 opacity-100"
                   : "border-white/8 opacity-40 hover:opacity-70"

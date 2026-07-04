@@ -4,7 +4,7 @@ import { projects } from "@/data/projects";
 export const ProjectsSection = () => {
   return (
     <section id="projects" className="px-6 md:px-16 py-16 md:py-28 max-w-5xl mx-auto">
-      <p className="font-inputmono text-gray-700 text-[9px] tracking-[0.2em] uppercase mb-1">
+      <p className="font-inputmono text-gray-700 text-[11px] tracking-[0.2em] uppercase mb-1">
         {"// Projects"}
       </p>
       <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8 md:mb-10" />
@@ -31,15 +31,15 @@ export const ProjectsSection = () => {
                     {project.title}
                   </h3>
                   <div className="flex items-center gap-3 mt-1">
-                    <span className="font-inputmono text-gray-700 text-[9px]">{project.year}</span>
+                    <span className="font-inputmono text-gray-700 text-[11px]">{project.year}</span>
                     {project.status === "in-progress" && (
-                      <span className="font-inputmono text-[8px] text-brand border border-brand/20
+                      <span className="font-inputmono text-[11px] text-brand border border-brand/20
                         bg-brand/8 px-2 py-0.5 tracking-widest uppercase">
                         In progress
                       </span>
                     )}
                     {project.status === "live" && (
-                      <span className="font-inputmono text-[8px] text-green-500 border border-green-500/20
+                      <span className="font-inputmono text-[11px] text-green-500 border border-green-500/20
                         bg-green-500/8 px-2 py-0.5 tracking-widest uppercase">
                         Live
                       </span>
@@ -60,7 +60,7 @@ export const ProjectsSection = () => {
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="font-inputmono text-[9px] text-gray-600 border border-white/5
+                    className="font-inputmono text-[11px] text-gray-600 border border-white/5
                       bg-white/[0.02] px-2 py-1"
                   >
                     {tag}
