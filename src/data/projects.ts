@@ -23,6 +23,12 @@ export const projects: Project[] = [
       "Static data layer — scalable to database without breaking the API surface",
     ],
     role: "Design, architecture & full-stack development",
+    images: [
+      { src: "/images/projects/portfolio-1.png", alt: "Portfolio — Hero section" },
+      { src: "/images/projects/portfolio-2.png", alt: "Portfolio — Projects section" },
+      { src: "/images/projects/portfolio-3.png", alt: "Portfolio — About section" },
+      { src: "/images/projects/portfolio-4.png", alt: "Portfolio — Stack section" },
+    ],
   },
 ];
 
