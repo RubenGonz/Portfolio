@@ -14,12 +14,13 @@ export const ContactSection = () => {
     const form = e.currentTarget;
     const email = (form.elements.namedItem("email") as HTMLInputElement).value;
     const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value;
+    const _trap = (form.elements.namedItem("_trap") as HTMLInputElement).value;
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, message }),
+        body: JSON.stringify({ email, message, _trap }),
       });
 
       if (!res.ok) throw new Error();
@@ -82,6 +83,8 @@ export const ContactSection = () => {
 
         {/* Right: form */}
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          {/* Honeypot — hidden from humans, bots fill it */}
+          <input type="text" name="_trap" tabIndex={-1} aria-hidden="true" style={{ display: "none" }} />
           <div className="flex flex-col gap-1.5">
             <label
               htmlFor="contact-email"
