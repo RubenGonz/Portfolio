@@ -40,7 +40,7 @@ export const Header = () => {
           <Link
             key={href}
             href={href}
-            className="font-inputmono text-xs text-gray-500 hover:text-gray-200 tracking-widest uppercase transition-colors"
+            className="font-inputmono text-xs text-gray-400 hover:text-gray-200 tracking-widest uppercase transition-colors"
           >
             {label}
           </Link>
