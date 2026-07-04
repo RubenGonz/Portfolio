@@ -51,7 +51,7 @@ export default async function ProjectPage({ params }: Props) {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 60% 50% at 70% 50%, rgba(201,101,234,0.06) 0%, transparent 70%)",
+              "radial-gradient(ellipse 60% 50% at 70% 50%, var(--glow-soft) 0%, transparent 70%)",
           }}
         />
         {/* Dot grid */}
@@ -59,7 +59,7 @@ export default async function ProjectPage({ params }: Props) {
           className="absolute inset-0 pointer-events-none"
           style={{
             backgroundImage:
-              "radial-gradient(rgba(183,153,255,0.06) 1px, transparent 1px)",
+              "radial-gradient(var(--grid-dot) 1px, transparent 1px)",
             backgroundSize: "28px 28px",
           }}
         />
@@ -139,7 +139,7 @@ export default async function ProjectPage({ params }: Props) {
                     rel="noopener noreferrer"
                     className="font-inputmono text-xs px-5 py-3 border border-line/20 text-muted
                       hover:border-brand/50 hover:text-fg transition-colors tracking-wide
-                      shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+                      shadow-raised"
                   >
                     GitHub ↗
                   </a>

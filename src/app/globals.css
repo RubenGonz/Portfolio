@@ -18,6 +18,7 @@
   --color-brand-sec: var(--brand-sec);
   --color-on-accent: var(--on-accent); /* text on accent buttons  */
   --color-success: var(--success);  /* status: completed / live   */
+  --color-danger: var(--danger);    /* error text                 */
 
   --font-inputmono: InputMono, monospace;
   --font-n27: N27, monospace;
@@ -25,18 +26,29 @@
 
 /* Light theme = default token layer */
 :root {
-  --bg: #faf9f7;
-  --surface: #f2f0ec;
-  --elevated: #eceae5;
+  --bg: #f4f1ea;        /* warm paper — toned down so decorative detail reads */
+  --surface: #ece8e0;   /* recessed cards / inputs                             */
+  --elevated: #e6e1d7;  /* sidebar / higher panel                              */
   --fg: #18181b;
   --muted: #52525b;
-  --subtle: #6b7280;
-  --faint: #8a8a93;
+  --subtle: #5f5f67;
+  --faint: #83838c;
   --line: #000000;
   --brand: #7c3aed;
   --brand-sec: #9333ea;
   --on-accent: #ffffff;
   --success: #15803d;
+  --danger: #b91c1c;
+
+  /* Decorative layer — tuned to stay visible on paper (deeper purple, more alpha) */
+  --grid-dot: rgba(124, 58, 237, 0.10);
+  --glow: rgba(147, 51, 234, 0.10);
+  --glow-soft: rgba(147, 51, 234, 0.08);
+  --ghost-from: rgba(124, 58, 237, 0.12);
+  --ghost-to: rgba(147, 51, 234, 0.05);
+  --ghost-num: rgba(24, 24, 27, 0.05);
+  --raise-1: rgba(0, 0, 0, 0.08);
+  --raise-2: rgba(124, 58, 237, 0.05);
 }
 
 /* Dark theme (default active — see ThemeProvider defaultTheme="dark") */
@@ -53,6 +65,17 @@
   --brand-sec: #c965ea;
   --on-accent: #0b0d0d;
   --success: #22c55e;
+  --danger: #f87171;
+
+  /* Decorative layer — original luminous-on-black values */
+  --grid-dot: rgba(183, 153, 255, 0.08);
+  --glow: rgba(201, 101, 234, 0.07);
+  --glow-soft: rgba(201, 101, 234, 0.06);
+  --ghost-from: rgba(201, 101, 234, 0.05);
+  --ghost-to: rgba(183, 153, 255, 0.015);
+  --ghost-num: rgba(255, 255, 255, 0.02);
+  --raise-1: rgba(255, 255, 255, 0.18);
+  --raise-2: rgba(255, 255, 255, 0.04);
 }
 
 html {
@@ -77,4 +100,14 @@ body {
 
 .text-shadow-brand {
   text-shadow: 0 0 3px var(--color-brand);
+}
+
+/* Ghost decorative section number (01/02/03…) — flips per theme */
+.ghost-number {
+  color: var(--ghost-num);
+}
+
+/* Raised / framed inner shadow on outline buttons — flips per theme */
+.shadow-raised {
+  box-shadow: inset 0 1px 0 var(--raise-1), inset 0 0 12px var(--raise-2);
 }

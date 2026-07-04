@@ -118,7 +118,7 @@ export const AboutSection = () => {
 
       <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 max-w-4xl relative">
         {/* Decorative number */}
-        <span aria-hidden="true" className="absolute -top-2 right-0 font-n27 font-bold italic text-[60px] md:text-[80px] leading-none text-line/[0.02] select-none pointer-events-none">
+        <span aria-hidden="true" className="absolute -top-2 right-0 font-n27 font-bold italic text-[60px] md:text-[80px] leading-none ghost-number select-none pointer-events-none">
           02
         </span>
 

@@ -40,7 +40,7 @@ export const ContactSection = () => {
       <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8 md:mb-10" />
 
       <div className="flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-16 max-w-4xl relative">
-        <span aria-hidden="true" className="absolute -top-2 right-0 font-n27 font-bold italic text-[60px] md:text-[80px] leading-none text-line/[0.02] select-none pointer-events-none">
+        <span aria-hidden="true" className="absolute -top-2 right-0 font-n27 font-bold italic text-[60px] md:text-[80px] leading-none ghost-number select-none pointer-events-none">
           05
         </span>
 
@@ -99,7 +99,7 @@ export const ContactSection = () => {
               name="email"
               required
               disabled={status === "sending" || status === "success"}
-              className="font-inputmono text-xs bg-line/[0.01] border border-line/6 text-fg px-4 py-3
+              className="font-inputmono text-xs bg-surface border border-line/10 text-fg px-4 py-3
                 focus:outline-none focus:border-brand/40 transition-colors disabled:opacity-50"
             />
           </div>
@@ -117,7 +117,7 @@ export const ContactSection = () => {
               rows={5}
               required
               disabled={status === "sending" || status === "success"}
-              className="font-inputmono text-xs bg-line/[0.01] border border-line/6 text-fg px-4 py-3
+              className="font-inputmono text-xs bg-surface border border-line/10 text-fg px-4 py-3
                 focus:outline-none focus:border-brand/40 transition-colors resize-none disabled:opacity-50"
             />
           </div>
@@ -128,7 +128,7 @@ export const ContactSection = () => {
             </p>
           )}
           {status === "error" && (
-            <p className="font-inputmono text-xs text-red-400">
+            <p className="font-inputmono text-xs text-danger">
               Something went wrong. Try emailing me directly.
             </p>
           )}

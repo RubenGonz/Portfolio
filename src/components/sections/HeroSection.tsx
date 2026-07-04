@@ -7,7 +7,7 @@ export const HeroSection = () => {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: "radial-gradient(rgba(183,153,255,0.08) 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(var(--grid-dot) 1px, transparent 1px)",
           backgroundSize: "28px 28px",
         }}
       />
@@ -20,7 +20,7 @@ export const HeroSection = () => {
           right: "0",
           width: "500px",
           height: "500px",
-          background: "radial-gradient(circle, rgba(201,101,234,0.07) 0%, transparent 65%)",
+          background: "radial-gradient(circle, var(--glow) 0%, transparent 65%)",
         }}
       />
 
@@ -31,7 +31,7 @@ export const HeroSection = () => {
           style={{
             fontSize: "320px",
             lineHeight: 1,
-            background: "linear-gradient(180deg, rgba(201,101,234,0.05), rgba(183,153,255,0.015))",
+            background: "linear-gradient(180deg, var(--ghost-from), var(--ghost-to))",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
           }}
@@ -86,7 +86,7 @@ export const HeroSection = () => {
               download
               className="font-inputmono text-xs px-5 py-3 border border-line/20 text-muted text-center
                 hover:border-brand/50 hover:text-fg transition-colors tracking-wide
-                shadow-[inset_0_1px_0_rgba(255,255,255,0.18),inset_0_0_12px_rgba(255,255,255,0.04)]"
+                shadow-raised"
             >
               Download CV ↓
             </a>
