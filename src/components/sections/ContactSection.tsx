@@ -1,4 +1,35 @@
+"use client";
+
+import { useState } from "react";
+
+type Status = "idle" | "sending" | "success" | "error";
+
 export const ContactSection = () => {
+  const [status, setStatus] = useState<Status>("idle");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("sending");
+
+    const form = e.currentTarget;
+    const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+    const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value;
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, message }),
+      });
+
+      if (!res.ok) throw new Error();
+      setStatus("success");
+      form.reset();
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <section id="contact" className="px-6 md:px-16 py-16 md:py-28 max-w-5xl mx-auto">
       <p className="font-inputmono text-gray-700 text-[11px] tracking-[0.2em] uppercase mb-1">
@@ -50,7 +81,7 @@ export const ContactSection = () => {
         </div>
 
         {/* Right: form */}
-        <form className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="flex flex-col gap-1.5">
             <label
               htmlFor="contact-email"
@@ -63,8 +94,9 @@ export const ContactSection = () => {
               type="email"
               name="email"
               required
+              disabled={status === "sending" || status === "success"}
               className="font-inputmono text-xs bg-white/[0.01] border border-white/6 text-light px-4 py-3
-                focus:outline-none focus:border-brand/40 transition-colors"
+                focus:outline-none focus:border-brand/40 transition-colors disabled:opacity-50"
             />
           </div>
 
@@ -80,18 +112,31 @@ export const ContactSection = () => {
               name="message"
               rows={5}
               required
+              disabled={status === "sending" || status === "success"}
               className="font-inputmono text-xs bg-white/[0.01] border border-white/6 text-light px-4 py-3
-                focus:outline-none focus:border-brand/40 transition-colors resize-none"
+                focus:outline-none focus:border-brand/40 transition-colors resize-none disabled:opacity-50"
             />
           </div>
 
+          {status === "success" && (
+            <p className="font-inputmono text-xs text-brand">
+              Message sent. I&apos;ll get back to you soon.
+            </p>
+          )}
+          {status === "error" && (
+            <p className="font-inputmono text-xs text-red-400">
+              Something went wrong. Try emailing me directly.
+            </p>
+          )}
+
           <button
             type="submit"
+            disabled={status === "sending" || status === "success"}
             className="font-inputmono text-xs font-bold px-5 py-3 tracking-wide w-full md:w-fit
               bg-gradient-to-r from-brand-sec to-brand text-deep-black
-              hover:opacity-90 transition-opacity"
+              hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Send message →
+            {status === "sending" ? "Sending..." : "Send message →"}
           </button>
         </form>
       </div>
