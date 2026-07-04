@@ -22,6 +22,13 @@ export const projects: Project[] = [
       "TypeScript throughout with strict mode enabled",
       "Static data layer — scalable to database without breaking the API surface",
     ],
+    role: "Design, architecture & full-stack development",
+    images: [
+      { src: "/images/projects/portfolio/portfolio-1.png", alt: "Portfolio — Hero section" },
+      { src: "/images/projects/portfolio/about.png", alt: "Portfolio — About section" },
+      { src: "/images/projects/portfolio/stack.png", alt: "Portfolio — Stack section" },
+      { src: "/images/projects/portfolio/contact.png", alt: "Portfolio — Contact section" },
+    ],
   },
 ];
 
