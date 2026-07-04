@@ -3,6 +3,8 @@ import "./globals.css";
 import MaintenancePage from "./maintenance/page";
 import { inputMono, n27 } from "@/config/fonts/fonts";
 import { Providers } from "@/components";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 if (!process.env.NEXT_PUBLIC_SITE_URL) {
   throw new Error("NEXT_PUBLIC_SITE_URL is not defined");
@@ -83,6 +85,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <Providers>
         {maintenance ? <MaintenancePage /> : children}
       </Providers>
+      <Analytics />
+      <SpeedInsights />
     </body>
   </html>
 }
