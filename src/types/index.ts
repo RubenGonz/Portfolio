@@ -24,6 +24,7 @@ export interface Course {
   title: string;
   platform: string;
   year: number;
+  status: "completed" | "in-progress" | "not-started";
   shortDescription: string;
   fullDescription: string;
   topics: { label: string; items: string[] }[];

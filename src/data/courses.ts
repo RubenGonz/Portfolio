@@ -6,6 +6,7 @@ export const courses: Course[] = [
     title: "Next.js: El framework de React para producción",
     platform: "Udemy",
     year: 2025,
+    status: "completed",
     shortDescription:
       "Full Next.js course building production-ready applications including Teslo-Shop, an e-commerce platform with auth, payments and hybrid rendering.",
     fullDescription:
@@ -38,6 +39,7 @@ export const courses: Course[] = [
     title: "NodeJS: De cero a experto",
     platform: "Udemy",
     year: 2026,
+    status: "completed",
     shortDescription:
       "End-to-end Node.js course covering REST APIs, Clean Architecture, testing, WebSockets, databases and serverless — from console apps to full backend systems.",
     fullDescription:

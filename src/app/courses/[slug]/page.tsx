@@ -2,6 +2,15 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getCourseBySlug, courses } from "@/data/courses";
 import { BackLink } from "@/components/ui/BackLink";
+import type { Course } from "@/types";
+
+const StatusBadge = ({ status }: { status: Course["status"] }) => {
+  if (status === "completed")
+    return <span className="font-inputmono text-[11px] text-green-500 border border-green-500/20 bg-green-500/8 px-2 py-0.5 tracking-widest uppercase">Completed</span>;
+  if (status === "in-progress")
+    return <span className="font-inputmono text-[11px] text-brand border border-brand/20 bg-brand/8 px-2 py-0.5 tracking-widest uppercase">In progress</span>;
+  return <span className="font-inputmono text-[11px] text-gray-500 border border-white/10 px-2 py-0.5 tracking-widest uppercase">Not started</span>;
+};
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -64,6 +73,8 @@ export default async function CoursePage({ params }: Props) {
             <span className="font-inputmono text-[11px] text-gray-500 tracking-widest">
               {course.year}
             </span>
+            <span className="text-gray-700 text-[9px]">·</span>
+            <StatusBadge status={course.status} />
           </div>
 
           <h1 className="font-n27 font-bold italic text-light text-[clamp(2rem,5vw,3.5rem)] leading-[0.92] tracking-tight mb-6 max-w-3xl">
