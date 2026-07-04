@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { getProjectBySlug, projects } from "@/data/projects";
 import { ProjectGallery } from "@/components/ui/project-gallery/ProjectGallery";
+import { BackLink } from "@/components/ui/BackLink";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -56,13 +56,7 @@ export default async function ProjectPage({ params }: Props) {
 
         <div className="relative px-6 md:px-16 pt-28 pb-16 max-w-5xl mx-auto">
           {/* Back */}
-          <Link
-            href="/#projects"
-            className="font-inputmono text-[11px] text-gray-600 hover:text-gray-300
-              transition-colors mb-10 inline-flex items-center gap-2 tracking-widest uppercase"
-          >
-            <span className="text-brand">←</span> All projects
-          </Link>
+          <BackLink />
 
           {/* Two-column layout: left = content, right = gallery */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
