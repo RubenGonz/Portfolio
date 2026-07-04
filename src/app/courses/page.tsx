@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { courses } from "@/data/courses";
+import { BackLink } from "@/components/ui/BackLink";
+import { StatusBadge } from "@/components/ui/StatusBadge";
 
 export const metadata: Metadata = {
   title: "Courses",
@@ -10,12 +12,7 @@ export const metadata: Metadata = {
 export default function CoursesPage() {
   return (
     <main className="min-h-screen px-6 md:px-16 pt-28 pb-16 max-w-5xl mx-auto">
-      <Link
-        href="/#courses"
-        className="font-inputmono text-[11px] text-gray-600 hover:text-gray-300 transition-colors mb-10 inline-flex items-center gap-2 tracking-widest uppercase"
-      >
-        <span className="text-brand">←</span> Back
-      </Link>
+      <BackLink label="Back" fallbackHref="/#courses" />
 
       <p className="font-inputmono text-gray-400 text-[11px] tracking-[0.2em] uppercase mb-1" aria-hidden="true">
         {"// Courses"}
@@ -33,13 +30,14 @@ export default function CoursesPage() {
               border border-white/5 bg-white/[0.01] px-6 py-5
               hover:border-brand/30 hover:bg-white/[0.02] transition-all duration-200"
           >
-            <div className="flex md:flex-col gap-3 md:gap-1">
+            <div className="flex md:flex-col gap-3 md:gap-2 items-start">
               <span className="font-inputmono text-[11px] text-brand tracking-widest uppercase">
                 {course.platform}
               </span>
               <span className="font-inputmono text-[11px] text-gray-500 tracking-widest">
                 {course.year}
               </span>
+              <StatusBadge status={course.status} />
             </div>
 
             <div>

@@ -1,14 +1,6 @@
 import Link from "next/link";
 import { courses } from "@/data/courses";
-import type { Course } from "@/types";
-
-const StatusBadge = ({ status }: { status: Course["status"] }) => {
-  if (status === "completed")
-    return <span className="font-inputmono text-[11px] text-green-500 border border-green-500/20 bg-green-500/8 px-2 py-0.5 tracking-widest uppercase">Completed</span>;
-  if (status === "in-progress")
-    return <span className="font-inputmono text-[11px] text-brand border border-brand/20 bg-brand/8 px-2 py-0.5 tracking-widest uppercase">In progress</span>;
-  return <span className="font-inputmono text-[11px] text-gray-500 border border-white/10 px-2 py-0.5 tracking-widest uppercase">Not started</span>;
-};
+import { StatusBadge } from "@/components/ui/StatusBadge";
 
 export const CoursesSection = () => {
   return (
@@ -35,7 +27,7 @@ export const CoursesSection = () => {
                 hover:border-brand/30 hover:bg-white/[0.02] transition-all duration-200"
             >
               {/* Left: platform + year + status */}
-              <div className="flex md:flex-col gap-3 md:gap-2">
+              <div className="flex md:flex-col gap-3 md:gap-2 items-start">
                 <span className="font-inputmono text-[11px] text-brand tracking-widest uppercase">
                   {course.platform}
                 </span>
