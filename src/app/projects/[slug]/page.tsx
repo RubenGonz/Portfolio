@@ -24,104 +24,196 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
-
   if (!project) notFound();
 
+  const currentIndex = projects.findIndex((p) => p.slug === slug);
+  const prev = projects[currentIndex - 1] ?? null;
+  const next = projects[currentIndex + 1] ?? null;
+
   return (
-    <main className="min-h-screen px-6 md:px-16 py-24 max-w-4xl mx-auto">
-      {/* Back */}
-      <Link
-        href="/#projects"
-        className="font-inputmono text-xs text-gray-600 hover:text-brand transition-colors mb-12 inline-block"
-      >
-        ← Back
-      </Link>
+    <main className="min-h-screen">
 
-      {/* Header */}
-      <div className="mb-12">
-        <div className="flex items-center gap-4 mb-4">
-          <p className="font-inputmono text-gray-600 text-xs">{project.year}</p>
-          {project.status === "in-progress" && (
-            <span className="font-inputmono text-brand text-xs border border-brand/30 px-2 py-0.5">
-              In progress
+      {/* ── Hero block ─────────────────────────────────────────── */}
+      <div className="relative border-b border-white/5 overflow-hidden">
+        {/* Background glow */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 50% at 70% 50%, rgba(201,101,234,0.06) 0%, transparent 70%)",
+          }}
+        />
+        {/* Dot grid */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "radial-gradient(rgba(183,153,255,0.06) 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+
+        <div className="relative px-6 md:px-16 pt-28 pb-16 max-w-5xl mx-auto">
+          {/* Back */}
+          <Link
+            href="/#projects"
+            className="font-inputmono text-[10px] text-gray-600 hover:text-gray-300
+              transition-colors mb-10 inline-flex items-center gap-2 tracking-widest uppercase"
+          >
+            <span className="text-brand">←</span> All projects
+          </Link>
+
+          {/* Year + status + role */}
+          <div className="flex flex-wrap items-center gap-3 mb-5">
+            <span className="font-inputmono text-[9px] text-gray-700 tracking-widest">
+              {project.year}
             </span>
-          )}
+            {project.status === "in-progress" && (
+              <span className="font-inputmono text-[8px] text-brand border border-brand/20 bg-brand/8 px-2 py-0.5 tracking-widest uppercase">
+                In progress
+              </span>
+            )}
+            {project.status === "live" && (
+              <span className="font-inputmono text-[8px] text-green-500 border border-green-500/20 bg-green-500/8 px-2 py-0.5 tracking-widest uppercase">
+                Live
+              </span>
+            )}
+            {project.role && (
+              <>
+                <span className="text-gray-800 text-[9px]">·</span>
+                <span className="font-inputmono text-[9px] text-gray-600">{project.role}</span>
+              </>
+            )}
+          </div>
+
+          {/* Title */}
+          <h1 className="font-n27 font-bold italic text-light text-[clamp(2.5rem,8vw,5rem)] leading-[0.92] tracking-tight mb-6">
+            {project.title}
+          </h1>
+
+          {/* Description + tags side by side on desktop */}
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-10">
+            <p className="font-inputmono text-gray-400 text-sm leading-relaxed max-w-xl">
+              {project.shortDescription}
+            </p>
+            <div className="flex flex-wrap gap-2 md:max-w-xs md:justify-end shrink-0">
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="font-inputmono text-[9px] text-gray-600 border border-white/5 bg-white/[0.02] px-2 py-1"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA buttons */}
+          <div className="flex flex-wrap gap-3">
+            {project.url && (
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-inputmono text-xs font-bold px-5 py-3 tracking-wide
+                  bg-gradient-to-r from-brand-sec to-brand text-deep-black
+                  hover:opacity-90 transition-opacity"
+              >
+                View live ↗
+              </a>
+            )}
+            {project.repoUrl && (
+              <a
+                href={project.repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-inputmono text-xs px-5 py-3 border border-white/20 text-gray-400
+                  hover:border-brand/50 hover:text-gray-200 transition-colors tracking-wide
+                  shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+              >
+                GitHub ↗
+              </a>
+            )}
+          </div>
         </div>
-        <h1 className="font-n27 font-bold italic text-light text-4xl md:text-6xl mb-4">
-          {project.title}
-        </h1>
-        <p className="font-inputmono text-gray-400 text-base leading-relaxed max-w-2xl">
-          {project.shortDescription}
-        </p>
       </div>
 
-      {/* Links */}
-      <div className="flex flex-wrap gap-4 mb-16">
-        {project.url && (
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-inputmono text-xs font-bold px-5 py-3 tracking-wide
-              bg-gradient-to-r from-brand-sec to-brand text-deep-black
-              hover:opacity-90 transition-opacity"
-          >
-            View live ↗
-          </a>
-        )}
-        {project.repoUrl && (
-          <a
-            href={project.repoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-inputmono text-xs px-5 py-3 border border-white/8 text-gray-500
-              hover:border-brand/40 hover:text-gray-300 transition-colors tracking-wide"
-          >
-            GitHub ↗
-          </a>
-        )}
-      </div>
+      {/* ── Body ───────────────────────────────────────────────── */}
+      <div className="px-6 md:px-16 py-16 md:py-24 max-w-5xl mx-auto flex flex-col gap-16 md:gap-24">
 
-      {/* Tags */}
-      <div className="flex flex-wrap gap-2 mb-16">
-        {project.tags.map((tag) => (
-          <span
-            key={tag}
-            className="font-inputmono text-[9px] text-gray-600 border border-white/5 bg-white/[0.02] px-2 py-1"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      {/* Full description */}
-      <div className="mb-16">
-        <p className="font-inputmono text-xs text-gray-600 uppercase tracking-widest mb-6">
-          About the project
-        </p>
-        {project.fullDescription.split("\n\n").map((para, i) => (
-          <p key={i} className="font-inputmono text-gray-300 text-sm leading-relaxed mb-4">
-            {para}
+        {/* About the project */}
+        <section>
+          <p className="font-inputmono text-gray-700 text-[9px] tracking-[0.2em] uppercase mb-1">
+            {"// About"}
           </p>
-        ))}
-      </div>
-
-      {/* Technical highlights */}
-      {project.highlights.length > 0 && (
-        <div>
-          <p className="font-inputmono text-xs text-gray-600 uppercase tracking-widest mb-6">
-            Technical highlights
-          </p>
-          <ul className="flex flex-col gap-3">
-            {project.highlights.map((highlight, i) => (
-              <li key={i} className="font-inputmono text-gray-400 text-sm flex gap-3">
-                <span className="text-brand shrink-0">→</span>
-                {highlight}
-              </li>
+          <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8" />
+          <div className="flex flex-col gap-4 max-w-3xl">
+            {project.fullDescription.split("\n\n").map((para, i) => (
+              <p key={i} className="font-inputmono text-gray-400 text-sm leading-relaxed">
+                {para}
+              </p>
             ))}
-          </ul>
-        </div>
-      )}
+          </div>
+        </section>
+
+        {/* Technical highlights */}
+        {project.highlights.length > 0 && (
+          <section>
+            <p className="font-inputmono text-gray-700 text-[9px] tracking-[0.2em] uppercase mb-1">
+              {"// Technical highlights"}
+            </p>
+            <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8" />
+            <div className="grid grid-cols-1 min-[640px]:grid-cols-2 gap-3">
+              {project.highlights.map((highlight, i) => (
+                <div
+                  key={i}
+                  className="flex gap-3 border border-white/5 bg-white/[0.01] px-4 py-3"
+                >
+                  <span className="text-brand font-inputmono text-xs shrink-0 mt-0.5">→</span>
+                  <p className="font-inputmono text-gray-400 text-xs leading-relaxed">{highlight}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Project navigation */}
+        {(prev || next) && (
+          <section>
+            <p className="font-inputmono text-gray-700 text-[9px] tracking-[0.2em] uppercase mb-1">
+              {"// More projects"}
+            </p>
+            <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8" />
+            <div className="grid grid-cols-1 min-[640px]:grid-cols-2 gap-4">
+              {prev && (
+                <Link
+                  href={`/projects/${prev.slug}`}
+                  className="group flex flex-col gap-1 border border-white/5 bg-white/[0.01]
+                    px-5 py-4 hover:border-brand/30 transition-colors"
+                >
+                  <span className="font-inputmono text-[9px] text-gray-700 tracking-widest">← Previous</span>
+                  <span className="font-n27 font-bold italic text-gray-400 text-lg group-hover:text-light transition-colors">
+                    {prev.title}
+                  </span>
+                </Link>
+              )}
+              {next && (
+                <Link
+                  href={`/projects/${next.slug}`}
+                  className="group flex flex-col gap-1 border border-white/5 bg-white/[0.01]
+                    px-5 py-4 hover:border-brand/30 transition-colors min-[640px]:text-right
+                    min-[640px]:col-start-2"
+                >
+                  <span className="font-inputmono text-[9px] text-gray-700 tracking-widest">Next →</span>
+                  <span className="font-n27 font-bold italic text-gray-400 text-lg group-hover:text-light transition-colors">
+                    {next.title}
+                  </span>
+                </Link>
+              )}
+            </div>
+          </section>
+        )}
+      </div>
     </main>
   );
 }

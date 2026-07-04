@@ -10,6 +10,7 @@ export interface Project {
   year: number;
   status: "live" | "in-progress" | "archived";
   highlights: string[];
+  role?: string;
 }
 
 export interface StackItem {

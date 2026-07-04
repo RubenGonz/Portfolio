@@ -22,6 +22,7 @@ export const projects: Project[] = [
       "TypeScript throughout with strict mode enabled",
       "Static data layer — scalable to database without breaking the API surface",
     ],
+    role: "Design, architecture & full-stack development",
   },
 ];
 
