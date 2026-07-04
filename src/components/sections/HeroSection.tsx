@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const HeroSection = () => {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen overflow-x-clip">
       {/* Dot grid — full viewport width */}
       <div
         className="absolute inset-0 pointer-events-none"

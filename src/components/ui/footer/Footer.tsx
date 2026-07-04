@@ -31,12 +31,12 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* Row 2: copyright left, nav links right */}
-        <div className="flex items-center justify-between border-t border-line/10 pt-5">
+        {/* Row 2: copyright left, nav links right — stacks on mobile */}
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between border-t border-line/10 pt-5">
           <p className="font-inputmono text-[11px] text-muted">
             © {year} Rubén González Rodríguez · Elche, Spain
           </p>
-          <nav className="flex items-center gap-5">
+          <nav className="flex flex-wrap items-center gap-x-5 gap-y-2">
             {[
               { label: "Projects", href: "/#projects" },
               { label: "About", href: "/#about" },
