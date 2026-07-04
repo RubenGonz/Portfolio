@@ -65,7 +65,7 @@ export default async function ProjectPage({ params }: Props) {
           </Link>
 
           {/* Two-column layout: left = content, right = gallery */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
 
             {/* Left: meta + title + description + tags + buttons */}
             <div>
