@@ -58,7 +58,7 @@ export const HeroSection = () => {
           {/* Accent line + tagline */}
           <div className="flex items-center gap-3 mb-4 md:mb-5">
             <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand shrink-0" />
-            <p className="font-inputmono text-gray-600 text-[11px] md:text-xs tracking-wider md:tracking-widest leading-relaxed">
+            <p className="font-inputmono text-gray-500 text-[11px] md:text-xs tracking-wider md:tracking-widest leading-relaxed">
               Banking sector · Enterprise systems · Going full-stack
             </p>
 
@@ -66,8 +66,9 @@ export const HeroSection = () => {
 
           {/* Description */}
           <p className="font-inputmono text-gray-500 text-xs md:text-sm leading-relaxed max-w-lg mb-8 md:mb-9">
-            Professional experience building production applications with React and Angular.
-            Now expanding into Next.js and Node.js.
+            Spent a few years building production apps for banks and enterprise clients —
+            the kind real people depend on. Now going full-stack, and this portfolio
+            is the first thing I&apos;m shipping to prove it.
           </p>
 
           {/* CTAs */}

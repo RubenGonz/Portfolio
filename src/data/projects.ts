@@ -5,9 +5,9 @@ export const projects: Project[] = [
     slug: "portfolio",
     title: "Personal Portfolio",
     shortDescription:
-      "Personal portfolio built as a real project, not a template. Designed and architected from scratch with a focus on clean code, performance and honest technical decisions.",
+      "Not a template. Built from scratch because I wanted something that shows how I think about code — the architecture, the design decisions, the things that don't show up in a GitHub readme.",
     fullDescription:
-      "This portfolio is the project itself — built with Next.js 15 App Router, TypeScript and Tailwind CSS 4. Every architectural decision here was made deliberately: the route group structure, the component organization, the custom typography system with two local font families, the dark mode implementation with next-themes, and the static data layer that keeps the stack simple without sacrificing scalability.\n\nThe goal was to build something that reflects how I actually write code: readable, maintainable, and without unnecessary complexity.",
+      "I started this portfolio because I didn't want to just list skills on a page — I wanted something that reflected how I actually build software. So I treated it as a real project, with real constraints and real decisions to defend.\n\nNext.js 15 App Router with route groups and nested layouts. Two local font families (InputMono + N27) because typography matters and system fonts were the lazy option. A static data layer for projects that can scale to a database without touching the components. Dark-only theme because I wanted to commit to a design decision instead of supporting both and doing neither well.\n\nEvery part of this codebase is something I'd stand behind in a code review.",
     tags: ["Next.js 15", "TypeScript", "Tailwind CSS 4", "React 19", "Vercel"],
     url: "https://rubengonz.com",
     repoUrl: "https://github.com/RubenGonz",

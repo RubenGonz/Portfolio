@@ -10,9 +10,9 @@ const timelineItems = [
     subtitle: null,
     content: {
       paragraphs: [
-        <>Front-end developer with professional experience at <span className="text-light">Bosonit</span>, building production applications for the <span className="text-light">banking sector</span> and enterprise asset management using React and Angular.</>,
-        <>Currently expanding into full-stack with Next.js and Node.js — building real projects, not just following tutorials.</>,
-        <>Open to new opportunities, remote or on-site. Based in <span className="text-gray-300">Elche, Spain</span>.</>,
+        <>I build interfaces — have been doing it professionally since 2022, mostly in the banking and enterprise world. The kind of apps that run on production servers and have actual users depending on them.</>,
+        <>Right now I&apos;m expanding into the backend side. Not through courses, but by building real things and figuring out what breaks. This portfolio is one of those things.</>,
+        <>Open to roles where I can keep growing on both sides of the stack. Remote or on-site. Based in <span className="text-gray-300">Elche, Spain</span>.</>,
       ],
     },
     active: true,
@@ -24,8 +24,8 @@ const timelineItems = [
     subtitle: null,
     content: {
       paragraphs: [
-        <>Studied application development with a focus on web technologies. Learned the fundamentals of HTML, CSS, JavaScript, Java and databases.</>,
-        <>This is where I discovered frontend development and decided to specialize in it. First contact with version control, MVC patterns and building real projects from scratch.</>,
+        <>Two years of application development — HTML, CSS, JavaScript, Java, databases. The kind of curriculum that teaches you the fundamentals whether you want to or not.</>,
+        <>Somewhere in there I got genuinely hooked on frontend. Probably the first time I wrote something and could see it immediately in a browser. Decided that&apos;s what I wanted to do and stopped second-guessing it.</>,
       ],
     },
     active: false,
@@ -37,9 +37,9 @@ const timelineItems = [
     subtitle: "React, Angular · Banking sector · Enterprise apps",
     content: {
       paragraphs: [
-        <>Worked as a frontend consultant at <span className="text-light">Bosonit</span>, building and maintaining production applications for clients in the <span className="text-light">banking and financial sector</span>.</>,
-        <>Daily work with React and Angular in enterprise environments: complex state management, integration with REST APIs, unit testing with Jest and agile workflows in cross-functional teams.</>,
-        <>First real experience with the scale and constraints of production software — performance, accessibility, code reviews and tight deadlines.</>,
+        <>First real job. Frontend consultant at <span className="text-light">Bosonit</span>, building production applications for banking and financial clients. React, Angular, real codebases, real deadlines.</>,
+        <>That&apos;s where I learned that clean code isn&apos;t optional when five other people have to maintain what you wrote. Complex state, REST APIs, Jest, Scrum — the whole thing. The fastest I&apos;ve ever grown as a developer.</>,
+        <>Also where I developed strong opinions about component architecture. Some good, some I&apos;ve since changed my mind about.</>,
       ],
     },
     active: true,
@@ -51,8 +51,8 @@ const timelineItems = [
     subtitle: "Next.js, Node.js, PostgreSQL",
     content: {
       paragraphs: [
-        <>After stepping back to rethink my direction, I decided to go deeper on the full-stack side — not as a course-follower, but by building real things.</>,
-        <>Working with <span className="text-light">Next.js 15</span>, <span className="text-light">Node.js</span>, <span className="text-light">PostgreSQL</span> and <span className="text-light">Prisma</span>. Learning by shipping, not by watching.</>,
+        <>After Bosonit I took time to figure out what I actually wanted to build next — and realized I didn&apos;t want to stay only on the frontend side forever.</>,
+        <>So I started going full-stack. <span className="text-light">Next.js 15</span>, <span className="text-light">Node.js</span>, <span className="text-light">PostgreSQL</span>, <span className="text-light">Prisma</span>. Not following a roadmap, just picking a project and building it until it works. Made a lot of mistakes. Still am.</>,
       ],
     },
     active: false,
@@ -64,8 +64,8 @@ const timelineItems = [
     subtitle: null,
     content: {
       paragraphs: [
-        <>This portfolio is the first project I&apos;m shipping as a full-stack developer. Built with Next.js 15 App Router, TypeScript, Tailwind CSS v4 and deployed on Vercel.</>,
-        <>Every design and architecture decision in here is intentional. The goal: land a role where I can keep growing in both frontend and backend.</>,
+        <>This portfolio is the first thing I&apos;m shipping as a full-stack developer. Every decision — the route structure, the font system, the static data layer, the dark-only theme — has a reason I could explain in a code review.</>,
+        <>The goal is simple: find a role where I keep growing on both sides of the stack.</>,
       ],
     },
     active: "current" as const,
@@ -171,7 +171,7 @@ export const AboutSection = () => {
                 <p className={`font-inputmono text-xs transition-colors duration-150
                   ${isSelected
                     ? active === "current" ? "text-brand" : "text-gray-200"
-                    : "text-gray-600 group-hover:text-gray-400"
+                    : "text-gray-500 group-hover:text-gray-300"
                   }`}>
                   {title}
                   {isSelected && active === "current" && (

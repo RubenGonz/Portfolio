@@ -16,7 +16,7 @@ export const ContactSection = () => {
           <h2 className="font-n27 font-bold italic text-light text-3xl md:text-5xl mb-2 md:mb-3 leading-tight tracking-tight">
             Let&apos;s talk.
           </h2>
-          <p className="font-inputmono text-gray-600 text-xs leading-relaxed mb-6 md:mb-8">
+          <p className="font-inputmono text-gray-500 text-xs leading-relaxed mb-6 md:mb-8">
             Open to full-time roles, freelance and collaborations.<br />
             Based in Elche, Spain. I usually reply within 24 hours.
           </p>
