@@ -47,15 +47,39 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Rubén González Rodríguez",
+  alternateName: "RubenGonz",
+  jobTitle: "Frontend Developer",
+  url: "https://www.rubengonz.com",
+  sameAs: [
+    "https://github.com/RubenGonz",
+    "https://linkedin.com/in/ruben-gonz",
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Elche",
+    addressCountry: "ES",
+  },
+};
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
   const maintenance = process.env.MAINTENANCE_MODE === "true";
 
   return <html lang="en" suppressHydrationWarning>
+    <head>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+    </head>
     <body className={`${inputMono.variable} ${n27.variable} font-inputmono`}>
       <Providers>
         {maintenance ? <MaintenancePage /> : children}
-      </Providers>      
+      </Providers>
     </body>
   </html>
 }

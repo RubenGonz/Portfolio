@@ -17,9 +17,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
   if (!project) return {};
+  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.rubengonz.com";
   return {
     title: project.title,
     description: project.shortDescription,
+    alternates: { canonical: `${base}/projects/${slug}` },
+    openGraph: {
+      title: `${project.title} — RubenGonz`,
+      description: project.shortDescription,
+      url: `${base}/projects/${slug}`,
+      type: "article",
+      images: [{ url: `${base}/opengraph-image`, width: 1200, height: 630, alt: "RubenGonz — Frontend Developer" }],
+    },
   };
 }
 

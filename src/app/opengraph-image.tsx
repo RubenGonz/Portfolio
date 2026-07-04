@@ -85,9 +85,9 @@ export default async function OGImage() {
 
         {/* Terminal path */}
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 26 }}>
-          <span style={{ fontFamily: "InputMono", fontSize: 13, color: "#3d3255" }}>~/portfolio</span>
-          <span style={{ fontFamily: "InputMono", fontSize: 13, color: "#2e2840" }}>$</span>
-          <span style={{ fontFamily: "InputMono", fontSize: 13, color: "#3d3255", fontStyle: "italic" }}>
+          <span style={{ fontFamily: "InputMono", fontSize: 13, color: "#6b7280" }}>~/portfolio</span>
+          <span style={{ fontFamily: "InputMono", fontSize: 13, color: "#6b7280" }}>$</span>
+          <span style={{ fontFamily: "InputMono", fontSize: 13, color: "#9ca3af", fontStyle: "italic" }}>
             Frontend Developer · Elche, Spain
           </span>
           <span style={{ fontFamily: "InputMono", fontSize: 13, color: "#b799ff" }}>▌</span>
@@ -100,7 +100,7 @@ export default async function OGImage() {
             style={{
               fontFamily: "InputMono",
               fontSize: 11,
-              color: "#5a4870",
+              color: "#9ca3af",
               letterSpacing: "0.14em",
             }}
           >
@@ -140,7 +140,7 @@ export default async function OGImage() {
             display: "flex",
           }}
         >
-          rubengonz.com
+          <span style={{ color: "#6b7280" }}>rubengonz.com</span>
         </div>
       </div>
     ),
