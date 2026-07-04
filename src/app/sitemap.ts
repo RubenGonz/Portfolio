@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { projects } from "@/data/projects";
+import { courses } from "@/data/courses";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.rubengonz.com";
@@ -11,6 +12,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const courseRoutes: MetadataRoute.Sitemap = courses.map((c) => ({
+    url: `${base}/courses/${c.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
   return [
     {
       url: base,
@@ -19,5 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     ...projectRoutes,
+    { url: `${base}/courses`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    ...courseRoutes,
   ];
 }

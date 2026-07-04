@@ -40,6 +40,7 @@ export const Footer = () => {
             {[
               { label: "Projects", href: "/#projects" },
               { label: "About", href: "/#about" },
+              { label: "Courses", href: "/#courses" },
               { label: "Contact", href: "/#contact" },
             ].map(({ label, href }) => (
               <a

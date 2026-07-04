@@ -2,6 +2,7 @@ import {
   HeroSection,
   ProjectsSection,
   AboutSection,
+  CoursesSection,
   StackSection,
   ContactSection,
 } from "@/components";
@@ -37,6 +38,8 @@ export default function Home() {
       <ProjectsSection />
       <Divider />
       <AboutSection />
+      <Divider />
+      <CoursesSection />
       <Divider />
       <StackSection />
       <Divider />

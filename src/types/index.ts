@@ -19,6 +19,20 @@ export interface StackItem {
   tier: "professional" | "active" | "familiar";
 }
 
+export interface Course {
+  slug: string;
+  title: string;
+  platform: string;
+  year: number;
+  shortDescription: string;
+  fullDescription: string;
+  topics: { label: string; items: string[] }[];
+  tags: string[];
+  certificateUrl?: string;
+  repoUrl?: string;
+  demoUrl?: string;
+}
+
 export interface ContactMessage {
   email: string;
   message: string;

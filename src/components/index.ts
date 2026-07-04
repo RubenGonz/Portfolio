@@ -9,4 +9,5 @@ export { HeroSection } from "./sections/HeroSection";
 export { ProjectsSection } from "./sections/ProjectsSection";
 export { AboutSection } from "./sections/AboutSection";
 export { StackSection } from "./sections/StackSection";
+export { CoursesSection } from "./sections/CoursesSection";
 export { ContactSection } from "./sections/ContactSection";
