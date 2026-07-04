@@ -5,7 +5,7 @@ export const ProjectsSection = () => {
   return (
     <section id="projects" className="px-6 md:px-16 py-16 md:py-28 max-w-5xl mx-auto">
       <h2 className="sr-only">Projects</h2>
-      <p className="font-inputmono text-gray-700 text-[11px] tracking-[0.2em] uppercase mb-1" aria-hidden="true">
+      <p className="font-inputmono text-gray-400 text-[11px] tracking-[0.2em] uppercase mb-1" aria-hidden="true">
         {"// Projects"}
       </p>
       <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8 md:mb-10" />
