@@ -68,7 +68,7 @@ const categories: Category[] = [
 const tierClass: Record<StackItem["tier"], string> = {
   professional: "text-gray-200 border-white/12 bg-white/[0.04] text-xs px-3 py-1.5",
   active:       "text-gray-500 border-white/6  bg-white/[0.02] text-xs px-3 py-1.5",
-  familiar:     "text-gray-700 border-white/[0.04]             text-[10px] px-2.5 py-1",
+  familiar:     "text-gray-700 border-white/[0.04]             text-[11px] px-2.5 py-1",
 };
 
 const tierDot: Record<StackItem["tier"], string> = {
@@ -80,7 +80,7 @@ const tierDot: Record<StackItem["tier"], string> = {
 export const StackSection = () => {
   return (
     <section id="stack" className="px-6 md:px-16 py-16 md:py-28 max-w-5xl mx-auto">
-      <p className="font-inputmono text-gray-700 text-[9px] tracking-[0.2em] uppercase mb-1">
+      <p className="font-inputmono text-gray-700 text-[11px] tracking-[0.2em] uppercase mb-1">
         {"// Stack"}
       </p>
       <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8 md:mb-10" />
@@ -100,7 +100,7 @@ export const StackSection = () => {
                     {label}
                   </span>
                 </div>
-                <p className="font-inputmono text-[9px] text-gray-700 pl-5">{description}</p>
+                <p className="font-inputmono text-[11px] text-gray-700 pl-5">{description}</p>
               </div>
 
               <div className="flex flex-wrap gap-2">
