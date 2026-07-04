@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ThemeSelector } from "../theme-selector/ThemeSelector";
 
 interface Props {
   open: boolean;
@@ -63,6 +64,12 @@ export const Sidebar = ({ open, setOpen, navLinks }: Props) => {
 
         {/* Footer */}
         <div className="px-6 py-5 border-t border-line/5">
+          {/* Theme toggle */}
+          <div className="flex items-center justify-between mb-5">
+            <span className="font-inputmono text-[11px] text-faint tracking-widest uppercase">Theme</span>
+            <ThemeSelector />
+          </div>
+
           <div className="flex items-center gap-1.5 mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
             <span className="font-inputmono text-[11px] text-brand tracking-widest uppercase">Available for work</span>

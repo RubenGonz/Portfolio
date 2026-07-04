@@ -41,7 +41,7 @@
   --danger: #b91c1c;
 
   /* Decorative layer — tuned to stay visible on paper (deeper purple, more alpha) */
-  --grid-dot: rgba(124, 58, 237, 0.10);
+  --grid-dot: rgba(124, 58, 237, 0.13);
   --glow: rgba(147, 51, 234, 0.10);
   --glow-soft: rgba(147, 51, 234, 0.08);
   --ghost-from: rgba(124, 58, 237, 0.12);
@@ -49,6 +49,7 @@
   --ghost-num: rgba(24, 24, 27, 0.05);
   --raise-1: rgba(0, 0, 0, 0.08);
   --raise-2: rgba(124, 58, 237, 0.05);
+  --img-glow: 0 10px 30px rgba(0, 0, 0, 0.14), 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
 /* Dark theme (default active — see ThemeProvider defaultTheme="dark") */
@@ -68,14 +69,15 @@
   --danger: #f87171;
 
   /* Decorative layer — original luminous-on-black values */
-  --grid-dot: rgba(183, 153, 255, 0.08);
+  --grid-dot: rgba(183, 153, 255, 0.12);
   --glow: rgba(201, 101, 234, 0.07);
   --glow-soft: rgba(201, 101, 234, 0.06);
-  --ghost-from: rgba(201, 101, 234, 0.05);
-  --ghost-to: rgba(183, 153, 255, 0.015);
-  --ghost-num: rgba(255, 255, 255, 0.02);
+  --ghost-from: rgba(201, 101, 234, 0.09);
+  --ghost-to: rgba(183, 153, 255, 0.035);
+  --ghost-num: rgba(255, 255, 255, 0.045);
   --raise-1: rgba(255, 255, 255, 0.18);
   --raise-2: rgba(255, 255, 255, 0.04);
+  --img-glow: 0 0 40px rgba(183, 153, 255, 0.20), 0 0 80px rgba(201, 101, 234, 0.10);
 }
 
 html {

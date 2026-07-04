@@ -84,7 +84,7 @@ export const HeroSection = () => {
             <a
               href="/cv-ruben-gonzalez.pdf"
               download
-              className="font-inputmono text-xs px-5 py-3 border border-line/20 text-muted text-center
+              className="font-inputmono text-xs px-5 py-3 border border-line/30 text-muted text-center
                 hover:border-brand/50 hover:text-fg transition-colors tracking-wide
                 shadow-raised"
             >
@@ -94,7 +94,7 @@ export const HeroSection = () => {
               href="https://github.com/RubenGonz"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-inputmono text-xs px-5 py-3 border border-line/8 text-subtle text-center
+              className="font-inputmono text-xs px-5 py-3 border border-line/16 text-subtle text-center
                 hover:border-brand/40 hover:text-fg transition-colors tracking-wide"
             >
               GitHub ↗

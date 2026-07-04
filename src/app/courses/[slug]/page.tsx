@@ -108,7 +108,7 @@ export default async function CoursePage({ params }: Props) {
                 href={course.repoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-inputmono text-xs px-5 py-3 border border-line/20 text-muted
+                className="font-inputmono text-xs px-5 py-3 border border-line/30 text-muted
                   hover:border-brand/50 hover:text-fg transition-colors tracking-wide
                   shadow-raised"
               >
@@ -120,7 +120,7 @@ export default async function CoursePage({ params }: Props) {
                 href={course.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-inputmono text-xs px-5 py-3 border border-line/8 text-subtle
+                className="font-inputmono text-xs px-5 py-3 border border-line/16 text-subtle
                   hover:border-brand/40 hover:text-fg transition-colors tracking-wide"
               >
                 Live demo ↗

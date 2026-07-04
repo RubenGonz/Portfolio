@@ -17,7 +17,7 @@ export const ProjectGallery = ({ images }: Props) => {
       {/* Main image */}
       <div
         className="relative w-full aspect-video overflow-hidden border border-line/8"
-        style={{ boxShadow: "0 0 40px rgba(183,153,255,0.12), 0 0 80px rgba(201,101,234,0.06)" }}
+        style={{ boxShadow: "var(--img-glow)" }}
       >
         <Image
           src={images[active].src}

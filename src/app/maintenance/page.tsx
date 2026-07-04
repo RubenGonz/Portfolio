@@ -4,7 +4,7 @@ export default function MaintenancePage() {
     bg-[url('/error/mantenimiento-mobile-1.png')] md:bg-[url('/error/mantenimiento-desktop-1.png')]">
 
     {/* Background gradient layer positioned behind the main content */}
-    <div className="absolute inset-0 bg-linear-to-r from-deep-black to-soft-black -z-10"></div>
+    <div className="absolute inset-0 bg-linear-to-r from-bg to-elevated -z-10"></div>
 
     {/* Content */}
     <div className="flex flex-col items-center justify-center text-center
@@ -25,10 +25,10 @@ export default function MaintenancePage() {
 
       <a href="mailto:ruben.gonzalez.rodriguez00@gmail.com"
         className="px-3 sm:px-4 py-1 sm:py-1.5
-            text-fg hover:text-fg
+            text-muted hover:text-fg
             font-medium text-sm sm:text-base md:text-lg
-            bg-elevated hover:bg-black
-            border border-gray-300 hover:border-light
+            bg-elevated hover:bg-surface
+            border border-line/20 hover:border-brand
             shadow-md hover:shadow-lg
             transition-all duration-300">
         CONTÁCTAME

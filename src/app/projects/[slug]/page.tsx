@@ -137,7 +137,7 @@ export default async function ProjectPage({ params }: Props) {
                     href={project.repoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-inputmono text-xs px-5 py-3 border border-line/20 text-muted
+                    className="font-inputmono text-xs px-5 py-3 border border-line/30 text-muted
                       hover:border-brand/50 hover:text-fg transition-colors tracking-wide
                       shadow-raised"
                   >
