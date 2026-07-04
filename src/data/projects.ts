@@ -3,7 +3,7 @@ import type { Project } from "@/types";
 export const projects: Project[] = [
   {
     slug: "portfolio",
-    title: "Personal Portfolio",
+    title: "rubengonz.com",
     shortDescription:
       "Not a template. Built from scratch because I wanted something that shows how I think about code — the architecture, the design decisions, the things that don't show up in a GitHub readme.",
     fullDescription:
@@ -15,14 +15,14 @@ export const projects: Project[] = [
     year: 2026,
     status: "in-progress",
     highlights: [
-      "Next.js 15 App Router with route groups and nested layouts",
-      "Tailwind CSS v4 with custom design tokens and CSS variables",
-      "Two local font families (InputMono + N27) with full weight ranges",
-      "Dark mode via next-themes with system preference detection",
-      "TypeScript throughout with strict mode enabled",
-      "Static data layer — scalable to database without breaking the API surface",
+      "Route groups to isolate home layout from project pages — no layout hacks, clean separation",
+      "Dark-only theme — chose to commit to one aesthetic instead of doing both poorly",
+      "Two local fonts (InputMono + N27) via next/font — zero layout shift, full weight ranges",
+      "Tailwind CSS v4: first project on the CSS-native config, no tailwind.config.js needed",
+      "Static data layer built to swap in a real database without touching a single component",
+      "TypeScript strict mode throughout — no any shortcuts, no escape hatches",
     ],
-    role: "Design, architecture & full-stack development",
+    role: "Solo project — design, architecture & full-stack",
     images: [
       { src: "/images/projects/portfolio/portfolio-1.webp", alt: "Portfolio — Hero section" },
       { src: "/images/projects/portfolio/about.webp", alt: "Portfolio — About section" },
