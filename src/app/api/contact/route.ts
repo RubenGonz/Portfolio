@@ -1,7 +1,13 @@
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 import { NextRequest, NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_APP_PASSWORD,
+  },
+});
 
 export async function POST(req: NextRequest) {
   const { email, message } = await req.json();
@@ -10,17 +16,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
 
-  const { error } = await resend.emails.send({
-    from: "Portfolio Contact <onboarding@resend.dev>",
-    to: "ruben.gonzalez.rodriguez00@gmail.com",
-    replyTo: email,
-    subject: `New message from ${email}`,
-    text: `From: ${email}\n\n${message}`,
-  });
+  try {
+    await transporter.sendMail({
+      from: `"Portfolio Contact" <${process.env.GMAIL_USER}>`,
+      to: process.env.GMAIL_USER,
+      replyTo: email,
+      subject: `New message from ${email}`,
+      text: `From: ${email}\n\n${message}`,
+    });
 
-  if (error) {
+    return NextResponse.json({ ok: true });
+  } catch {
     return NextResponse.json({ error: "Failed to send" }, { status: 500 });
   }
-
-  return NextResponse.json({ ok: true });
 }
