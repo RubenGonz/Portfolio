@@ -31,6 +31,9 @@ export const metadata: Metadata = {
   authors: [{ name: "Rubén González Rodríguez", url: "https://www.rubengonz.com" }],
   creator: "Rubén González Rodríguez",
   publisher: "Rubén González Rodríguez",
+  verification: {
+    google: "5dfqJgL0R0E6VdVducpvSpNHpCAlbDJFMlgNj4NL36g",
+  },
   openGraph: {
     title: "RubenGonz — Frontend Developer",
     description: "Frontend developer with production experience in React and Angular. Building full-stack with Next.js and Node.js. Based in Elche, Spain.",
