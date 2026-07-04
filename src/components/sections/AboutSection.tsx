@@ -12,7 +12,7 @@ const timelineItems = [
       paragraphs: [
         <>I build interfaces — have been doing it professionally since 2022, mostly in the banking and enterprise world. The kind of apps that run on production servers and have actual users depending on them.</>,
         <>Right now I&apos;m expanding into the backend side. Not through courses, but by building real things and figuring out what breaks. This portfolio is one of those things.</>,
-        <>Open to roles where I can keep growing on both sides of the stack. Remote or on-site. Based in <span className="text-gray-300">Elche, Spain</span>.</>,
+        <>Open to roles where I can keep growing on both sides of the stack. Remote or on-site. Based in <span className="text-fg">Elche, Spain</span>.</>,
       ],
     },
     active: true,
@@ -37,7 +37,7 @@ const timelineItems = [
     subtitle: "React, Angular · Banking sector · Enterprise apps",
     content: {
       paragraphs: [
-        <>First real job. Frontend consultant at <span className="text-light">Bosonit</span>, building production applications for banking and financial clients. React, Angular, real codebases, real deadlines.</>,
+        <>First real job. Frontend consultant at <span className="text-fg">Bosonit</span>, building production applications for banking and financial clients. React, Angular, real codebases, real deadlines.</>,
         <>That&apos;s where I learned that clean code isn&apos;t optional when five other people have to maintain what you wrote. Complex state, REST APIs, Jest, Scrum — the whole thing. The fastest I&apos;ve ever grown as a developer.</>,
         <>Also where I developed strong opinions about component architecture. Some good, some I&apos;ve since changed my mind about.</>,
       ],
@@ -52,7 +52,7 @@ const timelineItems = [
     content: {
       paragraphs: [
         <>After Bosonit I took time to figure out what I actually wanted to build next — and realized I didn&apos;t want to stay only on the frontend side forever.</>,
-        <>So I started going full-stack. <span className="text-light">Next.js 15</span>, <span className="text-light">Node.js</span>, <span className="text-light">PostgreSQL</span>, <span className="text-light">Prisma</span>. Not following a roadmap, just picking a project and building it until it works. Made a lot of mistakes. Still am.</>,
+        <>So I started going full-stack. <span className="text-fg">Next.js 15</span>, <span className="text-fg">Node.js</span>, <span className="text-fg">PostgreSQL</span>, <span className="text-fg">Prisma</span>. Not following a roadmap, just picking a project and building it until it works. Made a lot of mistakes. Still am.</>,
       ],
     },
     active: false,
@@ -111,14 +111,14 @@ export const AboutSection = () => {
   return (
     <section id="about" className="px-6 md:px-16 py-16 md:py-28 max-w-5xl mx-auto">
       <h2 className="sr-only">About</h2>
-      <p className="font-inputmono text-gray-400 text-[11px] tracking-[0.2em] uppercase mb-1" aria-hidden="true">
+      <p className="font-inputmono text-muted text-[11px] tracking-[0.2em] uppercase mb-1" aria-hidden="true">
         {"// About"}
       </p>
       <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8 md:mb-10" />
 
       <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 max-w-4xl relative">
         {/* Decorative number */}
-        <span aria-hidden="true" className="absolute -top-2 right-0 font-n27 font-bold italic text-[60px] md:text-[80px] leading-none text-white/[0.02] select-none pointer-events-none">
+        <span aria-hidden="true" className="absolute -top-2 right-0 font-n27 font-bold italic text-[60px] md:text-[80px] leading-none text-line/[0.02] select-none pointer-events-none">
           02
         </span>
 
@@ -128,7 +128,7 @@ export const AboutSection = () => {
           style={{ opacity: fading ? 0 : 1 }}
         >
           {activeItem.content.paragraphs.map((para, i) => (
-            <p key={i} className="font-inputmono text-gray-400 text-xs md:text-sm leading-relaxed">
+            <p key={i} className="font-inputmono text-muted text-xs md:text-sm leading-relaxed">
               {para}
             </p>
           ))}
@@ -136,12 +136,12 @@ export const AboutSection = () => {
 
         {/* Right: interactive timeline — first on mobile, second on desktop */}
         <div className="order-1 md:order-2">
-          <p className="font-inputmono text-[11px] text-gray-500 mb-4 md:hidden">
+          <p className="font-inputmono text-[11px] text-subtle mb-4 md:hidden">
             tap to explore timeline →
           </p>
           <div className="relative pl-7 flex flex-col gap-5 md:gap-6">
           {/* Vertical line — dedicated element so dots can center on it precisely */}
-          <div className="absolute left-0 top-1 bottom-1 w-px bg-white/6" />
+          <div className="absolute left-0 top-1 bottom-1 w-px bg-line/6" />
 
           {timelineItems.map(({ id, year, title, subtitle, active }) => {
             const isSelected = activeId === id;
@@ -158,21 +158,21 @@ export const AboutSection = () => {
                       ? active === "current"
                         ? "w-[9px] h-[9px] bg-gradient-to-br from-brand-sec to-brand border-transparent shadow-[0_0_10px_rgba(183,153,255,0.5)]"
                         : "w-[9px] h-[9px] bg-surface border-brand shadow-[0_0_8px_rgba(183,153,255,0.3)]"
-                      : "w-[7px] h-[7px] bg-surface border-white/10 group-hover:border-white/30"
+                      : "w-[7px] h-[7px] bg-surface border-line/10 group-hover:border-line/30"
                     }`}
                 />
 
                 <p className={`font-inputmono text-[11px] tracking-widest mb-0.5 transition-colors duration-150
                   ${isSelected
-                    ? active === "current" ? "text-brand" : "text-gray-400"
-                    : "text-gray-500 group-hover:text-gray-300"
+                    ? active === "current" ? "text-brand" : "text-muted"
+                    : "text-subtle group-hover:text-fg"
                   }`}>
                   {year}
                 </p>
                 <p className={`font-inputmono text-xs transition-colors duration-150
                   ${isSelected
-                    ? active === "current" ? "text-brand" : "text-gray-200"
-                    : "text-gray-400 group-hover:text-gray-200"
+                    ? active === "current" ? "text-brand" : "text-fg"
+                    : "text-muted group-hover:text-fg"
                   }`}>
                   {title}
                   {isSelected && active === "current" && (
@@ -181,7 +181,7 @@ export const AboutSection = () => {
                 </p>
                 {subtitle && (
                   <p className={`font-inputmono text-[11px] mt-0.5 transition-colors duration-150
-                    ${isSelected ? "text-gray-500" : "text-gray-500"}`}>
+                    ${isSelected ? "text-subtle" : "text-subtle"}`}>
                     {subtitle}
                   </p>
                 )}

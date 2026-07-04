@@ -2,13 +2,13 @@ export const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="px-6 md:px-16 py-10 border-t border-white/15">
+    <footer className="px-6 md:px-16 py-10 border-t border-line/15">
       <div className="max-w-5xl mx-auto flex flex-col gap-6">
         {/* Row 1: wordmark left, social links right */}
         <div className="flex items-center justify-between">
           <span className="font-n27 font-bold italic text-base flex items-center gap-1">
             <span className="bg-gradient-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"{"}</span>
-            <span className="text-light">rubengonz</span>
+            <span className="text-fg">rubengonz</span>
             <span className="bg-gradient-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"}"}</span>
           </span>
           <div className="flex items-center gap-5">
@@ -16,7 +16,7 @@ export const Footer = () => {
               href="https://github.com/RubenGonz"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-inputmono text-[11px] text-gray-400 hover:text-gray-200 transition-colors"
+              className="font-inputmono text-[11px] text-muted hover:text-fg transition-colors"
             >
               GitHub ↗
             </a>
@@ -24,7 +24,7 @@ export const Footer = () => {
               href="https://linkedin.com/in/ruben-gonz"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-inputmono text-[11px] text-gray-400 hover:text-gray-200 transition-colors"
+              className="font-inputmono text-[11px] text-muted hover:text-fg transition-colors"
             >
               LinkedIn ↗
             </a>
@@ -32,8 +32,8 @@ export const Footer = () => {
         </div>
 
         {/* Row 2: copyright left, nav links right */}
-        <div className="flex items-center justify-between border-t border-white/10 pt-5">
-          <p className="font-inputmono text-[11px] text-gray-400">
+        <div className="flex items-center justify-between border-t border-line/10 pt-5">
+          <p className="font-inputmono text-[11px] text-muted">
             © {year} Rubén González Rodríguez · Elche, Spain
           </p>
           <nav className="flex items-center gap-5">
@@ -46,7 +46,7 @@ export const Footer = () => {
               <a
                 key={href}
                 href={href}
-                className="font-inputmono text-[11px] text-gray-400 hover:text-gray-200 transition-colors tracking-widest uppercase"
+                className="font-inputmono text-[11px] text-muted hover:text-fg transition-colors tracking-widest uppercase"
               >
                 {label}
               </a>

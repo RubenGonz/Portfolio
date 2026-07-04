@@ -16,7 +16,7 @@ export const ProjectGallery = ({ images }: Props) => {
     <div className="flex flex-col gap-3">
       {/* Main image */}
       <div
-        className="relative w-full aspect-video overflow-hidden border border-white/8"
+        className="relative w-full aspect-video overflow-hidden border border-line/8"
         style={{ boxShadow: "0 0 40px rgba(183,153,255,0.12), 0 0 80px rgba(201,101,234,0.06)" }}
       >
         <Image
@@ -40,7 +40,7 @@ export const ProjectGallery = ({ images }: Props) => {
                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50
                 ${i === active
                   ? "border-brand/60 opacity-100"
-                  : "border-white/8 opacity-40 hover:opacity-70"
+                  : "border-line/8 opacity-40 hover:opacity-70"
                 }`}
             >
               <Image

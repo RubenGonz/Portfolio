@@ -34,49 +34,49 @@ export const ContactSection = () => {
   return (
     <section id="contact" className="px-6 md:px-16 py-16 md:py-28 max-w-5xl mx-auto">
       <h2 className="sr-only">Contact</h2>
-      <p className="font-inputmono text-gray-400 text-[11px] tracking-[0.2em] uppercase mb-1" aria-hidden="true">
+      <p className="font-inputmono text-muted text-[11px] tracking-[0.2em] uppercase mb-1" aria-hidden="true">
         {"// Contact"}
       </p>
       <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8 md:mb-10" />
 
       <div className="flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-16 max-w-4xl relative">
-        <span aria-hidden="true" className="absolute -top-2 right-0 font-n27 font-bold italic text-[60px] md:text-[80px] leading-none text-white/[0.02] select-none pointer-events-none">
+        <span aria-hidden="true" className="absolute -top-2 right-0 font-n27 font-bold italic text-[60px] md:text-[80px] leading-none text-line/[0.02] select-none pointer-events-none">
           05
         </span>
 
         {/* Left: headline + links */}
         <div>
-          <h2 className="font-n27 font-bold italic text-light text-3xl md:text-5xl mb-2 md:mb-3 leading-tight tracking-tight">
+          <h2 className="font-n27 font-bold italic text-fg text-3xl md:text-5xl mb-2 md:mb-3 leading-tight tracking-tight">
             Let&apos;s talk.
           </h2>
-          <p className="font-inputmono text-gray-400 text-xs leading-relaxed mb-6 md:mb-8">
+          <p className="font-inputmono text-muted text-xs leading-relaxed mb-6 md:mb-8">
             Open to full-time roles, freelance and collaborations.<br />
             Based in Elche, Spain. I usually reply within 24 hours.
           </p>
           <div className="flex flex-col gap-3">
             <a
               href="mailto:ruben.gonzalez.rodriguez00@gmail.com"
-              className="font-inputmono text-xs text-gray-400 hover:text-gray-200 transition-colors flex items-center gap-2 break-all"
+              className="font-inputmono text-xs text-muted hover:text-fg transition-colors flex items-center gap-2 break-all"
             >
-              <span className="text-gray-500 shrink-0" aria-hidden="true">→</span>
+              <span className="text-subtle shrink-0" aria-hidden="true">→</span>
               ruben.gonzalez.rodriguez00@gmail.com
             </a>
             <a
               href="https://linkedin.com/in/ruben-gonz"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-inputmono text-xs text-gray-400 hover:text-gray-200 transition-colors flex items-center gap-2"
+              className="font-inputmono text-xs text-muted hover:text-fg transition-colors flex items-center gap-2"
             >
-              <span className="text-gray-500 shrink-0" aria-hidden="true">→</span>
+              <span className="text-subtle shrink-0" aria-hidden="true">→</span>
               linkedin.com/in/ruben-gonz ↗
             </a>
             <a
               href="https://github.com/RubenGonz"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-inputmono text-xs text-gray-400 hover:text-gray-200 transition-colors flex items-center gap-2"
+              className="font-inputmono text-xs text-muted hover:text-fg transition-colors flex items-center gap-2"
             >
-              <span className="text-gray-500 shrink-0" aria-hidden="true">→</span>
+              <span className="text-subtle shrink-0" aria-hidden="true">→</span>
               github.com/RubenGonz ↗
             </a>
           </div>
@@ -89,7 +89,7 @@ export const ContactSection = () => {
           <div className="flex flex-col gap-1.5">
             <label
               htmlFor="contact-email"
-              className="font-inputmono text-[11px] text-gray-400 uppercase tracking-[0.18em]"
+              className="font-inputmono text-[11px] text-muted uppercase tracking-[0.18em]"
             >
               Your email
             </label>
@@ -99,7 +99,7 @@ export const ContactSection = () => {
               name="email"
               required
               disabled={status === "sending" || status === "success"}
-              className="font-inputmono text-xs bg-white/[0.01] border border-white/6 text-light px-4 py-3
+              className="font-inputmono text-xs bg-line/[0.01] border border-line/6 text-fg px-4 py-3
                 focus:outline-none focus:border-brand/40 transition-colors disabled:opacity-50"
             />
           </div>
@@ -107,7 +107,7 @@ export const ContactSection = () => {
           <div className="flex flex-col gap-1.5">
             <label
               htmlFor="contact-message"
-              className="font-inputmono text-[11px] text-gray-400 uppercase tracking-[0.18em]"
+              className="font-inputmono text-[11px] text-muted uppercase tracking-[0.18em]"
             >
               Message
             </label>
@@ -117,7 +117,7 @@ export const ContactSection = () => {
               rows={5}
               required
               disabled={status === "sending" || status === "success"}
-              className="font-inputmono text-xs bg-white/[0.01] border border-white/6 text-light px-4 py-3
+              className="font-inputmono text-xs bg-line/[0.01] border border-line/6 text-fg px-4 py-3
                 focus:outline-none focus:border-brand/40 transition-colors resize-none disabled:opacity-50"
             />
           </div>
@@ -137,7 +137,7 @@ export const ContactSection = () => {
             type="submit"
             disabled={status === "sending" || status === "success"}
             className="font-inputmono text-xs font-bold px-5 py-3 tracking-wide w-full md:w-fit
-              bg-gradient-to-r from-brand-sec to-brand text-deep-black
+              bg-gradient-to-r from-brand-sec to-brand text-on-accent
               hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {status === "sending" ? "Sending..." : "Send message →"}

@@ -18,16 +18,16 @@ export default function MaintenancePage() {
       </h1>
 
       <p className="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl
-            text-gray-300 max-w-md sm:max-w-xl md:max-w-2xl
+            text-fg max-w-md sm:max-w-xl md:max-w-2xl
             mb-8 sm:mb-10 md:mb-12">
         Estoy trabajando en el portfolio. Muy pronto estará disponible.
       </p>
 
       <a href="mailto:ruben.gonzalez.rodriguez00@gmail.com"
         className="px-3 sm:px-4 py-1 sm:py-1.5
-            text-gray-300 hover:text-light
+            text-fg hover:text-fg
             font-medium text-sm sm:text-base md:text-lg
-            bg-soft-black hover:bg-black
+            bg-elevated hover:bg-black
             border border-gray-300 hover:border-light
             shadow-md hover:shadow-lg
             transition-all duration-300">

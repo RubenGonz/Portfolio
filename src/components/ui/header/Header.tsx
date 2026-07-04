@@ -25,13 +25,13 @@ export const Header = () => {
   ]
 
   return (
-    <header className={`fixed h-14 w-full flex justify-between items-center px-6 z-50 text-light transition-all duration-150 border-b
-      ${scrolled ? "bg-deep-black/90 backdrop-blur-md border-white/5" : "bg-transparent border-transparent"}`}
+    <header className={`fixed h-14 w-full flex justify-between items-center px-6 z-50 text-fg transition-all duration-150 border-b
+      ${scrolled ? "bg-bg/90 backdrop-blur-md border-line/5" : "bg-transparent border-transparent"}`}
     >
       {/* Logo */}
       <Link href="/" className="flex items-center gap-1.5 group">
         <span className="font-n27 font-bold italic text-xl leading-none bg-gradient-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"{"}</span>
-        <span className="font-n27 font-bold italic text-sm tracking-wide text-light">rubengonz</span>
+        <span className="font-n27 font-bold italic text-sm tracking-wide text-fg">rubengonz</span>
         <span className="font-n27 font-bold italic text-xl leading-none bg-gradient-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"}"}</span>
       </Link>
 
@@ -41,7 +41,7 @@ export const Header = () => {
           <Link
             key={href}
             href={href}
-            className="font-inputmono text-xs text-gray-400 hover:text-gray-200 tracking-widest uppercase transition-colors"
+            className="font-inputmono text-xs text-muted hover:text-fg tracking-widest uppercase transition-colors"
           >
             {label}
           </Link>
@@ -61,7 +61,7 @@ export const Header = () => {
         {/* Hamburguesa móvil */}
         <button
           onClick={() => setOpen(true)}
-          className="md:hidden z-20 p-2 rounded hover:bg-light/10 transition-colors font-inputmono text-xs text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50"
+          className="md:hidden z-20 p-2 rounded hover:bg-fg/10 transition-colors font-inputmono text-xs text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50"
           aria-label="Open menu"
         >
           Menu

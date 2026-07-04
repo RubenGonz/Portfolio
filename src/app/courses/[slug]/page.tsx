@@ -39,7 +39,7 @@ export default async function CoursePage({ params }: Props) {
     <main className="min-h-screen">
 
       {/* ── Header ─────────────────────────────────────────────── */}
-      <div className="relative border-b border-white/5 overflow-hidden">
+      <div className="relative border-b border-line/5 overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -61,19 +61,19 @@ export default async function CoursePage({ params }: Props) {
             <span className="font-inputmono text-[11px] text-brand tracking-widest uppercase">
               {course.platform}
             </span>
-            <span className="text-gray-700 text-[9px]">·</span>
-            <span className="font-inputmono text-[11px] text-gray-500 tracking-widest">
+            <span className="text-faint text-[9px]">·</span>
+            <span className="font-inputmono text-[11px] text-subtle tracking-widest">
               {course.year}
             </span>
-            <span className="text-gray-700 text-[9px]">·</span>
+            <span className="text-faint text-[9px]">·</span>
             <StatusBadge status={course.status} />
           </div>
 
-          <h1 className="font-n27 font-bold italic text-light text-[clamp(2rem,5vw,3.5rem)] leading-[0.92] tracking-tight mb-6 max-w-3xl">
+          <h1 className="font-n27 font-bold italic text-fg text-[clamp(2rem,5vw,3.5rem)] leading-[0.92] tracking-tight mb-6 max-w-3xl">
             {course.title}
           </h1>
 
-          <p className="font-inputmono text-gray-400 text-sm leading-relaxed max-w-2xl mb-8">
+          <p className="font-inputmono text-muted text-sm leading-relaxed max-w-2xl mb-8">
             {course.shortDescription}
           </p>
 
@@ -82,7 +82,7 @@ export default async function CoursePage({ params }: Props) {
             {course.tags.map((tag) => (
               <span
                 key={tag}
-                className="font-inputmono text-[11px] text-gray-600 border border-white/5 bg-white/[0.02] px-2 py-1"
+                className="font-inputmono text-[11px] text-faint border border-line/5 bg-line/[0.02] px-2 py-1"
               >
                 {tag}
               </span>
@@ -97,7 +97,7 @@ export default async function CoursePage({ params }: Props) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-inputmono text-xs font-bold px-5 py-3 tracking-wide
-                  bg-gradient-to-r from-brand-sec to-brand text-deep-black
+                  bg-gradient-to-r from-brand-sec to-brand text-on-accent
                   hover:opacity-90 transition-opacity"
               >
                 View certificate ↗
@@ -108,8 +108,8 @@ export default async function CoursePage({ params }: Props) {
                 href={course.repoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-inputmono text-xs px-5 py-3 border border-white/20 text-gray-400
-                  hover:border-brand/50 hover:text-gray-200 transition-colors tracking-wide
+                className="font-inputmono text-xs px-5 py-3 border border-line/20 text-muted
+                  hover:border-brand/50 hover:text-fg transition-colors tracking-wide
                   shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
               >
                 GitHub ↗
@@ -120,8 +120,8 @@ export default async function CoursePage({ params }: Props) {
                 href={course.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-inputmono text-xs px-5 py-3 border border-white/8 text-gray-500
-                  hover:border-brand/40 hover:text-gray-300 transition-colors tracking-wide"
+                className="font-inputmono text-xs px-5 py-3 border border-line/8 text-subtle
+                  hover:border-brand/40 hover:text-fg transition-colors tracking-wide"
               >
                 Live demo ↗
               </a>
@@ -135,13 +135,13 @@ export default async function CoursePage({ params }: Props) {
 
         {/* Full description */}
         <section>
-          <p className="font-inputmono text-gray-400 text-[11px] tracking-[0.2em] uppercase mb-1" aria-hidden="true">
+          <p className="font-inputmono text-muted text-[11px] tracking-[0.2em] uppercase mb-1" aria-hidden="true">
             {"// About this course"}
           </p>
           <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8" />
           <div className="flex flex-col gap-4 max-w-3xl">
             {course.fullDescription.split("\n\n").map((para, i) => (
-              <p key={i} className="font-inputmono text-gray-400 text-sm leading-relaxed">
+              <p key={i} className="font-inputmono text-muted text-sm leading-relaxed">
                 {para}
               </p>
             ))}
@@ -151,7 +151,7 @@ export default async function CoursePage({ params }: Props) {
         {/* Topics grid */}
         {course.topics.length > 0 && (
           <section>
-            <p className="font-inputmono text-gray-400 text-[11px] tracking-[0.2em] uppercase mb-1" aria-hidden="true">
+            <p className="font-inputmono text-muted text-[11px] tracking-[0.2em] uppercase mb-1" aria-hidden="true">
               {"// What I learned"}
             </p>
             <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8" />
@@ -159,7 +159,7 @@ export default async function CoursePage({ params }: Props) {
               {course.topics.map((topic) => (
                 <div
                   key={topic.label}
-                  className="border border-white/5 bg-white/[0.01] px-5 py-4"
+                  className="border border-line/5 bg-line/[0.01] px-5 py-4"
                 >
                   <p className="font-inputmono text-[11px] text-brand tracking-widest uppercase mb-3">
                     {topic.label}
@@ -168,7 +168,7 @@ export default async function CoursePage({ params }: Props) {
                     {topic.items.map((item) => (
                       <li key={item} className="flex items-start gap-2">
                         <span className="text-brand font-inputmono text-xs shrink-0 mt-0.5">→</span>
-                        <span className="font-inputmono text-gray-400 text-xs leading-relaxed">{item}</span>
+                        <span className="font-inputmono text-muted text-xs leading-relaxed">{item}</span>
                       </li>
                     ))}
                   </ul>

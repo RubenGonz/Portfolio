@@ -21,7 +21,7 @@ export const BackLink = ({ label = "All projects", fallbackHref = "/#projects" }
   return (
     <button
       onClick={handleBack}
-      className="font-inputmono text-[11px] text-gray-600 hover:text-gray-300
+      className="font-inputmono text-[11px] text-faint hover:text-fg
         transition-colors mb-10 inline-flex items-center gap-2 tracking-widest uppercase"
     >
       <span className="text-brand">←</span> {label}

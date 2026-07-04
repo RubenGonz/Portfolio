@@ -1,16 +1,58 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
-@theme {
-  --color-brand: #b799ff;
-  --color-brand-sec: #c965ea;
-  --color-deep-black: #0b0d0d;
-  --color-surface: #111111;
-  --color-soft-black: #202020;
-  --color-light: #f9f9f9;
+/* ── Semantic color tokens ──────────────────────────────────────────────────
+   Utilities (bg-bg, text-fg, border-line/10, text-brand…) reference CSS vars
+   via @theme inline, so they flip automatically between light/dark. Components
+   never need a `dark:` variant — set the token once here and it just works. */
+@theme inline {
+  --color-bg: var(--bg);            /* page background            */
+  --color-surface: var(--surface);  /* raised card / panel        */
+  --color-elevated: var(--elevated);/* sidebar / higher panel     */
+  --color-fg: var(--fg);            /* primary text / headings    */
+  --color-muted: var(--muted);      /* secondary body text        */
+  --color-subtle: var(--subtle);    /* tertiary text              */
+  --color-faint: var(--faint);      /* faint labels / separators  */
+  --color-line: var(--line);        /* borders & ghost overlays   */
+  --color-brand: var(--brand);      /* accent — links / marca     */
+  --color-brand-sec: var(--brand-sec);
+  --color-on-accent: var(--on-accent); /* text on accent buttons  */
+  --color-success: var(--success);  /* status: completed / live   */
 
   --font-inputmono: InputMono, monospace;
   --font-n27: N27, monospace;
+}
+
+/* Light theme = default token layer */
+:root {
+  --bg: #faf9f7;
+  --surface: #f2f0ec;
+  --elevated: #eceae5;
+  --fg: #18181b;
+  --muted: #52525b;
+  --subtle: #6b7280;
+  --faint: #8a8a93;
+  --line: #000000;
+  --brand: #7c3aed;
+  --brand-sec: #9333ea;
+  --on-accent: #ffffff;
+  --success: #15803d;
+}
+
+/* Dark theme (default active — see ThemeProvider defaultTheme="dark") */
+.dark {
+  --bg: #0b0d0d;
+  --surface: #111111;
+  --elevated: #202020;
+  --fg: #f9f9f9;
+  --muted: #9ba3af;
+  --subtle: #6b7280;
+  --faint: #4b5563;
+  --line: #ffffff;
+  --brand: #b799ff;
+  --brand-sec: #c965ea;
+  --on-accent: #0b0d0d;
+  --success: #22c55e;
 }
 
 html {
@@ -18,8 +60,8 @@ html {
 }
 
 body {
-  background-color: var(--color-deep-black);
-  color: var(--color-light);
+  background-color: var(--color-bg);
+  color: var(--color-fg);
   line-height: 1.6;
 }
 
@@ -36,4 +78,3 @@ body {
 .text-shadow-brand {
   text-shadow: 0 0 3px var(--color-brand);
 }
-

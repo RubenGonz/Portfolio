@@ -45,7 +45,7 @@ export default async function ProjectPage({ params }: Props) {
     <main className="min-h-screen">
 
       {/* ── Hero block ─────────────────────────────────────────── */}
-      <div className="relative border-b border-white/5 overflow-hidden">
+      <div className="relative border-b border-line/5 overflow-hidden">
         {/* Background glow */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -75,7 +75,7 @@ export default async function ProjectPage({ params }: Props) {
             <div>
               {/* Year + status + role */}
               <div className="flex flex-wrap items-center gap-3 mb-5">
-                <span className="font-inputmono text-[11px] text-gray-700 tracking-widest">
+                <span className="font-inputmono text-[11px] text-faint tracking-widest">
                   {project.year}
                 </span>
                 {project.status === "in-progress" && (
@@ -84,25 +84,25 @@ export default async function ProjectPage({ params }: Props) {
                   </span>
                 )}
                 {project.status === "live" && (
-                  <span className="font-inputmono text-[11px] text-green-500 border border-green-500/20 bg-green-500/8 px-2 py-0.5 tracking-widest uppercase">
+                  <span className="font-inputmono text-[11px] text-success border border-success/20 bg-success/8 px-2 py-0.5 tracking-widest uppercase">
                     Live
                   </span>
                 )}
                 {project.role && (
                   <>
-                    <span className="text-gray-800 text-[9px]">·</span>
-                    <span className="font-inputmono text-[11px] text-gray-600">{project.role}</span>
+                    <span className="text-faint text-[9px]">·</span>
+                    <span className="font-inputmono text-[11px] text-faint">{project.role}</span>
                   </>
                 )}
               </div>
 
               {/* Title */}
-              <h1 className="font-n27 font-bold italic text-light text-[clamp(2.2rem,6vw,4rem)] leading-[0.92] tracking-tight mb-6">
+              <h1 className="font-n27 font-bold italic text-fg text-[clamp(2.2rem,6vw,4rem)] leading-[0.92] tracking-tight mb-6">
                 {project.title}
               </h1>
 
               {/* Description */}
-              <p className="font-inputmono text-gray-400 text-sm leading-relaxed mb-6">
+              <p className="font-inputmono text-muted text-sm leading-relaxed mb-6">
                 {project.shortDescription}
               </p>
 
@@ -111,7 +111,7 @@ export default async function ProjectPage({ params }: Props) {
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="font-inputmono text-[11px] text-gray-600 border border-white/5 bg-white/[0.02] px-2 py-1"
+                    className="font-inputmono text-[11px] text-faint border border-line/5 bg-line/[0.02] px-2 py-1"
                   >
                     {tag}
                   </span>
@@ -126,7 +126,7 @@ export default async function ProjectPage({ params }: Props) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-inputmono text-xs font-bold px-5 py-3 tracking-wide
-                      bg-gradient-to-r from-brand-sec to-brand text-deep-black
+                      bg-gradient-to-r from-brand-sec to-brand text-on-accent
                       hover:opacity-90 transition-opacity"
                   >
                     View live ↗
@@ -137,8 +137,8 @@ export default async function ProjectPage({ params }: Props) {
                     href={project.repoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-inputmono text-xs px-5 py-3 border border-white/20 text-gray-400
-                      hover:border-brand/50 hover:text-gray-200 transition-colors tracking-wide
+                    className="font-inputmono text-xs px-5 py-3 border border-line/20 text-muted
+                      hover:border-brand/50 hover:text-fg transition-colors tracking-wide
                       shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
                   >
                     GitHub ↗
@@ -160,13 +160,13 @@ export default async function ProjectPage({ params }: Props) {
 
         {/* About the project */}
         <section>
-          <p className="font-inputmono text-gray-700 text-[11px] tracking-[0.2em] uppercase mb-1">
+          <p className="font-inputmono text-faint text-[11px] tracking-[0.2em] uppercase mb-1">
             {"// About"}
           </p>
           <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8" />
           <div className="flex flex-col gap-4 max-w-3xl">
             {project.fullDescription.split("\n\n").map((para, i) => (
-              <p key={i} className="font-inputmono text-gray-400 text-sm leading-relaxed">
+              <p key={i} className="font-inputmono text-muted text-sm leading-relaxed">
                 {para}
               </p>
             ))}
@@ -176,7 +176,7 @@ export default async function ProjectPage({ params }: Props) {
         {/* Technical highlights */}
         {project.highlights.length > 0 && (
           <section>
-            <p className="font-inputmono text-gray-700 text-[11px] tracking-[0.2em] uppercase mb-1">
+            <p className="font-inputmono text-faint text-[11px] tracking-[0.2em] uppercase mb-1">
               {"// Technical highlights"}
             </p>
             <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8" />
@@ -184,10 +184,10 @@ export default async function ProjectPage({ params }: Props) {
               {project.highlights.map((highlight, i) => (
                 <div
                   key={i}
-                  className="flex gap-3 border border-white/5 bg-white/[0.01] px-4 py-3"
+                  className="flex gap-3 border border-line/5 bg-line/[0.01] px-4 py-3"
                 >
                   <span className="text-brand font-inputmono text-xs shrink-0 mt-0.5">→</span>
-                  <p className="font-inputmono text-gray-400 text-xs leading-relaxed">{highlight}</p>
+                  <p className="font-inputmono text-muted text-xs leading-relaxed">{highlight}</p>
                 </div>
               ))}
             </div>
@@ -197,7 +197,7 @@ export default async function ProjectPage({ params }: Props) {
         {/* Project navigation */}
         {(prev || next) && (
           <section>
-            <p className="font-inputmono text-gray-700 text-[11px] tracking-[0.2em] uppercase mb-1">
+            <p className="font-inputmono text-faint text-[11px] tracking-[0.2em] uppercase mb-1">
               {"// More projects"}
             </p>
             <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8" />
@@ -205,11 +205,11 @@ export default async function ProjectPage({ params }: Props) {
               {prev && (
                 <Link
                   href={`/projects/${prev.slug}`}
-                  className="group flex flex-col gap-1 border border-white/5 bg-white/[0.01]
+                  className="group flex flex-col gap-1 border border-line/5 bg-line/[0.01]
                     px-5 py-4 hover:border-brand/30 transition-colors"
                 >
-                  <span className="font-inputmono text-[11px] text-gray-700 tracking-widest">← Previous</span>
-                  <span className="font-n27 font-bold italic text-gray-400 text-lg group-hover:text-light transition-colors">
+                  <span className="font-inputmono text-[11px] text-faint tracking-widest">← Previous</span>
+                  <span className="font-n27 font-bold italic text-muted text-lg group-hover:text-fg transition-colors">
                     {prev.title}
                   </span>
                 </Link>
@@ -217,12 +217,12 @@ export default async function ProjectPage({ params }: Props) {
               {next && (
                 <Link
                   href={`/projects/${next.slug}`}
-                  className="group flex flex-col gap-1 border border-white/5 bg-white/[0.01]
+                  className="group flex flex-col gap-1 border border-line/5 bg-line/[0.01]
                     px-5 py-4 hover:border-brand/30 transition-colors min-[640px]:text-right
                     min-[640px]:col-start-2"
                 >
-                  <span className="font-inputmono text-[11px] text-gray-700 tracking-widest">Next →</span>
-                  <span className="font-n27 font-bold italic text-gray-400 text-lg group-hover:text-light transition-colors">
+                  <span className="font-inputmono text-[11px] text-faint tracking-widest">Next →</span>
+                  <span className="font-n27 font-bold italic text-muted text-lg group-hover:text-fg transition-colors">
                     {next.title}
                   </span>
                 </Link>
