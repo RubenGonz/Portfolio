@@ -33,13 +33,14 @@ export const ContactSection = () => {
 
   return (
     <section id="contact" className="px-6 md:px-16 py-16 md:py-28 max-w-5xl mx-auto">
-      <p className="font-inputmono text-gray-700 text-[11px] tracking-[0.2em] uppercase mb-1">
+      <h2 className="sr-only">Contact</h2>
+      <p className="font-inputmono text-gray-700 text-[11px] tracking-[0.2em] uppercase mb-1" aria-hidden="true">
         {"// Contact"}
       </p>
       <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8 md:mb-10" />
 
       <div className="flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-16 max-w-4xl relative">
-        <span className="absolute -top-2 right-0 font-n27 font-bold italic text-[60px] md:text-[80px] leading-none text-white/[0.02] select-none pointer-events-none">
+        <span aria-hidden="true" className="absolute -top-2 right-0 font-n27 font-bold italic text-[60px] md:text-[80px] leading-none text-white/[0.02] select-none pointer-events-none">
           04
         </span>
 
@@ -48,34 +49,34 @@ export const ContactSection = () => {
           <h2 className="font-n27 font-bold italic text-light text-3xl md:text-5xl mb-2 md:mb-3 leading-tight tracking-tight">
             Let&apos;s talk.
           </h2>
-          <p className="font-inputmono text-gray-500 text-xs leading-relaxed mb-6 md:mb-8">
+          <p className="font-inputmono text-gray-400 text-xs leading-relaxed mb-6 md:mb-8">
             Open to full-time roles, freelance and collaborations.<br />
             Based in Elche, Spain. I usually reply within 24 hours.
           </p>
           <div className="flex flex-col gap-3">
             <a
               href="mailto:ruben.gonzalez.rodriguez00@gmail.com"
-              className="font-inputmono text-xs text-gray-500 hover:text-gray-200 transition-colors flex items-center gap-2 break-all"
+              className="font-inputmono text-xs text-gray-400 hover:text-gray-200 transition-colors flex items-center gap-2 break-all"
             >
-              <span className="text-gray-700 shrink-0">→</span>
+              <span className="text-gray-500 shrink-0" aria-hidden="true">→</span>
               ruben.gonzalez.rodriguez00@gmail.com
             </a>
             <a
               href="https://linkedin.com/in/ruben-gonz"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-inputmono text-xs text-gray-600 hover:text-gray-300 transition-colors flex items-center gap-2"
+              className="font-inputmono text-xs text-gray-400 hover:text-gray-200 transition-colors flex items-center gap-2"
             >
-              <span className="text-gray-800 shrink-0">→</span>
+              <span className="text-gray-500 shrink-0" aria-hidden="true">→</span>
               linkedin.com/in/ruben-gonz ↗
             </a>
             <a
               href="https://github.com/RubenGonz"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-inputmono text-xs text-gray-600 hover:text-gray-300 transition-colors flex items-center gap-2"
+              className="font-inputmono text-xs text-gray-400 hover:text-gray-200 transition-colors flex items-center gap-2"
             >
-              <span className="text-gray-800 shrink-0">→</span>
+              <span className="text-gray-500 shrink-0" aria-hidden="true">→</span>
               github.com/RubenGonz ↗
             </a>
           </div>
@@ -88,7 +89,7 @@ export const ContactSection = () => {
           <div className="flex flex-col gap-1.5">
             <label
               htmlFor="contact-email"
-              className="font-inputmono text-[11px] text-gray-700 uppercase tracking-[0.18em]"
+              className="font-inputmono text-[11px] text-gray-400 uppercase tracking-[0.18em]"
             >
               Your email
             </label>
@@ -106,7 +107,7 @@ export const ContactSection = () => {
           <div className="flex flex-col gap-1.5">
             <label
               htmlFor="contact-message"
-              className="font-inputmono text-[11px] text-gray-700 uppercase tracking-[0.18em]"
+              className="font-inputmono text-[11px] text-gray-400 uppercase tracking-[0.18em]"
             >
               Message
             </label>

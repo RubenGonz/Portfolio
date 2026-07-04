@@ -21,7 +21,7 @@ export const Sidebar = ({ open, setOpen, navLinks }: Props) => {
       )}
 
       {/* Side panel */}
-      <nav
+      <div
         role="dialog"
         aria-modal="true"
         aria-label="Navigation menu"
@@ -52,10 +52,10 @@ export const Sidebar = ({ open, setOpen, navLinks }: Props) => {
               key={href}
               href={href}
               onClick={() => setOpen(false)}
-              className="font-inputmono text-sm text-gray-500 hover:text-gray-100 transition-colors
+              className="font-inputmono text-sm text-gray-400 hover:text-gray-100 transition-colors
                 px-4 py-3 border border-transparent hover:border-white/5 hover:bg-white/[0.02]"
             >
-              <span className="text-gray-800 mr-3 text-xs">0{i + 1}</span>
+              <span className="text-gray-500 mr-3 text-xs" aria-hidden="true">0{i + 1}</span>
               {label}
             </Link>
           ))}
@@ -69,12 +69,12 @@ export const Sidebar = ({ open, setOpen, navLinks }: Props) => {
           </div>
           <a
             href="mailto:ruben.gonzalez.rodriguez00@gmail.com"
-            className="font-inputmono text-[11px] text-gray-700 hover:text-gray-400 transition-colors break-all"
+            className="font-inputmono text-[11px] text-gray-400 hover:text-gray-200 transition-colors break-all"
           >
             ruben.gonzalez.rodriguez00@gmail.com
           </a>
         </div>
-      </nav>
+      </div>
     </>
   );
 };

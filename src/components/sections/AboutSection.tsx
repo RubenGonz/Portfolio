@@ -110,14 +110,15 @@ export const AboutSection = () => {
 
   return (
     <section id="about" className="px-6 md:px-16 py-16 md:py-28 max-w-5xl mx-auto">
-      <p className="font-inputmono text-gray-700 text-[11px] tracking-[0.2em] uppercase mb-1">
+      <h2 className="sr-only">About</h2>
+      <p className="font-inputmono text-gray-700 text-[11px] tracking-[0.2em] uppercase mb-1" aria-hidden="true">
         {"// About"}
       </p>
       <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8 md:mb-10" />
 
       <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 max-w-4xl relative">
         {/* Decorative number */}
-        <span className="absolute -top-2 right-0 font-n27 font-bold italic text-[60px] md:text-[80px] leading-none text-white/[0.02] select-none pointer-events-none">
+        <span aria-hidden="true" className="absolute -top-2 right-0 font-n27 font-bold italic text-[60px] md:text-[80px] leading-none text-white/[0.02] select-none pointer-events-none">
           02
         </span>
 
@@ -135,7 +136,7 @@ export const AboutSection = () => {
 
         {/* Right: interactive timeline — first on mobile, second on desktop */}
         <div className="order-1 md:order-2">
-          <p className="font-inputmono text-[11px] text-gray-700 mb-4 md:hidden">
+          <p className="font-inputmono text-[11px] text-gray-500 mb-4 md:hidden">
             tap to explore timeline →
           </p>
           <div className="relative pl-7 flex flex-col gap-5 md:gap-6">
@@ -164,14 +165,14 @@ export const AboutSection = () => {
                 <p className={`font-inputmono text-[11px] tracking-widest mb-0.5 transition-colors duration-150
                   ${isSelected
                     ? active === "current" ? "text-brand" : "text-gray-400"
-                    : "text-gray-700 group-hover:text-gray-500"
+                    : "text-gray-500 group-hover:text-gray-300"
                   }`}>
                   {year}
                 </p>
                 <p className={`font-inputmono text-xs transition-colors duration-150
                   ${isSelected
                     ? active === "current" ? "text-brand" : "text-gray-200"
-                    : "text-gray-500 group-hover:text-gray-300"
+                    : "text-gray-400 group-hover:text-gray-200"
                   }`}>
                   {title}
                   {isSelected && active === "current" && (
@@ -180,7 +181,7 @@ export const AboutSection = () => {
                 </p>
                 {subtitle && (
                   <p className={`font-inputmono text-[11px] mt-0.5 transition-colors duration-150
-                    ${isSelected ? "text-gray-600" : "text-gray-800"}`}>
+                    ${isSelected ? "text-gray-500" : "text-gray-500"}`}>
                     {subtitle}
                   </p>
                 )}
