@@ -16,7 +16,7 @@ export const Footer = () => {
               href="https://github.com/RubenGonz"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-inputmono text-[11px] text-gray-600 hover:text-gray-300 transition-colors"
+              className="font-inputmono text-[11px] text-gray-400 hover:text-gray-200 transition-colors"
             >
               GitHub ↗
             </a>
@@ -24,7 +24,7 @@ export const Footer = () => {
               href="https://linkedin.com/in/ruben-gonz"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-inputmono text-[11px] text-gray-600 hover:text-gray-300 transition-colors"
+              className="font-inputmono text-[11px] text-gray-400 hover:text-gray-200 transition-colors"
             >
               LinkedIn ↗
             </a>
@@ -33,7 +33,7 @@ export const Footer = () => {
 
         {/* Row 2: copyright left, nav links right */}
         <div className="flex items-center justify-between border-t border-white/10 pt-5">
-          <p className="font-inputmono text-[11px] text-gray-800">
+          <p className="font-inputmono text-[11px] text-gray-400">
             © {year} Rubén González Rodríguez · Elche, Spain
           </p>
           <nav className="flex items-center gap-5">
@@ -45,7 +45,7 @@ export const Footer = () => {
               <a
                 key={href}
                 href={href}
-                className="font-inputmono text-[11px] text-gray-800 hover:text-gray-500 transition-colors tracking-widest uppercase"
+                className="font-inputmono text-[11px] text-gray-400 hover:text-gray-200 transition-colors tracking-widest uppercase"
               >
                 {label}
               </a>

@@ -20,10 +20,10 @@ const TickerStrip = () => (
       style={{ animation: "ticker 60s linear infinite" }}
     >
       {/* Duplicate so the loop is seamless — translate to -50% = one full copy */}
-      <span className="font-inputmono text-[9px] text-gray-800 tracking-[0.15em]">{TICKER_TEXT}</span>
-      <span className="font-inputmono text-[9px] text-gray-800 tracking-[0.15em]">{TICKER_TEXT}</span>
-      <span className="font-inputmono text-[9px] text-gray-800 tracking-[0.15em]">{TICKER_TEXT}</span>
-      <span className="font-inputmono text-[9px] text-gray-800 tracking-[0.15em]">{TICKER_TEXT}</span>
+      <span className="font-inputmono text-[9px] text-gray-400 tracking-[0.15em]">{TICKER_TEXT}</span>
+      <span className="font-inputmono text-[9px] text-gray-400 tracking-[0.15em]">{TICKER_TEXT}</span>
+      <span className="font-inputmono text-[9px] text-gray-400 tracking-[0.15em]">{TICKER_TEXT}</span>
+      <span className="font-inputmono text-[9px] text-gray-400 tracking-[0.15em]">{TICKER_TEXT}</span>
     </div>
   </div>
 );
