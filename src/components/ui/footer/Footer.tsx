@@ -36,7 +36,7 @@ export const Footer = () => {
           <p className="font-inputmono text-[11px] text-muted">
             © {year} Rubén González Rodríguez · Elche, Spain
           </p>
-          <nav className="flex flex-wrap items-center gap-x-5 gap-y-2">
+          <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 md:justify-start">
             {[
               { label: "Projects", href: "/#projects" },
               { label: "About", href: "/#about" },
