@@ -2,14 +2,19 @@
 
 import { useRouter } from "next/navigation";
 
-export const BackLink = () => {
+interface Props {
+  label?: string;
+  fallbackHref?: string;
+}
+
+export const BackLink = ({ label = "All projects", fallbackHref = "/#projects" }: Props) => {
   const router = useRouter();
 
   const handleBack = () => {
     if (window.history.length > 1) {
       router.back();
     } else {
-      router.push("/#projects");
+      router.push(fallbackHref);
     }
   };
 
@@ -19,7 +24,7 @@ export const BackLink = () => {
       className="font-inputmono text-[11px] text-gray-600 hover:text-gray-300
         transition-colors mb-10 inline-flex items-center gap-2 tracking-widest uppercase"
     >
-      <span className="text-brand">←</span> All projects
+      <span className="text-brand">←</span> {label}
     </button>
   );
 };

@@ -54,7 +54,7 @@ export default async function CoursePage({ params }: Props) {
         />
 
         <div className="relative px-6 md:px-16 pt-28 pb-16 max-w-5xl mx-auto">
-          <BackLink />
+          <BackLink label="All courses" fallbackHref="/#courses" />
 
           <div className="flex flex-wrap items-center gap-3 mb-5">
             <span className="font-inputmono text-[11px] text-brand tracking-widest uppercase">
