@@ -1,4 +1,6 @@
 import type { StackItem } from "@/types";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { GhostNumber } from "@/components/ui/GhostNumber";
 
 type Category = {
   label: string;
@@ -80,16 +82,10 @@ const tierDot: Record<StackItem["tier"], string> = {
 export const StackSection = () => {
   return (
     <section id="stack" className="px-6 md:px-16 py-16 md:py-28 max-w-5xl mx-auto">
-      <h2 className="sr-only">Stack</h2>
-      <p className="font-inputmono text-muted text-[11px] tracking-[0.2em] uppercase mb-1" aria-hidden="true">
-        {"// Stack"}
-      </p>
-      <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8 md:mb-10" />
+      <SectionHeader label="Stack" srTitle="Stack" />
 
       <div className="relative">
-        <span aria-hidden="true" className="absolute -top-2 right-0 font-n27 font-bold italic text-[60px] md:text-[80px] leading-none ghost-number select-none pointer-events-none">
-          04
-        </span>
+        <GhostNumber>04</GhostNumber>
 
         <div className="grid grid-cols-1 min-[768px]:grid-cols-2 gap-10 min-[768px]:gap-x-16 min-[768px]:gap-y-12">
           {categories.map(({ label, description, items }) => (

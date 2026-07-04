@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getProjectBySlug, projects } from "@/data/projects";
 import { ProjectGallery } from "@/components/ui/project-gallery/ProjectGallery";
 import { BackLink } from "@/components/ui/BackLink";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -160,10 +161,7 @@ export default async function ProjectPage({ params }: Props) {
 
         {/* About the project */}
         <section>
-          <p className="font-inputmono text-faint text-[11px] tracking-[0.2em] uppercase mb-1">
-            {"// About"}
-          </p>
-          <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8" />
+          <SectionHeader label="About" />
           <div className="flex flex-col gap-4 max-w-3xl">
             {project.fullDescription.split("\n\n").map((para, i) => (
               <p key={i} className="font-inputmono text-muted text-sm leading-relaxed">
@@ -176,10 +174,7 @@ export default async function ProjectPage({ params }: Props) {
         {/* Technical highlights */}
         {project.highlights.length > 0 && (
           <section>
-            <p className="font-inputmono text-faint text-[11px] tracking-[0.2em] uppercase mb-1">
-              {"// Technical highlights"}
-            </p>
-            <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8" />
+            <SectionHeader label="Technical highlights" />
             <div className="grid grid-cols-1 min-[640px]:grid-cols-2 gap-3">
               {project.highlights.map((highlight, i) => (
                 <div
@@ -197,10 +192,7 @@ export default async function ProjectPage({ params }: Props) {
         {/* Project navigation */}
         {(prev || next) && (
           <section>
-            <p className="font-inputmono text-faint text-[11px] tracking-[0.2em] uppercase mb-1">
-              {"// More projects"}
-            </p>
-            <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8" />
+            <SectionHeader label="More projects" />
             <div className="grid grid-cols-1 min-[640px]:grid-cols-2 gap-4">
               {prev && (
                 <Link

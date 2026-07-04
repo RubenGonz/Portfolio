@@ -1,19 +1,15 @@
 import Link from "next/link";
 import { projects } from "@/data/projects";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { GhostNumber } from "@/components/ui/GhostNumber";
 
 export const ProjectsSection = () => {
   return (
     <section id="projects" className="px-6 md:px-16 py-16 md:py-28 max-w-5xl mx-auto">
-      <h2 className="sr-only">Projects</h2>
-      <p className="font-inputmono text-muted text-[11px] tracking-[0.2em] uppercase mb-1" aria-hidden="true">
-        {"// Projects"}
-      </p>
-      <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8 md:mb-10" />
+      <SectionHeader label="Projects" srTitle="Projects" />
 
       <div className="flex flex-col gap-4 md:gap-6 relative">
-        <span aria-hidden="true" className="absolute -top-2 right-0 font-n27 font-bold italic text-[60px] md:text-[80px] leading-none ghost-number select-none pointer-events-none">
-          01
-        </span>
+        <GhostNumber>01</GhostNumber>
 
         {projects.map((project) => (
           <Link

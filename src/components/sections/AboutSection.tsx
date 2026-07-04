@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { GhostNumber } from "@/components/ui/GhostNumber";
 
 const timelineItems = [
   {
@@ -110,17 +112,10 @@ export const AboutSection = () => {
 
   return (
     <section id="about" className="px-6 md:px-16 py-16 md:py-28 max-w-5xl mx-auto">
-      <h2 className="sr-only">About</h2>
-      <p className="font-inputmono text-muted text-[11px] tracking-[0.2em] uppercase mb-1" aria-hidden="true">
-        {"// About"}
-      </p>
-      <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8 md:mb-10" />
+      <SectionHeader label="About" srTitle="About" />
 
       <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 max-w-4xl relative">
-        {/* Decorative number */}
-        <span aria-hidden="true" className="absolute -top-2 right-0 font-n27 font-bold italic text-[60px] md:text-[80px] leading-none ghost-number select-none pointer-events-none">
-          02
-        </span>
+        <GhostNumber>02</GhostNumber>
 
         {/* Left: dynamic text — second on mobile, first on desktop */}
         <div

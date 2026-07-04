@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { ThemeSelector } from "../theme-selector/ThemeSelector";
+import type { NavLink } from "@/config/nav";
 
 interface Props {
   open: boolean;
   setOpen: (open: boolean) => void;
-  navLinks: { label: string; href: string }[];
+  navLinks: NavLink[];
 }
 
 export const Sidebar = ({ open, setOpen, navLinks }: Props) => {

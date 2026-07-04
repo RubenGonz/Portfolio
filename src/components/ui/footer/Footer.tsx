@@ -1,3 +1,5 @@
+import { navLinks } from "@/config/nav";
+
 export const Footer = () => {
   const year = new Date().getFullYear();
 
@@ -37,13 +39,7 @@ export const Footer = () => {
             © {year} Rubén González Rodríguez · Elche, Spain
           </p>
           <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 md:justify-start">
-            {[
-              { label: "Projects", href: "/#projects" },
-              { label: "About", href: "/#about" },
-              { label: "Courses", href: "/#courses" },
-              { label: "Stack", href: "/#stack" },
-              { label: "Contact", href: "/#contact" },
-            ].map(({ label, href }) => (
+            {navLinks.map(({ label, href }) => (
               <a
                 key={href}
                 href={href}

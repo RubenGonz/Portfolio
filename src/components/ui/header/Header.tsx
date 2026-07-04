@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Sidebar } from "../sidebar/Sidebar";
 import { ThemeSelector } from "../theme-selector/ThemeSelector";
+import { navLinks } from "@/config/nav";
 
 export const Header = () => {
 
@@ -15,14 +16,6 @@ export const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const navLinks = [
-    { label: "Projects", href: "/#projects" },
-    { label: "About", href: "/#about" },
-    { label: "Courses", href: "/#courses" },
-    { label: "Stack", href: "/#stack" },
-    { label: "Contact", href: "/#contact" },
-  ]
 
   return (
     <header className={`fixed h-14 w-full flex justify-between items-center px-6 z-50 text-fg transition-all duration-150 border-b

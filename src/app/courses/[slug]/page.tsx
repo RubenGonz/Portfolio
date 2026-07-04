@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getCourseBySlug, courses } from "@/data/courses";
 import { BackLink } from "@/components/ui/BackLink";
 import { StatusBadge } from "@/components/ui/StatusBadge";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -135,10 +136,7 @@ export default async function CoursePage({ params }: Props) {
 
         {/* Full description */}
         <section>
-          <p className="font-inputmono text-muted text-[11px] tracking-[0.2em] uppercase mb-1" aria-hidden="true">
-            {"// About this course"}
-          </p>
-          <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8" />
+          <SectionHeader label="About this course" />
           <div className="flex flex-col gap-4 max-w-3xl">
             {course.fullDescription.split("\n\n").map((para, i) => (
               <p key={i} className="font-inputmono text-muted text-sm leading-relaxed">
@@ -151,10 +149,7 @@ export default async function CoursePage({ params }: Props) {
         {/* Topics grid */}
         {course.topics.length > 0 && (
           <section>
-            <p className="font-inputmono text-muted text-[11px] tracking-[0.2em] uppercase mb-1" aria-hidden="true">
-              {"// What I learned"}
-            </p>
-            <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8" />
+            <SectionHeader label="What I learned" />
             <div className="grid grid-cols-1 min-[640px]:grid-cols-2 gap-4">
               {course.topics.map((topic) => (
                 <div
