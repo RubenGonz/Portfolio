@@ -28,7 +28,7 @@ export const ProjectsSection = () => {
             className="font-inputmono text-[11px] tracking-widest uppercase text-subtle
               hover:text-brand transition-colors duration-150 inline-flex items-center gap-2 mt-2"
           >
-            {remaining > 0 ? `View ${remaining} more →` : "View all projects →"}
+            View {remaining} more →
           </Link>
         )}
       </div>

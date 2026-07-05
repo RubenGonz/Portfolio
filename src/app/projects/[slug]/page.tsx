@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { getProjectBySlug, projects } from "@/data/projects";
 import { ProjectGallery } from "@/components/ui/project-gallery/ProjectGallery";
 import { BackLink } from "@/components/ui/BackLink";
@@ -8,6 +7,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { Button } from "@/components/ui/Button";
 import { Tag } from "@/components/ui/Tag";
+import { ItemNav } from "@/components/ui/ItemNav";
 import { siteConfig } from "@/config/site";
 
 interface Props {
@@ -161,40 +161,14 @@ export default async function ProjectPage({ params }: Props) {
           </section>
         )}
 
-        {/* Project navigation */}
-        {(prev || next) && (
-          <section>
-            <SectionHeader label="More projects" />
-            <div className="grid grid-cols-1 min-[640px]:grid-cols-2 gap-4">
-              {prev && (
-                <Link
-                  href={`/projects/${prev.slug}`}
-                  className="group flex flex-col gap-1 border border-line/5 bg-line/1
-                    px-5 py-4 hover:border-brand/30 transition-colors"
-                >
-                  <span className="font-inputmono text-[11px] text-faint tracking-widest">← Previous</span>
-                  <span className="font-n27 font-bold italic text-muted text-lg group-hover:text-fg transition-colors">
-                    {prev.title}
-                  </span>
-                </Link>
-              )}
-              {next && (
-                <Link
-                  href={`/projects/${next.slug}`}
-                  className="group flex flex-col gap-1 border border-line/5 bg-line/1
-                    px-5 py-4 hover:border-brand/30 transition-colors min-[640px]:text-right
-                    min-[640px]:col-start-2"
-                >
-                  <span className="font-inputmono text-[11px] text-faint tracking-widest">Next →</span>
-                  <span className="font-n27 font-bold italic text-muted text-lg group-hover:text-fg transition-colors">
-                    {next.title}
-                  </span>
-                </Link>
-              )}
-            </div>
-          </section>
-        )}
       </div>
+
+      <ItemNav
+        prev={prev ? { href: `/projects/${prev.slug}`, shortLabel: String(prev.year), title: prev.title } : null}
+        next={next ? { href: `/projects/${next.slug}`, shortLabel: String(next.year), title: next.title } : null}
+        allHref="/projects"
+        allLabel="View all projects →"
+      />
     </main>
   );
 }

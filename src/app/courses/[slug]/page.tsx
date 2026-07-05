@@ -6,6 +6,7 @@ import { StatusBadge } from "@/components/ui/StatusBadge";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Button } from "@/components/ui/Button";
 import { Tag } from "@/components/ui/Tag";
+import { ItemNav } from "@/components/ui/ItemNav";
 import { siteConfig } from "@/config/site";
 
 interface Props {
@@ -38,6 +39,10 @@ export default async function CoursePage({ params }: Props) {
   const { slug } = await params;
   const course = getCourseBySlug(slug);
   if (!course) notFound();
+
+  const currentIndex = courses.findIndex((c) => c.slug === slug);
+  const prev = courses[currentIndex - 1] ?? null;
+  const next = courses[currentIndex + 1] ?? null;
 
   return (
     <main className="min-h-screen">
@@ -145,6 +150,13 @@ export default async function CoursePage({ params }: Props) {
           </section>
         )}
       </div>
+
+      <ItemNav
+        prev={prev ? { href: `/courses/${prev.slug}`, shortLabel: prev.platform, title: prev.title } : null}
+        next={next ? { href: `/courses/${next.slug}`, shortLabel: next.platform, title: next.title } : null}
+        allHref="/courses"
+        allLabel="View all courses →"
+      />
     </main>
   );
 }
