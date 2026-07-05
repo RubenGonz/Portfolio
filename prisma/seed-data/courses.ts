@@ -1,8 +1,10 @@
 import type { Course } from "../../src/types";
 
+type CourseSeed = Omit<Course, "featured">;
+
 /** Seed fixtures — the initial content loaded into the database.
  *  After seeding, the app reads from the DB via src/data/courses.ts. */
-export const courses: Course[] = [
+export const courses: CourseSeed[] = [
   {
     slug: "nextjs-framework-react",
     title: "Next.js: El framework de React para producción",

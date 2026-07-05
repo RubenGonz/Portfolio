@@ -56,6 +56,7 @@ model Course {
   // Structured blob edited as a unit → JSON. Shape: { label: string, items: string[] }[]
   topics           Json
   tags             String[]
+  featured         Boolean  @default(false)
   certificateUrl   String?
   repoUrl          String?
   demoUrl          String?

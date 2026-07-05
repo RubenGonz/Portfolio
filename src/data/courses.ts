@@ -2,7 +2,6 @@ import { prisma } from "@/lib/prisma";
 import type { Course } from "@/types";
 import type { Course as PrismaCourse } from "@prisma/client";
 
-/** Map a Prisma row (persistence model) to the app's domain Course type. */
 function toCourse(row: PrismaCourse): Course {
   return {
     slug: row.slug,
@@ -14,6 +13,7 @@ function toCourse(row: PrismaCourse): Course {
     fullDescription: row.fullDescription,
     topics: row.topics as Course["topics"],
     tags: row.tags,
+    featured: row.featured,
     certificateUrl: row.certificateUrl ?? undefined,
     repoUrl: row.repoUrl ?? undefined,
     demoUrl: row.demoUrl ?? undefined,
@@ -22,7 +22,7 @@ function toCourse(row: PrismaCourse): Course {
 
 export async function getCourses(): Promise<Course[]> {
   const rows = await prisma.course.findMany({
-    orderBy: { year: "desc" },
+    orderBy: [{ featured: "desc" }, { year: "desc" }],
   });
   return rows.map(toCourse);
 }

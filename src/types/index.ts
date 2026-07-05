@@ -29,6 +29,7 @@ export interface Course {
   fullDescription: string;
   topics: { label: string; items: string[] }[];
   tags: string[];
+  featured: boolean;
   certificateUrl?: string;
   repoUrl?: string;
   demoUrl?: string;
