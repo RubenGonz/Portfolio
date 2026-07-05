@@ -64,7 +64,7 @@ export default async function CoursePage({ params }: Props) {
         />
 
         <div className="relative px-6 md:px-16 pt-28 pb-16 max-w-5xl mx-auto">
-          <BackLink label="All courses" fallbackHref="/#courses" />
+          <BackLink label="Back" fallbackHref="/courses" />
 
           <div className="flex flex-wrap items-center gap-3 mb-5">
             <span className="font-inputmono text-[11px] text-brand tracking-widest uppercase">
@@ -152,8 +152,8 @@ export default async function CoursePage({ params }: Props) {
       </div>
 
       <ItemNav
-        prev={prev ? { href: `/courses/${prev.slug}`, shortLabel: prev.platform, title: prev.title } : null}
-        next={next ? { href: `/courses/${next.slug}`, shortLabel: next.platform, title: next.title } : null}
+        prev={prev ? { href: `/courses/${prev.slug}`, shortLabel: prev.tags[0], title: prev.title } : null}
+        next={next ? { href: `/courses/${next.slug}`, shortLabel: next.tags[0], title: next.title } : null}
         allHref="/courses"
         allLabel="View all courses →"
       />

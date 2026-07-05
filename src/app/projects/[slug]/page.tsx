@@ -71,7 +71,7 @@ export default async function ProjectPage({ params }: Props) {
 
         <div className="relative px-6 md:px-16 pt-28 pb-16 max-w-5xl mx-auto">
           {/* Back */}
-          <BackLink />
+          <BackLink label="Back" fallbackHref="/projects" />
 
           {/* Two-column layout: left = content, right = gallery */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
@@ -164,8 +164,8 @@ export default async function ProjectPage({ params }: Props) {
       </div>
 
       <ItemNav
-        prev={prev ? { href: `/projects/${prev.slug}`, shortLabel: String(prev.year), title: prev.title } : null}
-        next={next ? { href: `/projects/${next.slug}`, shortLabel: String(next.year), title: next.title } : null}
+        prev={prev ? { href: `/projects/${prev.slug}`, shortLabel: prev.tags[0], title: prev.title } : null}
+        next={next ? { href: `/projects/${next.slug}`, shortLabel: next.tags[0], title: next.title } : null}
         allHref="/projects"
         allLabel="View all projects →"
       />
