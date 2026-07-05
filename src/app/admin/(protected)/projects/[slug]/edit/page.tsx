@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getProjectBySlug } from "@/data/projects";
 import { EditProjectForm } from "./EditProjectForm";
-import Link from "next/link";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 
 export default async function EditProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -10,12 +10,7 @@ export default async function EditProjectPage({ params }: { params: Promise<{ sl
 
   return (
     <div>
-      <div className="flex items-center gap-4 mb-8">
-        <Link href="/admin/projects" className="font-inputmono text-[11px] text-subtle hover:text-fg transition-colors">
-          ← Projects
-        </Link>
-        <h1 className="font-n27 font-bold italic text-2xl text-fg">Edit Project</h1>
-      </div>
+      <AdminPageHeader title={`Edit · ${project.title}`} />
       <EditProjectForm project={project} />
     </div>
   );

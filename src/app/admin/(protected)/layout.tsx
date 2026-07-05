@@ -7,7 +7,6 @@ export default async function ProtectedAdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Defence in depth — middleware already guards /admin, but never trust a single layer.
   const session = await auth();
   if (!session) redirect("/admin/login");
 
@@ -18,14 +17,14 @@ export default async function ProtectedAdminLayout({
           <span className="text-brand">{"//"}</span> <span className="text-fg">Admin</span>
         </p>
         <div className="flex items-center gap-4">
-          <span className="font-inputmono text-[11px] text-subtle hidden sm:block">
+          <span className="font-inputmono text-[11px] text-faint hidden sm:block">
             {session.user?.email}
           </span>
-          <form action={logout}>
+          <form action={logout} className="flex items-center">
             <button
               type="submit"
               className="font-inputmono text-[11px] tracking-widest uppercase text-subtle
-                hover:text-danger transition-colors"
+                hover:text-danger transition-colors leading-none"
             >
               Log out
             </button>

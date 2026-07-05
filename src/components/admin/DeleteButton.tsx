@@ -11,7 +11,7 @@ export function DeleteButton({ action, label = "Delete" }: DeleteButtonProps) {
   const router = useRouter();
 
   async function handleClick() {
-    if (!confirm(`Delete this ${label.toLowerCase()}? This cannot be undone.`)) return;
+    if (!confirm("Delete this item? This cannot be undone.")) return;
     await action();
     router.refresh();
   }

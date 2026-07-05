@@ -3,8 +3,9 @@
 import { useActionState } from "react";
 import { createProject } from "@/actions/projects";
 import { FormField, TextareaField, SelectField } from "@/components/admin/FormField";
+import { ChipEditor } from "@/components/admin/ChipEditor";
 import { SubmitButton } from "@/components/admin/SubmitButton";
-import Link from "next/link";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 
 const statusOptions = [
   { value: "in-progress", label: "In Progress" },
@@ -17,12 +18,7 @@ export default function NewProjectPage() {
 
   return (
     <div>
-      <div className="flex items-center gap-4 mb-8">
-        <Link href="/admin/projects" className="font-inputmono text-[11px] text-subtle hover:text-fg transition-colors">
-          ← Projects
-        </Link>
-        <h1 className="font-n27 font-bold italic text-2xl text-fg">New Project</h1>
-      </div>
+      <AdminPageHeader title="New Project" />
 
       <form action={action} className="flex flex-col gap-5 max-w-2xl">
         <FormField label="Slug" name="slug" required hint="URL-safe, unique (e.g. my-project)" />
@@ -32,14 +28,10 @@ export default function NewProjectPage() {
         <FormField label="Role" name="role" />
         <FormField label="Live URL" name="url" type="url" />
         <FormField label="Repo URL" name="repoUrl" type="url" />
-        <TextareaField label="Short Description" name="shortDescription" required rows={2} />
-        <TextareaField label="Full Description" name="fullDescription" required rows={6} />
-        <TextareaField label="Tags" name="tags" hint="One per line" rows={3} />
-        <TextareaField label="Highlights" name="highlights" hint="One per line" rows={4} />
-        <label className="flex items-center gap-2 font-inputmono text-[11px] tracking-widest uppercase text-subtle">
-          <input type="checkbox" name="featured" className="accent-brand" />
-          Featured
-        </label>
+        <TextareaField label="Short Description" name="shortDescription" required rows={3} />
+        <TextareaField label="Full Description" name="fullDescription" required rows={10} />
+        <ChipEditor label="Tags" name="tags" hint="Type and press Enter to add" />
+        <ChipEditor label="Highlights" name="highlights" hint="Type and press Enter to add" />
 
         {error && <p className="font-inputmono text-[11px] text-danger">{error}</p>}
         <SubmitButton label="Create Project" />
