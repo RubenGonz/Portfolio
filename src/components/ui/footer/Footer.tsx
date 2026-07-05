@@ -1,4 +1,5 @@
 import { navLinks } from "@/config/nav";
+import { siteConfig } from "@/config/site";
 
 export const Footer = () => {
   const year = new Date().getFullYear();
@@ -15,7 +16,7 @@ export const Footer = () => {
           </span>
           <div className="flex items-center gap-5">
             <a
-              href="https://github.com/RubenGonz"
+              href={siteConfig.social.github.url}
               target="_blank"
               rel="noopener noreferrer"
               className="font-inputmono text-[11px] text-muted hover:text-fg transition-colors"
@@ -23,7 +24,7 @@ export const Footer = () => {
               GitHub ↗
             </a>
             <a
-              href="https://linkedin.com/in/ruben-gonz"
+              href={siteConfig.social.linkedin.url}
               target="_blank"
               rel="noopener noreferrer"
               className="font-inputmono text-[11px] text-muted hover:text-fg transition-colors"
@@ -36,7 +37,7 @@ export const Footer = () => {
         {/* Row 2: copyright left, nav links right — stacks on mobile */}
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between border-t border-line/10 pt-5">
           <p className="font-inputmono text-[11px] text-muted">
-            © {year} Rubén González Rodríguez · Elche, Spain
+            © {year} {siteConfig.fullName} · {siteConfig.location}
           </p>
           <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 md:justify-start">
             {navLinks.map(({ label, href }) => (

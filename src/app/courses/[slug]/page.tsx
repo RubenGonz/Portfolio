@@ -4,6 +4,7 @@ import { getCourseBySlug, courses } from "@/data/courses";
 import { BackLink } from "@/components/ui/BackLink";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { siteConfig } from "@/config/site";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -17,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const course = getCourseBySlug(slug);
   if (!course) return {};
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.rubengonz.com";
+  const base = siteConfig.url;
   return {
     title: course.title,
     description: course.shortDescription,

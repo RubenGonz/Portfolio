@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GhostNumber } from "@/components/ui/GhostNumber";
+import { siteConfig } from "@/config/site";
 
 type Status = "idle" | "sending" | "success" | "error";
 
@@ -51,29 +52,29 @@ export const ContactSection = () => {
           </p>
           <div className="flex flex-col gap-3">
             <a
-              href="mailto:ruben.gonzalez.rodriguez00@gmail.com"
+              href={`mailto:${siteConfig.email}`}
               className="font-inputmono text-xs text-muted hover:text-fg transition-colors flex items-center gap-2 break-all"
             >
               <span className="text-subtle shrink-0" aria-hidden="true">→</span>
-              ruben.gonzalez.rodriguez00@gmail.com
+              {siteConfig.email}
             </a>
             <a
-              href="https://linkedin.com/in/ruben-gonz"
+              href={siteConfig.social.linkedin.url}
               target="_blank"
               rel="noopener noreferrer"
               className="font-inputmono text-xs text-muted hover:text-fg transition-colors flex items-center gap-2"
             >
               <span className="text-subtle shrink-0" aria-hidden="true">→</span>
-              linkedin.com/in/ruben-gonz ↗
+              {siteConfig.social.linkedin.handle} ↗
             </a>
             <a
-              href="https://github.com/RubenGonz"
+              href={siteConfig.social.github.url}
               target="_blank"
               rel="noopener noreferrer"
               className="font-inputmono text-xs text-muted hover:text-fg transition-colors flex items-center gap-2"
             >
               <span className="text-subtle shrink-0" aria-hidden="true">→</span>
-              github.com/RubenGonz ↗
+              {siteConfig.social.github.handle} ↗
             </a>
           </div>
         </div>

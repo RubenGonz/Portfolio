@@ -5,6 +5,7 @@ import { inputMono, n27 } from "@/config/fonts/fonts";
 import { Providers } from "@/components";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { siteConfig } from "@/config/site";
 
 if (!process.env.NEXT_PUBLIC_SITE_URL) {
   throw new Error("NEXT_PUBLIC_SITE_URL is not defined");
@@ -55,13 +56,13 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Rubén González Rodríguez",
-  alternateName: "RubenGonz",
-  jobTitle: "Frontend Developer",
-  url: "https://www.rubengonz.com",
+  name: siteConfig.fullName,
+  alternateName: siteConfig.name,
+  jobTitle: siteConfig.role,
+  url: siteConfig.url,
   sameAs: [
-    "https://github.com/RubenGonz",
-    "https://linkedin.com/in/ruben-gonz",
+    siteConfig.social.github.url,
+    siteConfig.social.linkedin.url,
   ],
   address: {
     "@type": "PostalAddress",

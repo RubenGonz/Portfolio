@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { siteConfig } from "@/config/site";
 
 export const HeroSection = () => {
   return (
@@ -91,7 +92,7 @@ export const HeroSection = () => {
               Download CV ↓
             </a>
             <a
-              href="https://github.com/RubenGonz"
+              href={siteConfig.social.github.url}
               target="_blank"
               rel="noopener noreferrer"
               className="font-inputmono text-xs px-5 py-3 border border-line/16 text-subtle text-center

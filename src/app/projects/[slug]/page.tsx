@@ -5,6 +5,7 @@ import { getProjectBySlug, projects } from "@/data/projects";
 import { ProjectGallery } from "@/components/ui/project-gallery/ProjectGallery";
 import { BackLink } from "@/components/ui/BackLink";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { siteConfig } from "@/config/site";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
   if (!project) return {};
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.rubengonz.com";
+  const base = siteConfig.url;
   return {
     title: project.title,
     description: project.shortDescription,

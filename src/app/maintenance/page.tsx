@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export default function MaintenancePage() {
 
   return <main className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat 
@@ -23,7 +25,7 @@ export default function MaintenancePage() {
         Estoy trabajando en el portfolio. Muy pronto estará disponible.
       </p>
 
-      <a href="mailto:ruben.gonzalez.rodriguez00@gmail.com"
+      <a href={`mailto:${siteConfig.email}`}
         className="px-3 sm:px-4 py-1 sm:py-1.5
             text-muted hover:text-fg
             font-medium text-sm sm:text-base md:text-lg

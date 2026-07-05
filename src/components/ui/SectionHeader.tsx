@@ -10,10 +10,10 @@ export const SectionHeader = ({ label, srTitle }: Props) => (
   <>
     {srTitle && <h2 className="sr-only">{srTitle}</h2>}
     <p
-      className="font-inputmono text-muted text-[11px] tracking-[0.2em] uppercase mb-1"
+      className="font-inputmono text-[11px] tracking-[0.2em] uppercase mb-1"
       aria-hidden="true"
     >
-      {`// ${label}`}
+      <span className="text-brand">{"//"}</span> <span className="text-fg">{label}</span>
     </p>
     <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8 md:mb-10" />
   </>

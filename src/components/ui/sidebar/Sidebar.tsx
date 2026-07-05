@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ThemeSelector } from "../theme-selector/ThemeSelector";
 import type { NavLink } from "@/config/nav";
+import { siteConfig } from "@/config/site";
 
 interface Props {
   open: boolean;
@@ -76,10 +77,10 @@ export const Sidebar = ({ open, setOpen, navLinks }: Props) => {
             <span className="font-inputmono text-[11px] text-brand tracking-widest uppercase">Available for work</span>
           </div>
           <a
-            href="mailto:ruben.gonzalez.rodriguez00@gmail.com"
+            href={`mailto:${siteConfig.email}`}
             className="font-inputmono text-[11px] text-muted hover:text-fg transition-colors break-all"
           >
-            ruben.gonzalez.rodriguez00@gmail.com
+            {siteConfig.email}
           </a>
         </div>
       </div>
