@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { authenticate } from "@/actions/auth";
+import Link from "next/link";
 
 export default function LoginPage() {
   const [errorMessage, formAction, isPending] = useActionState(authenticate, undefined);
@@ -10,6 +11,12 @@ export default function LoginPage() {
     <main className="min-h-screen flex items-center justify-center px-6">
       <form action={formAction} className="w-full max-w-sm flex flex-col gap-5">
         <div className="mb-2">
+          <Link
+            href="/"
+            className="font-inputmono text-[11px] text-subtle hover:text-fg transition-colors block mb-3"
+          >
+            ← Home
+          </Link>
           <p className="font-inputmono text-[11px] tracking-[0.2em] uppercase mb-1">
             <span className="text-brand">{"//"}</span> <span className="text-fg">Admin</span>
           </p>

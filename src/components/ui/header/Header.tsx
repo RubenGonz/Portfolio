@@ -47,6 +47,13 @@ export const Header = () => {
         <div className="hidden md:flex items-center gap-3">
           <AvailableBadge label="Available" bordered />
           <ThemeSelector />
+          <Link
+            href="/admin"
+            className="font-inputmono text-[10px] tracking-widest uppercase text-faint hover:text-subtle transition-colors"
+            aria-label="Admin"
+          >
+            ⚙
+          </Link>
         </div>
 
         {/* Hamburguesa móvil */}

@@ -80,6 +80,13 @@ export const Sidebar = ({ open, setOpen, navLinks }: Props) => {
           >
             {siteConfig.email}
           </a>
+          <Link
+            href="/admin"
+            onClick={() => setOpen(false)}
+            className="font-inputmono text-[10px] tracking-widest uppercase text-faint hover:text-subtle transition-colors mt-4 block"
+          >
+            ⚙ Admin
+          </Link>
         </div>
       </div>
     </>
