@@ -45,14 +45,14 @@ export function ImagesEditor({ defaultValue = [] }: Props) {
           type="text"
           placeholder="/images/projects/foo/bar.webp"
           onKeyDown={onKeyDown}
-          className="flex-1 bg-bg border border-line/20 px-3 py-2 font-inputmono text-xs text-fg placeholder:text-faint focus:outline-none focus:border-brand/50"
+          className="flex-1 bg-surface border border-line/10 px-3 py-2 font-inputmono text-xs text-fg placeholder:text-faint focus:outline-none focus:border-brand/50"
         />
         <input
           ref={altRef}
           type="text"
           placeholder="Alt text"
           onKeyDown={onKeyDown}
-          className="w-48 bg-bg border border-line/20 px-3 py-2 font-inputmono text-xs text-fg placeholder:text-faint focus:outline-none focus:border-brand/50"
+          className="w-48 bg-surface border border-line/10 px-3 py-2 font-inputmono text-xs text-fg placeholder:text-faint focus:outline-none focus:border-brand/50"
         />
       </div>
 

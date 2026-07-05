@@ -24,6 +24,15 @@ export function EditTimelineForm({ entry }: { entry: TimelineEntry }) {
         hint="Separate paragraphs with a blank line"
       />
 
+      <div className="flex flex-col gap-1.5">
+        <span className="font-inputmono text-[11px] text-muted tracking-widest uppercase">Current</span>
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" name="current" defaultChecked={entry.current} className="accent-brand" />
+          <span className="font-inputmono text-xs text-muted">Mark as current entry</span>
+        </label>
+        <p className="font-inputmono text-[10px] text-faint">Managed from the dashboard — toggle here only if needed</p>
+      </div>
+
       {error && <p className="font-inputmono text-[11px] text-danger">{error}</p>}
       <SubmitButton label="Save Changes" />
     </form>

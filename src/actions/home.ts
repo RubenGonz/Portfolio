@@ -18,14 +18,14 @@ export async function updateHero(_: unknown, fd: FormData): Promise<string | und
     upsert("hero_description", description),
   ]);
   revalidatePath("/");
-  redirect("/admin/home");
+  redirect("/admin");
 }
 
 export async function updateTicker(_: unknown, fd: FormData): Promise<string | undefined> {
   const text = (fd.get("ticker_text") as string | null)?.trim() ?? "";
   await upsert("ticker_text", text);
   revalidatePath("/");
-  redirect("/admin/home");
+  redirect("/admin");
 }
 
 export async function updateContact(_: unknown, fd: FormData): Promise<string | undefined> {
@@ -37,5 +37,5 @@ export async function updateContact(_: unknown, fd: FormData): Promise<string | 
     upsert("contact_subtext",  get("contact_subtext")),
   ]);
   revalidatePath("/");
-  redirect("/admin/home");
+  redirect("/admin");
 }

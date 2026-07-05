@@ -31,7 +31,8 @@ export async function createTimelineEntry(_: unknown, fd: FormData): Promise<str
 export async function updateTimelineEntry(id: string, _: unknown, fd: FormData): Promise<string | undefined> {
   const data = parseForm(fd);
   if (!data.title || !data.year) return "Year and title are required.";
-  await prisma.timelineEntry.update({ where: { id }, data });
+  const current = fd.get("current") === "on";
+  await prisma.timelineEntry.update({ where: { id }, data: { ...data, current } });
   revalidate();
   redirect("/admin");
 }
