@@ -1,10 +1,11 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getProjectBySlug, projects } from "@/data/projects";
+import { getProjectBySlug, projects, projectStatusMeta } from "@/data/projects";
 import { ProjectGallery } from "@/components/ui/project-gallery/ProjectGallery";
 import { BackLink } from "@/components/ui/BackLink";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { StatusBadge } from "@/components/ui/StatusBadge";
 import { Button } from "@/components/ui/Button";
 import { Tag } from "@/components/ui/Tag";
 import { siteConfig } from "@/config/site";
@@ -82,16 +83,7 @@ export default async function ProjectPage({ params }: Props) {
                 <span className="font-inputmono text-[11px] text-faint tracking-widest">
                   {project.year}
                 </span>
-                {project.status === "in-progress" && (
-                  <span className="font-inputmono text-[11px] text-brand border border-brand/20 bg-brand/8 px-2 py-0.5 tracking-widest uppercase">
-                    In progress
-                  </span>
-                )}
-                {project.status === "live" && (
-                  <span className="font-inputmono text-[11px] text-success border border-success/20 bg-success/8 px-2 py-0.5 tracking-widest uppercase">
-                    Live
-                  </span>
-                )}
+                <StatusBadge {...projectStatusMeta[project.status]} />
                 {project.role && (
                   <>
                     <span className="text-faint text-[9px]">·</span>

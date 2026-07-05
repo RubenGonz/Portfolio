@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Course } from "@/types";
 import { StatusBadge } from "./StatusBadge";
+import { courseStatusMeta } from "@/data/courses";
 
 interface Props {
   course: Course;
@@ -26,7 +27,7 @@ export const CourseCard = ({ course, headingLevel = 3 }: Props) => {
         <span className="font-inputmono text-[11px] text-subtle tracking-widest">
           {course.year}
         </span>
-        <StatusBadge status={course.status} />
+        <StatusBadge {...courseStatusMeta[course.status]} />
       </div>
 
       {/* Center: title + description */}

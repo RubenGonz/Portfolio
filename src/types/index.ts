@@ -38,3 +38,11 @@ export interface ContactMessage {
   email: string;
   message: string;
 }
+
+/** Visual tone of a status badge, decoupled from any specific status vocabulary. */
+export type BadgeTone = "brand" | "success" | "neutral";
+
+export interface StatusMeta {
+  tone: BadgeTone;
+  label: string;
+}

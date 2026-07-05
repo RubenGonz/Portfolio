@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { projects } from "@/data/projects";
+import { projects, projectStatusMeta } from "@/data/projects";
+import { StatusBadge } from "@/components/ui/StatusBadge";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GhostNumber } from "@/components/ui/GhostNumber";
 import { Section } from "@/components/ui/Section";
@@ -31,18 +32,7 @@ export const ProjectsSection = () => {
                   </h3>
                   <div className="flex items-center gap-3 mt-1">
                     <span aria-hidden="true" className="font-inputmono text-subtle text-[11px]">{project.year}</span>
-                    {project.status === "in-progress" && (
-                      <span className="font-inputmono text-[11px] text-brand border border-brand/20
-                        bg-brand/8 px-2 py-0.5 tracking-widest uppercase">
-                        In progress
-                      </span>
-                    )}
-                    {project.status === "live" && (
-                      <span className="font-inputmono text-[11px] text-success border border-success/20
-                        bg-success/8 px-2 py-0.5 tracking-widest uppercase">
-                        Live
-                      </span>
-                    )}
+                    <StatusBadge {...projectStatusMeta[project.status]} />
                   </div>
                 </div>
                 <span aria-hidden="true" className="font-inputmono text-subtle text-sm group-hover:text-brand

@@ -1,4 +1,11 @@
-import type { Project } from "@/types";
+import type { Project, StatusMeta } from "@/types";
+
+/** Maps a project's status to the shared StatusBadge tone + label. */
+export const projectStatusMeta: Record<Project["status"], StatusMeta> = {
+  live: { tone: "success", label: "Live" },
+  "in-progress": { tone: "brand", label: "In progress" },
+  archived: { tone: "neutral", label: "Archived" },
+};
 
 export const projects: Project[] = [
   {

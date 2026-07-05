@@ -1,4 +1,11 @@
-import type { Course } from "@/types";
+import type { Course, StatusMeta } from "@/types";
+
+/** Maps a course's status to the shared StatusBadge tone + label. */
+export const courseStatusMeta: Record<Course["status"], StatusMeta> = {
+  completed: { tone: "success", label: "Completed" },
+  "in-progress": { tone: "brand", label: "In progress" },
+  "not-started": { tone: "neutral", label: "Not started" },
+};
 
 export const courses: Course[] = [
   {
