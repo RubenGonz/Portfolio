@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ThemeSelector } from "../theme-selector/ThemeSelector";
+import { AvailableBadge } from "../AvailableBadge";
 import type { NavLink } from "@/config/nav";
 import { siteConfig } from "@/config/site";
 
@@ -72,10 +73,7 @@ export const Sidebar = ({ open, setOpen, navLinks }: Props) => {
             <ThemeSelector />
           </div>
 
-          <div className="flex items-center gap-1.5 mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
-            <span className="font-inputmono text-[11px] text-brand tracking-widest uppercase">Available for work</span>
-          </div>
+          <AvailableBadge label="Available for work" className="mb-4" />
           <a
             href={`mailto:${siteConfig.email}`}
             className="font-inputmono text-[11px] text-muted hover:text-fg transition-colors break-all"

@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GhostNumber } from "@/components/ui/GhostNumber";
+import { Section } from "@/components/ui/Section";
+import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/config/site";
 
 type Status = "idle" | "sending" | "success" | "error";
@@ -35,7 +37,7 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="px-6 md:px-16 py-16 md:py-28 max-w-5xl mx-auto">
+    <Section id="contact">
       <SectionHeader label="Contact" srTitle="Contact" />
 
       <div className="flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-16 max-w-4xl relative">
@@ -130,17 +132,11 @@ export const ContactSection = () => {
             </p>
           )}
 
-          <button
-            type="submit"
-            disabled={status === "sending" || status === "success"}
-            className="font-inputmono text-xs font-bold px-5 py-3 tracking-wide w-full md:w-fit
-              bg-gradient-to-r from-brand-sec to-brand text-on-accent
-              hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
-          >
+          <Button type="submit" disabled={status === "sending" || status === "success"} className="w-full md:w-fit">
             {status === "sending" ? "Sending..." : "Send message →"}
-          </button>
+          </Button>
         </form>
       </div>
-    </section>
+    </Section>
   );
 };

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Sidebar } from "../sidebar/Sidebar";
 import { ThemeSelector } from "../theme-selector/ThemeSelector";
+import { AvailableBadge } from "../AvailableBadge";
 import { navLinks } from "@/config/nav";
 
 export const Header = () => {
@@ -44,10 +45,7 @@ export const Header = () => {
       <div className="flex items-center gap-3">
         {/* Available badge + theme (desktop) */}
         <div className="hidden md:flex items-center gap-3">
-          <div className="flex items-center gap-1.5 border border-brand/30 px-3 py-1 rounded-full">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
-            <span className="font-inputmono text-[11px] text-brand tracking-widest uppercase">Available</span>
-          </div>
+          <AvailableBadge label="Available" bordered />
           <ThemeSelector />
         </div>
 

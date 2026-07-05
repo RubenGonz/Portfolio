@@ -4,6 +4,8 @@ import { getCourseBySlug, courses } from "@/data/courses";
 import { BackLink } from "@/components/ui/BackLink";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { Button } from "@/components/ui/Button";
+import { Tag } from "@/components/ui/Tag";
 import { siteConfig } from "@/config/site";
 
 interface Props {
@@ -82,51 +84,20 @@ export default async function CoursePage({ params }: Props) {
           {/* Tags */}
           <div className="flex flex-wrap gap-2 mb-8">
             {course.tags.map((tag) => (
-              <span
-                key={tag}
-                className="font-inputmono text-[11px] text-faint border border-line/5 bg-line/[0.02] px-2 py-1"
-              >
-                {tag}
-              </span>
+              <Tag key={tag}>{tag}</Tag>
             ))}
           </div>
 
           {/* CTAs */}
           <div className="flex flex-wrap gap-3">
             {course.certificateUrl && (
-              <a
-                href={course.certificateUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-inputmono text-xs font-bold px-5 py-3 tracking-wide
-                  bg-gradient-to-r from-brand-sec to-brand text-on-accent
-                  hover:opacity-90 transition-opacity"
-              >
-                View certificate ↗
-              </a>
+              <Button href={course.certificateUrl} external variant="primary">View certificate ↗</Button>
             )}
             {course.repoUrl && (
-              <a
-                href={course.repoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-inputmono text-xs px-5 py-3 border border-line/30 text-muted
-                  hover:border-brand/50 hover:text-fg transition-colors tracking-wide
-                  shadow-raised"
-              >
-                GitHub ↗
-              </a>
+              <Button href={course.repoUrl} external variant="outline">GitHub ↗</Button>
             )}
             {course.demoUrl && (
-              <a
-                href={course.demoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-inputmono text-xs px-5 py-3 border border-line/16 text-subtle
-                  hover:border-brand/40 hover:text-fg transition-colors tracking-wide"
-              >
-                Live demo ↗
-              </a>
+              <Button href={course.demoUrl} external variant="ghost">Live demo ↗</Button>
             )}
           </div>
         </div>

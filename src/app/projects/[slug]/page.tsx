@@ -5,6 +5,8 @@ import { getProjectBySlug, projects } from "@/data/projects";
 import { ProjectGallery } from "@/components/ui/project-gallery/ProjectGallery";
 import { BackLink } from "@/components/ui/BackLink";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { Button } from "@/components/ui/Button";
+import { Tag } from "@/components/ui/Tag";
 import { siteConfig } from "@/config/site";
 
 interface Props {
@@ -111,40 +113,17 @@ export default async function ProjectPage({ params }: Props) {
               {/* Tags */}
               <div className="flex flex-wrap gap-2 mb-8">
                 {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="font-inputmono text-[11px] text-faint border border-line/5 bg-line/[0.02] px-2 py-1"
-                  >
-                    {tag}
-                  </span>
+                  <Tag key={tag}>{tag}</Tag>
                 ))}
               </div>
 
               {/* CTA buttons */}
               <div className="flex flex-wrap gap-3">
                 {project.url && (
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-inputmono text-xs font-bold px-5 py-3 tracking-wide
-                      bg-gradient-to-r from-brand-sec to-brand text-on-accent
-                      hover:opacity-90 transition-opacity"
-                  >
-                    View live ↗
-                  </a>
+                  <Button href={project.url} external variant="primary">View live ↗</Button>
                 )}
                 {project.repoUrl && (
-                  <a
-                    href={project.repoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-inputmono text-xs px-5 py-3 border border-line/30 text-muted
-                      hover:border-brand/50 hover:text-fg transition-colors tracking-wide
-                      shadow-raised"
-                  >
-                    GitHub ↗
-                  </a>
+                  <Button href={project.repoUrl} external variant="outline">GitHub ↗</Button>
                 )}
               </div>
             </div>

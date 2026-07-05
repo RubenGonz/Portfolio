@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GhostNumber } from "@/components/ui/GhostNumber";
+import { Section } from "@/components/ui/Section";
 
 const timelineItems = [
   {
@@ -111,7 +112,7 @@ export const AboutSection = () => {
   const activeItem = timelineItems.find((item) => item.id === activeId) ?? timelineItems[0];
 
   return (
-    <section id="about" className="px-6 md:px-16 py-16 md:py-28 max-w-5xl mx-auto">
+    <Section id="about">
       <SectionHeader label="About" srTitle="About" />
 
       <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 max-w-4xl relative">
@@ -186,6 +187,6 @@ export const AboutSection = () => {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 };

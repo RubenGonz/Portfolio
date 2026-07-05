@@ -1,6 +1,7 @@
 import type { StackItem } from "@/types";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GhostNumber } from "@/components/ui/GhostNumber";
+import { Section } from "@/components/ui/Section";
 
 type Category = {
   label: string;
@@ -81,7 +82,7 @@ const tierDot: Record<StackItem["tier"], string> = {
 
 export const StackSection = () => {
   return (
-    <section id="stack" className="px-6 md:px-16 py-16 md:py-28 max-w-5xl mx-auto">
+    <Section id="stack">
       <SectionHeader label="Stack" srTitle="Stack" />
 
       <div className="relative">
@@ -115,6 +116,6 @@ export const StackSection = () => {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 };

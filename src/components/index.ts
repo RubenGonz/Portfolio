@@ -6,6 +6,10 @@ export { Sidebar } from "./ui/sidebar/Sidebar";
 export { ThemeSelector } from "./ui/theme-selector/ThemeSelector";
 export { SectionHeader } from "./ui/SectionHeader";
 export { GhostNumber } from "./ui/GhostNumber";
+export { Section } from "./ui/Section";
+export { Button } from "./ui/Button";
+export { Tag } from "./ui/Tag";
+export { AvailableBadge } from "./ui/AvailableBadge";
 
 export { HeroSection } from "./sections/HeroSection";
 export { ProjectsSection } from "./sections/ProjectsSection";

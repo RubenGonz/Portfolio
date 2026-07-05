@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/config/site";
 
 export const HeroSection = () => {
@@ -74,32 +74,9 @@ export const HeroSection = () => {
 
           {/* CTAs */}
           <div className="flex flex-col xs:flex-row flex-wrap gap-3">
-            <Link
-              href="#projects"
-              className="font-inputmono text-xs font-bold px-5 py-3 tracking-wide text-center
-                bg-gradient-to-r from-brand-sec to-brand text-on-accent
-                hover:opacity-90 transition-opacity"
-            >
-              See projects →
-            </Link>
-            <a
-              href="/cv-ruben-gonzalez.pdf"
-              download
-              className="font-inputmono text-xs px-5 py-3 border border-line/30 text-muted text-center
-                hover:border-brand/50 hover:text-fg transition-colors tracking-wide
-                shadow-raised"
-            >
-              Download CV ↓
-            </a>
-            <a
-              href={siteConfig.social.github.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-inputmono text-xs px-5 py-3 border border-line/16 text-subtle text-center
-                hover:border-brand/40 hover:text-fg transition-colors tracking-wide"
-            >
-              GitHub ↗
-            </a>
+            <Button href="#projects" variant="primary">See projects →</Button>
+            <Button href="/cv-ruben-gonzalez.pdf" download variant="outline">Download CV ↓</Button>
+            <Button href={siteConfig.social.github.url} external variant="ghost">GitHub ↗</Button>
           </div>
         </div>
       </section>

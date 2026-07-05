@@ -2,10 +2,11 @@ import Link from "next/link";
 import { projects } from "@/data/projects";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GhostNumber } from "@/components/ui/GhostNumber";
+import { Section } from "@/components/ui/Section";
 
 export const ProjectsSection = () => {
   return (
-    <section id="projects" className="px-6 md:px-16 py-16 md:py-28 max-w-5xl mx-auto">
+    <Section id="projects">
       <SectionHeader label="Projects" srTitle="Projects" />
 
       <div className="flex flex-col gap-4 md:gap-6 relative">
@@ -68,6 +69,6 @@ export const ProjectsSection = () => {
           </Link>
         ))}
       </div>
-    </section>
+    </Section>
   );
 };
