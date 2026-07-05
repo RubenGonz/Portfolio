@@ -4,32 +4,38 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 
-export async function updateHomeContent(_: unknown, fd: FormData): Promise<string | undefined> {
+const upsert = (key: string, value: string) =>
+  prisma.setting.upsert({ where: { key }, update: { value }, create: { key, value } });
+
+export async function updateHero(_: unknown, fd: FormData): Promise<string | undefined> {
   const get = (k: string) => (fd.get(k) as string | null)?.trim() ?? "";
-
-  const title       = get("hero_title");
-  const tagline     = get("hero_tagline");
+  const title = get("hero_title");
   const description = get("hero_description");
-  const tickerText  = get("ticker_text");
-  const headline    = get("contact_headline");
-  const subtext     = get("contact_subtext");
-
-  if (!title || !description) return "Hero title and description are required.";
-  if (!headline) return "Contact headline is required.";
-
-  const upsert = (key: string, value: string) =>
-    prisma.setting.upsert({ where: { key }, update: { value }, create: { key, value } });
-
+  if (!title || !description) return "Title and description are required.";
   await prisma.$transaction([
     upsert("hero_title",       title),
-    upsert("hero_tagline",     tagline),
+    upsert("hero_tagline",     get("hero_tagline")),
     upsert("hero_description", description),
-    upsert("ticker_text",      tickerText),
-    upsert("contact_headline", headline),
-    upsert("contact_subtext",  subtext),
   ]);
-
   revalidatePath("/");
-  revalidatePath("/admin/home");
-  redirect("/admin");
+  redirect("/admin/home");
+}
+
+export async function updateTicker(_: unknown, fd: FormData): Promise<string | undefined> {
+  const text = (fd.get("ticker_text") as string | null)?.trim() ?? "";
+  await upsert("ticker_text", text);
+  revalidatePath("/");
+  redirect("/admin/home");
+}
+
+export async function updateContact(_: unknown, fd: FormData): Promise<string | undefined> {
+  const get = (k: string) => (fd.get(k) as string | null)?.trim() ?? "";
+  const headline = get("contact_headline");
+  if (!headline) return "Headline is required.";
+  await prisma.$transaction([
+    upsert("contact_headline", headline),
+    upsert("contact_subtext",  get("contact_subtext")),
+  ]);
+  revalidatePath("/");
+  redirect("/admin/home");
 }
