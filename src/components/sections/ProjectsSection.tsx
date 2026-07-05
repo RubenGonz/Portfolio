@@ -3,6 +3,7 @@ import { projects } from "@/data/projects";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GhostNumber } from "@/components/ui/GhostNumber";
 import { Section } from "@/components/ui/Section";
+import { Tag } from "@/components/ui/Tag";
 
 export const ProjectsSection = () => {
   return (
@@ -56,13 +57,7 @@ export const ProjectsSection = () => {
 
               <div className="flex flex-wrap gap-1.5">
                 {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="font-inputmono text-[11px] text-muted border border-line/5
-                      bg-line/[0.02] px-2 py-1"
-                  >
-                    {tag}
-                  </span>
+                  <Tag key={tag}>{tag}</Tag>
                 ))}
               </div>
             </div>
