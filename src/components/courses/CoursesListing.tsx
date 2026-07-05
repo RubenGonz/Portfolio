@@ -21,7 +21,7 @@ export const CoursesListing = ({ courses }: Props) => {
   const [order, setOrder] = useState("newest");
 
   const filtered = useMemo(() => {
-    let result = status === "all" ? courses : courses.filter((c) => c.status === status);
+    const result = status === "all" ? courses : courses.filter((c) => c.status === status);
     return order === "newest"
       ? [...result].sort((a, b) => b.year - a.year)
       : [...result].sort((a, b) => a.year - b.year);

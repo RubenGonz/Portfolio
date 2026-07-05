@@ -21,7 +21,7 @@ export const ProjectsListing = ({ projects }: Props) => {
   const [order, setOrder] = useState("newest");
 
   const filtered = useMemo(() => {
-    let result = status === "all" ? projects : projects.filter((p) => p.status === status);
+    const result = status === "all" ? projects : projects.filter((p) => p.status === status);
     return order === "newest"
       ? [...result].sort((a, b) => b.year - a.year)
       : [...result].sort((a, b) => a.year - b.year);
