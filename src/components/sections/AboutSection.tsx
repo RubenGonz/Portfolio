@@ -4,59 +4,25 @@ import { useEffect, useRef, useState } from "react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GhostNumber } from "@/components/ui/GhostNumber";
 import { Section } from "@/components/ui/Section";
-import { timelineItems, type TimelineItem } from "@/data/about";
+import { timelineItems } from "@/data/about";
 
 const ROTATE_MS = 5000;
 const FADE_MS = 250;
 
-interface EntryProps {
-  item: TimelineItem;
-  isSelected: boolean;
-  onSelect: () => void;
-}
-
-/** One clickable timeline entry — dot on the rail, year, title and optional subtitle. */
-const TimelineEntry = ({ item, isSelected, onSelect }: EntryProps) => {
-  const isCurrent = item.current === true;
-
-  const dotClass = isSelected
+/** Style classes for a timeline entry given its selection / "current" state. */
+const entryClasses = (isSelected: boolean, isCurrent: boolean) => ({
+  dot: isSelected
     ? isCurrent
       ? "w-[9px] h-[9px] bg-gradient-to-br from-brand-sec to-brand border-transparent shadow-[0_0_10px_rgba(183,153,255,0.5)]"
       : "w-[9px] h-[9px] bg-surface border-brand shadow-[0_0_8px_rgba(183,153,255,0.3)]"
-    : "w-[7px] h-[7px] bg-surface border-line/10 group-hover:border-line/30";
-
-  const yearClass = isSelected
+    : "w-[7px] h-[7px] bg-surface border-line/10 group-hover:border-line/30",
+  year: isSelected
     ? isCurrent ? "text-brand" : "text-muted"
-    : "text-subtle group-hover:text-fg";
-
-  const titleClass = isSelected
+    : "text-subtle group-hover:text-fg",
+  title: isSelected
     ? isCurrent ? "text-brand" : "text-fg"
-    : "text-muted group-hover:text-fg";
-
-  return (
-    <button onClick={onSelect} className="relative text-left group">
-      {/* Dot — left-0 relative to button + -translate-x-1/2 centers it on the rail */}
-      <div
-        className={`absolute left-[-1.75rem] top-[5px] -translate-x-1/2 rounded-full border transition-all duration-200 ${dotClass}`}
-      />
-
-      <p className={`font-inputmono text-[11px] tracking-widest mb-0.5 transition-colors duration-150 ${yearClass}`}>
-        {item.year}
-      </p>
-
-      <p className={`font-inputmono text-xs transition-colors duration-150 ${titleClass}`}>
-        {item.title}
-        {isSelected && isCurrent && (
-          <span className="text-brand animate-[blink_1.1s_step-end_infinite]"> ▌</span>
-        )}
-      </p>
-
-      {item.subtitle && (
-        <p className="font-inputmono text-[11px] mt-0.5 text-subtle">{item.subtitle}</p>
-      )}
-    </button>
-  );
-};
+    : "text-muted group-hover:text-fg",
+});
 
 export const AboutSection = () => {
   const [activeId, setActiveId] = useState<string>(timelineItems[0].id);
@@ -124,14 +90,39 @@ export const AboutSection = () => {
             {/* Vertical rail — dedicated element so dots can center on it precisely */}
             <div className="absolute left-0 top-1 bottom-1 w-px bg-line/6" />
 
-            {timelineItems.map((item) => (
-              <TimelineEntry
-                key={item.id}
-                item={item}
-                isSelected={activeId === item.id}
-                onSelect={() => handleSelect(item.id)}
-              />
-            ))}
+            {timelineItems.map((item) => {
+              const isSelected = activeId === item.id;
+              const isCurrent = item.current === true;
+              const c = entryClasses(isSelected, isCurrent);
+
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => handleSelect(item.id)}
+                  className="relative text-left group"
+                >
+                  {/* Dot — left-0 relative to button + -translate-x-1/2 centers it on the rail */}
+                  <div
+                    className={`absolute left-[-1.75rem] top-[5px] -translate-x-1/2 rounded-full border transition-all duration-200 ${c.dot}`}
+                  />
+
+                  <p className={`font-inputmono text-[11px] tracking-widest mb-0.5 transition-colors duration-150 ${c.year}`}>
+                    {item.year}
+                  </p>
+
+                  <p className={`font-inputmono text-xs transition-colors duration-150 ${c.title}`}>
+                    {item.title}
+                    {isSelected && isCurrent && (
+                      <span className="text-brand animate-[blink_1.1s_step-end_infinite]"> ▌</span>
+                    )}
+                  </p>
+
+                  {item.subtitle && (
+                    <p className="font-inputmono text-[11px] mt-0.5 text-subtle">{item.subtitle}</p>
+                  )}
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
