@@ -49,10 +49,10 @@ export const Header = () => {
           <ThemeSelector />
           <Link
             href="/admin"
-            className="font-inputmono text-[10px] tracking-widest uppercase text-faint hover:text-subtle transition-colors"
+            className="font-inputmono text-xs tracking-widest uppercase text-muted hover:text-fg transition-colors"
             aria-label="Admin"
           >
-            ⚙
+            ⚙ Admin
           </Link>
         </div>
 
