@@ -6,7 +6,7 @@ export default async function HeroAdminPage() {
   const { hero } = await getHomeContent();
   return (
     <div>
-      <AdminPageHeader title="Hero" backHref="/admin/home" />
+      <AdminPageHeader title="Hero" />
       <HeroEditForm hero={hero} />
     </div>
   );

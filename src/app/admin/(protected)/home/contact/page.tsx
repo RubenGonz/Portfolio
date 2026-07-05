@@ -6,7 +6,7 @@ export default async function ContactAdminPage() {
   const { contact } = await getHomeContent();
   return (
     <div>
-      <AdminPageHeader title="Contact" backHref="/admin/home" />
+      <AdminPageHeader title="Contact" />
       <ContactEditForm contact={contact} />
     </div>
   );

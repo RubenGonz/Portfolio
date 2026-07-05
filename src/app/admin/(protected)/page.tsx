@@ -10,6 +10,14 @@ import { FeaturedToggle } from "@/components/admin/FeaturedToggle";
 import { TimelineList } from "@/components/admin/TimelineList";
 import { StackAdmin } from "@/components/admin/StackAdmin";
 
+function EditLink({ href, label = "Edit" }: { href: string; label?: string }) {
+  return (
+    <Link href={href} className="font-inputmono text-[11px] tracking-widest uppercase text-subtle hover:text-fg transition-colors">
+      {label}
+    </Link>
+  );
+}
+
 function SectionHeader({ title, count, newHref }: { title: string; count: number; newHref: string }) {
   return (
     <div className="flex items-center justify-between mb-4">
@@ -38,15 +46,22 @@ export default async function AdminDashboard() {
   return (
     <div className="flex flex-col gap-12">
 
-      {/* Home */}
+      {/* Hero */}
       <section>
         <div className="flex items-center justify-between mb-4">
-          <h2 className="font-n27 font-bold italic text-xl text-fg">Home</h2>
-          <Link href="/admin/home" className="font-inputmono text-[11px] tracking-widest uppercase border border-brand/30 text-brand px-4 py-2 hover:bg-brand/5 transition-colors">
-            Edit
-          </Link>
+          <h2 className="font-n27 font-bold italic text-xl text-fg">Hero</h2>
+          <EditLink href="/admin/home/hero" />
         </div>
-        <p className="font-inputmono text-[10px] text-subtle">Hero, ticker strip and contact section copy</p>
+        <p className="font-inputmono text-[10px] text-subtle">Title, tagline and description shown on the home page</p>
+      </section>
+
+      {/* Ticker */}
+      <section>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="font-n27 font-bold italic text-xl text-fg">Ticker</h2>
+          <EditLink href="/admin/home/ticker" />
+        </div>
+        <p className="font-inputmono text-[10px] text-subtle">Scrolling strip between hero and projects</p>
       </section>
 
       {/* Projects */}
@@ -115,6 +130,15 @@ export default async function AdminDashboard() {
           </h2>
         </div>
         <StackAdmin categories={stack} />
+      </section>
+
+      {/* Contact */}
+      <section>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="font-n27 font-bold italic text-xl text-fg">Contact</h2>
+          <EditLink href="/admin/home/contact" />
+        </div>
+        <p className="font-inputmono text-[10px] text-subtle">Headline and availability text</p>
       </section>
 
     </div>

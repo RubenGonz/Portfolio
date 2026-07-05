@@ -6,7 +6,7 @@ export default async function TickerAdminPage() {
   const { tickerText } = await getHomeContent();
   return (
     <div>
-      <AdminPageHeader title="Ticker" backHref="/admin/home" />
+      <AdminPageHeader title="Ticker" />
       <TickerEditForm tickerText={tickerText} />
     </div>
   );
