@@ -84,7 +84,7 @@ export default async function AdminDashboard() {
 
       {/* Hero */}
       <section>
-        <SectionTitle title="Hero" actionHref="/admin/hero" actionLabel="Edit" />
+        <SectionTitle title="Hero" />
         <Row
           left={<RowTitle main="Title, tagline & description" sub="Home page header" />}
           right={<EditLink href="/admin/hero" />}
@@ -93,7 +93,7 @@ export default async function AdminDashboard() {
 
       {/* Ticker */}
       <section>
-        <SectionTitle title="Ticker" actionHref="/admin/ticker" actionLabel="Edit" />
+        <SectionTitle title="Ticker" />
         <Row
           left={<RowTitle main="Scrolling strip" sub="Between hero and projects" />}
           right={<EditLink href="/admin/ticker" />}
@@ -161,7 +161,7 @@ export default async function AdminDashboard() {
 
       {/* Stack */}
       <section>
-        <SectionTitle title="Stack" actionHref="/admin/stack" actionLabel="Edit" />
+        <SectionTitle title="Stack" />
         <Row
           left={<RowTitle main="Technologies by tier and category" sub="Professional · Active · Familiar" />}
           right={<EditLink href="/admin/stack" />}
@@ -170,7 +170,7 @@ export default async function AdminDashboard() {
 
       {/* Contact */}
       <section>
-        <SectionTitle title="Contact" actionHref="/admin/contact" actionLabel="Edit" />
+        <SectionTitle title="Contact" />
         <Row
           left={<RowTitle main="Headline & availability text" sub="Bottom of home page" />}
           right={<EditLink href="/admin/contact" />}
