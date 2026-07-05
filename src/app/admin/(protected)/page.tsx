@@ -2,13 +2,11 @@ import Link from "next/link";
 import { getProjects } from "@/data/projects";
 import { getCourses } from "@/data/courses";
 import { getTimeline } from "@/data/timeline";
-import { getStack } from "@/data/stack";
 import { deleteProject, toggleProjectFeatured } from "@/actions/projects";
 import { deleteCourse, toggleCourseFeatured } from "@/actions/courses";
 import { DeleteButton } from "@/components/admin/DeleteButton";
 import { FeaturedToggle } from "@/components/admin/FeaturedToggle";
 import { TimelineList } from "@/components/admin/TimelineList";
-import { StackAdmin } from "@/components/admin/StackAdmin";
 
 /** Section heading with optional item count and a single action button (Edit or + New). */
 function SectionTitle({
@@ -75,11 +73,10 @@ function EditLink({ href }: { href: string }) {
 }
 
 export default async function AdminDashboard() {
-  const [projects, timeline, courses, stack] = await Promise.all([
+  const [projects, timeline, courses] = await Promise.all([
     getProjects(),
     getTimeline(),
     getCourses(),
-    getStack(),
   ]);
 
   return (
@@ -164,11 +161,11 @@ export default async function AdminDashboard() {
 
       {/* Stack */}
       <section>
-        <SectionTitle
-          title="Stack"
-          count={stack.reduce((n, cat) => n + cat.items.length, 0)}
+        <SectionTitle title="Stack" actionHref="/admin/stack" actionLabel="Edit" />
+        <Row
+          left={<RowTitle main="Technologies by tier and category" sub="Professional · Active · Familiar" />}
+          right={<EditLink href="/admin/stack" />}
         />
-        <StackAdmin categories={stack} />
       </section>
 
       {/* Contact */}
