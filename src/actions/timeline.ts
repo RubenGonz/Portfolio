@@ -11,8 +11,6 @@ function parseForm(fd: FormData) {
     title: get("title"),
     subtitle: get("subtitle") || null,
     paragraphs: get("paragraphs").split("\n\n").map((s) => s.trim()).filter(Boolean),
-    current: fd.get("current") === "on",
-    order: parseInt(get("order"), 10) || 0,
   };
 }
 
@@ -24,7 +22,8 @@ function revalidate() {
 export async function createTimelineEntry(_: unknown, fd: FormData): Promise<string | undefined> {
   const data = parseForm(fd);
   if (!data.title || !data.year) return "Year and title are required.";
-  await prisma.timelineEntry.create({ data });
+  const count = await prisma.timelineEntry.count();
+  await prisma.timelineEntry.create({ data: { ...data, order: count, current: false } });
   revalidate();
   redirect("/admin");
 }
@@ -39,5 +38,19 @@ export async function updateTimelineEntry(id: string, _: unknown, fd: FormData):
 
 export async function deleteTimelineEntry(id: string) {
   await prisma.timelineEntry.delete({ where: { id } });
+  revalidate();
+}
+
+export async function reorderTimeline(orderedIds: string[]) {
+  await prisma.$transaction(
+    orderedIds.map((id, index) =>
+      prisma.timelineEntry.update({ where: { id }, data: { order: index } })
+    )
+  );
+  revalidate();
+}
+
+export async function toggleTimelineCurrent(id: string, current: boolean) {
+  await prisma.timelineEntry.update({ where: { id }, data: { current } });
   revalidate();
 }

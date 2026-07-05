@@ -3,6 +3,8 @@
 import { useActionState } from "react";
 import { updateCourse } from "@/actions/courses";
 import { FormField, TextareaField, SelectField } from "@/components/admin/FormField";
+import { ChipEditor } from "@/components/admin/ChipEditor";
+import { TopicsEditor } from "@/components/admin/TopicsEditor";
 import { SubmitButton } from "@/components/admin/SubmitButton";
 import type { Course } from "@/types";
 
@@ -26,16 +28,10 @@ export function EditCourseForm({ course }: { course: Course }) {
       <FormField label="Certificate URL" name="certificateUrl" type="url" defaultValue={course.certificateUrl} />
       <FormField label="Repo URL" name="repoUrl" type="url" defaultValue={course.repoUrl} />
       <FormField label="Demo URL" name="demoUrl" type="url" defaultValue={course.demoUrl} />
-      <TextareaField label="Short Description" name="shortDescription" defaultValue={course.shortDescription} required rows={2} />
-      <TextareaField label="Full Description" name="fullDescription" defaultValue={course.fullDescription} required rows={6} />
-      <TextareaField label="Tags" name="tags" defaultValue={course.tags.join("\n")} hint="One per line" rows={3} />
-      <TextareaField
-        label="Topics (JSON)"
-        name="topics"
-        defaultValue={JSON.stringify(course.topics, null, 2)}
-        hint='[{"label":"Section","items":["item1","item2"]}]'
-        rows={6}
-      />
+      <TextareaField label="Short Description" name="shortDescription" defaultValue={course.shortDescription} required rows={3} />
+      <TextareaField label="Full Description" name="fullDescription" defaultValue={course.fullDescription} required rows={10} />
+      <ChipEditor label="Tags" name="tags" defaultValue={course.tags} />
+      <TopicsEditor name="topics" defaultValue={course.topics as { label: string; items: string[] }[]} />
 
       {error && <p className="font-inputmono text-[11px] text-danger">{error}</p>}
       <SubmitButton label="Save Changes" />

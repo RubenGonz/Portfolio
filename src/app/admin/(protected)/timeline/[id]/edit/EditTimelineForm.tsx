@@ -15,7 +15,6 @@ export function EditTimelineForm({ entry }: { entry: TimelineEntry }) {
       <FormField label="Year / Label" name="year" defaultValue={entry.year} required />
       <FormField label="Title" name="title" defaultValue={entry.title} required />
       <FormField label="Subtitle" name="subtitle" defaultValue={entry.subtitle ?? ""} />
-      <FormField label="Order" name="order" type="number" defaultValue={String(entry.order)} hint="Lower = first" />
       <TextareaField
         label="Paragraphs"
         name="paragraphs"
@@ -24,10 +23,6 @@ export function EditTimelineForm({ entry }: { entry: TimelineEntry }) {
         rows={8}
         hint="Separate paragraphs with a blank line"
       />
-      <label className="flex items-center gap-2 font-inputmono text-[11px] tracking-widest uppercase text-subtle">
-        <input type="checkbox" name="current" defaultChecked={entry.current} className="accent-brand" />
-        Current
-      </label>
 
       {error && <p className="font-inputmono text-[11px] text-danger">{error}</p>}
       <SubmitButton label="Save Changes" />
