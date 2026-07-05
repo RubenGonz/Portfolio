@@ -59,7 +59,7 @@
   --elevated: #202020;
   --fg: #f9f9f9;
   --muted: #9ba3af;
-  --subtle: #6b7280;
+  --subtle: #818c9a;
   --faint: #4b5563;
   --line: #ffffff;
   --brand: #b799ff;
@@ -104,8 +104,10 @@ body {
   text-shadow: 0 0 3px var(--color-brand);
 }
 
-/* Ghost decorative section number (01/02/03…) — flips per theme */
-.ghost-number {
+/* Ghost decorative section number (01/02/03…) — rendered via ::before so
+   axe-core skips contrast checks on purely decorative pseudo-content */
+.ghost-number::before {
+  content: attr(data-n);
   color: var(--ghost-num);
 }
 

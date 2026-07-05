@@ -31,7 +31,7 @@ const TickerStrip = () => (
 
 export default function Home() {
   return (
-    <>
+    <main>
       <HeroSection />
       <TickerStrip />
       <Divider />
@@ -44,6 +44,6 @@ export default function Home() {
       <StackSection />
       <Divider />
       <ContactSection />
-    </>
+    </main>
   );
 }

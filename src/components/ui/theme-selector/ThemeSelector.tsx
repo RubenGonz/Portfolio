@@ -29,6 +29,7 @@ export const ThemeSelector = () => {
       className="sr-only peer"
       checked={isDark}
       onChange={() => setTheme(isDark ? "light" : "dark")}
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
     />
     {/* Toggle background */}
     <div className="w-16 h-8 border border-brand rounded-full transition-colors duration-300" />
