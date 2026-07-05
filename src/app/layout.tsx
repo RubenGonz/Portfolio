@@ -15,9 +15,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL),
   title: {
     template: "%s | RubenGonz",
-    default: "RubenGonz — Frontend Developer",
+    default: "RubenGonz — Frontend & Full-Stack Developer",
   },
-  description: "Frontend developer with production experience in React and Angular. Building full-stack with Next.js and Node.js. Based in Elche, Spain. Open to new roles.",
+  description: "Frontend developer with production experience in React and Angular, now building full-stack with Next.js, Node.js, PostgreSQL and Prisma. Based in Elche, Spain. Open to new roles.",
   keywords: [
     "Rubén González Rodríguez",
     "Ruben Gonzalez Rodriguez",
@@ -25,9 +25,12 @@ export const metadata: Metadata = {
     "Ruben Gonzalez",
     "RubenGonz",
     "frontend developer",
+    "full stack developer",
+    "full-stack developer",
     "React developer",
     "Angular developer",
     "Next.js developer",
+    "Node.js developer",
     "portfolio",
     "Elche Spain",
   ],
@@ -38,8 +41,8 @@ export const metadata: Metadata = {
     google: "5dfqJgL0R0E6VdVducpvSpNHpCAlbDJFMlgNj4NL36g",
   },
   openGraph: {
-    title: "RubenGonz — Frontend Developer",
-    description: "Frontend developer with production experience in React and Angular. Building full-stack with Next.js and Node.js. Based in Elche, Spain.",
+    title: "RubenGonz — Frontend & Full-Stack Developer",
+    description: "Frontend developer with production experience in React and Angular, now building full-stack with Next.js, Node.js, PostgreSQL and Prisma. Based in Elche, Spain.",
     url: process.env.NEXT_PUBLIC_SITE_URL,
     siteName: "RubenGonz",
     locale: "en_US",
@@ -47,8 +50,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "RubenGonz — Frontend Developer",
-    description: "Frontend developer with production experience in React and Angular. Building full-stack with Next.js and Node.js.",
+    title: "RubenGonz — Frontend & Full-Stack Developer",
+    description: "Frontend developer with production experience in React and Angular, now building full-stack with Next.js, Node.js and PostgreSQL.",
     images: ["/opengraph-image"],
   },
 };

@@ -2,7 +2,7 @@
 export const siteConfig = {
   name: "RubenGonz",
   fullName: "Rubén González Rodríguez",
-  role: "Frontend Developer",
+  role: "Frontend & Full-Stack Developer",
   location: "Elche, Spain",
   email: "ruben.gonzalez.rodriguez00@gmail.com",
   /** Base URL — Vercel dashboard is the source of truth in production. */

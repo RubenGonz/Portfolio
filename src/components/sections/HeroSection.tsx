@@ -60,7 +60,7 @@ export const HeroSection = () => {
           <div className="flex items-center gap-3 mb-4 md:mb-5">
             <div className="w-5 h-px bg-linear-to-r from-brand-sec to-brand shrink-0" />
             <p className="font-inputmono text-muted text-[11px] md:text-xs tracking-wider md:tracking-widest leading-relaxed">
-              Banking sector · Enterprise systems · Going full-stack
+              Banking sector · Enterprise systems · Now full-stack
             </p>
 
           </div>

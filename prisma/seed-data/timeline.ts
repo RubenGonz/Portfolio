@@ -5,7 +5,7 @@ export const timelineEntries = [
     subtitle: null,
     paragraphs: [
       "I build interfaces — have been doing it professionally since 2022, mostly in the banking and enterprise world. The kind of apps that run on production servers and have actual users depending on them.",
-      "Right now I'm expanding into the backend side. Not through courses, but by building real things and figuring out what breaks. This portfolio is one of those things.",
+      "Lately I've been building the backend side too — not through courses, but by shipping real things and figuring out what breaks. This portfolio runs on a Postgres database, Prisma and its own auth-protected admin panel. I built all of it.",
       "Open to roles where I can keep growing on both sides of the stack. Remote or on-site. Based in Elche, Spain.",
     ],
     current: false,
@@ -50,7 +50,8 @@ export const timelineEntries = [
     title: "Building this portfolio — now",
     subtitle: null,
     paragraphs: [
-      "This portfolio is the first thing I'm shipping as a full-stack developer. Every decision — the route structure, the font system, the static data layer, the dark-only theme — has a reason I could explain in a code review.",
+      "This portfolio is the first thing I'm shipping as a full-stack developer. It started as a frontend piece and I built the whole backend behind it — PostgreSQL, Prisma, Auth.js, an admin panel — so I could manage every section without redeploying.",
+      "Every decision — the route structure, the font system, the Postgres + Prisma data layer, the auth, the dark-only theme — has a reason I could explain in a code review.",
       "The goal is simple: find a role where I keep growing on both sides of the stack.",
     ],
     current: true,
