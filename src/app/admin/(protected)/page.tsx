@@ -129,7 +129,7 @@ export default async function AdminDashboard() {
       {/* Timeline */}
       <section>
         <SectionTitle title="Timeline" count={timeline.length} actionHref="/admin/timeline/new" actionLabel="+ New" />
-        <p className="font-inputmono text-[10px] text-subtle mb-3">Drag to reorder · "now" marks current entries</p>
+        <p className="font-inputmono text-[10px] text-subtle mb-3">Drag to reorder · &quot;now&quot; marks current entries</p>
         <TimelineList entries={timeline} />
       </section>
 
