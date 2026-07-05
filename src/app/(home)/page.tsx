@@ -8,37 +8,32 @@ import {
 } from "@/components";
 import { getTimeline } from "@/data/timeline";
 import { getStack } from "@/data/stack";
-import { getHeroContent } from "@/data/settings";
+import { getHomeContent } from "@/data/settings";
 
 const Divider = () => (
   <div className="h-px bg-line/5 mx-6 md:mx-16" />
 );
 
-const TICKER_TEXT =
-  "React · Angular · TypeScript · Next.js · Node.js · PostgreSQL · Tailwind CSS · Git · Jest · Express · Prisma · Docker · GraphQL · Redux · MongoDB       ";
-
-const TickerStrip = () => (
+const TickerStrip = ({ text }: { text: string }) => (
   <div className="border-t border-b border-line/4 py-2.5 overflow-hidden">
     <div
       className="flex whitespace-nowrap w-max"
       style={{ animation: "ticker 60s linear infinite" }}
     >
-      {/* Duplicate so the loop is seamless — translate to -50% = one full copy */}
-      <span className="font-inputmono text-[9px] text-muted tracking-[0.15em]">{TICKER_TEXT}</span>
-      <span className="font-inputmono text-[9px] text-muted tracking-[0.15em]">{TICKER_TEXT}</span>
-      <span className="font-inputmono text-[9px] text-muted tracking-[0.15em]">{TICKER_TEXT}</span>
-      <span className="font-inputmono text-[9px] text-muted tracking-[0.15em]">{TICKER_TEXT}</span>
+      {[0, 1, 2, 3].map((i) => (
+        <span key={i} className="font-inputmono text-[9px] text-muted tracking-[0.15em]">{text}       </span>
+      ))}
     </div>
   </div>
 );
 
 export default async function Home() {
-  const [timeline, stack, hero] = await Promise.all([getTimeline(), getStack(), getHeroContent()]);
+  const [timeline, stack, home] = await Promise.all([getTimeline(), getStack(), getHomeContent()]);
 
   return (
     <main>
-      <HeroSection hero={hero} />
-      <TickerStrip />
+      <HeroSection hero={home.hero} />
+      <TickerStrip text={home.tickerText} />
       <Divider />
       <ProjectsSection />
       <Divider />
@@ -48,7 +43,7 @@ export default async function Home() {
       <Divider />
       <StackSection categories={stack} />
       <Divider />
-      <ContactSection />
+      <ContactSection contact={home.contact} />
     </main>
   );
 }

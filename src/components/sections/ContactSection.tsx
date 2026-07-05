@@ -6,10 +6,11 @@ import { GhostNumber } from "@/components/ui/GhostNumber";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/config/site";
+import type { ContactContent } from "@/data/settings";
 
 type Status = "idle" | "sending" | "success" | "error";
 
-export const ContactSection = () => {
+export const ContactSection = ({ contact }: { contact: ContactContent }) => {
   const [status, setStatus] = useState<Status>("idle");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -46,11 +47,12 @@ export const ContactSection = () => {
         {/* Left: headline + links */}
         <div>
           <h2 className="font-n27 font-bold italic text-fg text-3xl md:text-5xl mb-2 md:mb-3 leading-tight tracking-tight">
-            Let&apos;s talk.
+            {contact.headline}
           </h2>
           <p className="font-inputmono text-muted text-xs leading-relaxed mb-6 md:mb-8">
-            Open to full-time roles, freelance and collaborations.<br />
-            Based in Elche, Spain. I usually reply within 24 hours.
+            {contact.subtext.split("\n").map((line, i, arr) => (
+              <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+            ))}
           </p>
           <div className="flex flex-col gap-3">
             <a
