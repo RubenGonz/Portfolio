@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getCourseBySlug, courses } from "@/data/courses";
+import { getCourseBySlug, getCourses } from "@/data/courses";
 import { BackLink } from "@/components/ui/BackLink";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -14,12 +14,13 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return courses.map((c) => ({ slug: c.slug }));
+  const all = await getCourses();
+  return all.map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const course = getCourseBySlug(slug);
+  const course = await getCourseBySlug(slug);
   if (!course) return {};
   const base = siteConfig.url;
   return {
@@ -37,12 +38,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CoursePage({ params }: Props) {
   const { slug } = await params;
-  const course = getCourseBySlug(slug);
+  const course = await getCourseBySlug(slug);
   if (!course) notFound();
 
-  const currentIndex = courses.findIndex((c) => c.slug === slug);
-  const prev = courses[currentIndex - 1] ?? null;
-  const next = courses[currentIndex + 1] ?? null;
+  const all = await getCourses();
+  const currentIndex = all.findIndex((c) => c.slug === slug);
+  const prev = all[currentIndex - 1] ?? null;
+  const next = all[currentIndex + 1] ?? null;
 
   return (
     <main className="min-h-screen">

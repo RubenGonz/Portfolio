@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getProjectBySlug, projects } from "@/data/projects";
+import { getProjectBySlug, getProjects } from "@/data/projects";
 import { ProjectGallery } from "@/components/ui/project-gallery/ProjectGallery";
 import { BackLink } from "@/components/ui/BackLink";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -15,12 +15,13 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+  const all = await getProjects();
+  return all.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await getProjectBySlug(slug);
   if (!project) return {};
   const base = siteConfig.url;
   return {
@@ -39,12 +40,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await getProjectBySlug(slug);
   if (!project) notFound();
 
-  const currentIndex = projects.findIndex((p) => p.slug === slug);
-  const prev = projects[currentIndex - 1] ?? null;
-  const next = projects[currentIndex + 1] ?? null;
+  const all = await getProjects();
+  const currentIndex = all.findIndex((p) => p.slug === slug);
+  const prev = all[currentIndex - 1] ?? null;
+  const next = all[currentIndex + 1] ?? null;
 
   return (
     <main className="min-h-screen">

@@ -68,6 +68,10 @@ export const courses: Course[] = [
   },
 ];
 
-export function getCourseBySlug(slug: string): Course | undefined {
+export async function getCourses(): Promise<Course[]> {
+  return courses;
+}
+
+export async function getCourseBySlug(slug: string): Promise<Course | undefined> {
   return courses.find((c) => c.slug === slug);
 }

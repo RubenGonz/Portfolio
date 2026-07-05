@@ -32,6 +32,10 @@ export const projects: Project[] = [
   },
 ];
 
-export function getProjectBySlug(slug: string): Project | undefined {
+export async function getProjects(): Promise<Project[]> {
+  return projects;
+}
+
+export async function getProjectBySlug(slug: string): Promise<Project | undefined> {
   return projects.find((p) => p.slug === slug);
 }
