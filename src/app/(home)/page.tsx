@@ -6,6 +6,8 @@ import {
   StackSection,
   ContactSection,
 } from "@/components";
+import { getTimeline } from "@/data/timeline";
+import { getStack } from "@/data/stack";
 
 const Divider = () => (
   <div className="h-px bg-line/5 mx-6 md:mx-16" />
@@ -29,7 +31,9 @@ const TickerStrip = () => (
   </div>
 );
 
-export default function Home() {
+export default async function Home() {
+  const [timeline, stack] = await Promise.all([getTimeline(), getStack()]);
+
   return (
     <main>
       <HeroSection />
@@ -37,11 +41,11 @@ export default function Home() {
       <Divider />
       <ProjectsSection />
       <Divider />
-      <AboutSection />
+      <AboutSection items={timeline} />
       <Divider />
       <CoursesSection />
       <Divider />
-      <StackSection />
+      <StackSection categories={stack} />
       <Divider />
       <ContactSection />
     </main>

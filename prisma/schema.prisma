@@ -63,6 +63,25 @@ model Course {
   updatedAt        DateTime @updatedAt
 }
 
+model TimelineEntry {
+  id         String   @id @default(cuid())
+  year       String
+  title      String
+  subtitle   String?
+  paragraphs String[]
+  current    Boolean  @default(false)
+  order      Int      @default(0)
+  updatedAt  DateTime @updatedAt
+}
+
+model StackItem {
+  id       String @id @default(cuid())
+  name     String
+  tier     String // "professional" | "active" | "familiar"
+  category String // "Frontend" | "Backend" | "Database" | "Tooling"
+  order    Int    @default(0)
+}
+
 // Single admin account (you). Auth.js Credentials provider verifies against this.
 model User {
   id             String   @id @default(cuid())

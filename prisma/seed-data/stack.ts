@@ -1,0 +1,38 @@
+export const stackItems = [
+  // Frontend
+  { name: "React",           tier: "professional", category: "Frontend", order: 0 },
+  { name: "Angular",         tier: "professional", category: "Frontend", order: 1 },
+  { name: "TypeScript",      tier: "professional", category: "Frontend", order: 2 },
+  { name: "Next.js",         tier: "active",       category: "Frontend", order: 3 },
+  { name: "Tailwind CSS",    tier: "active",       category: "Frontend", order: 4 },
+  { name: "Redux / Zustand", tier: "active",       category: "Frontend", order: 5 },
+  { name: "React Query",     tier: "active",       category: "Frontend", order: 6 },
+  { name: "React Router",    tier: "active",       category: "Frontend", order: 7 },
+  { name: "NextAuth",        tier: "familiar",     category: "Frontend", order: 8 },
+  { name: "SASS",            tier: "familiar",     category: "Frontend", order: 9 },
+  // Backend
+  { name: "Node.js",         tier: "active",       category: "Backend",  order: 0 },
+  { name: "Express",         tier: "active",       category: "Backend",  order: 1 },
+  { name: "REST APIs",       tier: "professional", category: "Backend",  order: 2 },
+  { name: "JWT / OAuth",     tier: "active",       category: "Backend",  order: 3 },
+  { name: "GraphQL",         tier: "familiar",     category: "Backend",  order: 4 },
+  { name: "WebSockets",      tier: "familiar",     category: "Backend",  order: 5 },
+  { name: "Serverless",      tier: "familiar",     category: "Backend",  order: 6 },
+  { name: "i18n",            tier: "active",       category: "Backend",  order: 7 },
+  // Database
+  { name: "PostgreSQL",      tier: "active",       category: "Database", order: 0 },
+  { name: "Prisma",          tier: "active",       category: "Database", order: 1 },
+  { name: "MongoDB",         tier: "active",       category: "Database", order: 2 },
+  { name: "MySQL",           tier: "active",       category: "Database", order: 3 },
+  { name: "Firebase",        tier: "familiar",     category: "Database", order: 4 },
+  { name: "SQLite",          tier: "familiar",     category: "Database", order: 5 },
+  // Tooling
+  { name: "Git",                   tier: "professional", category: "Tooling", order: 0 },
+  { name: "Jest",                  tier: "professional", category: "Tooling", order: 1 },
+  { name: "Scrum / Agile",         tier: "professional", category: "Tooling", order: 2 },
+  { name: "React Testing Library", tier: "active",       category: "Tooling", order: 3 },
+  { name: "Vercel",                tier: "active",       category: "Tooling", order: 4 },
+  { name: "Docker",                tier: "active",       category: "Tooling", order: 5 },
+  { name: "CI/CD",                 tier: "familiar",     category: "Tooling", order: 6 },
+  { name: "GitHub Actions",        tier: "familiar",     category: "Tooling", order: 7 },
+];

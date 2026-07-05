@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GhostNumber } from "@/components/ui/GhostNumber";
 import { Section } from "@/components/ui/Section";
-import { timelineItems } from "@/data/about";
+import type { TimelineEntry } from "@/data/timeline";
 
 const ROTATE_MS = 5000;
 const FADE_MS = 250;
@@ -24,8 +24,8 @@ const entryClasses = (isSelected: boolean, isCurrent: boolean) => ({
     : "text-muted group-hover:text-fg",
 });
 
-export const AboutSection = () => {
-  const [activeId, setActiveId] = useState<string>(timelineItems[0].id);
+export const AboutSection = ({ items }: { items: TimelineEntry[] }) => {
+  const [activeId, setActiveId] = useState<string>(items[0]?.id ?? "");
   const [fading, setFading] = useState(false);
   const userInteracted = useRef(false);
 
@@ -47,7 +47,7 @@ export const AboutSection = () => {
         clearInterval(interval);
         return;
       }
-      transitionTo(timelineItems[index % timelineItems.length].id);
+      transitionTo(items[index % items.length].id);
       index++;
     }, ROTATE_MS);
 
@@ -59,7 +59,7 @@ export const AboutSection = () => {
     transitionTo(id);
   };
 
-  const activeItem = timelineItems.find((item) => item.id === activeId) ?? timelineItems[0];
+  const activeItem = items.find((item) => item.id === activeId) ?? items[0];
 
   return (
     <Section id="about">
@@ -90,7 +90,7 @@ export const AboutSection = () => {
             {/* Vertical rail — dedicated element so dots can center on it precisely */}
             <div className="absolute left-0 top-1 bottom-1 w-px bg-line/6" />
 
-            {timelineItems.map((item) => {
+            {items.map((item) => {
               const isSelected = activeId === item.id;
               const isCurrent = item.current === true;
               const c = entryClasses(isSelected, isCurrent);

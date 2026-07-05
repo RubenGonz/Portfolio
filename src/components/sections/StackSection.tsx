@@ -2,71 +2,14 @@ import type { StackItem } from "@/types";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GhostNumber } from "@/components/ui/GhostNumber";
 import { Section } from "@/components/ui/Section";
+import type { StackCategory } from "@/data/stack";
 
-type Category = {
-  label: string;
-  description: string;
-  items: StackItem[];
+const CATEGORY_DESCRIPTION: Record<string, string> = {
+  Frontend: "UI & client-side",
+  Backend:  "Server & APIs",
+  Database: "Storage & ORM",
+  Tooling:  "Workflow & DevOps",
 };
-
-const categories: Category[] = [
-  {
-    label: "Frontend",
-    description: "UI & client-side",
-    items: [
-      { name: "React",          tier: "professional" },
-      { name: "Angular",        tier: "professional" },
-      { name: "TypeScript",     tier: "professional" },
-      { name: "Next.js",        tier: "active" },
-      { name: "Tailwind CSS",   tier: "active" },
-      { name: "Redux / Zustand",tier: "active" },
-      { name: "React Query",    tier: "active" },
-      { name: "React Router",   tier: "active" },
-      { name: "NextAuth",       tier: "familiar" },
-      { name: "SASS",           tier: "familiar" },
-    ],
-  },
-  {
-    label: "Backend",
-    description: "Server & APIs",
-    items: [
-      { name: "Node.js",       tier: "active" },
-      { name: "Express",       tier: "active" },
-      { name: "REST APIs",     tier: "professional" },
-      { name: "JWT / OAuth",   tier: "active" },
-      { name: "GraphQL",       tier: "familiar" },
-      { name: "WebSockets",    tier: "familiar" },
-      { name: "Serverless",    tier: "familiar" },
-      { name: "i18n",          tier: "active" },
-    ],
-  },
-  {
-    label: "Database",
-    description: "Storage & ORM",
-    items: [
-      { name: "PostgreSQL", tier: "active" },
-      { name: "Prisma",     tier: "active" },
-      { name: "MongoDB",    tier: "active" },
-      { name: "MySQL",      tier: "active" },
-      { name: "Firebase",   tier: "familiar" },
-      { name: "SQLite",     tier: "familiar" },
-    ],
-  },
-  {
-    label: "Tooling",
-    description: "Workflow & DevOps",
-    items: [
-      { name: "Git",                    tier: "professional" },
-      { name: "Jest",                   tier: "professional" },
-      { name: "Scrum / Agile",          tier: "professional" },
-      { name: "React Testing Library",  tier: "active" },
-      { name: "Vercel",                 tier: "active" },
-      { name: "Docker",                 tier: "active" },
-      { name: "CI/CD",                  tier: "familiar" },
-      { name: "GitHub Actions",         tier: "familiar" },
-    ],
-  },
-];
 
 const tierClass: Record<StackItem["tier"], string> = {
   professional: "text-fg border-line/12 bg-line/4 text-xs px-3 py-1.5",
@@ -80,7 +23,7 @@ const tierDot: Record<StackItem["tier"], string> = {
   familiar:     "bg-faint",
 };
 
-export const StackSection = () => {
+export const StackSection = ({ categories }: { categories: StackCategory[] }) => {
   return (
     <Section id="stack">
       <SectionHeader label="Stack" srTitle="Stack" />
@@ -89,7 +32,9 @@ export const StackSection = () => {
         <GhostNumber>04</GhostNumber>
 
         <div className="grid grid-cols-1 min-[768px]:grid-cols-2 gap-10 min-[768px]:gap-x-16 min-[768px]:gap-y-12">
-          {categories.map(({ label, description, items }) => (
+          {categories.map(({ label, items }) => {
+            const description = CATEGORY_DESCRIPTION[label] ?? label;
+            return (
             <div key={label}>
               <div className="mb-4">
                 <div className="flex items-center gap-2 mb-1.5">
@@ -113,7 +58,8 @@ export const StackSection = () => {
                 ))}
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </Section>

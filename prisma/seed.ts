@@ -1,13 +1,14 @@
 import { PrismaClient } from "@prisma/client";
 import { projects } from "./seed-data/projects";
 import { courses } from "./seed-data/courses";
+import { timelineEntries } from "./seed-data/timeline";
+import { stackItems } from "./seed-data/stack";
 
 const prisma = new PrismaClient();
 
 async function main() {
   console.log("Seeding database…");
 
-  // Projects (with nested images) — idempotent via upsert on slug
   for (const p of projects) {
     await prisma.project.upsert({
       where: { slug: p.slug },
@@ -36,7 +37,6 @@ async function main() {
     });
   }
 
-  // Courses
   for (const c of courses) {
     await prisma.course.upsert({
       where: { slug: c.slug },
@@ -58,7 +58,22 @@ async function main() {
     });
   }
 
-  console.log(`Seeded ${projects.length} project(s) and ${courses.length} course(s).`);
+  // Timeline — skip if any entries already exist
+  const timelineCount = await prisma.timelineEntry.count();
+  if (timelineCount === 0) {
+    await prisma.timelineEntry.createMany({ data: timelineEntries });
+  }
+
+  // Stack — skip if any items already exist
+  const stackCount = await prisma.stackItem.count();
+  if (stackCount === 0) {
+    await prisma.stackItem.createMany({ data: stackItems });
+  }
+
+  console.log(
+    `Seeded ${projects.length} project(s), ${courses.length} course(s), ` +
+    `${timelineEntries.length} timeline entries, ${stackItems.length} stack items.`
+  );
 }
 
 main()
