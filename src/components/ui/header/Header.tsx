@@ -24,9 +24,9 @@ export const Header = () => {
     >
       {/* Logo */}
       <Link href="/" className="flex items-center gap-1.5 group">
-        <span className="font-n27 font-bold italic text-xl leading-none bg-gradient-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"{"}</span>
+        <span className="font-n27 font-bold italic text-xl leading-none bg-linear-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"{"}</span>
         <span className="font-n27 font-bold italic text-sm tracking-wide text-fg">rubengonz</span>
-        <span className="font-n27 font-bold italic text-xl leading-none bg-gradient-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"}"}</span>
+        <span className="font-n27 font-bold italic text-xl leading-none bg-linear-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"}"}</span>
       </Link>
 
       {/* Nav centrado (solo desktop) */}

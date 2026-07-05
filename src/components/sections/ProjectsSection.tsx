@@ -21,7 +21,7 @@ export const ProjectsSection = () => {
             className="group block border border-line/7 bg-surface overflow-hidden
               hover:border-brand/30 transition-colors duration-300"
           >
-            <div className="h-[2px] bg-gradient-to-r from-brand-sec via-brand to-transparent" />
+            <div className="h-0.5 bg-linear-to-r from-brand-sec via-brand to-transparent" />
 
             <div className="p-5 md:p-7">
               <div className="flex items-start justify-between gap-4 mb-3 md:mb-4">

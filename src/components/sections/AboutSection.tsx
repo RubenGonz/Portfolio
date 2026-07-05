@@ -13,7 +13,7 @@ const FADE_MS = 250;
 const entryClasses = (isSelected: boolean, isCurrent: boolean) => ({
   dot: isSelected
     ? isCurrent
-      ? "w-[9px] h-[9px] bg-gradient-to-br from-brand-sec to-brand border-transparent shadow-[0_0_10px_rgba(183,153,255,0.5)]"
+      ? "w-[9px] h-[9px] bg-linear-to-br from-brand-sec to-brand border-transparent shadow-[0_0_10px_rgba(183,153,255,0.5)]"
       : "w-[9px] h-[9px] bg-surface border-brand shadow-[0_0_8px_rgba(183,153,255,0.3)]"
     : "w-[7px] h-[7px] bg-surface border-line/10 group-hover:border-line/30",
   year: isSelected
@@ -103,7 +103,7 @@ export const AboutSection = () => {
                 >
                   {/* Dot — left-0 relative to button + -translate-x-1/2 centers it on the rail */}
                   <div
-                    className={`absolute left-[-1.75rem] top-[5px] -translate-x-1/2 rounded-full border transition-all duration-200 ${c.dot}`}
+                    className={`absolute -left-7 top-[5px] -translate-x-1/2 rounded-full border transition-all duration-200 ${c.dot}`}
                   />
 
                   <p className={`font-inputmono text-[11px] tracking-widest mb-0.5 transition-colors duration-150 ${c.year}`}>

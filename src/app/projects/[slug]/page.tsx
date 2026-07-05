@@ -151,7 +151,7 @@ export default async function ProjectPage({ params }: Props) {
               {project.highlights.map((highlight, i) => (
                 <div
                   key={i}
-                  className="flex gap-3 border border-line/5 bg-line/[0.01] px-4 py-3"
+                  className="flex gap-3 border border-line/5 bg-line/1 px-4 py-3"
                 >
                   <span className="text-brand font-inputmono text-xs shrink-0 mt-0.5">→</span>
                   <p className="font-inputmono text-muted text-xs leading-relaxed">{highlight}</p>
@@ -169,7 +169,7 @@ export default async function ProjectPage({ params }: Props) {
               {prev && (
                 <Link
                   href={`/projects/${prev.slug}`}
-                  className="group flex flex-col gap-1 border border-line/5 bg-line/[0.01]
+                  className="group flex flex-col gap-1 border border-line/5 bg-line/1
                     px-5 py-4 hover:border-brand/30 transition-colors"
                 >
                   <span className="font-inputmono text-[11px] text-faint tracking-widest">← Previous</span>
@@ -181,7 +181,7 @@ export default async function ProjectPage({ params }: Props) {
               {next && (
                 <Link
                   href={`/projects/${next.slug}`}
-                  className="group flex flex-col gap-1 border border-line/5 bg-line/[0.01]
+                  className="group flex flex-col gap-1 border border-line/5 bg-line/1
                     px-5 py-4 hover:border-brand/30 transition-colors min-[640px]:text-right
                     min-[640px]:col-start-2"
                 >

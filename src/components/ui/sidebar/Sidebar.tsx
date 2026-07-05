@@ -36,9 +36,9 @@ export const Sidebar = ({ open, setOpen, navLinks }: Props) => {
         {/* Panel header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-line/5">
           <span className="font-n27 font-bold italic text-base flex items-center gap-1">
-            <span className="bg-gradient-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"{"}</span>
+            <span className="bg-linear-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"{"}</span>
             <span className="text-fg">rubengonz</span>
-            <span className="bg-gradient-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"}"}</span>
+            <span className="bg-linear-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"}"}</span>
           </span>
           <button
             onClick={() => setOpen(false)}
@@ -57,7 +57,7 @@ export const Sidebar = ({ open, setOpen, navLinks }: Props) => {
               href={href}
               onClick={() => setOpen(false)}
               className="font-inputmono text-sm text-muted hover:text-fg transition-colors
-                px-4 py-3 border border-transparent hover:border-line/5 hover:bg-line/[0.02]"
+                px-4 py-3 border border-transparent hover:border-line/5 hover:bg-line/2"
             >
               <span className="text-subtle mr-3 text-xs" aria-hidden="true">0{i + 1}</span>
               {label}

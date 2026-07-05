@@ -10,9 +10,9 @@ export const Footer = () => {
         {/* Row 1: wordmark left, social links right */}
         <div className="flex items-center justify-between">
           <span className="font-n27 font-bold italic text-base flex items-center gap-1">
-            <span className="bg-gradient-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"{"}</span>
+            <span className="bg-linear-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"{"}</span>
             <span className="text-fg">rubengonz</span>
-            <span className="bg-gradient-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"}"}</span>
+            <span className="bg-linear-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"}"}</span>
           </span>
           <div className="flex items-center gap-5">
             <a

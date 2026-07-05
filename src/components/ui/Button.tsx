@@ -6,7 +6,7 @@ const base =
   "font-inputmono text-xs px-5 py-3 tracking-wide inline-flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed";
 
 const variants: Record<Variant, string> = {
-  primary: "font-bold bg-gradient-to-r from-brand-sec to-brand text-on-accent hover:opacity-90 transition-opacity",
+  primary: "font-bold bg-linear-to-r from-brand-sec to-brand text-on-accent hover:opacity-90 transition-opacity",
   outline: "border border-line/30 text-muted hover:border-brand/50 hover:text-fg transition-colors shadow-raised",
   ghost: "border border-line/16 text-subtle hover:border-brand/40 hover:text-fg transition-colors",
 };

@@ -126,7 +126,7 @@ export default async function CoursePage({ params }: Props) {
               {course.topics.map((topic) => (
                 <div
                   key={topic.label}
-                  className="border border-line/5 bg-line/[0.01] px-5 py-4"
+                  className="border border-line/5 bg-line/1 px-5 py-4"
                 >
                   <p className="font-inputmono text-[11px] text-brand tracking-widest uppercase mb-3">
                     {topic.label}

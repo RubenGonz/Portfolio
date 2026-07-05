@@ -69,9 +69,9 @@ const categories: Category[] = [
 ];
 
 const tierClass: Record<StackItem["tier"], string> = {
-  professional: "text-fg border-line/12 bg-line/[0.04] text-xs px-3 py-1.5",
-  active:       "text-muted border-line/6  bg-line/[0.02] text-xs px-3 py-1.5",
-  familiar:     "text-muted border-line/[0.04]             text-[11px] px-2.5 py-1",
+  professional: "text-fg border-line/12 bg-line/4 text-xs px-3 py-1.5",
+  active:       "text-muted border-line/6  bg-line/2 text-xs px-3 py-1.5",
+  familiar:     "text-muted border-line/4             text-[11px] px-2.5 py-1",
 };
 
 const tierDot: Record<StackItem["tier"], string> = {
@@ -93,7 +93,7 @@ export const StackSection = () => {
             <div key={label}>
               <div className="mb-4">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <div className="w-3 h-px bg-gradient-to-r from-brand-sec to-brand" />
+                  <div className="w-3 h-px bg-linear-to-r from-brand-sec to-brand" />
                   <span className="font-n27 font-bold italic text-fg text-sm tracking-wide">
                     {label}
                   </span>

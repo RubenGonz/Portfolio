@@ -15,6 +15,6 @@ export const SectionHeader = ({ label, srTitle }: Props) => (
     >
       <span className="text-brand">{"//"}</span> <span className="text-fg">{label}</span>
     </p>
-    <div className="w-5 h-px bg-gradient-to-r from-brand-sec to-brand mb-8 md:mb-10" />
+    <div className="w-5 h-px bg-linear-to-r from-brand-sec to-brand mb-8 md:mb-10" />
   </>
 );
