@@ -8,4 +8,7 @@ export const settings = [
   // Contact
   { key: "contact_headline", value: "Let's talk." },
   { key: "contact_subtext",  value: "Open to full-time roles, freelance and collaborations.\nBased in Elche, Spain. I usually reply within 24 hours." },
+  // Available badge
+  { key: "available",       value: "true" },
+  { key: "available_label", value: "Available" },
 ];

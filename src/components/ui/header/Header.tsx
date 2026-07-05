@@ -6,8 +6,9 @@ import { Sidebar } from "../sidebar/Sidebar";
 import { ThemeSelector } from "../theme-selector/ThemeSelector";
 import { AvailableBadge } from "../AvailableBadge";
 import { navLinks } from "@/config/nav";
+import type { AvailableContent } from "@/data/settings";
 
-export const Header = () => {
+export const Header = ({ available }: { available: AvailableContent }) => {
 
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -45,7 +46,7 @@ export const Header = () => {
       <div className="flex items-center gap-3">
         {/* Available badge + theme (desktop) */}
         <div className="hidden md:flex items-center gap-3">
-          <AvailableBadge label="Available" bordered />
+          {available.available && <AvailableBadge label={available.label} bordered />}
           <ThemeSelector />
           <Link
             href="/admin"
@@ -64,7 +65,7 @@ export const Header = () => {
           Menu
         </button>
 
-        <Sidebar open={open} setOpen={setOpen} navLinks={navLinks} />
+        <Sidebar open={open} setOpen={setOpen} navLinks={navLinks} available={available} />
       </div>
     </header>
   )

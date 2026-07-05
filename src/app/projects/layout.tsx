@@ -1,9 +1,11 @@
 import { Footer, Header } from "@/components";
+import { getHomeContent } from "@/data/settings";
 
-export default function ProjectsLayout({ children }: { children: React.ReactNode }) {
+export default async function ProjectsLayout({ children }: { children: React.ReactNode }) {
+  const { available } = await getHomeContent();
   return (
     <>
-      <Header />
+      <Header available={available} />
       {children}
       <Footer />
     </>
