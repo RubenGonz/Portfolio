@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { createProject } from "@/actions/projects";
 import { FormField, TextareaField, SelectField } from "@/components/admin/FormField";
 import { ChipEditor } from "@/components/admin/ChipEditor";
+import { ImagesEditor } from "@/components/admin/ImagesEditor";
 import { SubmitButton } from "@/components/admin/SubmitButton";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 
@@ -32,6 +33,7 @@ export default function NewProjectPage() {
         <TextareaField label="Full Description" name="fullDescription" required rows={10} />
         <ChipEditor label="Tags" name="tags" hint="Type and press Enter to add" />
         <ChipEditor label="Highlights" name="highlights" hint="Type and press Enter to add" />
+        <ImagesEditor />
 
         {error && <p className="font-inputmono text-[11px] text-danger">{error}</p>}
         <SubmitButton label="Create Project" />

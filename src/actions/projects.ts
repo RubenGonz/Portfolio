@@ -9,6 +9,12 @@ function parseForm(fd: FormData) {
   const arr = (k: string) =>
     get(k).split("\n").map((s) => s.trim()).filter(Boolean);
 
+  const srcs = fd.getAll("images_src") as string[];
+  const alts = fd.getAll("images_alt") as string[];
+  const images = srcs
+    .map((src, i) => ({ src: src.trim(), alt: (alts[i] ?? "").trim() }))
+    .filter((img) => img.src);
+
   return {
     slug: get("slug"),
     title: get("title"),
@@ -21,6 +27,7 @@ function parseForm(fd: FormData) {
     status: get("status") || "in-progress",
     tags: arr("tags"),
     highlights: arr("highlights"),
+    images,
   };
 }
 
@@ -31,10 +38,16 @@ function revalidate(slug?: string) {
 }
 
 export async function createProject(_: unknown, fd: FormData): Promise<string | undefined> {
-  const data = parseForm(fd);
+  const { images, ...data } = parseForm(fd);
   if (!data.slug || !data.title) return "Slug and title are required.";
   try {
-    await prisma.project.create({ data: { ...data, featured: false } });
+    await prisma.project.create({
+      data: {
+        ...data,
+        featured: false,
+        images: { create: images.map((img, i) => ({ ...img, order: i })) },
+      },
+    });
   } catch {
     return "Slug already exists or DB error.";
   }
@@ -43,10 +56,21 @@ export async function createProject(_: unknown, fd: FormData): Promise<string | 
 }
 
 export async function updateProject(slug: string, _: unknown, fd: FormData): Promise<string | undefined> {
-  const data = parseForm(fd);
+  const { images, ...data } = parseForm(fd);
   if (!data.title) return "Title is required.";
   try {
-    await prisma.project.update({ where: { slug }, data });
+    const project = await prisma.project.findUnique({ where: { slug }, select: { id: true } });
+    if (!project) return "Project not found.";
+    await prisma.$transaction([
+      prisma.projectImage.deleteMany({ where: { projectId: project.id } }),
+      prisma.project.update({
+        where: { slug },
+        data: {
+          ...data,
+          images: { create: images.map((img, i) => ({ ...img, order: i })) },
+        },
+      }),
+    ]);
   } catch {
     return "DB error.";
   }

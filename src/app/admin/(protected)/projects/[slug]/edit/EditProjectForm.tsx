@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { updateProject } from "@/actions/projects";
 import { FormField, TextareaField, SelectField } from "@/components/admin/FormField";
 import { ChipEditor } from "@/components/admin/ChipEditor";
+import { ImagesEditor } from "@/components/admin/ImagesEditor";
 import { SubmitButton } from "@/components/admin/SubmitButton";
 import type { Project } from "@/types";
 
@@ -30,6 +31,7 @@ export function EditProjectForm({ project }: { project: Project }) {
       <TextareaField label="Full Description" name="fullDescription" defaultValue={project.fullDescription} required rows={10} />
       <ChipEditor label="Tags" name="tags" defaultValue={project.tags} />
       <ChipEditor label="Highlights" name="highlights" defaultValue={project.highlights} />
+      <ImagesEditor defaultValue={project.images} />
 
       {error && <p className="font-inputmono text-[11px] text-danger">{error}</p>}
       <SubmitButton label="Save Changes" />
