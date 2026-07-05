@@ -82,6 +82,15 @@ export default async function AdminDashboard() {
   return (
     <div className="flex flex-col gap-12">
 
+      {/* Available badge */}
+      <section>
+        <SectionTitle title="Available badge" />
+        <Row
+          left={<RowTitle main="Header badge visibility & label" sub="Shown in public header when enabled" />}
+          right={<EditLink href="/admin/available" />}
+        />
+      </section>
+
       {/* Hero */}
       <section>
         <SectionTitle title="Hero" />
@@ -177,14 +186,6 @@ export default async function AdminDashboard() {
         />
       </section>
 
-      {/* Available badge */}
-      <section>
-        <SectionTitle title="Available badge" />
-        <Row
-          left={<RowTitle main="Header badge visibility & label" sub="Shown in public header when enabled" />}
-          right={<EditLink href="/admin/available" />}
-        />
-      </section>
 
     </div>
   );
