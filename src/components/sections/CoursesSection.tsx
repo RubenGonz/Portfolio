@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { courses } from "@/data/courses";
+import { getCourses } from "@/data/courses";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GhostNumber } from "@/components/ui/GhostNumber";
 import { CourseCard } from "@/components/ui/CourseCard";
@@ -7,7 +7,8 @@ import { Section } from "@/components/ui/Section";
 
 const PREVIEW_COUNT = 2;
 
-export const CoursesSection = () => {
+export const CoursesSection = async () => {
+  const courses = await getCourses();
   const preview = courses.slice(0, PREVIEW_COUNT);
   const remaining = courses.length - PREVIEW_COUNT;
 

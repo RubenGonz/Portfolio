@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { projects } from "@/data/projects";
+import { getProjects } from "@/data/projects";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GhostNumber } from "@/components/ui/GhostNumber";
 import { ProjectCard } from "@/components/ui/ProjectCard";
@@ -7,7 +7,8 @@ import { Section } from "@/components/ui/Section";
 
 const PREVIEW_COUNT = 2;
 
-export const ProjectsSection = () => {
+export const ProjectsSection = async () => {
+  const projects = await getProjects();
   const preview = projects.slice(0, PREVIEW_COUNT);
   const remaining = projects.length - PREVIEW_COUNT;
 
