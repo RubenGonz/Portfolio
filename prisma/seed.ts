@@ -3,6 +3,7 @@ import { projects } from "./seed-data/projects";
 import { courses } from "./seed-data/courses";
 import { timelineEntries } from "./seed-data/timeline";
 import { stackItems } from "./seed-data/stack";
+import { settings } from "./seed-data/settings";
 
 const prisma = new PrismaClient();
 
@@ -68,6 +69,15 @@ async function main() {
   const stackCount = await prisma.stackItem.count();
   if (stackCount === 0) {
     await prisma.stackItem.createMany({ data: stackItems });
+  }
+
+  // Settings — upsert so existing edits are preserved on re-seed
+  for (const s of settings) {
+    await prisma.setting.upsert({
+      where: { key: s.key },
+      update: {},
+      create: s,
+    });
   }
 
   console.log(

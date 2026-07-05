@@ -83,6 +83,13 @@ model StackItem {
   order    Int    @default(0)
 }
 
+// Generic key-value store for editable site content (hero copy, etc.)
+model Setting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
 // Single admin account (you). Auth.js Credentials provider verifies against this.
 model User {
   id             String   @id @default(cuid())

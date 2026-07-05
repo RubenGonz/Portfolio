@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/config/site";
+import type { HeroContent } from "@/data/settings";
 
-export const HeroSection = () => {
+export const HeroSection = ({ hero }: { hero: HeroContent }) => {
   return (
     <div className="relative min-h-screen overflow-x-clip">
       {/* Dot grid — full viewport width */}
@@ -53,23 +54,24 @@ export const HeroSection = () => {
           {/* Headline */}
           <h1 className="font-n27 font-bold italic text-fg leading-[0.92] tracking-tight mb-4 md:mb-5
             text-[clamp(2.75rem,10vw,5.5rem)]">
-            Frontend<br />Developer
+            {hero.title.split("\n").map((line, i, arr) => (
+              <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+            ))}
           </h1>
 
           {/* Accent line + tagline */}
-          <div className="flex items-center gap-3 mb-4 md:mb-5">
-            <div className="w-5 h-px bg-linear-to-r from-brand-sec to-brand shrink-0" />
-            <p className="font-inputmono text-muted text-[11px] md:text-xs tracking-wider md:tracking-widest leading-relaxed">
-              Banking sector · Enterprise systems · Now full-stack
-            </p>
-
-          </div>
+          {hero.tagline && (
+            <div className="flex items-center gap-3 mb-4 md:mb-5">
+              <div className="w-5 h-px bg-linear-to-r from-brand-sec to-brand shrink-0" />
+              <p className="font-inputmono text-muted text-[11px] md:text-xs tracking-wider md:tracking-widest leading-relaxed">
+                {hero.tagline}
+              </p>
+            </div>
+          )}
 
           {/* Description */}
           <p className="font-inputmono text-muted text-xs md:text-sm leading-relaxed max-w-lg mb-8 md:mb-9">
-            Spent a few years building production apps for banks and enterprise clients —
-            the kind real people depend on. Now going full-stack, and this portfolio
-            is the first thing I&apos;m shipping to prove it.
+            {hero.description}
           </p>
 
           {/* CTAs */}

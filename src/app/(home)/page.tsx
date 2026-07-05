@@ -8,6 +8,7 @@ import {
 } from "@/components";
 import { getTimeline } from "@/data/timeline";
 import { getStack } from "@/data/stack";
+import { getHeroContent } from "@/data/settings";
 
 const Divider = () => (
   <div className="h-px bg-line/5 mx-6 md:mx-16" />
@@ -32,11 +33,11 @@ const TickerStrip = () => (
 );
 
 export default async function Home() {
-  const [timeline, stack] = await Promise.all([getTimeline(), getStack()]);
+  const [timeline, stack, hero] = await Promise.all([getTimeline(), getStack(), getHeroContent()]);
 
   return (
     <main>
-      <HeroSection />
+      <HeroSection hero={hero} />
       <TickerStrip />
       <Divider />
       <ProjectsSection />

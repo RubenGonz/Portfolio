@@ -38,6 +38,17 @@ export default async function AdminDashboard() {
   return (
     <div className="flex flex-col gap-12">
 
+      {/* Hero */}
+      <section>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="font-n27 font-bold italic text-xl text-fg">Hero</h2>
+          <Link href="/admin/hero" className="font-inputmono text-[11px] tracking-widest uppercase border border-brand/30 text-brand px-4 py-2 hover:bg-brand/5 transition-colors">
+            Edit
+          </Link>
+        </div>
+        <p className="font-inputmono text-[10px] text-subtle">Title, tagline and description shown on the home page</p>
+      </section>
+
       {/* Projects */}
       <section>
         <SectionHeader title="Projects" count={projects.length} newHref="/admin/projects/new" />
