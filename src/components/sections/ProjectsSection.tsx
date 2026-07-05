@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { projects, projectStatusMeta } from "@/data/projects";
+import { projects } from "@/data/projects";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GhostNumber } from "@/components/ui/GhostNumber";
@@ -32,7 +32,7 @@ export const ProjectsSection = () => {
                   </h3>
                   <div className="flex items-center gap-3 mt-1">
                     <span aria-hidden="true" className="font-inputmono text-subtle text-[11px]">{project.year}</span>
-                    <StatusBadge {...projectStatusMeta[project.status]} />
+                    <StatusBadge status={project.status} />
                   </div>
                 </div>
                 <span aria-hidden="true" className="font-inputmono text-subtle text-sm group-hover:text-brand

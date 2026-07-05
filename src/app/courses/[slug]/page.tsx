@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getCourseBySlug, courses, courseStatusMeta } from "@/data/courses";
+import { getCourseBySlug, courses } from "@/data/courses";
 import { BackLink } from "@/components/ui/BackLink";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -70,7 +70,7 @@ export default async function CoursePage({ params }: Props) {
               {course.year}
             </span>
             <span className="text-faint text-[9px]">·</span>
-            <StatusBadge {...courseStatusMeta[course.status]} />
+            <StatusBadge status={course.status} />
           </div>
 
           <h1 className="font-n27 font-bold italic text-fg text-[clamp(2rem,5vw,3.5rem)] leading-[0.92] tracking-tight mb-6 max-w-3xl">

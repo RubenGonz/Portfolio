@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getProjectBySlug, projects, projectStatusMeta } from "@/data/projects";
+import { getProjectBySlug, projects } from "@/data/projects";
 import { ProjectGallery } from "@/components/ui/project-gallery/ProjectGallery";
 import { BackLink } from "@/components/ui/BackLink";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -83,7 +83,7 @@ export default async function ProjectPage({ params }: Props) {
                 <span className="font-inputmono text-[11px] text-faint tracking-widest">
                   {project.year}
                 </span>
-                <StatusBadge {...projectStatusMeta[project.status]} />
+                <StatusBadge status={project.status} />
                 {project.role && (
                   <>
                     <span className="text-faint text-[9px]">·</span>
