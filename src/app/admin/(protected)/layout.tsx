@@ -13,7 +13,7 @@ export default async function ProtectedAdminLayout({
 
   return (
     <div className="min-h-screen">
-      <header className="border-b border-line/10 px-6 md:px-10 py-4 flex items-center justify-between">
+      <header className="fixed top-0 left-0 right-0 z-50 h-14 border-b border-line/10 bg-bg/90 backdrop-blur-md px-6 md:px-10 flex items-center justify-between">
         <div className="flex items-center gap-5">
           <p className="font-inputmono text-[11px] tracking-[0.2em] uppercase">
             <span className="text-brand">{"//"}</span> <span className="text-fg">Admin</span>
@@ -38,7 +38,7 @@ export default async function ProtectedAdminLayout({
         </div>
       </header>
 
-      <main className="px-6 md:px-10 py-8 max-w-5xl mx-auto">{children}</main>
+      <main className="px-6 md:px-10 pt-22 pb-8 max-w-5xl mx-auto">{children}</main>
     </div>
   );
 }
