@@ -1,0 +1,72 @@
+// Prisma schema — persistence model for the portfolio.
+// The domain types in src/types stay the source of truth for the app;
+// the repository layer (src/data/*) maps these rows to those types.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")   // pooled connection (runtime)
+  directUrl = env("DIRECT_URL")     // direct connection (migrations) — Neon best practice
+}
+
+model Project {
+  id               String         @id @default(cuid())
+  slug             String         @unique
+  title            String
+  shortDescription String
+  fullDescription  String
+  // Flat string lists → Postgres scalar arrays
+  tags             String[]
+  highlights       String[]
+  role             String?
+  url              String?
+  repoUrl          String?
+  featured         Boolean        @default(false)
+  year             Int
+  // Kept as String to mirror the domain union type ("live" | "in-progress" | "archived").
+  // Write-time validation happens in the Server Action (zod).
+  status           String
+  // Editable individually / order matters → relational child table
+  images           ProjectImage[]
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+}
+
+model ProjectImage {
+  id        String  @id @default(cuid())
+  src       String
+  alt       String
+  order     Int     @default(0)
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId String
+}
+
+model Course {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  title            String
+  platform         String
+  year             Int
+  status           String // "completed" | "in-progress" | "not-started"
+  shortDescription String
+  fullDescription  String
+  // Structured blob edited as a unit → JSON. Shape: { label: string, items: string[] }[]
+  topics           Json
+  tags             String[]
+  certificateUrl   String?
+  repoUrl          String?
+  demoUrl          String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+// Single admin account (you). Auth.js Credentials provider verifies against this.
+model User {
+  id             String   @id @default(cuid())
+  email          String   @unique
+  hashedPassword String
+  createdAt      DateTime @default(now())
+}
