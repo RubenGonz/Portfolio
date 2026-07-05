@@ -5,14 +5,16 @@ import { ThemeSelector } from "../theme-selector/ThemeSelector";
 import { AvailableBadge } from "../AvailableBadge";
 import type { NavLink } from "@/config/nav";
 import { siteConfig } from "@/config/site";
+import type { AvailableContent } from "@/data/settings";
 
 interface Props {
   open: boolean;
   setOpen: (open: boolean) => void;
   navLinks: NavLink[];
+  available: AvailableContent;
 }
 
-export const Sidebar = ({ open, setOpen, navLinks }: Props) => {
+export const Sidebar = ({ open, setOpen, navLinks, available }: Props) => {
   return (
     <>
       {/* Backdrop */}
@@ -73,7 +75,7 @@ export const Sidebar = ({ open, setOpen, navLinks }: Props) => {
             <ThemeSelector />
           </div>
 
-          <AvailableBadge label="Available for work" className="mb-4" />
+          {available.available && <AvailableBadge label={available.label} className="mb-4" />}
           <a
             href={`mailto:${siteConfig.email}`}
             className="font-inputmono text-[11px] text-muted hover:text-fg transition-colors break-all"

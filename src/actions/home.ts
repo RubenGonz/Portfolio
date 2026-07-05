@@ -28,6 +28,18 @@ export async function updateTicker(_: unknown, fd: FormData): Promise<string | u
   redirect("/admin");
 }
 
+export async function updateAvailable(_: unknown, fd: FormData): Promise<string | undefined> {
+  const available = fd.get("available") === "on" ? "true" : "false";
+  const label = (fd.get("available_label") as string | null)?.trim() || "Available";
+  await prisma.$transaction([
+    upsert("available",       available),
+    upsert("available_label", label),
+  ]);
+  revalidatePath("/");
+  revalidatePath("/admin/available");
+  redirect("/admin");
+}
+
 export async function updateContact(_: unknown, fd: FormData): Promise<string | undefined> {
   const get = (k: string) => (fd.get(k) as string | null)?.trim() ?? "";
   const headline = get("contact_headline");

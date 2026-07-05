@@ -177,6 +177,15 @@ export default async function AdminDashboard() {
         />
       </section>
 
+      {/* Available badge */}
+      <section>
+        <SectionTitle title="Available badge" />
+        <Row
+          left={<RowTitle main="Header badge visibility & label" sub="Shown in public header when enabled" />}
+          right={<EditLink href="/admin/available" />}
+        />
+      </section>
+
     </div>
   );
 }
