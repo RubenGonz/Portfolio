@@ -30,10 +30,10 @@ export const projects: Project[] = [
     ],
     role: "Solo project — design, architecture & full-stack",
     images: [
-      { src: "/images/projects/portfolio/portfolio-1.webp", alt: "Portfolio — Hero section" },
-      { src: "/images/projects/portfolio/about.webp", alt: "Portfolio — About section" },
-      { src: "/images/projects/portfolio/stack.webp", alt: "Portfolio — Stack section" },
-      { src: "/images/projects/portfolio/contact.webp", alt: "Portfolio — Contact section" },
+      { name: "hero",    src: "/images/projects/portfolio/portfolio-1.webp", alt: "Portfolio — Hero section" },
+      { name: "about",   src: "/images/projects/portfolio/about.webp",       alt: "Portfolio — About section" },
+      { name: "stack",   src: "/images/projects/portfolio/stack.webp",       alt: "Portfolio — Stack section" },
+      { name: "contact", src: "/images/projects/portfolio/contact.webp",     alt: "Portfolio — Contact section" },
     ],
   },
 ];

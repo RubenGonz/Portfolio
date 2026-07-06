@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import { uploadImage } from "@/actions/upload";
 
 interface ImageEntry {
+  name: string;
   src: string;
   alt: string;
 }
@@ -16,6 +17,7 @@ export function ImagesEditor({ defaultValue = [] }: Props) {
   const [images, setImages] = useState<ImageEntry[]>(defaultValue);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [pendingName, setPendingName] = useState("");
   const [pendingAlt, setPendingAlt] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -31,7 +33,8 @@ export function ImagesEditor({ defaultValue = [] }: Props) {
     if ("error" in result) {
       setUploadError(result.error);
     } else {
-      setImages((prev) => [...prev, { src: result.url, alt: pendingAlt.trim() }]);
+      setImages((prev) => [...prev, { name: pendingName.trim(), src: result.url, alt: pendingAlt.trim() }]);
+      setPendingName("");
       setPendingAlt("");
       if (fileRef.current) fileRef.current.value = "";
     }
@@ -45,15 +48,24 @@ export function ImagesEditor({ defaultValue = [] }: Props) {
     <div className="flex flex-col gap-3">
       <span className="font-inputmono text-[11px] text-muted tracking-widest uppercase">Images</span>
 
-      {/* Upload row */}
+      {/* Upload fields */}
       <div className="flex flex-col gap-2">
-        <input
-          type="text"
-          placeholder="Alt text (optional, fill before uploading)"
-          value={pendingAlt}
-          onChange={(e) => setPendingAlt(e.target.value)}
-          className="bg-surface border border-line/10 px-3 py-2 font-inputmono text-xs text-fg placeholder:text-faint focus:outline-none focus:border-brand/50"
-        />
+        <div className="flex gap-2">
+          <input
+            type="text"
+            placeholder="Name (e.g. hero, dashboard, mobile)"
+            value={pendingName}
+            onChange={(e) => setPendingName(e.target.value)}
+            className="flex-1 bg-surface border border-line/10 px-3 py-2 font-inputmono text-xs text-fg placeholder:text-faint focus:outline-none focus:border-brand/50"
+          />
+          <input
+            type="text"
+            placeholder="Alt text (accessibility)"
+            value={pendingAlt}
+            onChange={(e) => setPendingAlt(e.target.value)}
+            className="flex-1 bg-surface border border-line/10 px-3 py-2 font-inputmono text-xs text-fg placeholder:text-faint focus:outline-none focus:border-brand/50"
+          />
+        </div>
         <label className={`flex items-center gap-3 border border-dashed border-line/20 px-4 py-3 cursor-pointer hover:border-brand/40 transition-colors ${uploading ? "opacity-50 pointer-events-none" : ""}`}>
           <input
             ref={fileRef}
@@ -73,14 +85,15 @@ export function ImagesEditor({ defaultValue = [] }: Props) {
       {/* Current images */}
       {images.map((img, i) => (
         <div key={i} className="flex items-start gap-2 border border-line/10 px-3 py-2">
-          <div className="flex-1 min-w-0">
-            <p className="font-inputmono text-xs text-fg truncate">{img.src}</p>
-            <p className="font-inputmono text-[11px] text-faint truncate">{img.alt || "—"}</p>
+          <div className="flex-1 min-w-0 flex flex-col gap-0.5">
+            <p className="font-inputmono text-xs text-fg">{img.name || <span className="text-faint">—</span>}</p>
+            <p className="font-inputmono text-[11px] text-subtle truncate">{img.src}</p>
+            <p className="font-inputmono text-[10px] text-faint">{img.alt || "—"}</p>
           </div>
           <button
             type="button"
             onClick={() => remove(i)}
-            className="font-inputmono text-xs text-faint hover:text-danger transition-colors shrink-0"
+            className="font-inputmono text-xs text-faint hover:text-danger transition-colors shrink-0 pt-0.5"
           >
             ×
           </button>
@@ -90,8 +103,9 @@ export function ImagesEditor({ defaultValue = [] }: Props) {
       {/* Hidden inputs */}
       {images.map((img, i) => (
         <span key={i}>
-          <input type="hidden" name="images_src" value={img.src} />
-          <input type="hidden" name="images_alt" value={img.alt} />
+          <input type="hidden" name="images_name" value={img.name} />
+          <input type="hidden" name="images_src"  value={img.src} />
+          <input type="hidden" name="images_alt"  value={img.alt} />
         </span>
       ))}
     </div>

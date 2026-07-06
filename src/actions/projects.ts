@@ -9,10 +9,11 @@ function parseForm(fd: FormData) {
   const arr = (k: string) =>
     get(k).split("\n").map((s) => s.trim()).filter(Boolean);
 
-  const srcs = fd.getAll("images_src") as string[];
-  const alts = fd.getAll("images_alt") as string[];
+  const names = fd.getAll("images_name") as string[];
+  const srcs  = fd.getAll("images_src")  as string[];
+  const alts  = fd.getAll("images_alt")  as string[];
   const images = srcs
-    .map((src, i) => ({ src: src.trim(), alt: (alts[i] ?? "").trim() }))
+    .map((src, i) => ({ name: (names[i] ?? "").trim(), src: src.trim(), alt: (alts[i] ?? "").trim() }))
     .filter((img) => img.src);
 
   return {

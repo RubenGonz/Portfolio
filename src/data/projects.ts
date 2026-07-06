@@ -19,7 +19,7 @@ function toProject(row: PrismaProject & { images: ProjectImage[] }): Project {
     status: row.status as Project["status"],
     images: row.images
       .sort((a, b) => a.order - b.order)
-      .map((img) => ({ src: img.src, alt: img.alt })),
+      .map((img) => ({ name: img.name, src: img.src, alt: img.alt })),
   };
 }
 
