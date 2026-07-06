@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/config/site";
 import type { HeroContent } from "@/data/settings";
 
-export const HeroSection = ({ hero }: { hero: HeroContent }) => {
+export const HeroSection = ({ hero, cvUrl }: { hero: HeroContent; cvUrl?: string }) => {
   return (
     <div className="relative min-h-screen overflow-x-clip">
       {/* Dot grid — full viewport width */}
@@ -77,7 +77,7 @@ export const HeroSection = ({ hero }: { hero: HeroContent }) => {
           {/* CTAs */}
           <div className="flex flex-col xs:flex-row flex-wrap gap-3">
             <Button href="#projects" variant="primary">See projects →</Button>
-            <Button href="/cv-ruben-gonzalez.pdf" download variant="outline">Download CV ↓</Button>
+            {cvUrl && <Button href={cvUrl} download variant="outline">Download CV ↓</Button>}
             <Button href={siteConfig.social.github.url} external variant="ghost">GitHub ↗</Button>
           </div>
         </div>

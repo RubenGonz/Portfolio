@@ -32,7 +32,7 @@ export default async function Home() {
 
   return (
     <main>
-      <HeroSection hero={home.hero} />
+      <HeroSection hero={home.hero} cvUrl={home.cvUrl} />
       <TickerStrip text={home.tickerText} />
       <Divider />
       <ProjectsSection />

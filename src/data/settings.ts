@@ -21,6 +21,7 @@ export interface HomeContent {
   tickerText: string;
   contact: ContactContent;
   available: AvailableContent;
+  cvUrl: string;
 }
 
 const DEFAULTS = {
@@ -36,7 +37,7 @@ const DEFAULTS = {
   },
 };
 
-const KEYS = ["hero_title", "hero_tagline", "hero_description", "ticker_text", "contact_headline", "contact_subtext", "available", "available_label"];
+const KEYS = ["hero_title", "hero_tagline", "hero_description", "ticker_text", "contact_headline", "contact_subtext", "available", "available_label", "cv_url"];
 
 export async function getHomeContent(): Promise<HomeContent> {
   const rows = await prisma.setting.findMany({ where: { key: { in: KEYS } } });
@@ -56,6 +57,7 @@ export async function getHomeContent(): Promise<HomeContent> {
       available: m["available"] !== "false",
       label:     m["available_label"] ?? "Available",
     },
+    cvUrl: m["cv_url"] ?? "",
   };
 }
 

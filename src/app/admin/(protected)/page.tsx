@@ -91,6 +91,15 @@ export default async function AdminDashboard() {
         />
       </section>
 
+      {/* Files */}
+      <section>
+        <SectionTitle title="Files" />
+        <Row
+          left={<RowTitle main="CV / Resume" sub="PDF linked from hero download button" />}
+          right={<EditLink href="/admin/files" />}
+        />
+      </section>
+
       {/* Hero */}
       <section>
         <SectionTitle title="Hero" />
