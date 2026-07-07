@@ -20,7 +20,7 @@ export function DeleteButton({ action, label = "Delete" }: DeleteButtonProps) {
     <button
       type="button"
       onClick={handleClick}
-      className="font-inputmono text-[11px] tracking-widest uppercase text-subtle
+      className="font-inputmono text-[11px] tracking-widest uppercase text-danger/60
         hover:text-danger transition-colors"
     >
       {label}

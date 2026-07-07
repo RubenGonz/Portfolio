@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { del } from "@vercel/blob";
 import { prisma } from "@/lib/prisma";
 
 const upsert = (key: string, value: string) =>
@@ -51,3 +52,14 @@ export async function updateContact(_: unknown, fd: FormData): Promise<string | 
   revalidatePath("/");
   redirect("/admin");
 }
+
+export async function updateCvUrl(url: string): Promise<void> {
+  const prev = await prisma.setting.findUnique({ where: { key: "cv_url" } });
+  if (prev?.value && prev.value.includes("vercel-storage.com")) {
+    await del(prev.value).catch(() => {});
+  }
+  await upsert("cv_url", url);
+  revalidatePath("/");
+  revalidatePath("/admin/files");
+}
+

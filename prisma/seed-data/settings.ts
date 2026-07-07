@@ -11,4 +11,6 @@ export const settings = [
   // Available badge
   { key: "available",       value: "true" },
   { key: "available_label", value: "Available" },
+  // Files
+  { key: "cv_url", value: "" },
 ];

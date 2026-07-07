@@ -11,7 +11,7 @@ export interface Project {
   status: "live" | "in-progress" | "archived";
   highlights: string[];
   role?: string;
-  images?: { src: string; alt: string }[];
+  images?: { name: string; src: string; alt: string }[];
 }
 
 export interface StackItem {
