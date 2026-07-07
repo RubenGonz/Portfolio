@@ -26,10 +26,9 @@ export async function uploadDocument(fd: FormData): Promise<{ url: string } | { 
   if (file.size > MAX_DOC_SIZE) return { error: "File must be under 10 MB." };
 
   const originalName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, "-");
-  const filename = `documents/${Date.now()}-${originalName}`;
-  const blob = await put(filename, file, {
+  const blob = await put(`documents/${originalName}`, file, {
     access: "public",
-    contentDisposition: `inline; filename="${originalName}"`,
+    allowOverwrite: true,
   });
   return { url: blob.url };
 }
