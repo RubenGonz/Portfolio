@@ -77,7 +77,7 @@ export const HeroSection = ({ hero, cvUrl }: { hero: HeroContent; cvUrl?: string
           {/* CTAs */}
           <div className="flex flex-col xs:flex-row flex-wrap gap-3">
             <Button href="#projects" variant="primary">See projects →</Button>
-            {cvUrl && <Button href={cvUrl} download="cv-ruben-gonzalez.pdf" variant="outline">Download CV ↓</Button>}
+            {cvUrl && <Button href="/cv" external variant="outline">View CV →</Button>}
             <Button href={siteConfig.social.github.url} external variant="ghost">GitHub ↗</Button>
           </div>
         </div>
