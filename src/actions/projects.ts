@@ -2,7 +2,16 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { del } from "@vercel/blob";
 import { prisma } from "@/lib/prisma";
+
+const BLOB_HOST = "blob.vercel-storage.com";
+
+async function deleteBlobImages(projectId: string) {
+  const images = await prisma.projectImage.findMany({ where: { projectId }, select: { src: true } });
+  const blobUrls = images.map((i) => i.src).filter((s) => s.includes(BLOB_HOST));
+  if (blobUrls.length) await del(blobUrls).catch(() => {});
+}
 
 function parseForm(fd: FormData) {
   const get = (k: string) => (fd.get(k) as string | null)?.trim() ?? "";
@@ -62,6 +71,7 @@ export async function updateProject(slug: string, _: unknown, fd: FormData): Pro
   try {
     const project = await prisma.project.findUnique({ where: { slug }, select: { id: true } });
     if (!project) return "Project not found.";
+    await deleteBlobImages(project.id);
     await prisma.$transaction([
       prisma.projectImage.deleteMany({ where: { projectId: project.id } }),
       prisma.project.update({
@@ -80,6 +90,8 @@ export async function updateProject(slug: string, _: unknown, fd: FormData): Pro
 }
 
 export async function deleteProject(slug: string) {
+  const project = await prisma.project.findUnique({ where: { slug }, select: { id: true } });
+  if (project) await deleteBlobImages(project.id);
   await prisma.project.delete({ where: { slug } });
   revalidate();
 }
