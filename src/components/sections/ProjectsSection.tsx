@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/navigation";
 import { getProjects } from "@/data/projects";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -10,7 +10,8 @@ const PREVIEW_COUNT = 2;
 
 export const ProjectsSection = async () => {
   const t = await getTranslations("projects");
-  const projects = await getProjects();
+  const locale = await getLocale();
+  const projects = await getProjects(locale);
   const preview = projects.slice(0, PREVIEW_COUNT);
   const remaining = projects.length - PREVIEW_COUNT;
 

@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/navigation";
 import { getCourses } from "@/data/courses";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -10,7 +10,8 @@ const PREVIEW_COUNT = 2;
 
 export const CoursesSection = async () => {
   const t = await getTranslations("courses");
-  const courses = await getCourses();
+  const locale = await getLocale();
+  const courses = await getCourses(locale);
   const preview = courses.slice(0, PREVIEW_COUNT);
   const remaining = courses.length - PREVIEW_COUNT;
 

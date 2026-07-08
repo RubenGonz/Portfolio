@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { DEFAULT_LOCALE } from "./locale";
 
 export interface HeroContent {
   title: string;
@@ -39,9 +40,17 @@ const DEFAULTS = {
 
 const KEYS = ["hero_title", "hero_tagline", "hero_description", "ticker_text", "contact_headline", "contact_subtext", "available", "available_label", "cv_url"];
 
-export async function getHomeContent(): Promise<HomeContent> {
-  const rows = await prisma.setting.findMany({ where: { key: { in: KEYS } } });
-  const m = Object.fromEntries(rows.map((r) => [r.key, r.value]));
+export async function getHomeContent(locale: string = DEFAULT_LOCALE): Promise<HomeContent> {
+  // Fetch the requested locale plus the default, then prefer the requested
+  // one per key — language-neutral keys (cv_url, available) only exist under
+  // the default locale and resolve through this same fallback.
+  const rows = await prisma.setting.findMany({
+    where: { key: { in: KEYS }, locale: { in: [locale, DEFAULT_LOCALE] } },
+  });
+  const m: Record<string, string> = {};
+  for (const r of rows) {
+    if (r.locale === locale || m[r.key] === undefined) m[r.key] = r.value;
+  }
   return {
     hero: {
       title:       m["hero_title"]       ?? DEFAULTS.hero.title,
@@ -61,7 +70,7 @@ export async function getHomeContent(): Promise<HomeContent> {
   };
 }
 
-export async function getHeroContent(): Promise<HeroContent> {
-  const home = await getHomeContent();
+export async function getHeroContent(locale: string = DEFAULT_LOCALE): Promise<HeroContent> {
+  const home = await getHomeContent(locale);
   return home.hero;
 }

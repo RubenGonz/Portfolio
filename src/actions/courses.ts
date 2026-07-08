@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { DEFAULT_LOCALE } from "@/data/locale";
 
 function parseForm(fd: FormData) {
   const get = (k: string) => (fd.get(k) as string | null)?.trim() ?? "";
@@ -14,18 +15,24 @@ function parseForm(fd: FormData) {
   try { topics = JSON.parse(topicsRaw); } catch { topics = []; }
 
   return {
-    slug: get("slug"),
-    title: get("title"),
-    platform: get("platform"),
-    shortDescription: get("shortDescription"),
-    fullDescription: get("fullDescription"),
-    year: parseInt(get("year"), 10) || new Date().getFullYear(),
-    status: get("status") || "not-started",
-    tags: arr("tags"),
-    certificateUrl: get("certificateUrl") || null,
-    repoUrl: get("repoUrl") || null,
-    demoUrl: get("demoUrl") || null,
-    topics,
+    // Language-neutral fields (stored on Course).
+    neutral: {
+      slug: get("slug"),
+      platform: get("platform"),
+      year: parseInt(get("year"), 10) || new Date().getFullYear(),
+      status: get("status") || "not-started",
+      certificateUrl: get("certificateUrl") || null,
+      repoUrl: get("repoUrl") || null,
+      demoUrl: get("demoUrl") || null,
+    },
+    // Translatable fields (stored on CourseTranslation, currently English).
+    translation: {
+      title: get("title"),
+      shortDescription: get("shortDescription"),
+      fullDescription: get("fullDescription"),
+      tags: arr("tags"),
+      topics,
+    },
   };
 }
 
@@ -36,10 +43,16 @@ function revalidate(slug?: string) {
 }
 
 export async function createCourse(_: unknown, fd: FormData): Promise<string | undefined> {
-  const data = parseForm(fd);
-  if (!data.slug || !data.title) return "Slug and title are required.";
+  const { neutral, translation } = parseForm(fd);
+  if (!neutral.slug || !translation.title) return "Slug and title are required.";
   try {
-    await prisma.course.create({ data: { ...data, featured: false } });
+    await prisma.course.create({
+      data: {
+        ...neutral,
+        featured: false,
+        translations: { create: { locale: DEFAULT_LOCALE, ...translation } },
+      },
+    });
   } catch {
     return "Slug already exists or DB error.";
   }
@@ -48,10 +61,19 @@ export async function createCourse(_: unknown, fd: FormData): Promise<string | u
 }
 
 export async function updateCourse(slug: string, _: unknown, fd: FormData): Promise<string | undefined> {
-  const data = parseForm(fd);
-  if (!data.title) return "Title is required.";
+  const { neutral, translation } = parseForm(fd);
+  if (!translation.title) return "Title is required.";
   try {
-    await prisma.course.update({ where: { slug }, data });
+    const course = await prisma.course.findUnique({ where: { slug }, select: { id: true } });
+    if (!course) return "Course not found.";
+    await prisma.$transaction([
+      prisma.course.update({ where: { slug }, data: neutral }),
+      prisma.courseTranslation.upsert({
+        where: { courseId_locale: { courseId: course.id, locale: DEFAULT_LOCALE } },
+        create: { courseId: course.id, locale: DEFAULT_LOCALE, ...translation },
+        update: translation,
+      }),
+    ]);
   } catch {
     return "DB error.";
   }

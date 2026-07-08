@@ -21,6 +21,9 @@ jest.mock("@/lib/prisma", () => ({
       findMany:   (...args: unknown[]) => mockFindMany(...args),
       deleteMany: jest.fn().mockResolvedValue({}),
     },
+    projectTranslation: {
+      upsert: jest.fn().mockResolvedValue({}),
+    },
     $transaction: (...args: unknown[]) => mockTransaction(...args),
   },
 }));

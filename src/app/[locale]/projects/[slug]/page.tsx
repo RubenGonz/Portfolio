@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, locale } = await params;
-  const project = await getProjectBySlug(slug);
+  const project = await getProjectBySlug(slug, locale);
   if (!project) return {};
   const base = siteConfig.url;
   return {
@@ -43,12 +43,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProjectPage({ params }: Props) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const t = await getTranslations("projects");
-  const project = await getProjectBySlug(slug);
+  const project = await getProjectBySlug(slug, locale);
   if (!project) notFound();
 
-  const all = await getProjects();
+  const all = await getProjects(locale);
   const currentIndex = all.findIndex((p) => p.slug === slug);
   const prev = all[currentIndex - 1] ?? null;
   const next = all[currentIndex + 1] ?? null;

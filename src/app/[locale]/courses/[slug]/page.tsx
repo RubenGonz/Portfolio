@@ -21,7 +21,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, locale } = await params;
-  const course = await getCourseBySlug(slug);
+  const course = await getCourseBySlug(slug, locale);
   if (!course) return {};
   const base = siteConfig.url;
   return {
@@ -41,12 +41,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function CoursePage({ params }: Props) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const t = await getTranslations("courses");
-  const course = await getCourseBySlug(slug);
+  const course = await getCourseBySlug(slug, locale);
   if (!course) notFound();
 
-  const all = await getCourses();
+  const all = await getCourses(locale);
   const currentIndex = all.findIndex((c) => c.slug === slug);
   const prev = all[currentIndex - 1] ?? null;
   const next = all[currentIndex + 1] ?? null;

@@ -4,9 +4,17 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { del } from "@vercel/blob";
 import { prisma } from "@/lib/prisma";
+import { DEFAULT_LOCALE } from "@/data/locale";
 
-const upsert = (key: string, value: string) =>
-  prisma.setting.upsert({ where: { key }, update: { value }, create: { key, value } });
+// Settings are localized per (key, locale). Until the admin exposes Spanish
+// inputs, everything is written under the default locale and resolved via the
+// read-time fallback in the data layer.
+const upsert = (key: string, value: string, locale: string = DEFAULT_LOCALE) =>
+  prisma.setting.upsert({
+    where: { key_locale: { key, locale } },
+    update: { value },
+    create: { key, locale, value },
+  });
 
 export async function updateHero(_: unknown, fd: FormData): Promise<string | undefined> {
   const get = (k: string) => (fd.get(k) as string | null)?.trim() ?? "";
@@ -54,7 +62,9 @@ export async function updateContact(_: unknown, fd: FormData): Promise<string | 
 }
 
 export async function updateCvUrl(url: string): Promise<void> {
-  const prev = await prisma.setting.findUnique({ where: { key: "cv_url" } });
+  const prev = await prisma.setting.findUnique({
+    where: { key_locale: { key: "cv_url", locale: DEFAULT_LOCALE } },
+  });
   if (prev?.value && prev.value.includes("vercel-storage.com")) {
     await del(prev.value).catch(() => {});
   }

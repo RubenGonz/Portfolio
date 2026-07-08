@@ -7,6 +7,9 @@ import { settings } from "./seed-data/settings";
 
 const prisma = new PrismaClient();
 
+// Seed fixtures are authored in English → the default content locale.
+const LOCALE = "en";
+
 async function main() {
   console.log("Seeding database…");
 
@@ -16,12 +19,7 @@ async function main() {
       update: {},
       create: {
         slug: p.slug,
-        title: p.title,
-        shortDescription: p.shortDescription,
-        fullDescription: p.fullDescription,
         tags: p.tags,
-        highlights: p.highlights,
-        role: p.role,
         url: p.url,
         repoUrl: p.repoUrl,
         featured: p.featured,
@@ -29,10 +27,21 @@ async function main() {
         status: p.status,
         images: {
           create: (p.images ?? []).map((img, i) => ({
+            name: img.name,
             src: img.src,
             alt: img.alt,
             order: i,
           })),
+        },
+        translations: {
+          create: {
+            locale: LOCALE,
+            title: p.title,
+            shortDescription: p.shortDescription,
+            fullDescription: p.fullDescription,
+            highlights: p.highlights,
+            role: p.role,
+          },
         },
       },
     });
@@ -44,17 +53,22 @@ async function main() {
       update: {},
       create: {
         slug: c.slug,
-        title: c.title,
         platform: c.platform,
         year: c.year,
         status: c.status,
-        shortDescription: c.shortDescription,
-        fullDescription: c.fullDescription,
-        topics: c.topics,
-        tags: c.tags,
         certificateUrl: c.certificateUrl,
         repoUrl: c.repoUrl,
         demoUrl: c.demoUrl,
+        translations: {
+          create: {
+            locale: LOCALE,
+            title: c.title,
+            shortDescription: c.shortDescription,
+            fullDescription: c.fullDescription,
+            topics: c.topics,
+            tags: c.tags,
+          },
+        },
       },
     });
   }
@@ -62,7 +76,23 @@ async function main() {
   // Timeline — skip if any entries already exist
   const timelineCount = await prisma.timelineEntry.count();
   if (timelineCount === 0) {
-    await prisma.timelineEntry.createMany({ data: timelineEntries });
+    for (const [i, e] of timelineEntries.entries()) {
+      await prisma.timelineEntry.create({
+        data: {
+          year: e.year,
+          current: e.current ?? false,
+          order: e.order ?? i,
+          translations: {
+            create: {
+              locale: LOCALE,
+              title: e.title,
+              subtitle: e.subtitle ?? null,
+              paragraphs: e.paragraphs,
+            },
+          },
+        },
+      });
+    }
   }
 
   // Stack — skip if any items already exist
@@ -71,12 +101,13 @@ async function main() {
     await prisma.stackItem.createMany({ data: stackItems });
   }
 
-  // Settings — upsert so existing edits are preserved on re-seed
+  // Settings — upsert so existing edits are preserved on re-seed.
+  // Seed content is English → stored under the default locale.
   for (const s of settings) {
     await prisma.setting.upsert({
-      where: { key: s.key },
+      where: { key_locale: { key: s.key, locale: LOCALE } },
       update: {},
-      create: s,
+      create: { key: s.key, locale: LOCALE, value: s.value },
     });
   }
 

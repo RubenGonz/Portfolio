@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { getProjects } from "@/data/projects";
 import { BackLink } from "@/components/ui/BackLink";
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default async function ProjectsPage() {
   const t = await getTranslations("projects");
-  const projects = await getProjects();
+  const projects = await getProjects(await getLocale());
 
   return (
     <main className="min-h-screen px-6 md:px-16 pt-28 pb-16 max-w-5xl mx-auto">

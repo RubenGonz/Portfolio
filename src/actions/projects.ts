@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { del } from "@vercel/blob";
 import { prisma } from "@/lib/prisma";
+import { DEFAULT_LOCALE } from "@/data/locale";
 
 const BLOB_HOST = "blob.vercel-storage.com";
 
@@ -26,17 +27,23 @@ function parseForm(fd: FormData) {
     .filter((img) => img.src);
 
   return {
-    slug: get("slug"),
-    title: get("title"),
-    shortDescription: get("shortDescription"),
-    fullDescription: get("fullDescription"),
-    role: get("role") || null,
-    url: get("url") || null,
-    repoUrl: get("repoUrl") || null,
-    year: parseInt(get("year"), 10) || new Date().getFullYear(),
-    status: get("status") || "in-progress",
-    tags: arr("tags"),
-    highlights: arr("highlights"),
+    // Language-neutral fields (stored on Project).
+    neutral: {
+      slug: get("slug"),
+      url: get("url") || null,
+      repoUrl: get("repoUrl") || null,
+      year: parseInt(get("year"), 10) || new Date().getFullYear(),
+      status: get("status") || "in-progress",
+      tags: arr("tags"),
+    },
+    // Translatable fields (stored on ProjectTranslation, currently English).
+    translation: {
+      title: get("title"),
+      shortDescription: get("shortDescription"),
+      fullDescription: get("fullDescription"),
+      highlights: arr("highlights"),
+      role: get("role") || null,
+    },
     images,
   };
 }
@@ -48,14 +55,15 @@ function revalidate(slug?: string) {
 }
 
 export async function createProject(_: unknown, fd: FormData): Promise<string | undefined> {
-  const { images, ...data } = parseForm(fd);
-  if (!data.slug || !data.title) return "Slug and title are required.";
+  const { neutral, translation, images } = parseForm(fd);
+  if (!neutral.slug || !translation.title) return "Slug and title are required.";
   try {
     await prisma.project.create({
       data: {
-        ...data,
+        ...neutral,
         featured: false,
         images: { create: images.map((img, i) => ({ ...img, order: i })) },
+        translations: { create: { locale: DEFAULT_LOCALE, ...translation } },
       },
     });
   } catch {
@@ -66,8 +74,8 @@ export async function createProject(_: unknown, fd: FormData): Promise<string | 
 }
 
 export async function updateProject(slug: string, _: unknown, fd: FormData): Promise<string | undefined> {
-  const { images, ...data } = parseForm(fd);
-  if (!data.title) return "Title is required.";
+  const { neutral, translation, images } = parseForm(fd);
+  if (!translation.title) return "Title is required.";
   try {
     const project = await prisma.project.findUnique({ where: { slug }, select: { id: true } });
     if (!project) return "Project not found.";
@@ -77,9 +85,14 @@ export async function updateProject(slug: string, _: unknown, fd: FormData): Pro
       prisma.project.update({
         where: { slug },
         data: {
-          ...data,
+          ...neutral,
           images: { create: images.map((img, i) => ({ ...img, order: i })) },
         },
+      }),
+      prisma.projectTranslation.upsert({
+        where: { projectId_locale: { projectId: project.id, locale: DEFAULT_LOCALE } },
+        create: { projectId: project.id, locale: DEFAULT_LOCALE, ...translation },
+        update: translation,
       }),
     ]);
   } catch {

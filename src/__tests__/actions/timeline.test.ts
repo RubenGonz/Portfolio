@@ -20,6 +20,9 @@ jest.mock("@/lib/prisma", () => ({
       delete:     (...args: unknown[]) => mockDelete(...args),
       count:      (...args: unknown[]) => mockCount(...args),
     },
+    timelineEntryTranslation: {
+      upsert: jest.fn().mockResolvedValue({}),
+    },
     $transaction: (...args: unknown[]) => mockTransaction(...args),
   },
 }));

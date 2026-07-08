@@ -4,6 +4,8 @@ const mockCreate = jest.fn().mockResolvedValue({});
 const mockUpdate = jest.fn().mockResolvedValue({});
 const mockDelete = jest.fn().mockResolvedValue({});
 const mockCount  = jest.fn().mockResolvedValue(0);
+const mockFindUnique = jest.fn().mockResolvedValue({ id: "course-1" });
+const mockUpsert = jest.fn().mockResolvedValue({});
 
 jest.mock("@/lib/prisma", () => ({
   prisma: {
@@ -12,7 +14,13 @@ jest.mock("@/lib/prisma", () => ({
       update:     (...args: unknown[]) => mockUpdate(...args),
       delete:     (...args: unknown[]) => mockDelete(...args),
       count:      (...args: unknown[]) => mockCount(...args),
+      findUnique: (...args: unknown[]) => mockFindUnique(...args),
     },
+    courseTranslation: {
+      upsert: (...args: unknown[]) => mockUpsert(...args),
+    },
+    // Execute the ops so a rejected update propagates (DB-failure test).
+    $transaction: (ops: Promise<unknown>[]) => Promise.all(ops),
   },
 }));
 

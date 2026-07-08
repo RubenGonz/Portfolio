@@ -16,12 +16,7 @@ beforeEach(() => jest.clearAllMocks());
 
 const dbRow = {
   slug: "my-project",
-  title: "My Project",
-  shortDescription: "Short",
-  fullDescription: "Full",
   tags: ["react"],
-  highlights: ["feature"],
-  role: null,
   url: null,
   repoUrl: null,
   featured: false,
@@ -31,14 +26,44 @@ const dbRow = {
     { name: "hero", src: "/img1.webp", alt: "Alt 1", order: 1 },
     { name: "about", src: "/img2.webp", alt: "Alt 2", order: 0 },
   ],
+  translations: [
+    {
+      locale: "en",
+      title: "My Project",
+      shortDescription: "Short EN",
+      fullDescription: "Full EN",
+      highlights: ["feature"],
+      role: null,
+    },
+    {
+      locale: "es",
+      title: "Mi Proyecto",
+      shortDescription: "Corto ES",
+      fullDescription: "Completo ES",
+      highlights: ["función"],
+      role: null,
+    },
+  ],
 };
 
 describe("getProjects", () => {
-  it("returns mapped projects", async () => {
+  it("returns the requested locale's translation", async () => {
     mockFindMany.mockResolvedValueOnce([dbRow]);
-    const projects = await getProjects();
-    expect(projects).toHaveLength(1);
-    expect(projects[0].slug).toBe("my-project");
+    const [project] = await getProjects("es");
+    expect(project.title).toBe("Mi Proyecto");
+    expect(project.shortDescription).toBe("Corto ES");
+  });
+
+  it("defaults to English", async () => {
+    mockFindMany.mockResolvedValueOnce([dbRow]);
+    const [project] = await getProjects();
+    expect(project.title).toBe("My Project");
+  });
+
+  it("falls back to English when the locale is missing", async () => {
+    mockFindMany.mockResolvedValueOnce([{ ...dbRow, translations: [dbRow.translations[0]] }]);
+    const [project] = await getProjects("es");
+    expect(project.title).toBe("My Project");
   });
 
   it("sorts images by order", async () => {
@@ -48,19 +73,19 @@ describe("getProjects", () => {
     expect(project.images![1].src).toBe("/img1.webp");
   });
 
-  it("maps null role/url to undefined", async () => {
+  it("maps null url/role to undefined", async () => {
     mockFindMany.mockResolvedValueOnce([dbRow]);
     const [project] = await getProjects();
-    expect(project.role).toBeUndefined();
     expect(project.url).toBeUndefined();
+    expect(project.role).toBeUndefined();
   });
 });
 
 describe("getProjectBySlug", () => {
   it("returns project when found", async () => {
     mockFindUnique.mockResolvedValueOnce(dbRow);
-    const project = await getProjectBySlug("my-project");
-    expect(project?.slug).toBe("my-project");
+    const project = await getProjectBySlug("my-project", "es");
+    expect(project?.title).toBe("Mi Proyecto");
   });
 
   it("returns undefined when not found", async () => {
