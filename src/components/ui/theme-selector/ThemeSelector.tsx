@@ -2,9 +2,11 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 export const ThemeSelector = () => {
 
+  const t = useTranslations("common");
   const { resolvedTheme, setTheme } = useTheme();
 
   const [mounted, setMounted] = useState(false);
@@ -29,7 +31,7 @@ export const ThemeSelector = () => {
       className="sr-only peer"
       checked={isDark}
       onChange={() => setTheme(isDark ? "light" : "dark")}
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-label={isDark ? t("switchToLight") : t("switchToDark")}
     />
     {/* Toggle background */}
     <div className="w-16 h-8 border border-brand rounded-full transition-colors duration-300" />

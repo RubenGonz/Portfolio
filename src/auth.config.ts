@@ -8,6 +8,10 @@ export const authConfig = {
   },
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
+      // Public (non-admin) routes are always allowed — locale handling runs
+      // afterwards in the middleware. Only /admin/* is session-guarded.
+      if (!nextUrl.pathname.startsWith("/admin")) return true;
+
       const isLoggedIn = !!auth?.user;
       const isOnLogin = nextUrl.pathname === "/admin/login";
 

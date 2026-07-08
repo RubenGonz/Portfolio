@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GhostNumber } from "@/components/ui/GhostNumber";
 import { Section } from "@/components/ui/Section";
@@ -11,6 +12,7 @@ import type { ContactContent } from "@/data/settings";
 type Status = "idle" | "sending" | "success" | "error";
 
 export const ContactSection = ({ contact }: { contact: ContactContent }) => {
+  const t = useTranslations("contact");
   const [status, setStatus] = useState<Status>("idle");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -28,7 +30,6 @@ export const ContactSection = ({ contact }: { contact: ContactContent }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, message, _trap }),
       });
-
       if (!res.ok) throw new Error();
       setStatus("success");
       form.reset();
@@ -39,12 +40,11 @@ export const ContactSection = ({ contact }: { contact: ContactContent }) => {
 
   return (
     <Section id="contact">
-      <SectionHeader label="Contact" srTitle="Contact" />
+      <SectionHeader label={t("sectionLabel")} srTitle={t("sectionLabel")} />
 
       <div className="flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-16 max-w-4xl relative">
         <GhostNumber>05</GhostNumber>
 
-        {/* Left: headline + links */}
         <div>
           <h2 className="font-n27 font-bold italic text-fg text-3xl md:text-5xl mb-2 md:mb-3 leading-tight tracking-tight">
             {contact.headline}
@@ -83,16 +83,14 @@ export const ContactSection = ({ contact }: { contact: ContactContent }) => {
           </div>
         </div>
 
-        {/* Right: form */}
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          {/* Honeypot — hidden from humans, bots fill it */}
           <input type="text" name="_trap" tabIndex={-1} aria-hidden="true" style={{ display: "none" }} />
           <div className="flex flex-col gap-1.5">
             <label
               htmlFor="contact-email"
               className="font-inputmono text-[11px] text-muted uppercase tracking-[0.18em]"
             >
-              Your email
+              {t("emailLabel")}
             </label>
             <input
               id="contact-email"
@@ -110,7 +108,7 @@ export const ContactSection = ({ contact }: { contact: ContactContent }) => {
               htmlFor="contact-message"
               className="font-inputmono text-[11px] text-muted uppercase tracking-[0.18em]"
             >
-              Message
+              {t("messageLabel")}
             </label>
             <textarea
               id="contact-message"
@@ -124,18 +122,14 @@ export const ContactSection = ({ contact }: { contact: ContactContent }) => {
           </div>
 
           {status === "success" && (
-            <p className="font-inputmono text-xs text-brand">
-              Message sent. I&apos;ll get back to you soon.
-            </p>
+            <p className="font-inputmono text-xs text-brand">{t("success")}</p>
           )}
           {status === "error" && (
-            <p className="font-inputmono text-xs text-danger">
-              Something went wrong. Try emailing me directly.
-            </p>
+            <p className="font-inputmono text-xs text-danger">{t("error")}</p>
           )}
 
           <Button type="submit" disabled={status === "sending" || status === "success"} className="w-full md:w-fit">
-            {status === "sending" ? "Sending..." : "Send message →"}
+            {status === "sending" ? t("sending") : t("send")}
           </Button>
         </form>
       </div>

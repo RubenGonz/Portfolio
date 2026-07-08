@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/navigation";
 import { getCourses } from "@/data/courses";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GhostNumber } from "@/components/ui/GhostNumber";
@@ -8,13 +9,14 @@ import { Section } from "@/components/ui/Section";
 const PREVIEW_COUNT = 2;
 
 export const CoursesSection = async () => {
+  const t = await getTranslations("courses");
   const courses = await getCourses();
   const preview = courses.slice(0, PREVIEW_COUNT);
   const remaining = courses.length - PREVIEW_COUNT;
 
   return (
     <Section id="courses">
-      <SectionHeader label="Courses" srTitle="Courses" />
+      <SectionHeader label={t("sectionLabel")} srTitle={t("sectionLabel")} />
 
       <div className="relative max-w-4xl">
         <GhostNumber>03</GhostNumber>
@@ -32,7 +34,7 @@ export const CoursesSection = async () => {
               className="font-inputmono text-[11px] tracking-widest uppercase text-subtle
                 hover:text-brand transition-colors duration-150 inline-flex items-center gap-2"
             >
-              View {remaining} more →
+              {t("viewMore", { count: remaining })}
             </Link>
           </div>
         )}

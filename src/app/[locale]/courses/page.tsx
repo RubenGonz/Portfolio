@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { getCourses } from "@/data/courses";
 import { BackLink } from "@/components/ui/BackLink";
@@ -10,14 +11,13 @@ export const metadata: Metadata = {
 };
 
 export default async function CoursesPage() {
+  const t = await getTranslations("courses");
   const courses = await getCourses();
 
   return (
     <main className="min-h-screen px-6 md:px-16 pt-28 pb-16 max-w-5xl mx-auto">
-      <BackLink label="Back" fallbackHref="/#courses" />
-
-      <SectionHeader label="Courses" srTitle="Courses & Certifications" />
-
+      <BackLink label={t("back")} fallbackHref="/#courses" />
+      <SectionHeader label={t("sectionLabel")} srTitle={t("sectionLabel")} />
       <CoursesListing courses={courses} />
     </main>
   );

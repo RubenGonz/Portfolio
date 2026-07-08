@@ -1,24 +1,27 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useTranslations } from "next-intl";
 import type { Course } from "@/types";
 import { CourseCard } from "@/components/ui/CourseCard";
 import { ListingFilters } from "@/components/ui/ListingFilters";
-
-const statusOptions = [
-  { value: "all", label: "All" },
-  { value: "completed", label: "Completed" },
-  { value: "in-progress", label: "In progress" },
-  { value: "not-started", label: "Not started" },
-];
 
 interface Props {
   courses: Course[];
 }
 
 export const CoursesListing = ({ courses }: Props) => {
+  const t = useTranslations("courses");
+  const ts = useTranslations("status");
   const [status, setStatus] = useState("all");
   const [order, setOrder] = useState("newest");
+
+  const statusOptions = [
+    { value: "all", label: ts("all") },
+    { value: "completed", label: ts("completed") },
+    { value: "in-progress", label: ts("in-progress") },
+    { value: "not-started", label: ts("not-started") },
+  ];
 
   const filtered = useMemo(() => {
     const result = status === "all" ? courses : courses.filter((c) => c.status === status);
@@ -38,7 +41,7 @@ export const CoursesListing = ({ courses }: Props) => {
       />
 
       {filtered.length === 0 ? (
-        <p className="font-inputmono text-subtle text-sm">No courses match this filter.</p>
+        <p className="font-inputmono text-subtle text-sm">{t("noMatch")}</p>
       ) : (
         <div className="flex flex-col gap-4 max-w-4xl">
           {filtered.map((course) => (

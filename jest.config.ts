@@ -11,7 +11,7 @@ const config: Config = {
   },
   testMatch: ["**/__tests__/**/*.test.{ts,tsx}"],
   transformIgnorePatterns: [
-    "/node_modules/(?!(@vercel/blob|@vercel/oidc|jose)/)",
+    "/node_modules/(?!(@vercel/blob|@vercel/oidc|jose|next-intl|use-intl)/)",
   ],
   collectCoverageFrom: [
     "src/**/*.{ts,tsx}",
