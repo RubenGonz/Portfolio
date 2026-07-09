@@ -12,6 +12,12 @@ export const ProjectGallery = ({ images }: Props) => {
   const t = useTranslations("gallery");
   const [active, setActive] = useState(0);
   const [lightbox, setLightbox] = useState(false);
+  const [mainLoaded, setMainLoaded] = useState(false);
+  const [thumbsLoaded, setThumbsLoaded] = useState<boolean[]>(() => images.map(() => false));
+
+  useEffect(() => {
+    setMainLoaded(false);
+  }, [active]);
 
   useEffect(() => {
     if (!lightbox) return;
@@ -36,6 +42,7 @@ export const ProjectGallery = ({ images }: Props) => {
           style={{ boxShadow: "var(--img-glow)" }}
           aria-label={t("expandImage")}
         >
+          <div className={`img-skeleton${mainLoaded ? " loaded" : ""}`} aria-hidden="true" />
           <Image
             src={images[active].src}
             alt={images[active].alt}
@@ -43,6 +50,7 @@ export const ProjectGallery = ({ images }: Props) => {
             className="object-cover object-top transition-opacity duration-300"
             sizes="(max-width: 768px) 100vw, 50vw"
             priority
+            onLoad={() => setMainLoaded(true)}
           />
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-200 flex items-center justify-center">
             <span className="font-inputmono text-[10px] tracking-widest uppercase text-white/0 group-hover:text-white/70 transition-colors duration-200">
@@ -65,12 +73,14 @@ export const ProjectGallery = ({ images }: Props) => {
                     : "border-line/8 opacity-40 hover:opacity-70"
                   }`}
               >
+                <div className={`img-skeleton${thumbsLoaded[i] ? " loaded" : ""}`} aria-hidden="true" />
                 <Image
                   src={img.src}
                   alt={img.alt}
                   fill
                   className="object-cover object-top"
                   sizes="15vw"
+                  onLoad={() => setThumbsLoaded((prev) => { const n = [...prev]; n[i] = true; return n; })}
                 />
               </button>
             ))}

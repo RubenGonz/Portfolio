@@ -24,7 +24,7 @@ export const ProjectsSection = async () => {
         <GhostNumber>01</GhostNumber>
 
         {preview.map((project, i) => (
-          <AnimateIn key={project.slug} delay={((i + 1) as 1 | 2) }>
+          <AnimateIn key={project.slug} delay={((i + 1) as 1 | 2)} animateOut>
             <ProjectCard project={project} />
           </AnimateIn>
         ))}

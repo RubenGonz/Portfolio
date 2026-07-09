@@ -43,7 +43,7 @@ export const ContactSection = ({ contact }: { contact: ContactContent }) => {
     <Section id="contact">
       <SectionHeader label={t("sectionLabel")} srTitle={t("sectionLabel")} />
 
-      <AnimateIn className="flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-16 max-w-4xl relative">
+      <AnimateIn animateOut className="flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-16 max-w-4xl relative">
         <GhostNumber>05</GhostNumber>
 
         <div>

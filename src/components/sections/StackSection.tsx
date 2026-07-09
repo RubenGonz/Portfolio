@@ -30,7 +30,7 @@ export const StackSection = async ({ categories }: { categories: StackCategory[]
 
         <div className="grid grid-cols-1 min-[768px]:grid-cols-2 gap-10 min-[768px]:gap-x-16 min-[768px]:gap-y-12">
           {categories.map(({ label, items }, i) => (
-            <AnimateIn key={label} delay={((i % 6) + 1) as 1|2|3|4|5|6}>
+            <AnimateIn key={label} delay={((i % 6) + 1) as 1|2|3|4|5|6} animateOut>
             <div>
               <div className="mb-4">
                 <div className="flex items-center gap-2 mb-1.5">

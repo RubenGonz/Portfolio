@@ -25,7 +25,7 @@ export const CoursesSection = async () => {
 
         <div className="flex flex-col gap-4">
           {preview.map((course, i) => (
-            <AnimateIn key={course.slug} delay={((i + 1) as 1 | 2)}>
+            <AnimateIn key={course.slug} delay={((i + 1) as 1 | 2)} animateOut>
               <CourseCard course={course} />
             </AnimateIn>
           ))}

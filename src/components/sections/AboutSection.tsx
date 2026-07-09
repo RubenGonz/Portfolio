@@ -61,7 +61,7 @@ export const AboutSection = ({ items }: { items: TimelineEntry[] }) => {
     <Section id="about">
       <SectionHeader label={t("sectionLabel")} srTitle={t("sectionLabel")} />
 
-      <AnimateIn className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 max-w-4xl relative">
+      <AnimateIn animateOut className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 max-w-4xl relative">
         <GhostNumber>02</GhostNumber>
 
         <div
