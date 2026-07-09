@@ -16,26 +16,50 @@ beforeEach(() => jest.clearAllMocks());
 
 const dbRow = {
   slug: "my-course",
-  title: "My Course",
   platform: "Udemy",
   year: 2025,
   status: "completed",
-  shortDescription: "Short",
-  fullDescription: "Full",
-  topics: [],
-  tags: ["react"],
   featured: false,
   certificateUrl: null,
   repoUrl: null,
   demoUrl: null,
+  translations: [
+    {
+      locale: "en",
+      title: "My Course",
+      shortDescription: "Short EN",
+      fullDescription: "Full EN",
+      topics: [],
+      tags: ["react"],
+    },
+    {
+      locale: "es",
+      title: "Mi Curso",
+      shortDescription: "Corto ES",
+      fullDescription: "Completo ES",
+      topics: [],
+      tags: ["react"],
+    },
+  ],
 };
 
 describe("getCourses", () => {
-  it("returns mapped courses", async () => {
+  it("returns the requested locale's translation", async () => {
     mockFindMany.mockResolvedValueOnce([dbRow]);
-    const courses = await getCourses();
-    expect(courses).toHaveLength(1);
-    expect(courses[0].slug).toBe("my-course");
+    const [course] = await getCourses("es");
+    expect(course.title).toBe("Mi Curso");
+  });
+
+  it("defaults to English", async () => {
+    mockFindMany.mockResolvedValueOnce([dbRow]);
+    const [course] = await getCourses();
+    expect(course.title).toBe("My Course");
+  });
+
+  it("falls back to English when the locale is missing", async () => {
+    mockFindMany.mockResolvedValueOnce([{ ...dbRow, translations: [dbRow.translations[0]] }]);
+    const [course] = await getCourses("es");
+    expect(course.title).toBe("My Course");
   });
 
   it("maps null certificateUrl to undefined", async () => {
@@ -49,7 +73,7 @@ describe("getCourseBySlug", () => {
   it("returns course when found", async () => {
     mockFindUnique.mockResolvedValueOnce(dbRow);
     const course = await getCourseBySlug("my-course");
-    expect(course?.slug).toBe("my-course");
+    expect(course?.title).toBe("My Course");
   });
 
   it("returns undefined when not found", async () => {

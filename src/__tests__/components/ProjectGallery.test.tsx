@@ -1,6 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import messages from "../../../messages/en.json";
 import { ProjectGallery } from "@/components/ui/project-gallery/ProjectGallery";
+
+// Mock next-intl (ESM) with a translator backed by the real English messages.
+jest.mock("next-intl", () => ({
+  useTranslations: (namespace: keyof typeof messages) => (key: string) =>
+    (messages[namespace] as Record<string, string>)[key] ?? key,
+}));
 
 jest.mock("next/image", () => ({
   __esModule: true,

@@ -1,13 +1,13 @@
-import { getHomeContent } from "@/data/settings";
+import { getHomeForEdit } from "@/data/settings";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { HeroEditForm } from "./HeroEditForm";
 
 export default async function HeroAdminPage() {
-  const { hero } = await getHomeContent();
+  const home = await getHomeForEdit();
   return (
     <div>
       <AdminPageHeader title="Hero" />
-      <HeroEditForm hero={hero} />
+      <HeroEditForm home={home} />
     </div>
   );
 }

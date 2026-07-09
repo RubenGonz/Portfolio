@@ -6,6 +6,7 @@ import {
   StackSection,
   ContactSection,
 } from "@/components";
+import { getLocale } from "next-intl/server";
 import { getTimeline } from "@/data/timeline";
 import { getStack } from "@/data/stack";
 import { getHomeContent } from "@/data/settings";
@@ -28,7 +29,8 @@ const TickerStrip = ({ text }: { text: string }) => (
 );
 
 export default async function Home() {
-  const [timeline, stack, home] = await Promise.all([getTimeline(), getStack(), getHomeContent()]);
+  const locale = await getLocale();
+  const [timeline, stack, home] = await Promise.all([getTimeline(locale), getStack(), getHomeContent(locale)]);
 
   return (
     <main>

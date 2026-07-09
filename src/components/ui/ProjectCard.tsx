@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/navigation";
 import type { Project } from "@/types";
 import { StatusBadge } from "./StatusBadge";
 import { Tag } from "./Tag";
@@ -8,7 +8,6 @@ interface Props {
   headingLevel?: 2 | 3;
 }
 
-/** Project card — shared by the home Projects section and the /projects listing. */
 export const ProjectCard = ({ project, headingLevel = 3 }: Props) => {
   const Title = headingLevel === 2 ? "h2" : "h3";
   return (

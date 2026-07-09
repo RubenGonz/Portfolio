@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 }
 
 export const ProjectGallery = ({ images }: Props) => {
+  const t = useTranslations("gallery");
   const [active, setActive] = useState(0);
   const [lightbox, setLightbox] = useState(false);
 
@@ -32,7 +34,7 @@ export const ProjectGallery = ({ images }: Props) => {
           onClick={() => setLightbox(true)}
           className="relative w-full aspect-video overflow-hidden border border-line/8 cursor-zoom-in group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50"
           style={{ boxShadow: "var(--img-glow)" }}
-          aria-label="Expand image"
+          aria-label={t("expandImage")}
         >
           <Image
             src={images[active].src}
@@ -44,7 +46,7 @@ export const ProjectGallery = ({ images }: Props) => {
           />
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-200 flex items-center justify-center">
             <span className="font-inputmono text-[10px] tracking-widest uppercase text-white/0 group-hover:text-white/70 transition-colors duration-200">
-              Expand
+              {t("expand")}
             </span>
           </div>
         </button>
@@ -100,7 +102,7 @@ export const ProjectGallery = ({ images }: Props) => {
               onClick={() => setLightbox(false)}
               className="absolute -top-10 right-0 font-inputmono text-xs text-white/50 hover:text-white transition-colors tracking-widest uppercase"
             >
-              ✕ Close
+              {t("close")}
             </button>
 
             {/* Prev / Next */}
@@ -108,12 +110,14 @@ export const ProjectGallery = ({ images }: Props) => {
               <>
                 <button
                   onClick={() => setActive((i) => (i - 1 + images.length) % images.length)}
+                  aria-label={t("previous")}
                   className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 font-inputmono text-xs text-white/50 hover:text-white transition-colors p-2"
                 >
                   ←
                 </button>
                 <button
                   onClick={() => setActive((i) => (i + 1) % images.length)}
+                  aria-label={t("next")}
                   className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 font-inputmono text-xs text-white/50 hover:text-white transition-colors p-2"
                 >
                   →

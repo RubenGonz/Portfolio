@@ -58,3 +58,56 @@ export const timelineEntries = [
     order: 4,
   },
 ];
+
+/** Spanish translations, keyed by the entry's `year` label. */
+export interface TimelineTranslationSeed {
+  title: string;
+  subtitle: string | null;
+  paragraphs: string[];
+}
+
+export const timelineTranslationsEs: Record<string, TimelineTranslationSeed> = {
+  "About me": {
+    title: "Quién soy",
+    subtitle: null,
+    paragraphs: [
+      "Construyo interfaces, y lo hago profesionalmente desde 2022, sobre todo en el mundo de la banca y la empresa. El tipo de aplicaciones que corren en servidores de producción y de las que dependen usuarios reales.",
+      "Últimamente también construyo la parte de backend, no a base de cursos, sino enviando cosas reales y descubriendo qué se rompe. Este portfolio funciona sobre una base de datos Postgres, Prisma y su propio panel de administración protegido por auth. Lo construí todo yo.",
+      "Abierto a puestos donde pueda seguir creciendo en ambos lados del stack. En remoto o presencial. Con base en Elche, España.",
+    ],
+  },
+  "2020": {
+    title: "DAW — Desarrollo de Aplicaciones Web",
+    subtitle: null,
+    paragraphs: [
+      "Dos años de desarrollo de aplicaciones: HTML, CSS, JavaScript, Java, bases de datos. El tipo de temario que te enseña los fundamentos quieras o no.",
+      "En algún momento me enganché de verdad al frontend. Probablemente la primera vez que escribí algo y pude verlo al instante en el navegador. Decidí que era a lo que quería dedicarme y dejé de darle vueltas.",
+    ],
+  },
+  "2022 — 2023": {
+    title: "Consultor Frontend · Bosonit",
+    subtitle: "React, Angular · Sector bancario · Aplicaciones empresariales",
+    paragraphs: [
+      "Primer trabajo de verdad. Consultor frontend en Bosonit, construyendo aplicaciones de producción para clientes de banca y finanzas. React, Angular, código real, plazos reales.",
+      "Ahí aprendí que el código limpio no es opcional cuando otras cinco personas tienen que mantener lo que escribes. Estado complejo, APIs REST, Jest, Scrum… todo. La época en la que más rápido he crecido como desarrollador.",
+      "También donde desarrollé opiniones firmes sobre la arquitectura de componentes. Algunas buenas y otras sobre las que he cambiado de opinión desde entonces.",
+    ],
+  },
+  "2025": {
+    title: "Ampliando hacia full-stack",
+    subtitle: "Next.js, Node.js, PostgreSQL",
+    paragraphs: [
+      "Después de Bosonit me tomé tiempo para averiguar qué quería construir a continuación, y me di cuenta de que no quería quedarme solo en el frontend para siempre.",
+      "Así que empecé a ir a full-stack. Next.js 15, Node.js, PostgreSQL, Prisma. Sin seguir un roadmap, simplemente eligiendo un proyecto y construyéndolo hasta que funciona. Cometí muchos errores. Y sigo cometiéndolos.",
+    ],
+  },
+  "2026": {
+    title: "Construyendo este portfolio — ahora",
+    subtitle: null,
+    paragraphs: [
+      "Este portfolio es lo primero que lanzo como desarrollador full-stack. Empezó como una pieza de frontend y construí todo el backend que hay detrás (PostgreSQL, Prisma, Auth.js, un panel de administración) para poder gestionar cada sección sin volver a desplegar.",
+      "Cada decisión —la estructura de rutas, el sistema tipográfico, la capa de datos con Postgres + Prisma, la autenticación, el tema— tiene una razón que podría explicar en una code review.",
+      "El objetivo es simple: encontrar un puesto donde siga creciendo en ambos lados del stack.",
+    ],
+  },
+};

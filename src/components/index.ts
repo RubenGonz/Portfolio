@@ -10,6 +10,7 @@ export { Section } from "./ui/Section";
 export { Button } from "./ui/Button";
 export { Tag } from "./ui/Tag";
 export { AvailableBadge } from "./ui/AvailableBadge";
+export { LocaleSwitcher } from "./ui/LocaleSwitcher";
 
 export { HeroSection } from "./sections/HeroSection";
 export { ProjectsSection } from "./sections/ProjectsSection";

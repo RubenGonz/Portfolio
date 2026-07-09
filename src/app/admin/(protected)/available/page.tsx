@@ -1,13 +1,13 @@
-import { getHomeContent } from "@/data/settings";
+import { getHomeForEdit } from "@/data/settings";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { AvailableEditForm } from "./AvailableEditForm";
 
 export default async function AvailableAdminPage() {
-  const { available } = await getHomeContent();
+  const home = await getHomeForEdit();
   return (
     <div>
       <AdminPageHeader title="Available badge" />
-      <AvailableEditForm available={available} />
+      <AvailableEditForm home={home} />
     </div>
   );
 }

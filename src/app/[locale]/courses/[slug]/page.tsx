@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { getCourseBySlug, getCourses } from "@/data/courses";
 import { BackLink } from "@/components/ui/BackLink";
@@ -10,7 +11,7 @@ import { ItemNav } from "@/components/ui/ItemNav";
 import { siteConfig } from "@/config/site";
 
 interface Props {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }
 
 export async function generateStaticParams() {
@@ -19,63 +20,50 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const course = await getCourseBySlug(slug);
+  const { slug, locale } = await params;
+  const course = await getCourseBySlug(slug, locale);
   if (!course) return {};
   const base = siteConfig.url;
   return {
     title: course.title,
     description: course.shortDescription,
-    alternates: { canonical: `${base}/courses/${slug}` },
+    alternates: {
+      canonical: `${base}/${locale}/courses/${slug}`,
+      languages: { en: `${base}/en/courses/${slug}`, es: `${base}/es/courses/${slug}` },
+    },
     openGraph: {
       title: `${course.title} — RubenGonz`,
       description: course.shortDescription,
-      url: `${base}/courses/${slug}`,
+      url: `${base}/${locale}/courses/${slug}`,
       type: "article",
     },
   };
 }
 
 export default async function CoursePage({ params }: Props) {
-  const { slug } = await params;
-  const course = await getCourseBySlug(slug);
+  const { slug, locale } = await params;
+  const t = await getTranslations("courses");
+  const course = await getCourseBySlug(slug, locale);
   if (!course) notFound();
 
-  const all = await getCourses();
+  const all = await getCourses(locale);
   const currentIndex = all.findIndex((c) => c.slug === slug);
   const prev = all[currentIndex - 1] ?? null;
   const next = all[currentIndex + 1] ?? null;
 
   return (
     <main className="min-h-screen">
-
-      {/* ── Header ─────────────────────────────────────────────── */}
       <div className="relative border-b border-line/5 overflow-hidden">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: "radial-gradient(ellipse 60% 50% at 70% 50%, var(--glow-soft) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage: "radial-gradient(var(--grid-dot) 1px, transparent 1px)",
-            backgroundSize: "28px 28px",
-          }}
-        />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 60% 50% at 70% 50%, var(--glow-soft) 0%, transparent 70%)" }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "radial-gradient(var(--grid-dot) 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
 
         <div className="relative px-6 md:px-16 pt-28 pb-16 max-w-5xl mx-auto">
-          <BackLink label="Back" fallbackHref="/courses" />
+          <BackLink label={t("back")} fallbackHref="/courses" />
 
           <div className="flex flex-wrap items-center gap-3 mb-5">
-            <span className="font-inputmono text-[11px] text-brand tracking-widest uppercase">
-              {course.platform}
-            </span>
+            <span className="font-inputmono text-[11px] text-brand tracking-widest uppercase">{course.platform}</span>
             <span className="text-faint text-[9px]">·</span>
-            <span className="font-inputmono text-[11px] text-subtle tracking-widest">
-              {course.year}
-            </span>
+            <span className="font-inputmono text-[11px] text-subtle tracking-widest">{course.year}</span>
             <span className="text-faint text-[9px]">·</span>
             <StatusBadge status={course.status} />
           </div>
@@ -88,56 +76,35 @@ export default async function CoursePage({ params }: Props) {
             {course.shortDescription}
           </p>
 
-          {/* Tags */}
           <div className="flex flex-wrap gap-2 mb-8">
-            {course.tags.map((tag) => (
-              <Tag key={tag}>{tag}</Tag>
-            ))}
+            {course.tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}
           </div>
 
-          {/* CTAs */}
           <div className="flex flex-wrap gap-3">
-            {course.certificateUrl && (
-              <Button href={course.certificateUrl} external variant="primary">View certificate ↗</Button>
-            )}
-            {course.repoUrl && (
-              <Button href={course.repoUrl} external variant="outline">GitHub ↗</Button>
-            )}
-            {course.demoUrl && (
-              <Button href={course.demoUrl} external variant="ghost">Live demo ↗</Button>
-            )}
+            {course.certificateUrl && <Button href={course.certificateUrl} external variant="primary">{t("viewCertificate")}</Button>}
+            {course.repoUrl && <Button href={course.repoUrl} external variant="outline">{t("github")}</Button>}
+            {course.demoUrl && <Button href={course.demoUrl} external variant="ghost">{t("liveDemo")}</Button>}
           </div>
         </div>
       </div>
 
-      {/* ── Body ───────────────────────────────────────────────── */}
       <div className="px-6 md:px-16 py-16 md:py-24 max-w-5xl mx-auto flex flex-col gap-16 md:gap-20">
-
-        {/* Full description */}
         <section>
-          <SectionHeader label="About this course" />
+          <SectionHeader label={t("aboutCourse")} />
           <div className="flex flex-col gap-4 max-w-3xl">
             {course.fullDescription.split("\n\n").map((para, i) => (
-              <p key={i} className="font-inputmono text-muted text-sm leading-relaxed">
-                {para}
-              </p>
+              <p key={i} className="font-inputmono text-muted text-sm leading-relaxed">{para}</p>
             ))}
           </div>
         </section>
 
-        {/* Topics grid */}
         {course.topics.length > 0 && (
           <section>
-            <SectionHeader label="What I learned" />
+            <SectionHeader label={t("whatILearned")} />
             <div className="grid grid-cols-1 min-[640px]:grid-cols-2 gap-4">
               {course.topics.map((topic) => (
-                <div
-                  key={topic.label}
-                  className="border border-line/5 bg-line/1 px-5 py-4"
-                >
-                  <p className="font-inputmono text-[11px] text-brand tracking-widest uppercase mb-3">
-                    {topic.label}
-                  </p>
+                <div key={topic.label} className="border border-line/5 bg-line/1 px-5 py-4">
+                  <p className="font-inputmono text-[11px] text-brand tracking-widest uppercase mb-3">{topic.label}</p>
                   <ul className="flex flex-col gap-1.5">
                     {topic.items.map((item) => (
                       <li key={item} className="flex items-start gap-2">
@@ -157,7 +124,7 @@ export default async function CoursePage({ params }: Props) {
         prev={prev ? { href: `/courses/${prev.slug}`, shortLabel: prev.tags[0], title: prev.title } : null}
         next={next ? { href: `/courses/${next.slug}`, shortLabel: next.tags[0], title: next.title } : null}
         allHref="/courses"
-        allLabel="View all courses →"
+        allLabel={t("allCourses")}
       />
     </main>
   );

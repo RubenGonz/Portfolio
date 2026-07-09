@@ -17,27 +17,34 @@ beforeEach(() => jest.clearAllMocks());
 const dbRow = {
   id: "entry-1",
   year: "2025",
-  title: "Joined company",
-  subtitle: "As frontend dev",
-  paragraphs: ["First paragraph.", "Second paragraph."],
   current: true,
   order: 0,
+  translations: [
+    { locale: "en", title: "Joined company", subtitle: "As frontend dev", paragraphs: ["First.", "Second."] },
+    { locale: "es", title: "Entré en la empresa", subtitle: "Como frontend", paragraphs: ["Primero.", "Segundo."] },
+  ],
 };
 
 describe("getTimeline", () => {
-  it("returns mapped entries", async () => {
+  it("returns the requested locale's translation", async () => {
     mockFindMany.mockResolvedValueOnce([dbRow]);
-    const timeline = await getTimeline();
-    expect(timeline).toHaveLength(1);
-    expect(timeline[0].title).toBe("Joined company");
+    const [entry] = await getTimeline("es");
+    expect(entry.title).toBe("Entré en la empresa");
+    expect(entry.paragraphs).toHaveLength(2);
   });
 
-  it("passes all fields through", async () => {
+  it("defaults to English and passes neutral fields through", async () => {
     mockFindMany.mockResolvedValueOnce([dbRow]);
     const [entry] = await getTimeline();
+    expect(entry.title).toBe("Joined company");
     expect(entry.id).toBe("entry-1");
     expect(entry.current).toBe(true);
-    expect(entry.paragraphs).toHaveLength(2);
+  });
+
+  it("falls back to English when the locale is missing", async () => {
+    mockFindMany.mockResolvedValueOnce([{ ...dbRow, translations: [dbRow.translations[0]] }]);
+    const [entry] = await getTimeline("es");
+    expect(entry.title).toBe("Joined company");
   });
 
   it("returns empty array when no entries", async () => {

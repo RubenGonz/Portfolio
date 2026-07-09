@@ -1,13 +1,13 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/navigation";
 
 interface Props {
-  label?: string;
+  label: string;
   fallbackHref?: string;
 }
 
-export const BackLink = ({ label = "All projects", fallbackHref = "/#projects" }: Props) => {
+export const BackLink = ({ label, fallbackHref = "/" }: Props) => {
   const router = useRouter();
 
   const handleBack = () => {

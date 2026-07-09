@@ -4,6 +4,8 @@ const mockCreate = jest.fn().mockResolvedValue({});
 const mockUpdate = jest.fn().mockResolvedValue({});
 const mockDelete = jest.fn().mockResolvedValue({});
 const mockCount  = jest.fn().mockResolvedValue(0);
+const mockFindUnique = jest.fn().mockResolvedValue({ id: "course-1" });
+const mockUpsert = jest.fn().mockResolvedValue({});
 
 jest.mock("@/lib/prisma", () => ({
   prisma: {
@@ -12,7 +14,14 @@ jest.mock("@/lib/prisma", () => ({
       update:     (...args: unknown[]) => mockUpdate(...args),
       delete:     (...args: unknown[]) => mockDelete(...args),
       count:      (...args: unknown[]) => mockCount(...args),
+      findUnique: (...args: unknown[]) => mockFindUnique(...args),
     },
+    courseTranslation: {
+      upsert: (...args: unknown[]) => mockUpsert(...args),
+      deleteMany: jest.fn().mockResolvedValue({}),
+    },
+    // Execute the ops so a rejected update propagates (DB-failure test).
+    $transaction: (ops: Promise<unknown>[]) => Promise.all(ops),
   },
 }));
 
@@ -31,13 +40,13 @@ function fd(entries: Record<string, string>): FormData {
 
 const valid = {
   slug: "my-course",
-  title: "My Course",
   platform: "Udemy",
   year: "2025",
   status: "completed",
-  shortDescription: "Short",
-  fullDescription: "Full",
-  topics: "[]",
+  title_en: "My Course",
+  shortDescription_en: "Short",
+  fullDescription_en: "Full",
+  topics_en: "[]",
 };
 
 describe("createCourse", () => {
@@ -47,7 +56,7 @@ describe("createCourse", () => {
   });
 
   it("returns error when title is missing", async () => {
-    const result = await createCourse(undefined, fd({ ...valid, title: "" }));
+    const result = await createCourse(undefined, fd({ ...valid, title_en: "" }));
     expect(result).toBe("Slug and title are required.");
   });
 
@@ -65,7 +74,7 @@ describe("createCourse", () => {
 
 describe("updateCourse", () => {
   it("returns error when title is missing", async () => {
-    const result = await updateCourse("my-course", undefined, fd({ ...valid, title: "" }));
+    const result = await updateCourse("my-course", undefined, fd({ ...valid, title_en: "" }));
     expect(result).toBe("Title is required.");
   });
 

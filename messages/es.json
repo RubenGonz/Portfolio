@@ -1,0 +1,94 @@
+{
+  "nav": {
+    "projects": "Proyectos",
+    "about": "Sobre mí",
+    "courses": "Cursos",
+    "stack": "Stack",
+    "contact": "Contacto",
+    "admin": "Admin"
+  },
+  "common": {
+    "menu": "Menú",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "navigationMenu": "Menú de navegación",
+    "theme": "Tema",
+    "lang": "Idioma",
+    "switchToLight": "Cambiar a modo claro",
+    "switchToDark": "Cambiar a modo oscuro"
+  },
+  "hero": {
+    "seeProjects": "Ver proyectos →",
+    "viewCv": "Ver CV →",
+    "github": "GitHub ↗"
+  },
+  "projects": {
+    "sectionLabel": "Proyectos",
+    "viewMore": "Ver {count} más →",
+    "back": "Volver",
+    "allProjects": "Ver todos los proyectos →",
+    "viewLive": "Ver en vivo ↗",
+    "github": "GitHub ↗",
+    "about": "Sobre el proyecto",
+    "technicalHighlights": "Detalles técnicos",
+    "noMatch": "Ningún proyecto coincide con este filtro."
+  },
+  "courses": {
+    "sectionLabel": "Cursos",
+    "viewMore": "Ver {count} más →",
+    "back": "Volver",
+    "allCourses": "Ver todos los cursos →",
+    "viewCertificate": "Ver certificado ↗",
+    "github": "GitHub ↗",
+    "liveDemo": "Demo en vivo ↗",
+    "aboutCourse": "Sobre este curso",
+    "whatILearned": "Lo que aprendí",
+    "noMatch": "Ningún curso coincide con este filtro."
+  },
+  "about": {
+    "sectionLabel": "Sobre mí",
+    "tapToExplore": "toca para explorar →"
+  },
+  "stack": {
+    "sectionLabel": "Stack",
+    "categories": {
+      "Frontend": "UI y cliente",
+      "Backend": "Servidor y APIs",
+      "Database": "Almacenamiento y ORM",
+      "Tooling": "Flujo y DevOps"
+    }
+  },
+  "contact": {
+    "sectionLabel": "Contacto",
+    "emailLabel": "Tu email",
+    "messageLabel": "Mensaje",
+    "send": "Enviar mensaje →",
+    "sending": "Enviando...",
+    "success": "Mensaje enviado. Te respondo pronto.",
+    "error": "Algo salió mal. Escríbeme directamente."
+  },
+  "gallery": {
+    "expand": "Ampliar",
+    "expandImage": "Ampliar imagen",
+    "close": "✕ Cerrar",
+    "previous": "Imagen anterior",
+    "next": "Imagen siguiente"
+  },
+  "itemNav": {
+    "prev": "← Anterior",
+    "next": "Siguiente →"
+  },
+  "listing": {
+    "all": "Todos",
+    "newestFirst": "Más recientes",
+    "oldestFirst": "Más antiguos"
+  },
+  "status": {
+    "all": "Todos",
+    "live": "En vivo",
+    "completed": "Completado",
+    "in-progress": "En progreso",
+    "archived": "Archivado",
+    "not-started": "Sin empezar"
+  }
+}

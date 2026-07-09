@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 interface FilterOption {
   value: string;
   label: string;
@@ -13,11 +15,6 @@ interface Props {
   onOrderChange: (value: string) => void;
 }
 
-const orderOptions: FilterOption[] = [
-  { value: "newest", label: "Newest first" },
-  { value: "oldest", label: "Oldest first" },
-];
-
 const btnBase =
   "font-inputmono text-[11px] tracking-widest uppercase px-3 py-1.5 border transition-colors duration-150";
 const btnActive = "border-brand/50 text-brand bg-brand/8";
@@ -29,7 +26,14 @@ export const ListingFilters = ({
   selectedOrder,
   onStatusChange,
   onOrderChange,
-}: Props) => (
+}: Props) => {
+  const t = useTranslations("listing");
+  const orderOptions: FilterOption[] = [
+    { value: "newest", label: t("newestFirst") },
+    { value: "oldest", label: t("oldestFirst") },
+  ];
+
+  return (
   <div className="flex flex-wrap items-center gap-6 mb-8">
     <div className="flex flex-wrap gap-2">
       {statusOptions.map((opt) => (
@@ -55,4 +59,5 @@ export const ListingFilters = ({
       ))}
     </div>
   </div>
-);
+  );
+};

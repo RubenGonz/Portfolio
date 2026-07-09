@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { del } from "@vercel/blob";
 import { prisma } from "@/lib/prisma";
+import { DEFAULT_LOCALE, LOCALES } from "@/data/locale";
 
 const BLOB_HOST = "blob.vercel-storage.com";
 
@@ -12,6 +13,14 @@ async function deleteBlobImages(projectId: string) {
   const blobUrls = images.map((i) => i.src).filter((s) => s.includes(BLOB_HOST));
   if (blobUrls.length) await del(blobUrls).catch(() => {});
 }
+
+type ProjectTranslationData = {
+  title: string;
+  shortDescription: string;
+  fullDescription: string;
+  highlights: string[];
+  role: string | null;
+};
 
 function parseForm(fd: FormData) {
   const get = (k: string) => (fd.get(k) as string | null)?.trim() ?? "";
@@ -25,21 +34,37 @@ function parseForm(fd: FormData) {
     .map((src, i) => ({ name: (names[i] ?? "").trim(), src: src.trim(), alt: (alts[i] ?? "").trim() }))
     .filter((img) => img.src);
 
+  // Translatable fields carry a `_<locale>` suffix (title_en, title_es…).
+  const translations: Record<string, ProjectTranslationData> = {};
+  for (const locale of LOCALES) {
+    translations[locale] = {
+      title: get(`title_${locale}`),
+      shortDescription: get(`shortDescription_${locale}`),
+      fullDescription: get(`fullDescription_${locale}`),
+      highlights: arr(`highlights_${locale}`),
+      role: get(`role_${locale}`) || null,
+    };
+  }
+
   return {
-    slug: get("slug"),
-    title: get("title"),
-    shortDescription: get("shortDescription"),
-    fullDescription: get("fullDescription"),
-    role: get("role") || null,
-    url: get("url") || null,
-    repoUrl: get("repoUrl") || null,
-    year: parseInt(get("year"), 10) || new Date().getFullYear(),
-    status: get("status") || "in-progress",
-    tags: arr("tags"),
-    highlights: arr("highlights"),
+    // Language-neutral fields (stored on Project).
+    neutral: {
+      slug: get("slug"),
+      url: get("url") || null,
+      repoUrl: get("repoUrl") || null,
+      year: parseInt(get("year"), 10) || new Date().getFullYear(),
+      status: get("status") || "in-progress",
+      tags: arr("tags"),
+    },
+    translations,
     images,
   };
 }
+
+/** Locales whose translation has real content (a title) — the rest are dropped
+ *  so the public site falls back to the default locale. */
+const filledLocales = (translations: Record<string, ProjectTranslationData>) =>
+  LOCALES.filter((l) => translations[l].title.trim());
 
 function revalidate(slug?: string) {
   revalidatePath("/admin");
@@ -48,14 +73,17 @@ function revalidate(slug?: string) {
 }
 
 export async function createProject(_: unknown, fd: FormData): Promise<string | undefined> {
-  const { images, ...data } = parseForm(fd);
-  if (!data.slug || !data.title) return "Slug and title are required.";
+  const { neutral, translations, images } = parseForm(fd);
+  if (!neutral.slug || !translations[DEFAULT_LOCALE].title) return "Slug and title are required.";
   try {
     await prisma.project.create({
       data: {
-        ...data,
+        ...neutral,
         featured: false,
         images: { create: images.map((img, i) => ({ ...img, order: i })) },
+        translations: {
+          create: filledLocales(translations).map((locale) => ({ locale, ...translations[locale] })),
+        },
       },
     });
   } catch {
@@ -66,21 +94,35 @@ export async function createProject(_: unknown, fd: FormData): Promise<string | 
 }
 
 export async function updateProject(slug: string, _: unknown, fd: FormData): Promise<string | undefined> {
-  const { images, ...data } = parseForm(fd);
-  if (!data.title) return "Title is required.";
+  const { neutral, translations, images } = parseForm(fd);
+  if (!translations[DEFAULT_LOCALE].title) return "Title is required.";
   try {
     const project = await prisma.project.findUnique({ where: { slug }, select: { id: true } });
     if (!project) return "Project not found.";
     await deleteBlobImages(project.id);
+
+    const filled = filledLocales(translations);
     await prisma.$transaction([
       prisma.projectImage.deleteMany({ where: { projectId: project.id } }),
       prisma.project.update({
         where: { slug },
         data: {
-          ...data,
+          ...neutral,
           images: { create: images.map((img, i) => ({ ...img, order: i })) },
         },
       }),
+      // Drop translations that were cleared, so the public site falls back.
+      prisma.projectTranslation.deleteMany({
+        where: { projectId: project.id, locale: { notIn: filled } },
+      }),
+      // Upsert the ones with content.
+      ...filled.map((locale) =>
+        prisma.projectTranslation.upsert({
+          where: { projectId_locale: { projectId: project.id, locale } },
+          create: { projectId: project.id, locale, ...translations[locale] },
+          update: translations[locale],
+        }),
+      ),
     ]);
   } catch {
     return "DB error.";
