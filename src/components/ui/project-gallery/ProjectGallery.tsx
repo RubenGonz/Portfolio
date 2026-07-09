@@ -58,7 +58,7 @@ export const ProjectGallery = ({ images }: Props) => {
               <button
                 key={i}
                 onClick={() => setActive(i)}
-                className={`relative flex-1 aspect-video overflow-hidden border transition-all duration-200
+                className={`relative flex-1 aspect-video overflow-hidden border transition-all duration-200 cursor-pointer
                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50
                   ${i === active
                     ? "border-brand/60 opacity-100"
@@ -100,7 +100,7 @@ export const ProjectGallery = ({ images }: Props) => {
             {/* Close */}
             <button
               onClick={() => setLightbox(false)}
-              className="absolute -top-10 right-0 font-inputmono text-xs text-white/50 hover:text-white transition-colors tracking-widest uppercase"
+              className="absolute -top-10 right-0 font-inputmono text-xs text-white/50 hover:text-white transition-colors tracking-widest uppercase cursor-pointer"
             >
               {t("close")}
             </button>
@@ -111,14 +111,14 @@ export const ProjectGallery = ({ images }: Props) => {
                 <button
                   onClick={() => setActive((i) => (i - 1 + images.length) % images.length)}
                   aria-label={t("previous")}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 font-inputmono text-xs text-white/50 hover:text-white transition-colors p-2"
+                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 font-inputmono text-xs text-white/50 hover:text-white transition-colors p-2 cursor-pointer"
                 >
                   ←
                 </button>
                 <button
                   onClick={() => setActive((i) => (i + 1) % images.length)}
                   aria-label={t("next")}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 font-inputmono text-xs text-white/50 hover:text-white transition-colors p-2"
+                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 font-inputmono text-xs text-white/50 hover:text-white transition-colors p-2 cursor-pointer"
                 >
                   →
                 </button>

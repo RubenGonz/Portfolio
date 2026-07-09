@@ -21,7 +21,7 @@ export const LocaleSwitcher = () => {
           {i > 0 && <span className="text-subtle/40">/</span>}
           <button
             onClick={toggle}
-            className={`uppercase transition-colors ${
+            className={`uppercase transition-colors cursor-pointer ${
               l === locale ? "text-fg" : "text-subtle hover:text-muted"
             }`}
           >

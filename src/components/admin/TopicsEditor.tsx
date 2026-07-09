@@ -72,7 +72,7 @@ export function TopicsEditor({ name, defaultValue = [] }: { name: string; defaul
               <button
                 type="button"
                 onClick={() => removeSection(si)}
-                className="font-inputmono text-[11px] text-subtle hover:text-danger transition-colors shrink-0"
+                className="font-inputmono text-[11px] text-subtle hover:text-danger transition-colors shrink-0 cursor-pointer"
               >
                 Remove
               </button>
@@ -93,7 +93,7 @@ export function TopicsEditor({ name, defaultValue = [] }: { name: string; defaul
                     <button
                       type="button"
                       onClick={() => removeItem(si, ii)}
-                      className="text-subtle hover:text-danger transition-colors leading-none"
+                      className="text-subtle hover:text-danger transition-colors leading-none cursor-pointer"
                     >
                       ×
                     </button>

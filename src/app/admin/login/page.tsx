@@ -56,7 +56,7 @@ export default function LoginPage() {
           disabled={isPending}
           className="font-inputmono text-[11px] tracking-widest uppercase font-bold
             bg-linear-to-r from-brand-sec to-brand text-on-accent px-4 py-2.5
-            hover:opacity-90 transition-opacity disabled:opacity-50"
+            hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
           {isPending ? "Signing in…" : "Sign in"}
         </button>

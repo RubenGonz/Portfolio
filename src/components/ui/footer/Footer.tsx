@@ -17,10 +17,10 @@ export const Footer = async () => {
             <span className="bg-linear-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"}"}</span>
           </span>
           <div className="flex items-center gap-5">
-            <a href={siteConfig.social.github.url} target="_blank" rel="noopener noreferrer" className="font-inputmono text-[11px] text-muted hover:text-fg transition-colors">
+            <a href={siteConfig.social.github.url} target="_blank" rel="noopener noreferrer" className="font-inputmono text-[11px] text-muted hover:text-fg transition-colors cursor-pointer">
               GitHub ↗
             </a>
-            <a href={siteConfig.social.linkedin.url} target="_blank" rel="noopener noreferrer" className="font-inputmono text-[11px] text-muted hover:text-fg transition-colors">
+            <a href={siteConfig.social.linkedin.url} target="_blank" rel="noopener noreferrer" className="font-inputmono text-[11px] text-muted hover:text-fg transition-colors cursor-pointer">
               LinkedIn ↗
             </a>
           </div>

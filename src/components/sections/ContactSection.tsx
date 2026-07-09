@@ -57,7 +57,7 @@ export const ContactSection = ({ contact }: { contact: ContactContent }) => {
           <div className="flex flex-col gap-3">
             <a
               href={`mailto:${siteConfig.email}`}
-              className="font-inputmono text-xs text-muted hover:text-fg transition-colors flex items-center gap-2 break-all"
+              className="font-inputmono text-xs text-muted hover:text-fg transition-colors flex items-center gap-2 break-all cursor-pointer"
             >
               <span className="text-subtle shrink-0" aria-hidden="true">→</span>
               {siteConfig.email}
@@ -66,7 +66,7 @@ export const ContactSection = ({ contact }: { contact: ContactContent }) => {
               href={siteConfig.social.linkedin.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-inputmono text-xs text-muted hover:text-fg transition-colors flex items-center gap-2"
+              className="font-inputmono text-xs text-muted hover:text-fg transition-colors flex items-center gap-2 cursor-pointer"
             >
               <span className="text-subtle shrink-0" aria-hidden="true">→</span>
               {siteConfig.social.linkedin.handle} ↗
@@ -75,7 +75,7 @@ export const ContactSection = ({ contact }: { contact: ContactContent }) => {
               href={siteConfig.social.github.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-inputmono text-xs text-muted hover:text-fg transition-colors flex items-center gap-2"
+              className="font-inputmono text-xs text-muted hover:text-fg transition-colors flex items-center gap-2 cursor-pointer"
             >
               <span className="text-subtle shrink-0" aria-hidden="true">→</span>
               {siteConfig.social.github.handle} ↗

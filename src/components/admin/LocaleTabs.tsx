@@ -9,7 +9,7 @@ interface Props {
   render: (locale: string) => ReactNode;
 }
 
-const tabBase = "font-inputmono text-[11px] tracking-widest uppercase px-3 py-1.5 border transition-colors duration-150";
+const tabBase = "font-inputmono text-[11px] tracking-widest uppercase px-3 py-1.5 border transition-colors duration-150 cursor-pointer";
 const tabActive = "border-brand/50 text-brand bg-brand/8";
 const tabIdle = "border-line/10 text-subtle hover:border-brand/30 hover:text-fg";
 

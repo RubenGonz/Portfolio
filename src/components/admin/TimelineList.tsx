@@ -21,7 +21,7 @@ function CurrentToggle({ id, current: initial }: { id: string; current: boolean 
       type="button"
       onClick={toggle}
       title={current ? "Unmark as current" : "Mark as current"}
-      className={`font-inputmono text-[10px] tracking-widest uppercase border px-2 py-1 transition-colors ${
+      className={`font-inputmono text-[10px] tracking-widest uppercase border px-2 py-1 transition-colors cursor-pointer ${
         current
           ? "border-brand/40 text-brand bg-brand/5"
           : "border-line/10 text-faint hover:text-subtle hover:border-line/20"
@@ -79,7 +79,7 @@ export function TimelineList({ entries }: { entries: TimelineEntry[] }) {
             <CurrentToggle id={entry.id} current={entry.current} />
             <Link
               href={`/admin/timeline/${entry.id}/edit`}
-              className="font-inputmono text-[11px] tracking-widest uppercase text-subtle hover:text-fg transition-colors"
+              className="font-inputmono text-[11px] tracking-widest uppercase text-subtle hover:text-fg transition-colors cursor-pointer"
             >
               Edit
             </Link>

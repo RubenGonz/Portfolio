@@ -28,7 +28,7 @@ export const Header = ({ available }: { available: AvailableContent }) => {
       ${scrolled ? "bg-bg/90 backdrop-blur-md border-line/5" : "bg-transparent border-transparent"}`}
     >
       {/* Logo */}
-      <Link href="/" className="flex items-center gap-1.5 group">
+      <Link href="/" className="flex items-center gap-1.5 group cursor-pointer">
         <span className="font-n27 font-bold italic text-xl leading-none bg-linear-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"{"}</span>
         <span className="font-n27 font-bold italic text-sm tracking-wide text-fg">rubengonz</span>
         <span className="font-n27 font-bold italic text-xl leading-none bg-linear-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"}"}</span>
@@ -40,7 +40,7 @@ export const Header = ({ available }: { available: AvailableContent }) => {
           <Link
             key={href}
             href={href}
-            className="font-inputmono text-xs text-muted hover:text-fg tracking-widest uppercase transition-colors"
+            className="font-inputmono text-xs text-muted hover:text-fg tracking-widest uppercase transition-colors cursor-pointer"
           >
             {t(key)}
           </Link>
@@ -54,7 +54,7 @@ export const Header = ({ available }: { available: AvailableContent }) => {
           <ThemeSelector />
           <NextLink
             href="/admin"
-            className="font-inputmono text-xs tracking-widest uppercase text-muted hover:text-fg transition-colors"
+            className="font-inputmono text-xs tracking-widest uppercase text-muted hover:text-fg transition-colors cursor-pointer"
           >
             {t("admin")}
           </NextLink>
@@ -62,7 +62,7 @@ export const Header = ({ available }: { available: AvailableContent }) => {
 
         <button
           onClick={() => setOpen(true)}
-          className="md:hidden z-20 p-2 rounded hover:bg-fg/10 transition-colors font-inputmono text-xs text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50"
+          className="md:hidden z-20 p-2 rounded hover:bg-fg/10 transition-colors font-inputmono text-xs text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 cursor-pointer"
           aria-label={tc("openMenu")}
         >
           {tc("menu")}

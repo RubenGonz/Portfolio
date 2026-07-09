@@ -13,7 +13,7 @@ export const ProjectCard = ({ project, headingLevel = 3 }: Props) => {
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="group block border border-line/7 bg-surface overflow-hidden
+      className="group block border border-line/7 bg-surface overflow-hidden cursor-pointer
         hover:border-brand/30 transition-colors duration-300"
     >
       <div className="h-0.5 bg-linear-to-r from-brand-sec via-brand to-transparent" />

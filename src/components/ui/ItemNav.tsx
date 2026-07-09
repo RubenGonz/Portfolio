@@ -17,7 +17,7 @@ interface Props {
 }
 
 const navCard = `group flex flex-col gap-0.5 border border-line/5 bg-line/1
-  px-5 py-4 hover:border-brand/30 transition-colors duration-150`;
+  px-5 py-4 hover:border-brand/30 transition-colors duration-150 cursor-pointer`;
 
 export const ItemNav = async ({ prev, next, allHref, allLabel }: Props) => {
   const t = await getTranslations("itemNav");
@@ -64,7 +64,7 @@ export const ItemNav = async ({ prev, next, allHref, allLabel }: Props) => {
       <Link
         href={allHref}
         className="font-inputmono text-[11px] tracking-widest uppercase text-subtle
-          hover:text-brand transition-colors duration-150"
+          hover:text-brand transition-colors duration-150 cursor-pointer"
       >
         {allLabel}
       </Link>

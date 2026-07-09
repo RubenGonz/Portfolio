@@ -48,7 +48,7 @@ export const Sidebar = ({ open, setOpen, navLinks, available }: Props) => {
           <button
             onClick={() => setOpen(false)}
             aria-label={tc("closeMenu")}
-            className="font-inputmono text-faint hover:text-fg transition-colors text-xs p-1"
+            className="font-inputmono text-faint hover:text-fg transition-colors text-xs p-1 cursor-pointer"
           >
             ✕
           </button>
@@ -61,7 +61,7 @@ export const Sidebar = ({ open, setOpen, navLinks, available }: Props) => {
               href={href}
               onClick={() => setOpen(false)}
               className="font-inputmono text-sm text-muted hover:text-fg transition-colors
-                px-4 py-3 border border-transparent hover:border-line/5 hover:bg-line/2"
+                px-4 py-3 border border-transparent hover:border-line/5 hover:bg-line/2 cursor-pointer"
             >
               <span className="text-subtle mr-3 text-xs" aria-hidden="true">0{i + 1}</span>
               {t(key)}
@@ -82,14 +82,14 @@ export const Sidebar = ({ open, setOpen, navLinks, available }: Props) => {
           {available.available && <AvailableBadge label={available.label} className="mb-4" />}
           <a
             href={`mailto:${siteConfig.email}`}
-            className="font-inputmono text-[11px] text-muted hover:text-fg transition-colors break-all"
+            className="font-inputmono text-[11px] text-muted hover:text-fg transition-colors break-all cursor-pointer"
           >
             {siteConfig.email}
           </a>
           <NextLink
             href="/admin"
             onClick={() => setOpen(false)}
-            className="font-inputmono text-[10px] tracking-widest uppercase text-faint hover:text-subtle transition-colors mt-4 block"
+            className="font-inputmono text-[10px] tracking-widest uppercase text-faint hover:text-subtle transition-colors mt-4 block cursor-pointer"
           >
             ⚙ {t("admin")}
           </NextLink>

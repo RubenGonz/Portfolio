@@ -65,7 +65,7 @@ export function ChipEditor({ label, name, defaultValue = [], hint }: ChipEditorP
               <button
                 type="button"
                 onClick={() => remove(i)}
-                className="text-subtle hover:text-danger transition-colors leading-none"
+                className="text-subtle hover:text-danger transition-colors leading-none cursor-pointer"
                 aria-label={`Remove ${chip}`}
               >
                 ×
