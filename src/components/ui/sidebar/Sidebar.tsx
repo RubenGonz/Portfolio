@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import NextLink from "next/link";
 import { Link } from "@/navigation";
 import { ThemeSelector } from "../theme-selector/ThemeSelector";
 import { AvailableBadge } from "../AvailableBadge";
@@ -85,13 +86,13 @@ export const Sidebar = ({ open, setOpen, navLinks, available }: Props) => {
           >
             {siteConfig.email}
           </a>
-          <Link
+          <NextLink
             href="/admin"
             onClick={() => setOpen(false)}
             className="font-inputmono text-[10px] tracking-widest uppercase text-faint hover:text-subtle transition-colors mt-4 block"
           >
             ⚙ {t("admin")}
-          </Link>
+          </NextLink>
         </div>
       </div>
     </>

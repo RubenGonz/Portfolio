@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { prisma } from "@/lib/prisma";
 import { DEFAULT_LOCALE, LOCALES } from "./locale";
 
@@ -40,7 +41,9 @@ const DEFAULTS = {
 
 const KEYS = ["hero_title", "hero_tagline", "hero_description", "ticker_text", "contact_headline", "contact_subtext", "available", "available_label", "cv_url"];
 
-export async function getHomeContent(locale: string = DEFAULT_LOCALE): Promise<HomeContent> {
+// Wrapped in cache() so the layout (available badge) and the page (hero,
+// ticker, contact) share a single query per request instead of two.
+export const getHomeContent = cache(async (locale: string = DEFAULT_LOCALE): Promise<HomeContent> => {
   // Fetch the requested locale plus the default, then prefer the requested
   // one per key — language-neutral keys (cv_url, available) only exist under
   // the default locale and resolve through this same fallback.
@@ -68,7 +71,7 @@ export async function getHomeContent(locale: string = DEFAULT_LOCALE): Promise<H
     },
     cvUrl: m["cv_url"] ?? "",
   };
-}
+});
 
 export async function getHeroContent(locale: string = DEFAULT_LOCALE): Promise<HeroContent> {
   const home = await getHomeContent(locale);

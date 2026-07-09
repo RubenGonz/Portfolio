@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import NextLink from "next/link";
 import { Link } from "@/navigation";
 import { Sidebar } from "../sidebar/Sidebar";
 import { ThemeSelector } from "../theme-selector/ThemeSelector";
@@ -51,12 +52,12 @@ export const Header = ({ available }: { available: AvailableContent }) => {
           {available.available && <AvailableBadge label={available.label} bordered />}
           <LocaleSwitcher />
           <ThemeSelector />
-          <Link
+          <NextLink
             href="/admin"
             className="font-inputmono text-xs tracking-widest uppercase text-muted hover:text-fg transition-colors"
           >
             {t("admin")}
-          </Link>
+          </NextLink>
         </div>
 
         <button
