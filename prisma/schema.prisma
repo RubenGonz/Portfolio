@@ -13,30 +13,44 @@ datasource db {
 }
 
 model Project {
-  id               String         @id @default(cuid())
-  slug             String         @unique
+  id        String               @id @default(cuid())
+  slug      String               @unique
+  // Language-neutral fields live on the parent. Tags are the tech stack
+  // (React, PostgreSQL…) — proper nouns, not translated.
+  tags      String[]
+  url       String?
+  repoUrl   String?
+  featured  Boolean              @default(false)
+  year      Int
+  // Kept as String to mirror the domain union type ("live" | "in-progress" | "archived").
+  // Write-time validation happens in the Server Action (zod).
+  status    String
+  // Editable individually / order matters → relational child table
+  images    ProjectImage[]
+  // One row per locale — see ProjectTranslation.
+  translations ProjectTranslation[]
+  createdAt DateTime             @default(now())
+  updatedAt DateTime             @updatedAt
+}
+
+/// Localized copy for a Project. @@unique guarantees one row per locale.
+model ProjectTranslation {
+  id               String   @id @default(cuid())
+  locale           String
   title            String
   shortDescription String
   fullDescription  String
-  // Flat string lists → Postgres scalar arrays
-  tags             String[]
   highlights       String[]
   role             String?
-  url              String?
-  repoUrl          String?
-  featured         Boolean        @default(false)
-  year             Int
-  // Kept as String to mirror the domain union type ("live" | "in-progress" | "archived").
-  // Write-time validation happens in the Server Action (zod).
-  status           String
-  // Editable individually / order matters → relational child table
-  images           ProjectImage[]
-  createdAt        DateTime       @default(now())
-  updatedAt        DateTime       @updatedAt
+  project          Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId        String
+
+  @@unique([projectId, locale])
 }
 
 model ProjectImage {
   id        String  @id @default(cuid())
+  name      String  @default("")
   src       String
   alt       String
   order     Int     @default(0)
@@ -45,34 +59,56 @@ model ProjectImage {
 }
 
 model Course {
-  id               String   @id @default(cuid())
-  slug             String   @unique
+  id             String              @id @default(cuid())
+  slug           String              @unique
+  platform       String
+  year           Int
+  status         String // "completed" | "in-progress" | "not-started"
+  featured       Boolean             @default(false)
+  certificateUrl String?
+  repoUrl        String?
+  demoUrl        String?
+  translations   CourseTranslation[]
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+}
+
+/// Localized copy for a Course. @@unique guarantees one row per locale.
+model CourseTranslation {
+  id               String @id @default(cuid())
+  locale           String
   title            String
-  platform         String
-  year             Int
-  status           String // "completed" | "in-progress" | "not-started"
   shortDescription String
   fullDescription  String
   // Structured blob edited as a unit → JSON. Shape: { label: string, items: string[] }[]
   topics           Json
   tags             String[]
-  featured         Boolean  @default(false)
-  certificateUrl   String?
-  repoUrl          String?
-  demoUrl          String?
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  course           Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId         String
+
+  @@unique([courseId, locale])
 }
 
 model TimelineEntry {
-  id         String   @id @default(cuid())
-  year       String
+  id           String                     @id @default(cuid())
+  year         String
+  current      Boolean                    @default(false)
+  order        Int                        @default(0)
+  translations TimelineEntryTranslation[]
+  updatedAt    DateTime                   @updatedAt
+}
+
+/// Localized copy for a TimelineEntry. @@unique guarantees one row per locale.
+model TimelineEntryTranslation {
+  id         String        @id @default(cuid())
+  locale     String
   title      String
   subtitle   String?
   paragraphs String[]
-  current    Boolean  @default(false)
-  order      Int      @default(0)
-  updatedAt  DateTime @updatedAt
+  entry      TimelineEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+  entryId    String
+
+  @@unique([entryId, locale])
 }
 
 model StackItem {
@@ -83,11 +119,16 @@ model StackItem {
   order    Int    @default(0)
 }
 
-// Generic key-value store for editable site content (hero copy, etc.)
+// Generic key-value store for editable site content (hero copy, etc.),
+// localized per key. Language-neutral keys (cv_url, available) live under
+// "en" and are resolved via the read-time fallback in the data layer.
 model Setting {
-  key       String   @id
+  key       String
+  locale    String
   value     String
   updatedAt DateTime @updatedAt
+
+  @@id([key, locale])
 }
 
 // Single admin account (you). Auth.js Credentials provider verifies against this.

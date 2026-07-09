@@ -1,13 +1,13 @@
-import { getHomeContent } from "@/data/settings";
+import { getHomeForEdit } from "@/data/settings";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { TickerEditForm } from "./TickerEditForm";
 
 export default async function TickerAdminPage() {
-  const { tickerText } = await getHomeContent();
+  const home = await getHomeForEdit();
   return (
     <div>
       <AdminPageHeader title="Ticker" />
-      <TickerEditForm tickerText={tickerText} />
+      <TickerEditForm home={home} />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GhostNumber } from "@/components/ui/GhostNumber";
 import { Section } from "@/components/ui/Section";
@@ -9,7 +10,6 @@ import type { TimelineEntry } from "@/data/timeline";
 const ROTATE_MS = 5000;
 const FADE_MS = 250;
 
-/** Style classes for a timeline entry given its selection / "current" state. */
 const entryClasses = (isSelected: boolean, isCurrent: boolean) => ({
   dot: isSelected
     ? isCurrent
@@ -25,6 +25,7 @@ const entryClasses = (isSelected: boolean, isCurrent: boolean) => ({
 });
 
 export const AboutSection = ({ items }: { items: TimelineEntry[] }) => {
+  const t = useTranslations("about");
   const [activeId, setActiveId] = useState<string>(items[0]?.id ?? "");
   const [fading, setFading] = useState(false);
   const userInteracted = useRef(false);
@@ -37,20 +38,14 @@ export const AboutSection = ({ items }: { items: TimelineEntry[] }) => {
     }, FADE_MS);
   };
 
-  // Auto-rotate on desktop only — on mobile the layout shifts when text length changes
   useEffect(() => {
     if (window.matchMedia("(max-width: 767px)").matches) return;
-
     let index = 1;
     const interval = setInterval(() => {
-      if (userInteracted.current) {
-        clearInterval(interval);
-        return;
-      }
+      if (userInteracted.current) { clearInterval(interval); return; }
       transitionTo(items[index % items.length].id);
       index++;
     }, ROTATE_MS);
-
     return () => clearInterval(interval);
   }, []);
 
@@ -63,12 +58,11 @@ export const AboutSection = ({ items }: { items: TimelineEntry[] }) => {
 
   return (
     <Section id="about">
-      <SectionHeader label="About" srTitle="About" />
+      <SectionHeader label={t("sectionLabel")} srTitle={t("sectionLabel")} />
 
       <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 max-w-4xl relative">
         <GhostNumber>02</GhostNumber>
 
-        {/* Left: dynamic text — second on mobile, first on desktop */}
         <div
           className="flex flex-col gap-4 transition-opacity duration-250 ease-in-out order-2 md:order-1"
           style={{ opacity: fading ? 0 : 1 }}
@@ -80,14 +74,12 @@ export const AboutSection = ({ items }: { items: TimelineEntry[] }) => {
           ))}
         </div>
 
-        {/* Right: interactive timeline — first on mobile, second on desktop */}
         <div className="order-1 md:order-2">
           <p className="font-inputmono text-[11px] text-subtle mb-4 md:hidden">
-            tap to explore timeline →
+            {t("tapToExplore")}
           </p>
 
           <div className="relative pl-7 flex flex-col gap-5 md:gap-6">
-            {/* Vertical rail — dedicated element so dots can center on it precisely */}
             <div className="absolute left-0 top-1 bottom-1 w-px bg-line/6" />
 
             {items.map((item) => {
@@ -101,22 +93,16 @@ export const AboutSection = ({ items }: { items: TimelineEntry[] }) => {
                   onClick={() => handleSelect(item.id)}
                   className="relative text-left group"
                 >
-                  {/* Dot — left-0 relative to button + -translate-x-1/2 centers it on the rail */}
-                  <div
-                    className={`absolute -left-7 top-[5px] -translate-x-1/2 rounded-full border transition-all duration-200 ${c.dot}`}
-                  />
-
+                  <div className={`absolute -left-7 top-[5px] -translate-x-1/2 rounded-full border transition-all duration-200 ${c.dot}`} />
                   <p className={`font-inputmono text-[11px] tracking-widest mb-0.5 transition-colors duration-150 ${c.year}`}>
                     {item.year}
                   </p>
-
                   <p className={`font-inputmono text-xs transition-colors duration-150 ${c.title}`}>
                     {item.title}
                     {isSelected && isCurrent && (
                       <span className="text-brand animate-[blink_1.1s_step-end_infinite]"> ▌</span>
                     )}
                   </p>
-
                   {item.subtitle && (
                     <p className="font-inputmono text-[11px] mt-0.5 text-subtle">{item.subtitle}</p>
                   )}

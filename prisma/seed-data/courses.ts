@@ -71,3 +71,43 @@ export const courses: CourseSeed[] = [
     repoUrl: "https://github.com/RubenGonz/node-course",
   },
 ];
+
+/** Spanish translations, keyed by course slug. */
+export interface CourseTranslationSeed {
+  title: string;
+  shortDescription: string;
+  fullDescription: string;
+  topics: { label: string; items: string[] }[];
+  tags: string[];
+}
+
+export const courseTranslationsEs: Record<string, CourseTranslationSeed> = {
+  "nextjs-framework-react": {
+    title: "Next.js: El framework de React para producción",
+    shortDescription:
+      "Curso completo de Next.js construyendo aplicaciones listas para producción, incluido Teslo-Shop, un e-commerce con autenticación, pagos y renderizado híbrido.",
+    fullDescription:
+      "Aprendí Next.js desarrollando varios proyectos, incluida una aplicación de e-commerce completa (Teslo-Shop). Cubrí estrategias de renderizado híbrido (SSR, SSG, ISR, CSR), autenticación basada en JWT e implementación de APIs REST.\n\nTrabajé con rutas dinámicas y anidadas, diseño responsive con Material UI, Next UI y Tailwind CSS, e integré PostgreSQL. Gestioné cookies, construí formularios dinámicos con React Hook Form e implementé pagos con PayPal y tarjeta de crédito.\n\nTambién cubrí despliegues en varias plataformas y buenas prácticas de control de versiones con Git y GitHub.",
+    topics: [
+      { label: "React y Next.js", items: ["App Router", "SSR / SSG / ISR / CSR", "Rutas dinámicas", "Layouts anidados"] },
+      { label: "Backend y datos", items: ["Implementación de APIs REST", "PostgreSQL", "Autenticación JWT", "Cookies y sesiones"] },
+      { label: "UI y formularios", items: ["Tailwind CSS", "Material UI", "Next UI", "React Hook Form"] },
+      { label: "Pagos y despliegue", items: ["Integración de PayPal", "Pagos con tarjeta", "Despliegue multiplataforma"] },
+    ],
+    tags: ["Next.js", "React", "TypeScript", "PostgreSQL", "Tailwind CSS", "API REST", "React Hook Form"],
+  },
+  "nodejs-de-cero-a-experto": {
+    title: "NodeJS: De cero a experto",
+    shortDescription:
+      "Curso integral de Node.js que cubre APIs REST, Clean Architecture, testing, WebSockets, bases de datos y serverless, desde apps de consola hasta sistemas backend completos.",
+    fullDescription:
+      "Aprendí Node.js desde cero, construyendo aplicaciones backend modernas y entendiendo su papel dentro del ecosistema full-stack. Desarrollé APIs REST con Express, aplicando Clean Architecture y buenas prácticas de código.\n\nImplementé testing con Jest, gestioné operaciones asíncronas y eventos, y trabajé con WebSockets, webhooks y funciones serverless para aplicaciones en tiempo real.\n\nTrabajé con bases de datos como PostgreSQL y MongoDB, además de sistemas de ficheros, apliqué patrones de diseño como el Repository Pattern y desplegué aplicaciones en entornos como Railway.\n\nEl curso incluyó varios proyectos prácticos, desde aplicaciones de consola hasta sistemas completos que combinan APIs REST y WebSockets.",
+    topics: [
+      { label: "Node.js esencial", items: ["Express", "Asincronía / eventos", "Sistemas de ficheros", "Funciones serverless"] },
+      { label: "Arquitectura", items: ["Clean Architecture", "Repository Pattern", "Diseño de APIs REST", "WebSockets y webhooks"] },
+      { label: "Bases de datos", items: ["PostgreSQL", "MongoDB", "Prisma ORM"] },
+      { label: "Testing y despliegue", items: ["Jest", "Tests unitarios y de integración", "Despliegue en Railway"] },
+    ],
+    tags: ["Node.js", "Express", "TypeScript", "PostgreSQL", "MongoDB", "Jest", "WebSockets", "Clean Architecture"],
+  },
+};

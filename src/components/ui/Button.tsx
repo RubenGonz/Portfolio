@@ -18,7 +18,7 @@ interface Props {
   /** Renders an <a>. Add `external` for target=_blank, or `download`. */
   href?: string;
   external?: boolean;
-  download?: boolean;
+  download?: boolean | string;
   /** Renders a <button> when no href is given. */
   type?: "button" | "submit";
   disabled?: boolean;

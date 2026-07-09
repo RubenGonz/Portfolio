@@ -1,27 +1,23 @@
 import { PrismaClient } from "@prisma/client";
-import { projects } from "./seed-data/projects";
-import { courses } from "./seed-data/courses";
-import { timelineEntries } from "./seed-data/timeline";
+import { projects, projectTranslationsEs } from "./seed-data/projects";
+import { courses, courseTranslationsEs } from "./seed-data/courses";
+import { timelineEntries, timelineTranslationsEs } from "./seed-data/timeline";
 import { stackItems } from "./seed-data/stack";
-import { settings } from "./seed-data/settings";
+import { settings, settingsEs } from "./seed-data/settings";
 
 const prisma = new PrismaClient();
 
 async function main() {
   console.log("Seeding database…");
 
+  // ─── Projects ─────────────────────────────────────────────────────────────
   for (const p of projects) {
-    await prisma.project.upsert({
+    const project = await prisma.project.upsert({
       where: { slug: p.slug },
-      update: {},
+      update: {}, // never overwrite neutral fields / admin edits
       create: {
         slug: p.slug,
-        title: p.title,
-        shortDescription: p.shortDescription,
-        fullDescription: p.fullDescription,
         tags: p.tags,
-        highlights: p.highlights,
-        role: p.role,
         url: p.url,
         repoUrl: p.repoUrl,
         featured: p.featured,
@@ -29,6 +25,7 @@ async function main() {
         status: p.status,
         images: {
           create: (p.images ?? []).map((img, i) => ({
+            name: img.name,
             src: img.src,
             alt: img.alt,
             order: i,
@@ -36,53 +33,132 @@ async function main() {
         },
       },
     });
+
+    // English (default) translation.
+    await prisma.projectTranslation.upsert({
+      where: { projectId_locale: { projectId: project.id, locale: "en" } },
+      update: {},
+      create: {
+        projectId: project.id,
+        locale: "en",
+        title: p.title,
+        shortDescription: p.shortDescription,
+        fullDescription: p.fullDescription,
+        highlights: p.highlights,
+        role: p.role,
+      },
+    });
+
+    // Spanish translation.
+    const es = projectTranslationsEs[p.slug];
+    if (es) {
+      await prisma.projectTranslation.upsert({
+        where: { projectId_locale: { projectId: project.id, locale: "es" } },
+        update: {},
+        create: { projectId: project.id, locale: "es", ...es },
+      });
+    }
   }
 
+  // ─── Courses ──────────────────────────────────────────────────────────────
   for (const c of courses) {
-    await prisma.course.upsert({
+    const course = await prisma.course.upsert({
       where: { slug: c.slug },
       update: {},
       create: {
         slug: c.slug,
-        title: c.title,
         platform: c.platform,
         year: c.year,
         status: c.status,
-        shortDescription: c.shortDescription,
-        fullDescription: c.fullDescription,
-        topics: c.topics,
-        tags: c.tags,
         certificateUrl: c.certificateUrl,
         repoUrl: c.repoUrl,
         demoUrl: c.demoUrl,
       },
     });
+
+    await prisma.courseTranslation.upsert({
+      where: { courseId_locale: { courseId: course.id, locale: "en" } },
+      update: {},
+      create: {
+        courseId: course.id,
+        locale: "en",
+        title: c.title,
+        shortDescription: c.shortDescription,
+        fullDescription: c.fullDescription,
+        topics: c.topics,
+        tags: c.tags,
+      },
+    });
+
+    const es = courseTranslationsEs[c.slug];
+    if (es) {
+      await prisma.courseTranslation.upsert({
+        where: { courseId_locale: { courseId: course.id, locale: "es" } },
+        update: {},
+        create: { courseId: course.id, locale: "es", ...es },
+      });
+    }
   }
 
-  // Timeline — skip if any entries already exist
-  const timelineCount = await prisma.timelineEntry.count();
-  if (timelineCount === 0) {
-    await prisma.timelineEntry.createMany({ data: timelineEntries });
+  // ─── Timeline ─────────────────────────────────────────────────────────────
+  // No natural unique key beyond the year label — match on it for idempotency.
+  for (const [i, e] of timelineEntries.entries()) {
+    let entry = await prisma.timelineEntry.findFirst({ where: { year: e.year } });
+    if (!entry) {
+      entry = await prisma.timelineEntry.create({
+        data: { year: e.year, current: e.current ?? false, order: e.order ?? i },
+      });
+    }
+
+    await prisma.timelineEntryTranslation.upsert({
+      where: { entryId_locale: { entryId: entry.id, locale: "en" } },
+      update: {},
+      create: {
+        entryId: entry.id,
+        locale: "en",
+        title: e.title,
+        subtitle: e.subtitle ?? null,
+        paragraphs: e.paragraphs,
+      },
+    });
+
+    const es = timelineTranslationsEs[e.year];
+    if (es) {
+      await prisma.timelineEntryTranslation.upsert({
+        where: { entryId_locale: { entryId: entry.id, locale: "es" } },
+        update: {},
+        create: { entryId: entry.id, locale: "es", ...es },
+      });
+    }
   }
 
-  // Stack — skip if any items already exist
+  // ─── Stack ────────────────────────────────────────────────────────────────
   const stackCount = await prisma.stackItem.count();
   if (stackCount === 0) {
     await prisma.stackItem.createMany({ data: stackItems });
   }
 
-  // Settings — upsert so existing edits are preserved on re-seed
+  // ─── Settings ─────────────────────────────────────────────────────────────
+  // upsert so existing admin edits are preserved on re-seed.
   for (const s of settings) {
     await prisma.setting.upsert({
-      where: { key: s.key },
+      where: { key_locale: { key: s.key, locale: "en" } },
       update: {},
-      create: s,
+      create: { key: s.key, locale: "en", value: s.value },
+    });
+  }
+  for (const s of settingsEs) {
+    await prisma.setting.upsert({
+      where: { key_locale: { key: s.key, locale: "es" } },
+      update: {},
+      create: { key: s.key, locale: "es", value: s.value },
     });
   }
 
   console.log(
     `Seeded ${projects.length} project(s), ${courses.length} course(s), ` +
-    `${timelineEntries.length} timeline entries, ${stackItems.length} stack items.`
+    `${timelineEntries.length} timeline entries, ${stackItems.length} stack items ` +
+    `(English + Spanish).`
   );
 }
 

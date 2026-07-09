@@ -1,0 +1,94 @@
+{
+  "nav": {
+    "projects": "Projects",
+    "about": "About",
+    "courses": "Courses",
+    "stack": "Stack",
+    "contact": "Contact",
+    "admin": "Admin"
+  },
+  "common": {
+    "menu": "Menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "navigationMenu": "Navigation menu",
+    "theme": "Theme",
+    "lang": "Lang",
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode"
+  },
+  "hero": {
+    "seeProjects": "See projects →",
+    "viewCv": "View CV →",
+    "github": "GitHub ↗"
+  },
+  "projects": {
+    "sectionLabel": "Projects",
+    "viewMore": "View {count} more →",
+    "back": "Back",
+    "allProjects": "View all projects →",
+    "viewLive": "View live ↗",
+    "github": "GitHub ↗",
+    "about": "About",
+    "technicalHighlights": "Technical highlights",
+    "noMatch": "No projects match this filter."
+  },
+  "courses": {
+    "sectionLabel": "Courses",
+    "viewMore": "View {count} more →",
+    "back": "Back",
+    "allCourses": "View all courses →",
+    "viewCertificate": "View certificate ↗",
+    "github": "GitHub ↗",
+    "liveDemo": "Live demo ↗",
+    "aboutCourse": "About this course",
+    "whatILearned": "What I learned",
+    "noMatch": "No courses match this filter."
+  },
+  "about": {
+    "sectionLabel": "About",
+    "tapToExplore": "tap to explore timeline →"
+  },
+  "stack": {
+    "sectionLabel": "Stack",
+    "categories": {
+      "Frontend": "UI & client-side",
+      "Backend": "Server & APIs",
+      "Database": "Storage & ORM",
+      "Tooling": "Workflow & DevOps"
+    }
+  },
+  "contact": {
+    "sectionLabel": "Contact",
+    "emailLabel": "Your email",
+    "messageLabel": "Message",
+    "send": "Send message →",
+    "sending": "Sending...",
+    "success": "Message sent. I'll get back to you soon.",
+    "error": "Something went wrong. Try emailing me directly."
+  },
+  "gallery": {
+    "expand": "Expand",
+    "expandImage": "Expand image",
+    "close": "✕ Close",
+    "previous": "Previous image",
+    "next": "Next image"
+  },
+  "itemNav": {
+    "prev": "← Prev",
+    "next": "Next →"
+  },
+  "listing": {
+    "all": "All",
+    "newestFirst": "Newest first",
+    "oldestFirst": "Oldest first"
+  },
+  "status": {
+    "all": "All",
+    "live": "Live",
+    "completed": "Completed",
+    "in-progress": "In progress",
+    "archived": "Archived",
+    "not-started": "Not started"
+  }
+}

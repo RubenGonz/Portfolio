@@ -8,7 +8,6 @@ import { DeleteButton } from "@/components/admin/DeleteButton";
 import { FeaturedToggle } from "@/components/admin/FeaturedToggle";
 import { TimelineList } from "@/components/admin/TimelineList";
 
-/** Section heading with optional item count and a single action button (Edit or + New). */
 function SectionTitle({
   title,
   count,
@@ -20,7 +19,6 @@ function SectionTitle({
   actionHref?: string;
   actionLabel?: string;
 }) {
-  const isNew = actionLabel?.startsWith("+");
   return (
     <div className="flex items-center justify-between mb-4">
       <h2 className="font-n27 font-bold italic text-xl text-fg">
@@ -32,11 +30,7 @@ function SectionTitle({
       {actionHref && actionLabel && (
         <Link
           href={actionHref}
-          className={`font-inputmono text-[11px] tracking-widest uppercase transition-colors ${
-            isNew
-              ? "border border-brand/30 text-brand px-4 py-2 hover:bg-brand/5"
-              : "text-subtle hover:text-fg"
-          }`}
+          className="font-inputmono text-[11px] tracking-widest uppercase transition-colors border border-brand/30 text-brand px-4 py-2 hover:bg-brand/5"
         >
           {actionLabel}
         </Link>
@@ -45,30 +39,36 @@ function SectionTitle({
   );
 }
 
-/** Single bordered row — used for both collection items and singleton sections. */
-function Row({ left, right }: { left: React.ReactNode; right: React.ReactNode }) {
-  return (
-    <div className="flex items-center justify-between border border-line/10 bg-surface px-5 py-3">
-      <div>{left}</div>
-      <div className="flex items-center gap-4 shrink-0">{right}</div>
-    </div>
-  );
-}
-
 function RowTitle({ main, sub }: { main: string; sub?: string }) {
   return (
     <>
-      <p className="font-inputmono text-sm text-fg">{main}</p>
+      <p className="font-inputmono text-sm text-fg group-hover:text-fg transition-colors">{main}</p>
       {sub && <p className="font-inputmono text-[10px] text-subtle">{sub}</p>}
     </>
   );
 }
 
-function EditLink({ href }: { href: string }) {
+/** Entire card is a link. Optional delete action renders as a sibling on the right. */
+function Row({
+  href,
+  left,
+  onDelete,
+}: {
+  href: string;
+  left: React.ReactNode;
+  onDelete?: React.ReactNode;
+}) {
   return (
-    <Link href={href} className="font-inputmono text-[11px] tracking-widest uppercase text-subtle hover:text-fg transition-colors">
-      Edit
-    </Link>
+    <div className="group flex border border-line/10 bg-surface hover:border-line/30 transition-colors">
+      <Link href={href} className="flex-1 flex items-center gap-3 px-5 py-3 min-w-0">
+        {left}
+      </Link>
+      {onDelete && (
+        <div className="flex items-center px-4 border-l border-line/10">
+          {onDelete}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -82,22 +82,28 @@ export default async function AdminDashboard() {
   return (
     <div className="flex flex-col gap-12">
 
+      {/* Available badge */}
+      <section>
+        <SectionTitle title="Available badge" />
+        <Row href="/admin/available" left={<RowTitle main="Header badge visibility & label" sub="Shown in public header when enabled" />} />
+      </section>
+
+      {/* Files */}
+      <section>
+        <SectionTitle title="Files" />
+        <Row href="/admin/files" left={<RowTitle main="CV / Resume" sub="PDF linked from hero download button" />} />
+      </section>
+
       {/* Hero */}
       <section>
         <SectionTitle title="Hero" />
-        <Row
-          left={<RowTitle main="Title, tagline & description" sub="Home page header" />}
-          right={<EditLink href="/admin/hero" />}
-        />
+        <Row href="/admin/hero" left={<RowTitle main="Title, tagline & description" sub="Home page header" />} />
       </section>
 
       {/* Ticker */}
       <section>
         <SectionTitle title="Ticker" />
-        <Row
-          left={<RowTitle main="Scrolling strip" sub="Between hero and projects" />}
-          right={<EditLink href="/admin/ticker" />}
-        />
+        <Row href="/admin/ticker" left={<RowTitle main="Scrolling strip" sub="Between hero and projects" />} />
       </section>
 
       {/* Projects */}
@@ -108,18 +114,14 @@ export default async function AdminDashboard() {
           {projects.map((p) => (
             <Row
               key={p.slug}
+              href={`/admin/projects/${p.slug}/edit`}
               left={
                 <div className="flex items-center gap-3">
                   <FeaturedToggle id={p.slug} featured={p.featured} action={toggleProjectFeatured} />
                   <RowTitle main={p.title} sub={`${p.year} · ${p.status}`} />
                 </div>
               }
-              right={
-                <>
-                  <EditLink href={`/admin/projects/${p.slug}/edit`} />
-                  <DeleteButton action={deleteProject.bind(null, p.slug)} label="Delete" />
-                </>
-              }
+              onDelete={<DeleteButton action={deleteProject.bind(null, p.slug)} label="Delete" />}
             />
           ))}
           {projects.length === 0 && <p className="font-inputmono text-sm text-subtle">No projects yet.</p>}
@@ -141,18 +143,14 @@ export default async function AdminDashboard() {
           {courses.map((c) => (
             <Row
               key={c.slug}
+              href={`/admin/courses/${c.slug}/edit`}
               left={
                 <div className="flex items-center gap-3">
                   <FeaturedToggle id={c.slug} featured={c.featured} action={toggleCourseFeatured} />
                   <RowTitle main={c.title} sub={`${c.platform} · ${c.year} · ${c.status}`} />
                 </div>
               }
-              right={
-                <>
-                  <EditLink href={`/admin/courses/${c.slug}/edit`} />
-                  <DeleteButton action={deleteCourse.bind(null, c.slug)} label="Delete" />
-                </>
-              }
+              onDelete={<DeleteButton action={deleteCourse.bind(null, c.slug)} label="Delete" />}
             />
           ))}
           {courses.length === 0 && <p className="font-inputmono text-sm text-subtle">No courses yet.</p>}
@@ -162,19 +160,13 @@ export default async function AdminDashboard() {
       {/* Stack */}
       <section>
         <SectionTitle title="Stack" />
-        <Row
-          left={<RowTitle main="Technologies by tier and category" sub="Professional · Active · Familiar" />}
-          right={<EditLink href="/admin/stack" />}
-        />
+        <Row href="/admin/stack" left={<RowTitle main="Technologies by tier and category" sub="Professional · Active · Familiar" />} />
       </section>
 
       {/* Contact */}
       <section>
         <SectionTitle title="Contact" />
-        <Row
-          left={<RowTitle main="Headline & availability text" sub="Bottom of home page" />}
-          right={<EditLink href="/admin/contact" />}
-        />
+        <Row href="/admin/contact" left={<RowTitle main="Headline & availability text" sub="Bottom of home page" />} />
       </section>
 
     </div>

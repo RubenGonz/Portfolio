@@ -1,24 +1,27 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useTranslations } from "next-intl";
 import type { Project } from "@/types";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import { ListingFilters } from "@/components/ui/ListingFilters";
-
-const statusOptions = [
-  { value: "all", label: "All" },
-  { value: "live", label: "Live" },
-  { value: "in-progress", label: "In progress" },
-  { value: "archived", label: "Archived" },
-];
 
 interface Props {
   projects: Project[];
 }
 
 export const ProjectsListing = ({ projects }: Props) => {
+  const t = useTranslations("projects");
+  const ts = useTranslations("status");
   const [status, setStatus] = useState("all");
   const [order, setOrder] = useState("newest");
+
+  const statusOptions = [
+    { value: "all", label: ts("all") },
+    { value: "live", label: ts("live") },
+    { value: "in-progress", label: ts("in-progress") },
+    { value: "archived", label: ts("archived") },
+  ];
 
   const filtered = useMemo(() => {
     const result = status === "all" ? projects : projects.filter((p) => p.status === status);
@@ -38,7 +41,7 @@ export const ProjectsListing = ({ projects }: Props) => {
       />
 
       {filtered.length === 0 ? (
-        <p className="font-inputmono text-subtle text-sm">No projects match this filter.</p>
+        <p className="font-inputmono text-subtle text-sm">{t("noMatch")}</p>
       ) : (
         <div className="flex flex-col gap-4 md:gap-6">
           {filtered.map((project) => (

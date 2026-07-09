@@ -1,19 +1,24 @@
-"use client"
+"use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
+import NextLink from "next/link";
+import { Link } from "@/navigation";
 import { Sidebar } from "../sidebar/Sidebar";
 import { ThemeSelector } from "../theme-selector/ThemeSelector";
 import { AvailableBadge } from "../AvailableBadge";
+import { LocaleSwitcher } from "../LocaleSwitcher";
 import { navLinks } from "@/config/nav";
+import type { AvailableContent } from "@/data/settings";
 
-export const Header = () => {
-
+export const Header = ({ available }: { available: AvailableContent }) => {
+  const t = useTranslations("nav");
+  const tc = useTranslations("common");
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => { setScrolled(window.scrollY > 1) };
+    const handleScroll = () => { setScrolled(window.scrollY > 1); };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -31,41 +36,40 @@ export const Header = () => {
 
       {/* Nav centrado (solo desktop) */}
       <nav className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-10">
-        {navLinks.map(({ label, href }) => (
+        {navLinks.map(({ key, href }) => (
           <Link
             key={href}
             href={href}
             className="font-inputmono text-xs text-muted hover:text-fg tracking-widest uppercase transition-colors"
           >
-            {label}
+            {t(key)}
           </Link>
         ))}
       </nav>
 
       <div className="flex items-center gap-3">
-        {/* Available badge + theme (desktop) */}
         <div className="hidden md:flex items-center gap-3">
-          <AvailableBadge label="Available" bordered />
+          {available.available && <AvailableBadge label={available.label} bordered />}
+          <LocaleSwitcher />
           <ThemeSelector />
-          <Link
+          <NextLink
             href="/admin"
             className="font-inputmono text-xs tracking-widest uppercase text-muted hover:text-fg transition-colors"
           >
-            Admin
-          </Link>
+            {t("admin")}
+          </NextLink>
         </div>
 
-        {/* Hamburguesa móvil */}
         <button
           onClick={() => setOpen(true)}
           className="md:hidden z-20 p-2 rounded hover:bg-fg/10 transition-colors font-inputmono text-xs text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50"
-          aria-label="Open menu"
+          aria-label={tc("openMenu")}
         >
-          Menu
+          {tc("menu")}
         </button>
 
-        <Sidebar open={open} setOpen={setOpen} navLinks={navLinks} />
+        <Sidebar open={open} setOpen={setOpen} navLinks={navLinks} available={available} />
       </div>
     </header>
-  )
-}
+  );
+};
