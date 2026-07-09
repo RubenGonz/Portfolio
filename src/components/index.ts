@@ -11,6 +11,7 @@ export { Button } from "./ui/Button";
 export { Tag } from "./ui/Tag";
 export { AvailableBadge } from "./ui/AvailableBadge";
 export { LocaleSwitcher } from "./ui/LocaleSwitcher";
+export { AnimateIn } from "./ui/AnimateIn";
 
 export { HeroSection } from "./sections/HeroSection";
 export { ProjectsSection } from "./sections/ProjectsSection";

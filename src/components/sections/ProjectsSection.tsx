@@ -5,6 +5,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GhostNumber } from "@/components/ui/GhostNumber";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import { Section } from "@/components/ui/Section";
+import { AnimateIn } from "@/components/ui/AnimateIn";
 
 const PREVIEW_COUNT = 2;
 
@@ -22,8 +23,10 @@ export const ProjectsSection = async () => {
       <div className="flex flex-col gap-4 md:gap-6 relative">
         <GhostNumber>01</GhostNumber>
 
-        {preview.map((project) => (
-          <ProjectCard key={project.slug} project={project} />
+        {preview.map((project, i) => (
+          <AnimateIn key={project.slug} delay={((i + 1) as 1 | 2) }>
+            <ProjectCard project={project} />
+          </AnimateIn>
         ))}
 
         {projects.length > PREVIEW_COUNT && (

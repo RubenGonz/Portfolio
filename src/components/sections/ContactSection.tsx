@@ -6,6 +6,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GhostNumber } from "@/components/ui/GhostNumber";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
+import { AnimateIn } from "@/components/ui/AnimateIn";
 import { siteConfig } from "@/config/site";
 import type { ContactContent } from "@/data/settings";
 
@@ -42,7 +43,7 @@ export const ContactSection = ({ contact }: { contact: ContactContent }) => {
     <Section id="contact">
       <SectionHeader label={t("sectionLabel")} srTitle={t("sectionLabel")} />
 
-      <div className="flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-16 max-w-4xl relative">
+      <AnimateIn className="flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-16 max-w-4xl relative">
         <GhostNumber>05</GhostNumber>
 
         <div>
@@ -132,7 +133,7 @@ export const ContactSection = ({ contact }: { contact: ContactContent }) => {
             {status === "sending" ? t("sending") : t("send")}
           </Button>
         </form>
-      </div>
+      </AnimateIn>
     </Section>
   );
 };
