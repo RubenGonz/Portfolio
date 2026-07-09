@@ -96,7 +96,7 @@ function TierColumn({
           <button
             type="button"
             onClick={() => onDelete(item.id)}
-            className="font-inputmono text-[11px] text-subtle hover:text-danger transition-colors ml-2"
+            className="font-inputmono text-[11px] text-subtle hover:text-danger transition-colors ml-2 cursor-pointer"
           >
             ×
           </button>

@@ -93,7 +93,7 @@ export function ImagesEditor({ defaultValue = [] }: Props) {
           <button
             type="button"
             onClick={() => remove(i)}
-            className="font-inputmono text-xs text-faint hover:text-danger transition-colors shrink-0 pt-0.5"
+            className="font-inputmono text-xs text-faint hover:text-danger transition-colors shrink-0 pt-0.5 cursor-pointer"
           >
             ×
           </button>

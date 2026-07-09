@@ -30,7 +30,7 @@ function SectionTitle({
       {actionHref && actionLabel && (
         <Link
           href={actionHref}
-          className="font-inputmono text-[11px] tracking-widest uppercase transition-colors border border-brand/30 text-brand px-4 py-2 hover:bg-brand/5"
+          className="font-inputmono text-[11px] tracking-widest uppercase transition-colors border border-brand/30 text-brand px-4 py-2 hover:bg-brand/5 cursor-pointer"
         >
           {actionLabel}
         </Link>
@@ -60,7 +60,7 @@ function Row({
 }) {
   return (
     <div className="group flex border border-line/10 bg-surface hover:border-line/30 transition-colors">
-      <Link href={href} className="flex-1 flex items-center gap-3 px-5 py-3 min-w-0">
+      <Link href={href} className="flex-1 flex items-center gap-3 px-5 py-3 min-w-0 cursor-pointer">
         {left}
       </Link>
       {onDelete && (
