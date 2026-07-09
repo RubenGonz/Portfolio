@@ -5,6 +5,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GhostNumber } from "@/components/ui/GhostNumber";
 import { CourseCard } from "@/components/ui/CourseCard";
 import { Section } from "@/components/ui/Section";
+import { AnimateIn } from "@/components/ui/AnimateIn";
 
 const PREVIEW_COUNT = 2;
 
@@ -23,8 +24,10 @@ export const CoursesSection = async () => {
         <GhostNumber>03</GhostNumber>
 
         <div className="flex flex-col gap-4">
-          {preview.map((course) => (
-            <CourseCard key={course.slug} course={course} />
+          {preview.map((course, i) => (
+            <AnimateIn key={course.slug} delay={((i + 1) as 1 | 2)} animateOut>
+              <CourseCard course={course} />
+            </AnimateIn>
           ))}
         </div>
 
