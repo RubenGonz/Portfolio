@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { getProjectBySlug, getProjects } from "@/data/projects";
@@ -46,7 +46,7 @@ export default async function ProjectPage({ params }: Props) {
   const { slug, locale } = await params;
   const t = await getTranslations("projects");
   const project = await getProjectBySlug(slug, locale);
-  if (!project) notFound();
+  if (!project) redirect(`/${locale}/projects`);
 
   const all = await getProjects(locale);
   const currentIndex = all.findIndex((p) => p.slug === slug);

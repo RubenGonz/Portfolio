@@ -100,6 +100,10 @@
     "500heading": "Something went wrong",
     "500body": "An unexpected error occurred. Try refreshing the page.",
     "500cta": "Try again",
-    "500ctaHome": "← Back to home"
+    "500ctaHome": "← Back to home",
+    "401title": "401",
+    "401heading": "Access denied",
+    "401body": "You don't have permission to view this page.",
+    "401cta": "← Back to home"
   }
 }
