@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import { Providers } from "@/components";
 import { siteConfig } from "@/config/site";
 import { routing } from "@/i18n/routing";
 
@@ -85,7 +84,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <NextIntlClientProvider messages={messages}>
-        <Providers>{children}</Providers>
+        {children}
       </NextIntlClientProvider>
     </>
   );
