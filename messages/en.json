@@ -90,5 +90,16 @@
     "in-progress": "In progress",
     "archived": "Archived",
     "not-started": "Not started"
+  },
+  "errors": {
+    "404title": "404",
+    "404heading": "Page not found",
+    "404body": "The page you're looking for doesn't exist or has been moved.",
+    "404cta": "← Back to home",
+    "500title": "500",
+    "500heading": "Something went wrong",
+    "500body": "An unexpected error occurred. Try refreshing the page.",
+    "500cta": "Try again",
+    "500ctaHome": "← Back to home"
   }
 }
