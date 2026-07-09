@@ -3,25 +3,38 @@
 import { useActionState } from "react";
 import { updateTimelineEntry } from "@/actions/timeline";
 import { FormField, TextareaField } from "@/components/admin/FormField";
+import { LocaleTabs } from "@/components/admin/LocaleTabs";
 import { SubmitButton } from "@/components/admin/SubmitButton";
-import type { TimelineEntry } from "@/data/timeline";
+import { LOCALES } from "@/data/locale";
+import type { TimelineEntryEdit } from "@/data/timeline";
 
-export function EditTimelineForm({ entry }: { entry: TimelineEntry }) {
+export function EditTimelineForm({ entry }: { entry: TimelineEntryEdit }) {
   const updateWithId = updateTimelineEntry.bind(null, entry.id);
   const [error, action] = useActionState(updateWithId, undefined);
 
   return (
     <form action={action} className="flex flex-col gap-5 max-w-2xl">
       <FormField label="Year / Label" name="year" defaultValue={entry.year} required />
-      <FormField label="Title" name="title" defaultValue={entry.title} required />
-      <FormField label="Subtitle" name="subtitle" defaultValue={entry.subtitle ?? ""} />
-      <TextareaField
-        label="Paragraphs"
-        name="paragraphs"
-        defaultValue={entry.paragraphs.join("\n\n")}
-        required
-        rows={8}
-        hint="Separate paragraphs with a blank line"
+
+      <LocaleTabs
+        locales={LOCALES}
+        render={(locale) => {
+          const tr = entry.translations[locale];
+          const L = locale.toUpperCase();
+          return (
+            <>
+              <FormField label={`Title (${L})`} name={`title_${locale}`} defaultValue={tr.title} />
+              <FormField label={`Subtitle (${L})`} name={`subtitle_${locale}`} defaultValue={tr.subtitle} />
+              <TextareaField
+                label={`Paragraphs (${L})`}
+                name={`paragraphs_${locale}`}
+                defaultValue={tr.paragraphs.join("\n\n")}
+                rows={8}
+                hint="Separate paragraphs with a blank line"
+              />
+            </>
+          );
+        }}
       />
 
       <div className="flex flex-col gap-1.5">

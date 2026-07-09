@@ -4,6 +4,9 @@ export type Locale = "en" | "es";
 /** The locale every piece of content is guaranteed to have. */
 export const DEFAULT_LOCALE: Locale = "en";
 
+/** All content locales, in admin/editing order. */
+export const LOCALES: Locale[] = ["en", "es"];
+
 /**
  * Pick the translation row matching `locale`, falling back to the default
  * locale (and finally any available row) so the UI never renders blank.

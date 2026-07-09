@@ -23,6 +23,7 @@ jest.mock("@/lib/prisma", () => ({
     },
     projectTranslation: {
       upsert: jest.fn().mockResolvedValue({}),
+      deleteMany: jest.fn().mockResolvedValue({}),
     },
     $transaction: (...args: unknown[]) => mockTransaction(...args),
   },
@@ -47,11 +48,11 @@ function fd(entries: Record<string, string | string[]>): FormData {
 
 const validProject = {
   slug: "my-project",
-  title: "My Project",
+  title_en: "My Project",
   year: "2026",
   status: "in-progress",
-  shortDescription: "Short",
-  fullDescription: "Full description here",
+  shortDescription_en: "Short",
+  fullDescription_en: "Full description here",
 };
 
 describe("createProject", () => {
@@ -61,7 +62,7 @@ describe("createProject", () => {
   });
 
   it("returns error when title is missing", async () => {
-    const result = await createProject(undefined, fd({ ...validProject, title: "" }));
+    const result = await createProject(undefined, fd({ ...validProject, title_en: "" }));
     expect(result).toBe("Slug and title are required.");
   });
 
@@ -79,7 +80,7 @@ describe("createProject", () => {
 
 describe("updateProject", () => {
   it("returns error when title is missing", async () => {
-    const result = await updateProject("my-project", undefined, fd({ ...validProject, title: "" }));
+    const result = await updateProject("my-project", undefined, fd({ ...validProject, title_en: "" }));
     expect(result).toBe("Title is required.");
   });
 

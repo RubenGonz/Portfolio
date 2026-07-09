@@ -22,6 +22,7 @@ jest.mock("@/lib/prisma", () => ({
     },
     timelineEntryTranslation: {
       upsert: jest.fn().mockResolvedValue({}),
+      deleteMany: jest.fn().mockResolvedValue({}),
     },
     $transaction: (...args: unknown[]) => mockTransaction(...args),
   },
@@ -40,7 +41,7 @@ function fd(entries: Record<string, string>): FormData {
   return form;
 }
 
-const valid = { year: "2025", title: "Joined company", paragraphs: "First paragraph.\n\nSecond paragraph." };
+const valid = { year: "2025", title_en: "Joined company", paragraphs_en: "First paragraph.\n\nSecond paragraph." };
 
 describe("createTimelineEntry", () => {
   it("returns error when year is missing", async () => {
@@ -49,7 +50,7 @@ describe("createTimelineEntry", () => {
   });
 
   it("returns error when title is missing", async () => {
-    const result = await createTimelineEntry(undefined, fd({ ...valid, title: "" }));
+    const result = await createTimelineEntry(undefined, fd({ ...valid, title_en: "" }));
     expect(result).toBe("Year and title are required.");
   });
 
@@ -61,7 +62,7 @@ describe("createTimelineEntry", () => {
 
 describe("updateTimelineEntry", () => {
   it("returns error when title is missing", async () => {
-    const result = await updateTimelineEntry("id-1", undefined, fd({ ...valid, title: "" }));
+    const result = await updateTimelineEntry("id-1", undefined, fd({ ...valid, title_en: "" }));
     expect(result).toBe("Year and title are required.");
   });
 
