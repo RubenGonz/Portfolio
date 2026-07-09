@@ -90,5 +90,20 @@
     "in-progress": "En progreso",
     "archived": "Archivado",
     "not-started": "Sin empezar"
+  },
+  "errors": {
+    "404title": "404",
+    "404heading": "Página no encontrada",
+    "404body": "La página que buscas no existe o ha sido movida.",
+    "404cta": "← Volver al inicio",
+    "500title": "500",
+    "500heading": "Algo salió mal",
+    "500body": "Ocurrió un error inesperado. Intenta recargar la página.",
+    "500cta": "Intentar de nuevo",
+    "500ctaHome": "← Volver al inicio",
+    "401title": "401",
+    "401heading": "Acceso denegado",
+    "401body": "No tienes permiso para ver esta página.",
+    "401cta": "← Volver al inicio"
   }
 }

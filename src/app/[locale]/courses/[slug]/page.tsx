@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { getCourseBySlug, getCourses } from "@/data/courses";
@@ -44,7 +44,7 @@ export default async function CoursePage({ params }: Props) {
   const { slug, locale } = await params;
   const t = await getTranslations("courses");
   const course = await getCourseBySlug(slug, locale);
-  if (!course) notFound();
+  if (!course) redirect(`/${locale}/courses`);
 
   const all = await getCourses(locale);
   const currentIndex = all.findIndex((c) => c.slug === slug);
