@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui";
+import { DotGrid } from "@/components/common";
 import { siteConfig } from "@/config/site";
 import type { HeroContent } from "@/types";
 
@@ -8,13 +9,7 @@ export const HeroSection = async ({ hero, cvUrl }: { hero: HeroContent; cvUrl?: 
 
   return (
     <div className="relative min-h-screen overflow-x-clip">
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: "radial-gradient(var(--grid-dot) 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-        }}
-      />
+      <DotGrid />
       <div
         className="absolute pointer-events-none"
         style={{

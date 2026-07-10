@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { getProjectBySlug, getProjects } from "@/data/projects";
 import { ProjectGallery } from "@/components/projects";
 import { BackLink, SectionHeader, StatusBadge, Button, Tag } from "@/components/ui";
-import { ItemNav } from "@/components/common";
+import { ItemNav, DotGrid } from "@/components/common";
 import { siteConfig } from "@/config/site";
 
 interface Props {
@@ -53,7 +53,7 @@ export default async function ProjectPage({ params }: Props) {
     <main className="min-h-screen">
       <div className="relative border-b border-line/5 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 60% 50% at 70% 50%, var(--glow-soft) 0%, transparent 70%)" }} />
-        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "radial-gradient(var(--grid-dot) 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
+        <DotGrid />
 
         <div className="relative px-6 md:px-16 pt-28 pb-16 max-w-5xl mx-auto">
           <BackLink label={t("back")} fallbackHref="/projects" />

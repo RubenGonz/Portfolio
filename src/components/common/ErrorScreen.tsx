@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { DotGrid } from "./DotGrid";
 
 /** Shared action (link/button) styling for error pages. */
 export const errorActionClass =
@@ -25,14 +26,7 @@ export function ErrorScreen({
 }) {
   return (
     <div className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center px-6 text-center">
-      {/* Dot pattern */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: "radial-gradient(var(--grid-dot) 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-        }}
-      />
+      <DotGrid />
       {/* Glow */}
       <div
         className="absolute pointer-events-none"
