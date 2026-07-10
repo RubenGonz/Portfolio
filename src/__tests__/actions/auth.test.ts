@@ -13,6 +13,10 @@ jest.mock("next-auth", () => ({
   AuthError: class AuthError extends Error {},
 }));
 
+jest.mock("next/headers", () => ({
+  headers: jest.fn().mockResolvedValue({ get: () => null }),
+}));
+
 beforeEach(() => jest.clearAllMocks());
 
 function fd(entries: Record<string, string>): FormData {
