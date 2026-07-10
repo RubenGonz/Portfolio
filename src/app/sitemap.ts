@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
 import { siteConfig } from "@/config/site";
+import { LOCALES as locales } from "@/i18n/locales";
 
-const locales = ["en", "es"] as const;
 const base = siteConfig.url;
 
 function alternate(path: string) {

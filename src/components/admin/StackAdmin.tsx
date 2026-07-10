@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { addStackItem, deleteStackItem, moveStackItem } from "@/actions/stack";
 import { useRouter } from "next/navigation";
-import type { StackCategory, StackItemWithId } from "@/data/stack";
+import type { StackCategory, StackItemWithId } from "@/types";
 
 const TIERS = [
   { key: "professional", label: "Professional" },

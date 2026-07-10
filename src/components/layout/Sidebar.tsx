@@ -3,12 +3,12 @@
 import { useTranslations } from "next-intl";
 import NextLink from "next/link";
 import { Link } from "@/navigation";
-import { ThemeSelector } from "../theme-selector/ThemeSelector";
-import { AvailableBadge } from "../AvailableBadge";
-import { LocaleSwitcher } from "../LocaleSwitcher";
+import { ThemeSelector } from "./ThemeSelector";
+import { AvailableBadge } from "@/components/ui";
+import { LocaleSwitcher } from "./LocaleSwitcher";
 import type { NavLink } from "@/config/nav";
 import { siteConfig } from "@/config/site";
-import type { AvailableContent } from "@/data/settings";
+import type { AvailableContent } from "@/types";
 
 interface Props {
   open: boolean;

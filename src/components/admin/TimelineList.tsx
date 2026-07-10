@@ -5,7 +5,7 @@ import Link from "next/link";
 import { reorderTimeline, deleteTimelineEntry, toggleTimelineCurrent } from "@/actions/timeline";
 import { DeleteButton } from "./DeleteButton";
 import { useRouter } from "next/navigation";
-import type { TimelineEntry } from "@/data/timeline";
+import type { TimelineEntry } from "@/types";
 
 function CurrentToggle({ id, current: initial }: { id: string; current: boolean }) {
   const [current, setCurrent] = useState(initial);

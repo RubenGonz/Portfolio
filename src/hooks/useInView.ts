@@ -7,8 +7,11 @@ interface Options extends IntersectionObserverInit {
   animateOut?: boolean;
 }
 
-export function useInView({ animateOut = false, ...observerOptions }: Options = {}) {
-  const ref = useRef<HTMLElement>(null);
+export function useInView<T extends HTMLElement = HTMLElement>({
+  animateOut = false,
+  ...observerOptions
+}: Options = {}) {
+  const ref = useRef<T>(null);
   const [inView, setInView] = useState(false);
 
   useEffect(() => {

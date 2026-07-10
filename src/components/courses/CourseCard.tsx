@@ -1,6 +1,6 @@
 import { Link } from "@/navigation";
 import type { Course } from "@/types";
-import { StatusBadge } from "./StatusBadge";
+import { StatusBadge } from "@/components/ui";
 
 interface Props {
   course: Course;

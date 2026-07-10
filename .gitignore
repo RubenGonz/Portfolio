@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# swc plugin cache
+/.swc/
+
 # production
 /build
 
@@ -42,4 +45,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.vercel
+# claude — personal/local settings stay out (shared config like launch.json is committed)
+.claude/settings.local.json

@@ -1,11 +1,8 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/navigation";
 import { getProjects } from "@/data/projects";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { GhostNumber } from "@/components/ui/GhostNumber";
-import { ProjectCard } from "@/components/ui/ProjectCard";
-import { Section } from "@/components/ui/Section";
-import { AnimateIn } from "@/components/ui/AnimateIn";
+import { SectionHeader, GhostNumber, Section, AnimateIn } from "@/components/ui";
+import { ProjectCard } from "@/components/projects";
 
 const PREVIEW_COUNT = 2;
 

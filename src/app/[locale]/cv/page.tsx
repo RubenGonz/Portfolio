@@ -3,7 +3,7 @@ import { getLocale } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { getHomeContent } from "@/data/settings";
 import { DEFAULT_LOCALE } from "@/data/locale";
-import { Header } from "@/components";
+import { Header } from "@/components/layout";
 
 export default async function CvPage() {
   const locale = await getLocale();
