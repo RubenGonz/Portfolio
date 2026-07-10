@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { uploadDocument, uploadImage } from "@/actions/upload";
+import { uploadDocument } from "@/actions/upload";
 import { updateCvUrl } from "@/actions/home";
 
 interface Props {

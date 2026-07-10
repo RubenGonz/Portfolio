@@ -14,14 +14,12 @@ const TIERS = [
 type TierKey = "professional" | "active" | "familiar";
 
 function TierColumn({
-  category,
   tier,
   items,
   onDelete,
   onAdd,
   onDrop,
 }: {
-  category: string;
   tier: TierKey;
   items: StackItemWithId[];
   onDelete: (id: string) => void;
@@ -147,7 +145,6 @@ export function StackAdmin({ categories }: { categories: StackCategory[] }) {
               {TIERS.map(({ key }) => (
                 <TierColumn
                   key={key}
-                  category={cat.label}
                   tier={key}
                   items={byTier(key)}
                   onDelete={handleDelete}

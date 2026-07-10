@@ -45,6 +45,9 @@ export const AboutSection = ({ items }: { items: TimelineEntry[] }) => {
       index++;
     }, ROTATE_MS);
     return () => clearInterval(interval);
+    // `items` is stable server data for the component's lifetime; the rotation
+    // is meant to set up once on mount, so an empty dep array is intentional.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSelect = (id: string) => {
