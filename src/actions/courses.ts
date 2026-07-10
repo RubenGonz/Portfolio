@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import type { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { DEFAULT_LOCALE, LOCALES } from "@/data/locale";
+import { formReader, filledLocales } from "@/lib/form";
 
 type CourseTranslationData = {
   title: string;
@@ -15,12 +16,7 @@ type CourseTranslationData = {
 };
 
 function parseForm(fd: FormData) {
-  const get = (k: string) => (fd.get(k) as string | null)?.trim() ?? "";
-  const arr = (k: string) =>
-    get(k).split("\n").map((s) => s.trim()).filter(Boolean);
-  const json = (k: string) => {
-    try { return JSON.parse(get(k)); } catch { return []; }
-  };
+  const { get, lines, json } = formReader(fd);
 
   // Translatable fields carry a `_<locale>` suffix (title_en, title_es…).
   const translations: Record<string, CourseTranslationData> = {};
@@ -29,8 +25,8 @@ function parseForm(fd: FormData) {
       title: get(`title_${locale}`),
       shortDescription: get(`shortDescription_${locale}`),
       fullDescription: get(`fullDescription_${locale}`),
-      tags: arr(`tags_${locale}`),
-      topics: json(`topics_${locale}`),
+      tags: lines(`tags_${locale}`),
+      topics: json<Prisma.InputJsonValue>(`topics_${locale}`, []),
     };
   }
 
@@ -48,10 +44,6 @@ function parseForm(fd: FormData) {
     translations,
   };
 }
-
-/** Locales whose translation has real content (a title). */
-const filledLocales = (translations: Record<string, CourseTranslationData>) =>
-  LOCALES.filter((l) => translations[l].title.trim());
 
 function revalidate(slug?: string) {
   revalidatePath("/admin");

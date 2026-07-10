@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { getCourseBySlug, getCourses } from "@/data/courses";
 import { BackLink, StatusBadge, SectionHeader, Button, Tag } from "@/components/ui";
 import { ItemNav, DotGrid } from "@/components/common";
-import { siteConfig } from "@/config/site";
+import { buildDetailMetadata } from "@/lib/metadata";
 
 interface Props {
   params: Promise<{ slug: string; locale: string }>;
@@ -19,21 +19,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, locale } = await params;
   const course = await getCourseBySlug(slug, locale);
   if (!course) return {};
-  const base = siteConfig.url;
-  return {
+  return buildDetailMetadata({
+    section: "courses",
+    slug,
+    locale,
     title: course.title,
     description: course.shortDescription,
-    alternates: {
-      canonical: `${base}/${locale}/courses/${slug}`,
-      languages: { en: `${base}/en/courses/${slug}`, es: `${base}/es/courses/${slug}` },
-    },
-    openGraph: {
-      title: `${course.title} — RubenGonz`,
-      description: course.shortDescription,
-      url: `${base}/${locale}/courses/${slug}`,
-      type: "article",
-    },
-  };
+  });
 }
 
 export default async function CoursePage({ params }: Props) {

@@ -5,7 +5,7 @@ import { getProjectBySlug, getProjects } from "@/data/projects";
 import { ProjectGallery } from "@/components/projects";
 import { BackLink, SectionHeader, StatusBadge, Button, Tag } from "@/components/ui";
 import { ItemNav, DotGrid } from "@/components/common";
-import { siteConfig } from "@/config/site";
+import { buildDetailMetadata } from "@/lib/metadata";
 
 interface Props {
   params: Promise<{ slug: string; locale: string }>;
@@ -20,22 +20,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, locale } = await params;
   const project = await getProjectBySlug(slug, locale);
   if (!project) return {};
-  const base = siteConfig.url;
-  return {
+  return buildDetailMetadata({
+    section: "projects",
+    slug,
+    locale,
     title: project.title,
     description: project.shortDescription,
-    alternates: {
-      canonical: `${base}/${locale}/projects/${slug}`,
-      languages: { en: `${base}/en/projects/${slug}`, es: `${base}/es/projects/${slug}` },
-    },
-    openGraph: {
-      title: `${project.title} — RubenGonz`,
-      description: project.shortDescription,
-      url: `${base}/${locale}/projects/${slug}`,
-      type: "article",
-      images: [{ url: `${base}/opengraph-image`, width: 1200, height: 630, alt: "RubenGonz" }],
-    },
-  };
+  });
 }
 
 export default async function ProjectPage({ params }: Props) {

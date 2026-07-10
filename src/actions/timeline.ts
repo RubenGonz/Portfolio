@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { DEFAULT_LOCALE, LOCALES } from "@/data/locale";
+import { formReader, filledLocales } from "@/lib/form";
 
 type TimelineTranslationData = {
   title: string;
@@ -12,7 +13,7 @@ type TimelineTranslationData = {
 };
 
 function parseForm(fd: FormData) {
-  const get = (k: string) => (fd.get(k) as string | null)?.trim() ?? "";
+  const { get } = formReader(fd);
 
   // Translatable fields carry a `_<locale>` suffix (title_en, title_es…).
   const translations: Record<string, TimelineTranslationData> = {};
@@ -30,10 +31,6 @@ function parseForm(fd: FormData) {
     translations,
   };
 }
-
-/** Locales whose translation has real content (a title). */
-const filledLocales = (translations: Record<string, TimelineTranslationData>) =>
-  LOCALES.filter((l) => translations[l].title.trim());
 
 function revalidate() {
   revalidatePath("/admin");
