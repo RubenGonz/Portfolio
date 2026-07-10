@@ -28,10 +28,8 @@ export async function uploadDocument(fd: FormData): Promise<{ url: string } | { 
   if (!ALLOWED_DOC_TYPES.includes(file.type)) return { error: "Only PDF allowed." };
   if (file.size > MAX_DOC_SIZE) return { error: "File must be under 10 MB." };
 
-  const originalName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, "-");
-  const blob = await put(`documents/${originalName}`, file, {
-    access: "public",
-    allowOverwrite: true,
-  });
+  const safeName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, "-");
+  const filename = `documents/${Date.now()}-${Math.random().toString(36).slice(2)}-${safeName}`;
+  const blob = await put(filename, file, { access: "public" });
   return { url: blob.url };
 }
