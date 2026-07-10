@@ -3,8 +3,8 @@
 import { useState, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import type { Course } from "@/types";
-import { CourseCard } from "@/components/ui/CourseCard";
-import { ListingFilters } from "@/components/ui/ListingFilters";
+import { CourseCard } from "./CourseCard";
+import { ListingFilters } from "@/components/common";
 
 interface Props {
   courses: Course[];

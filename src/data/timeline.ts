@@ -4,16 +4,7 @@ import type {
   TimelineEntryTranslation,
 } from "@prisma/client";
 import { DEFAULT_LOCALE, LOCALES, pickTranslation } from "./locale";
-
-export interface TimelineEntry {
-  id: string;
-  year: string;
-  title: string;
-  subtitle: string | null;
-  paragraphs: string[];
-  current: boolean;
-  order: number;
-}
+import type { TimelineEntry } from "@/types";
 
 type TimelineRow = PrismaTimelineEntry & { translations: TimelineEntryTranslation[] };
 

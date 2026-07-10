@@ -2,13 +2,9 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { GhostNumber } from "@/components/ui/GhostNumber";
-import { Section } from "@/components/ui/Section";
-import { Button } from "@/components/ui/Button";
-import { AnimateIn } from "@/components/ui/AnimateIn";
+import { SectionHeader, GhostNumber, Section, Button, AnimateIn } from "@/components/ui";
 import { siteConfig } from "@/config/site";
-import type { ContactContent } from "@/data/settings";
+import type { ContactContent } from "@/types";
 
 type Status = "idle" | "sending" | "success" | "error";
 

@@ -1,7 +1,6 @@
 import { Link } from "@/navigation";
 import type { Project } from "@/types";
-import { StatusBadge } from "./StatusBadge";
-import { Tag } from "./Tag";
+import { StatusBadge, Tag } from "@/components/ui";
 
 interface Props {
   project: Project;

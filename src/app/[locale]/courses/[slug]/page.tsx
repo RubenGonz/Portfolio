@@ -2,12 +2,8 @@ import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { getCourseBySlug, getCourses } from "@/data/courses";
-import { BackLink } from "@/components/ui/BackLink";
-import { StatusBadge } from "@/components/ui/StatusBadge";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Button } from "@/components/ui/Button";
-import { Tag } from "@/components/ui/Tag";
-import { ItemNav } from "@/components/ui/ItemNav";
+import { BackLink, StatusBadge, SectionHeader, Button, Tag } from "@/components/ui";
+import { ItemNav } from "@/components/common";
 import { siteConfig } from "@/config/site";
 
 interface Props {

@@ -1,9 +1,8 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { getProjects } from "@/data/projects";
-import { BackLink } from "@/components/ui/BackLink";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { ProjectsListing } from "@/components/projects/ProjectsListing";
+import { BackLink, SectionHeader } from "@/components/ui";
+import { ProjectsListing } from "@/components/projects";
 
 export const metadata: Metadata = {
   title: "Projects",

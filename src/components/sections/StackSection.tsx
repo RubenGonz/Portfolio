@@ -1,10 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import type { StackItem } from "@/types";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { GhostNumber } from "@/components/ui/GhostNumber";
-import { Section } from "@/components/ui/Section";
-import { AnimateIn } from "@/components/ui/AnimateIn";
-import type { StackCategory } from "@/data/stack";
+import { SectionHeader, GhostNumber, Section, AnimateIn } from "@/components/ui";
+import type { StackCategory } from "@/types";
 
 const tierClass: Record<StackItem["tier"], string> = {
   professional: "text-fg border-line/12 bg-line/4 text-xs px-3 py-1.5",

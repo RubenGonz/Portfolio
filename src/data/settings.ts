@@ -1,30 +1,7 @@
 import { cache } from "react";
 import { prisma } from "@/lib/prisma";
 import { DEFAULT_LOCALE, LOCALES } from "./locale";
-
-export interface HeroContent {
-  title: string;
-  tagline: string;
-  description: string;
-}
-
-export interface ContactContent {
-  headline: string;
-  subtext: string;
-}
-
-export interface AvailableContent {
-  available: boolean;
-  label: string;
-}
-
-export interface HomeContent {
-  hero: HeroContent;
-  tickerText: string;
-  contact: ContactContent;
-  available: AvailableContent;
-  cvUrl: string;
-}
+import type { HeroContent, HomeContent } from "@/types";
 
 const DEFAULTS = {
   hero: {

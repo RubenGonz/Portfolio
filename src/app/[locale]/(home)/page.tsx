@@ -5,7 +5,7 @@ import {
   CoursesSection,
   StackSection,
   ContactSection,
-} from "@/components";
+} from "@/components/sections";
 import { getLocale } from "next-intl/server";
 import { getTimeline } from "@/data/timeline";
 import { getStack } from "@/data/stack";

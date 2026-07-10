@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import NextLink from "next/link";
 import { Link } from "@/navigation";
-import { Sidebar } from "../sidebar/Sidebar";
-import { ThemeSelector } from "../theme-selector/ThemeSelector";
-import { AvailableBadge } from "../AvailableBadge";
-import { LocaleSwitcher } from "../LocaleSwitcher";
+import { Sidebar } from "./Sidebar";
+import { ThemeSelector } from "./ThemeSelector";
+import { AvailableBadge } from "@/components/ui";
+import { LocaleSwitcher } from "./LocaleSwitcher";
 import { navLinks } from "@/config/nav";
-import type { AvailableContent } from "@/data/settings";
+import type { AvailableContent } from "@/types";
 
 export const Header = ({ available }: { available: AvailableContent }) => {
   const t = useTranslations("nav");

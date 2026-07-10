@@ -2,11 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { GhostNumber } from "@/components/ui/GhostNumber";
-import { Section } from "@/components/ui/Section";
-import { AnimateIn } from "@/components/ui/AnimateIn";
-import type { TimelineEntry } from "@/data/timeline";
+import { SectionHeader, GhostNumber, Section, AnimateIn } from "@/components/ui";
+import type { TimelineEntry } from "@/types";
 
 const ROTATE_MS = 5000;
 const FADE_MS = 250;

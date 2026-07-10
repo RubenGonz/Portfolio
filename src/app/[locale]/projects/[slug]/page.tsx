@@ -2,13 +2,9 @@ import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { getProjectBySlug, getProjects } from "@/data/projects";
-import { ProjectGallery } from "@/components/ui/project-gallery/ProjectGallery";
-import { BackLink } from "@/components/ui/BackLink";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { StatusBadge } from "@/components/ui/StatusBadge";
-import { Button } from "@/components/ui/Button";
-import { Tag } from "@/components/ui/Tag";
-import { ItemNav } from "@/components/ui/ItemNav";
+import { ProjectGallery } from "@/components/projects";
+import { BackLink, SectionHeader, StatusBadge, Button, Tag } from "@/components/ui";
+import { ItemNav } from "@/components/common";
 import { siteConfig } from "@/config/site";
 
 interface Props {

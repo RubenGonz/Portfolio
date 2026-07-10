@@ -3,7 +3,7 @@
 import { useState, type ReactNode } from "react";
 
 interface Props {
-  locales: string[];
+  locales: readonly string[];
   /** Renders the fields for one locale. Both locales are kept mounted so the
    *  inactive one still submits with the form — only visibility is toggled. */
   render: (locale: string) => ReactNode;

@@ -1,11 +1,8 @@
-/** Supported content locales. Mirrors src/i18n/routing.ts. */
-export type Locale = "en" | "es";
-
-/** The locale every piece of content is guaranteed to have. */
-export const DEFAULT_LOCALE: Locale = "en";
-
-/** All content locales, in admin/editing order. */
-export const LOCALES: Locale[] = ["en", "es"];
+/** Locale constants live in the i18n layer (single source of truth); the data
+ *  layer re-exports them so content code can import everything locale-related
+ *  from one place, alongside the translation-picking helper below. */
+export { LOCALES, DEFAULT_LOCALE, type Locale } from "@/i18n/locales";
+import { DEFAULT_LOCALE } from "@/i18n/locales";
 
 /**
  * Pick the translation row matching `locale`, falling back to the default

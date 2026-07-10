@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui";
 import { siteConfig } from "@/config/site";
-import type { HeroContent } from "@/data/settings";
+import type { HeroContent } from "@/types";
 
 export const HeroSection = async ({ hero, cvUrl }: { hero: HeroContent; cvUrl?: string }) => {
   const t = await getTranslations("hero");

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { headers } from "next/headers";
 import { inputMono, n27 } from "@/config/fonts/fonts";
-import { Providers } from "@/components";
+import { Providers } from "@/components/providers/Providers";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
