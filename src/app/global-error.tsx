@@ -67,6 +67,10 @@ export default function GlobalError({ error, reset }: { error: Error & { digest?
               >
                 Try again
               </button>
+              {/* Full page reload is intentional here: global-error replaces a
+                  broken root layout, so we want a hard navigation, not a client
+                  transition. next/link would keep the corrupted tree mounted. */}
+              {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
               <a
                 href="/en"
                 style={{ fontSize: "0.875rem", color: "#888", textDecoration: "none", border: "1px solid rgba(255,255,255,0.1)", padding: "0.625rem 1.25rem" }}

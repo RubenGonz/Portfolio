@@ -6,20 +6,19 @@ interface Props {
   children: React.ReactNode;
   className?: string;
   delay?: 1 | 2 | 3 | 4 | 5 | 6;
-  as?: keyof JSX.IntrinsicElements;
   /** Re-hide the element when it scrolls out of viewport */
   animateOut?: boolean;
 }
 
-export function AnimateIn({ children, className = "", delay, as: Tag = "div", animateOut = false }: Props) {
-  const { ref, inView } = useInView({ animateOut });
+export function AnimateIn({ children, className = "", delay, animateOut = false }: Props) {
+  const { ref, inView } = useInView<HTMLDivElement>({ animateOut });
 
   return (
-    <Tag
-      ref={ref as React.RefObject<HTMLElement & HTMLDivElement>}
+    <div
+      ref={ref}
       className={`animate-hidden${inView ? " animate-in" : ""}${delay ? ` delay-${delay}` : ""} ${className}`.trim()}
     >
       {children}
-    </Tag>
+    </div>
   );
 }
