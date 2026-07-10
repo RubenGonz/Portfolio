@@ -1,4 +1,5 @@
 "use server";
+import { requireAdmin } from "@/lib/auth-guard";
 
 import { put } from "@vercel/blob";
 
@@ -8,6 +9,7 @@ const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5 MB
 const MAX_DOC_SIZE = 10 * 1024 * 1024;  // 10 MB
 
 export async function uploadImage(fd: FormData): Promise<{ url: string } | { error: string }> {
+  await requireAdmin();
   const file = fd.get("file") as File | null;
   if (!file || file.size === 0) return { error: "No file provided." };
   if (!ALLOWED_IMAGE_TYPES.includes(file.type)) return { error: "Only JPEG, PNG, WebP or GIF allowed." };
@@ -20,6 +22,7 @@ export async function uploadImage(fd: FormData): Promise<{ url: string } | { err
 }
 
 export async function uploadDocument(fd: FormData): Promise<{ url: string } | { error: string }> {
+  await requireAdmin();
   const file = fd.get("file") as File | null;
   if (!file || file.size === 0) return { error: "No file provided." };
   if (!ALLOWED_DOC_TYPES.includes(file.type)) return { error: "Only PDF allowed." };

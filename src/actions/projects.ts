@@ -1,4 +1,5 @@
 "use server";
+import { requireAdmin } from "@/lib/auth-guard";
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -67,6 +68,7 @@ function revalidate(slug?: string) {
 }
 
 export async function createProject(_: unknown, fd: FormData): Promise<string | undefined> {
+  await requireAdmin();
   const { neutral, translations, images } = parseForm(fd);
   if (!neutral.slug || !translations[DEFAULT_LOCALE].title) return "Slug and title are required.";
   try {
@@ -88,6 +90,7 @@ export async function createProject(_: unknown, fd: FormData): Promise<string | 
 }
 
 export async function updateProject(slug: string, _: unknown, fd: FormData): Promise<string | undefined> {
+  await requireAdmin();
   const { neutral, translations, images } = parseForm(fd);
   if (!translations[DEFAULT_LOCALE].title) return "Title is required.";
   try {
@@ -126,6 +129,7 @@ export async function updateProject(slug: string, _: unknown, fd: FormData): Pro
 }
 
 export async function deleteProject(slug: string) {
+  await requireAdmin();
   const project = await prisma.project.findUnique({ where: { slug }, select: { id: true } });
   if (project) await deleteBlobImages(project.id);
   await prisma.project.delete({ where: { slug } });
@@ -133,6 +137,7 @@ export async function deleteProject(slug: string) {
 }
 
 export async function toggleProjectFeatured(slug: string, featured: boolean): Promise<string | undefined> {
+  await requireAdmin();
   if (featured) {
     const count = await prisma.project.count({ where: { featured: true } });
     if (count >= 2) return "Max 2 featured projects. Unmark one first.";

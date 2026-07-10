@@ -1,4 +1,5 @@
 "use server";
+import { requireAdmin } from "@/lib/auth-guard";
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -38,6 +39,7 @@ function revalidate() {
 }
 
 export async function createTimelineEntry(_: unknown, fd: FormData): Promise<string | undefined> {
+  await requireAdmin();
   const { year, translations } = parseForm(fd);
   if (!translations[DEFAULT_LOCALE].title || !year) return "Year and title are required.";
   const count = await prisma.timelineEntry.count();
@@ -56,6 +58,7 @@ export async function createTimelineEntry(_: unknown, fd: FormData): Promise<str
 }
 
 export async function updateTimelineEntry(id: string, _: unknown, fd: FormData): Promise<string | undefined> {
+  await requireAdmin();
   const { year, translations } = parseForm(fd);
   if (!translations[DEFAULT_LOCALE].title || !year) return "Year and title are required.";
   const current = fd.get("current") === "on";
@@ -78,11 +81,13 @@ export async function updateTimelineEntry(id: string, _: unknown, fd: FormData):
 }
 
 export async function deleteTimelineEntry(id: string) {
+  await requireAdmin();
   await prisma.timelineEntry.delete({ where: { id } });
   revalidate();
 }
 
 export async function reorderTimeline(orderedIds: string[]) {
+  await requireAdmin();
   await prisma.$transaction(
     orderedIds.map((id, index) =>
       prisma.timelineEntry.update({ where: { id }, data: { order: index } })
@@ -92,6 +97,7 @@ export async function reorderTimeline(orderedIds: string[]) {
 }
 
 export async function toggleTimelineCurrent(id: string, current: boolean) {
+  await requireAdmin();
   await prisma.timelineEntry.update({ where: { id }, data: { current } });
   revalidate();
 }

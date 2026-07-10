@@ -1,5 +1,7 @@
 import { createProject, updateProject, deleteProject, toggleProjectFeatured } from "@/actions/projects";
 
+jest.mock("@/lib/auth-guard", () => ({ requireAdmin: jest.fn() }));
+
 const mockCreate   = jest.fn().mockResolvedValue({});
 const mockUpdate   = jest.fn().mockResolvedValue({});
 const mockDelete   = jest.fn().mockResolvedValue({});
