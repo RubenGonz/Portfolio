@@ -48,7 +48,6 @@ export function ImagesEditor({ defaultValue = [] }: Props) {
     <div className="flex flex-col gap-3">
       <span className="font-inputmono text-[11px] text-muted tracking-widest uppercase">Images</span>
 
-      {/* Upload fields */}
       <div className="flex flex-col gap-2">
         <div className="flex gap-2">
           <input
@@ -82,7 +81,6 @@ export function ImagesEditor({ defaultValue = [] }: Props) {
         {uploadError && <p className="font-inputmono text-[11px] text-danger">{uploadError}</p>}
       </div>
 
-      {/* Current images */}
       {images.map((img, i) => (
         <div key={i} className="flex items-start gap-2 border border-line/10 px-3 py-2">
           <div className="flex-1 min-w-0 flex flex-col gap-0.5">
@@ -100,7 +98,7 @@ export function ImagesEditor({ defaultValue = [] }: Props) {
         </div>
       ))}
 
-      {/* Hidden inputs */}
+      {/* Hidden inputs carry the image data for the server action */}
       {images.map((img, i) => (
         <span key={i}>
           <input type="hidden" name="images_name" value={img.name} />

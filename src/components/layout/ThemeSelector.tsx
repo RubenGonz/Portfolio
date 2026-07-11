@@ -13,7 +13,8 @@ export const ThemeSelector = () => {
   const [showToggle, setShowToggle] = useState(false);
 
   useEffect(() => {
-    // Ensure the component is mounted before rendering
+    // next-themes only knows the resolved theme after mount; render a skeleton
+    // until then to avoid a hydration mismatch.
     setMounted(true);
     // Wait a moment so transitions can run smoothly after mount
     const timeout = setTimeout(() => setShowToggle(true), 100);
@@ -33,7 +34,6 @@ export const ThemeSelector = () => {
       onChange={() => setTheme(isDark ? "light" : "dark")}
       aria-label={isDark ? t("switchToLight") : t("switchToDark")}
     />
-    {/* Toggle background */}
     <div className="w-16 h-8 border border-brand rounded-full transition-colors duration-300" />
 
     <div className="absolute top-1 left-1 w-6 h-6 rounded-full transition-all duration-500 peer-checked:translate-x-8">

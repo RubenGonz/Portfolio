@@ -35,7 +35,6 @@ export const ProjectGallery = ({ images }: Props) => {
   return (
     <>
       <div className="flex flex-col gap-3">
-        {/* Main image — clickable */}
         <button
           onClick={() => setLightbox(true)}
           className="relative w-full aspect-video overflow-hidden border border-line/8 cursor-zoom-in group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50"
@@ -59,7 +58,6 @@ export const ProjectGallery = ({ images }: Props) => {
           </div>
         </button>
 
-        {/* Thumbnails */}
         {images.length > 1 && (
           <div className="flex gap-2">
             {images.map((img, i) => (
@@ -107,7 +105,6 @@ export const ProjectGallery = ({ images }: Props) => {
               priority
             />
 
-            {/* Close */}
             <button
               onClick={() => setLightbox(false)}
               className="absolute -top-10 right-0 font-inputmono text-xs text-white/50 hover:text-white transition-colors tracking-widest uppercase cursor-pointer"
@@ -115,7 +112,6 @@ export const ProjectGallery = ({ images }: Props) => {
               {t("close")}
             </button>
 
-            {/* Prev / Next */}
             {images.length > 1 && (
               <>
                 <button
@@ -136,7 +132,6 @@ export const ProjectGallery = ({ images }: Props) => {
             )}
           </div>
 
-          {/* Counter */}
           {images.length > 1 && (
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 font-inputmono text-[11px] text-white/40 tracking-widest">
               {active + 1} / {images.length}

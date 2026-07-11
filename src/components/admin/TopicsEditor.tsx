@@ -45,7 +45,6 @@ export function TopicsEditor({ name, defaultValue = [] }: { name: string; defaul
       <span className="font-inputmono text-[11px] tracking-widest uppercase text-subtle">Topics</span>
       <input type="hidden" name={name} value={JSON.stringify(sections)} />
 
-      {/* Add section — top */}
       <input
         type="text"
         value={newSection}
@@ -56,7 +55,6 @@ export function TopicsEditor({ name, defaultValue = [] }: { name: string; defaul
           text-fg focus:border-brand/40 focus:outline-none transition-colors"
       />
 
-      {/* Sections */}
       <div className="flex flex-col gap-3 mt-1">
         {sections.map((section, si) => (
           <div key={si} className="border border-line/10 bg-surface p-4 flex flex-col gap-3">
@@ -78,10 +76,8 @@ export function TopicsEditor({ name, defaultValue = [] }: { name: string; defaul
               </button>
             </div>
 
-            {/* Add item — top */}
             <ItemInput onAdd={(val) => addItem(si, val)} />
 
-            {/* Chips */}
             {section.items.length > 0 && (
               <div className="flex flex-wrap gap-1.5">
                 {section.items.map((item, ii) => (

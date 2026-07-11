@@ -30,7 +30,8 @@ export async function deleteStackItem(id: string) {
   revalidate();
 }
 
-// Keep for standalone pages
+// Form-action variants for the standalone new/edit pages (the inline add/move/
+// delete above power the drag-and-drop admin board).
 function parseForm(fd: FormData) {
   const get = (k: string) => (fd.get(k) as string | null)?.trim() ?? "";
   return {

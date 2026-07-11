@@ -67,7 +67,6 @@ function TierColumn({
     >
       <p className="font-inputmono text-[10px] tracking-widest uppercase text-subtle">{tier}</p>
 
-      {/* Input at top */}
       <input
         ref={inputRef}
         type="text"
@@ -79,7 +78,6 @@ function TierColumn({
           text-fg focus:border-brand/40 focus:outline-none transition-colors w-full"
       />
 
-      {/* Items */}
       {items.map((item) => (
         <div
           key={item.id}

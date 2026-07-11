@@ -27,14 +27,12 @@ export const Header = ({ available }: { available: AvailableContent }) => {
     <header className={`fixed h-14 w-full flex justify-between items-center px-6 z-50 text-fg transition-all duration-150 border-b
       ${scrolled ? "bg-bg/90 backdrop-blur-md border-line/5" : "bg-transparent border-transparent"}`}
     >
-      {/* Logo */}
       <Link href="/" className="flex items-center gap-1.5 group cursor-pointer">
         <span className="font-n27 font-bold italic text-xl leading-none bg-linear-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"{"}</span>
         <span className="font-n27 font-bold italic text-sm tracking-wide text-fg">rubengonz</span>
         <span className="font-n27 font-bold italic text-xl leading-none bg-linear-to-br from-brand-sec to-brand bg-clip-text text-transparent">{"}"}</span>
       </Link>
 
-      {/* Nav centrado (solo desktop) */}
       <nav className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-10">
         {navLinks.map(({ key, href }) => (
           <Link
