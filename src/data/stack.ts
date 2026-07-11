@@ -1,16 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import type { StackItem } from "@/types";
-
-export interface StackItemWithId extends StackItem {
-  id: string;
-  category: string;
-  order: number;
-}
-
-export interface StackCategory {
-  label: string;
-  items: StackItemWithId[];
-}
+import type { StackCategory, StackItemWithId, StackItem } from "@/types";
 
 const CATEGORY_ORDER = ["Frontend", "Backend", "Database", "Tooling"];
 

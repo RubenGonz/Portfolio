@@ -40,7 +40,6 @@ export function ChipEditor({ label, name, defaultValue = [], hint }: ChipEditorP
       {/* Hidden input carries the value for the server action */}
       <input type="hidden" name={name} value={chips.join("\n")} />
 
-      {/* Input row */}
       <input
         ref={inputRef}
         type="text"
@@ -53,7 +52,6 @@ export function ChipEditor({ label, name, defaultValue = [], hint }: ChipEditorP
           text-fg focus:border-brand/50 focus:outline-none transition-colors"
       />
 
-      {/* Chips below */}
       {chips.length > 0 && (
         <div className="flex flex-wrap gap-1.5 mt-0.5">
           {chips.map((chip, i) => (
@@ -65,7 +63,7 @@ export function ChipEditor({ label, name, defaultValue = [], hint }: ChipEditorP
               <button
                 type="button"
                 onClick={() => remove(i)}
-                className="text-subtle hover:text-danger transition-colors leading-none"
+                className="text-subtle hover:text-danger transition-colors leading-none cursor-pointer"
                 aria-label={`Remove ${chip}`}
               >
                 ×

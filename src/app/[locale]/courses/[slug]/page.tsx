@@ -1,14 +1,10 @@
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { getCourseBySlug, getCourses } from "@/data/courses";
-import { BackLink } from "@/components/ui/BackLink";
-import { StatusBadge } from "@/components/ui/StatusBadge";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Button } from "@/components/ui/Button";
-import { Tag } from "@/components/ui/Tag";
-import { ItemNav } from "@/components/ui/ItemNav";
-import { siteConfig } from "@/config/site";
+import { BackLink, StatusBadge, SectionHeader, Button, Tag } from "@/components/ui";
+import { ItemNav, DotGrid } from "@/components/common";
+import { buildDetailMetadata } from "@/lib/metadata";
 
 interface Props {
   params: Promise<{ slug: string; locale: string }>;
@@ -23,28 +19,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, locale } = await params;
   const course = await getCourseBySlug(slug, locale);
   if (!course) return {};
-  const base = siteConfig.url;
-  return {
+  return buildDetailMetadata({
+    section: "courses",
+    slug,
+    locale,
     title: course.title,
     description: course.shortDescription,
-    alternates: {
-      canonical: `${base}/${locale}/courses/${slug}`,
-      languages: { en: `${base}/en/courses/${slug}`, es: `${base}/es/courses/${slug}` },
-    },
-    openGraph: {
-      title: `${course.title} — RubenGonz`,
-      description: course.shortDescription,
-      url: `${base}/${locale}/courses/${slug}`,
-      type: "article",
-    },
-  };
+  });
 }
 
 export default async function CoursePage({ params }: Props) {
   const { slug, locale } = await params;
   const t = await getTranslations("courses");
   const course = await getCourseBySlug(slug, locale);
-  if (!course) notFound();
+  if (!course) redirect(`/${locale}/courses`);
 
   const all = await getCourses(locale);
   const currentIndex = all.findIndex((c) => c.slug === slug);
@@ -55,7 +43,7 @@ export default async function CoursePage({ params }: Props) {
     <main className="min-h-screen">
       <div className="relative border-b border-line/5 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 60% 50% at 70% 50%, var(--glow-soft) 0%, transparent 70%)" }} />
-        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "radial-gradient(var(--grid-dot) 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
+        <DotGrid />
 
         <div className="relative px-6 md:px-16 pt-28 pb-16 max-w-5xl mx-auto">
           <BackLink label={t("back")} fallbackHref="/courses" />

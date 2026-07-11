@@ -21,7 +21,7 @@ export const BackLink = ({ label, fallbackHref = "/" }: Props) => {
   return (
     <button
       onClick={handleBack}
-      className="font-inputmono text-[11px] text-faint hover:text-fg
+      className="font-inputmono text-[11px] text-faint hover:text-fg cursor-pointer
         transition-colors mb-10 inline-flex items-center gap-2 tracking-widest uppercase"
     >
       <span className="text-brand">←</span> {label}

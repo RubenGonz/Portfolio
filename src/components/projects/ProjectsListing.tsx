@@ -3,8 +3,8 @@
 import { useState, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import type { Project } from "@/types";
-import { ProjectCard } from "@/components/ui/ProjectCard";
-import { ListingFilters } from "@/components/ui/ListingFilters";
+import { ProjectCard } from "./ProjectCard";
+import { ListingFilters } from "@/components/common";
 
 interface Props {
   projects: Project[];

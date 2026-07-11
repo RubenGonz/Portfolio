@@ -1,5 +1,5 @@
 import { getLocale } from "next-intl/server";
-import { Footer, Header } from "@/components";
+import { Footer, Header } from "@/components/layout";
 import { getHomeContent } from "@/data/settings";
 
 export default async function CoursesLayout({ children }: { children: React.ReactNode }) {

@@ -1,5 +1,7 @@
 import { uploadImage, uploadDocument } from "@/actions/upload";
 
+jest.mock("@/lib/auth-guard", () => ({ requireAdmin: jest.fn() }));
+
 jest.mock("@vercel/blob", () => ({
   put: jest.fn().mockResolvedValue({ url: "https://blob.example.com/file.pdf" }),
 }));

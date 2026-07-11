@@ -6,7 +6,7 @@ import { FormField, TextareaField } from "@/components/admin/FormField";
 import { LocaleTabs } from "@/components/admin/LocaleTabs";
 import { SubmitButton } from "@/components/admin/SubmitButton";
 import { LOCALES } from "@/data/locale";
-import type { HomeEdit } from "@/data/settings";
+import type { HomeEdit } from "@/data/settings/edit";
 
 export function HeroEditForm({ home }: { home: HomeEdit }) {
   const [error, action] = useActionState(updateHero, undefined);

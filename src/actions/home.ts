@@ -1,10 +1,12 @@
 "use server";
+import { requireAdmin } from "@/lib/auth-guard";
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { del } from "@vercel/blob";
 import { prisma } from "@/lib/prisma";
 import { DEFAULT_LOCALE, LOCALES } from "@/data/locale";
+import { formReader } from "@/lib/form";
 
 // Settings are localized per (key, locale). Neutral keys (cv_url, available)
 // always write under the default locale.
@@ -23,7 +25,8 @@ const writeLocalized = (key: string, locale: string, value: string) =>
     : prisma.setting.deleteMany({ where: { key, locale } });
 
 export async function updateHero(_: unknown, fd: FormData): Promise<string | undefined> {
-  const get = (k: string) => (fd.get(k) as string | null)?.trim() ?? "";
+  await requireAdmin();
+  const { get } = formReader(fd);
   if (!get("hero_title_en") || !get("hero_description_en")) {
     return "Title and description are required.";
   }
@@ -39,7 +42,8 @@ export async function updateHero(_: unknown, fd: FormData): Promise<string | und
 }
 
 export async function updateTicker(_: unknown, fd: FormData): Promise<string | undefined> {
-  const get = (k: string) => (fd.get(k) as string | null)?.trim() ?? "";
+  await requireAdmin();
+  const { get } = formReader(fd);
   await prisma.$transaction(
     LOCALES.map((l) => writeLocalized("ticker_text", l, get(`ticker_text_${l}`))),
   );
@@ -48,7 +52,8 @@ export async function updateTicker(_: unknown, fd: FormData): Promise<string | u
 }
 
 export async function updateAvailable(_: unknown, fd: FormData): Promise<string | undefined> {
-  const get = (k: string) => (fd.get(k) as string | null)?.trim() ?? "";
+  await requireAdmin();
+  const { get } = formReader(fd);
   const available = fd.get("available") === "on" ? "true" : "false";
   await prisma.$transaction([
     upsert("available", available), // neutral flag
@@ -62,7 +67,8 @@ export async function updateAvailable(_: unknown, fd: FormData): Promise<string 
 }
 
 export async function updateContact(_: unknown, fd: FormData): Promise<string | undefined> {
-  const get = (k: string) => (fd.get(k) as string | null)?.trim() ?? "";
+  await requireAdmin();
+  const { get } = formReader(fd);
   if (!get("contact_headline_en")) return "Headline is required.";
   await prisma.$transaction(
     LOCALES.flatMap((l) => [
@@ -75,6 +81,7 @@ export async function updateContact(_: unknown, fd: FormData): Promise<string | 
 }
 
 export async function updateCvUrl(url: string): Promise<void> {
+  await requireAdmin();
   const prev = await prisma.setting.findUnique({
     where: { key_locale: { key: "cv_url", locale: DEFAULT_LOCALE } },
   });

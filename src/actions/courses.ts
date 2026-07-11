@@ -1,10 +1,12 @@
 "use server";
+import { requireAdmin } from "@/lib/auth-guard";
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import type { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { DEFAULT_LOCALE, LOCALES } from "@/data/locale";
+import { formReader, filledLocales } from "@/lib/form";
 
 type CourseTranslationData = {
   title: string;
@@ -15,12 +17,7 @@ type CourseTranslationData = {
 };
 
 function parseForm(fd: FormData) {
-  const get = (k: string) => (fd.get(k) as string | null)?.trim() ?? "";
-  const arr = (k: string) =>
-    get(k).split("\n").map((s) => s.trim()).filter(Boolean);
-  const json = (k: string) => {
-    try { return JSON.parse(get(k)); } catch { return []; }
-  };
+  const { get, lines, json } = formReader(fd);
 
   // Translatable fields carry a `_<locale>` suffix (title_en, title_es…).
   const translations: Record<string, CourseTranslationData> = {};
@@ -29,8 +26,8 @@ function parseForm(fd: FormData) {
       title: get(`title_${locale}`),
       shortDescription: get(`shortDescription_${locale}`),
       fullDescription: get(`fullDescription_${locale}`),
-      tags: arr(`tags_${locale}`),
-      topics: json(`topics_${locale}`),
+      tags: lines(`tags_${locale}`),
+      topics: json<Prisma.InputJsonValue>(`topics_${locale}`, []),
     };
   }
 
@@ -49,10 +46,6 @@ function parseForm(fd: FormData) {
   };
 }
 
-/** Locales whose translation has real content (a title). */
-const filledLocales = (translations: Record<string, CourseTranslationData>) =>
-  LOCALES.filter((l) => translations[l].title.trim());
-
 function revalidate(slug?: string) {
   revalidatePath("/admin");
   revalidatePath("/courses");
@@ -60,6 +53,7 @@ function revalidate(slug?: string) {
 }
 
 export async function createCourse(_: unknown, fd: FormData): Promise<string | undefined> {
+  await requireAdmin();
   const { neutral, translations } = parseForm(fd);
   if (!neutral.slug || !translations[DEFAULT_LOCALE].title) return "Slug and title are required.";
   try {
@@ -80,6 +74,7 @@ export async function createCourse(_: unknown, fd: FormData): Promise<string | u
 }
 
 export async function updateCourse(slug: string, _: unknown, fd: FormData): Promise<string | undefined> {
+  await requireAdmin();
   const { neutral, translations } = parseForm(fd);
   if (!translations[DEFAULT_LOCALE].title) return "Title is required.";
   try {
@@ -108,11 +103,13 @@ export async function updateCourse(slug: string, _: unknown, fd: FormData): Prom
 }
 
 export async function deleteCourse(slug: string) {
+  await requireAdmin();
   await prisma.course.delete({ where: { slug } });
   revalidate();
 }
 
 export async function toggleCourseFeatured(slug: string, featured: boolean): Promise<string | undefined> {
+  await requireAdmin();
   if (featured) {
     const count = await prisma.course.count({ where: { featured: true } });
     if (count >= 2) return "Max 2 featured courses. Unmark one first.";

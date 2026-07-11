@@ -8,7 +8,7 @@ import { TopicsEditor } from "@/components/admin/TopicsEditor";
 import { LocaleTabs } from "@/components/admin/LocaleTabs";
 import { SubmitButton } from "@/components/admin/SubmitButton";
 import { LOCALES } from "@/data/locale";
-import type { CourseEdit } from "@/data/courses";
+import type { CourseEdit } from "@/data/courses/edit";
 
 const statusOptions = [
   { value: "not-started", label: "Not Started" },

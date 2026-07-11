@@ -26,7 +26,7 @@ export function FeaturedToggle({ id, featured: initial, action }: FeaturedToggle
         type="button"
         onClick={toggle}
         title={featured ? "Unmark as featured" : "Mark as featured"}
-        className={`font-inputmono text-[10px] tracking-widest uppercase border px-2 py-1 transition-colors ${
+        className={`font-inputmono text-[10px] tracking-widest uppercase border px-2 py-1 transition-colors cursor-pointer ${
           featured
             ? "border-brand/40 text-brand bg-brand/5"
             : "border-line/10 text-faint hover:text-subtle hover:border-line/20"

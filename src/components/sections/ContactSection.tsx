@@ -2,12 +2,9 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { GhostNumber } from "@/components/ui/GhostNumber";
-import { Section } from "@/components/ui/Section";
-import { Button } from "@/components/ui/Button";
+import { SectionHeader, GhostNumber, Section, Button, AnimateIn } from "@/components/ui";
 import { siteConfig } from "@/config/site";
-import type { ContactContent } from "@/data/settings";
+import type { ContactContent } from "@/types";
 
 type Status = "idle" | "sending" | "success" | "error";
 
@@ -42,7 +39,7 @@ export const ContactSection = ({ contact }: { contact: ContactContent }) => {
     <Section id="contact">
       <SectionHeader label={t("sectionLabel")} srTitle={t("sectionLabel")} />
 
-      <div className="flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-16 max-w-4xl relative">
+      <AnimateIn animateOut className="flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-16 max-w-4xl relative">
         <GhostNumber>05</GhostNumber>
 
         <div>
@@ -57,7 +54,7 @@ export const ContactSection = ({ contact }: { contact: ContactContent }) => {
           <div className="flex flex-col gap-3">
             <a
               href={`mailto:${siteConfig.email}`}
-              className="font-inputmono text-xs text-muted hover:text-fg transition-colors flex items-center gap-2 break-all"
+              className="font-inputmono text-xs text-muted hover:text-fg transition-colors flex items-center gap-2 break-all cursor-pointer"
             >
               <span className="text-subtle shrink-0" aria-hidden="true">→</span>
               {siteConfig.email}
@@ -66,7 +63,7 @@ export const ContactSection = ({ contact }: { contact: ContactContent }) => {
               href={siteConfig.social.linkedin.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-inputmono text-xs text-muted hover:text-fg transition-colors flex items-center gap-2"
+              className="font-inputmono text-xs text-muted hover:text-fg transition-colors flex items-center gap-2 cursor-pointer"
             >
               <span className="text-subtle shrink-0" aria-hidden="true">→</span>
               {siteConfig.social.linkedin.handle} ↗
@@ -75,7 +72,7 @@ export const ContactSection = ({ contact }: { contact: ContactContent }) => {
               href={siteConfig.social.github.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-inputmono text-xs text-muted hover:text-fg transition-colors flex items-center gap-2"
+              className="font-inputmono text-xs text-muted hover:text-fg transition-colors flex items-center gap-2 cursor-pointer"
             >
               <span className="text-subtle shrink-0" aria-hidden="true">→</span>
               {siteConfig.social.github.handle} ↗
@@ -132,7 +129,7 @@ export const ContactSection = ({ contact }: { contact: ContactContent }) => {
             {status === "sending" ? t("sending") : t("send")}
           </Button>
         </form>
-      </div>
+      </AnimateIn>
     </Section>
   );
 };

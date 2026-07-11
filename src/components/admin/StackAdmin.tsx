@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { addStackItem, deleteStackItem, moveStackItem } from "@/actions/stack";
 import { useRouter } from "next/navigation";
-import type { StackCategory, StackItemWithId } from "@/data/stack";
+import type { StackCategory, StackItemWithId } from "@/types";
 
 const TIERS = [
   { key: "professional", label: "Professional" },
@@ -14,14 +14,12 @@ const TIERS = [
 type TierKey = "professional" | "active" | "familiar";
 
 function TierColumn({
-  category,
   tier,
   items,
   onDelete,
   onAdd,
   onDrop,
 }: {
-  category: string;
   tier: TierKey;
   items: StackItemWithId[];
   onDelete: (id: string) => void;
@@ -60,7 +58,7 @@ function TierColumn({
 
   return (
     <div
-      className={`flex flex-col gap-2 min-h-[80px] p-2 border transition-colors ${
+      className={`flex flex-col gap-2 min-h-20 p-2 border transition-colors ${
         dragOver ? "border-brand/30 bg-brand/3" : "border-transparent"
       }`}
       onDragOver={onDragOver}
@@ -69,7 +67,6 @@ function TierColumn({
     >
       <p className="font-inputmono text-[10px] tracking-widest uppercase text-subtle">{tier}</p>
 
-      {/* Input at top */}
       <input
         ref={inputRef}
         type="text"
@@ -81,7 +78,6 @@ function TierColumn({
           text-fg focus:border-brand/40 focus:outline-none transition-colors w-full"
       />
 
-      {/* Items */}
       {items.map((item) => (
         <div
           key={item.id}
@@ -96,7 +92,7 @@ function TierColumn({
           <button
             type="button"
             onClick={() => onDelete(item.id)}
-            className="font-inputmono text-[11px] text-subtle hover:text-danger transition-colors ml-2"
+            className="font-inputmono text-[11px] text-subtle hover:text-danger transition-colors ml-2 cursor-pointer"
           >
             ×
           </button>
@@ -147,7 +143,6 @@ export function StackAdmin({ categories }: { categories: StackCategory[] }) {
               {TIERS.map(({ key }) => (
                 <TierColumn
                   key={key}
-                  category={cat.label}
                   tier={key}
                   items={byTier(key)}
                   onDelete={handleDelete}

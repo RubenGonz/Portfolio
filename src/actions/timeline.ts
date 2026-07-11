@@ -1,9 +1,11 @@
 "use server";
+import { requireAdmin } from "@/lib/auth-guard";
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { DEFAULT_LOCALE, LOCALES } from "@/data/locale";
+import { formReader, filledLocales } from "@/lib/form";
 
 type TimelineTranslationData = {
   title: string;
@@ -12,7 +14,7 @@ type TimelineTranslationData = {
 };
 
 function parseForm(fd: FormData) {
-  const get = (k: string) => (fd.get(k) as string | null)?.trim() ?? "";
+  const { get } = formReader(fd);
 
   // Translatable fields carry a `_<locale>` suffix (title_en, title_es…).
   const translations: Record<string, TimelineTranslationData> = {};
@@ -31,16 +33,13 @@ function parseForm(fd: FormData) {
   };
 }
 
-/** Locales whose translation has real content (a title). */
-const filledLocales = (translations: Record<string, TimelineTranslationData>) =>
-  LOCALES.filter((l) => translations[l].title.trim());
-
 function revalidate() {
   revalidatePath("/admin");
   revalidatePath("/");
 }
 
 export async function createTimelineEntry(_: unknown, fd: FormData): Promise<string | undefined> {
+  await requireAdmin();
   const { year, translations } = parseForm(fd);
   if (!translations[DEFAULT_LOCALE].title || !year) return "Year and title are required.";
   const count = await prisma.timelineEntry.count();
@@ -59,6 +58,7 @@ export async function createTimelineEntry(_: unknown, fd: FormData): Promise<str
 }
 
 export async function updateTimelineEntry(id: string, _: unknown, fd: FormData): Promise<string | undefined> {
+  await requireAdmin();
   const { year, translations } = parseForm(fd);
   if (!translations[DEFAULT_LOCALE].title || !year) return "Year and title are required.";
   const current = fd.get("current") === "on";
@@ -81,11 +81,13 @@ export async function updateTimelineEntry(id: string, _: unknown, fd: FormData):
 }
 
 export async function deleteTimelineEntry(id: string) {
+  await requireAdmin();
   await prisma.timelineEntry.delete({ where: { id } });
   revalidate();
 }
 
 export async function reorderTimeline(orderedIds: string[]) {
+  await requireAdmin();
   await prisma.$transaction(
     orderedIds.map((id, index) =>
       prisma.timelineEntry.update({ where: { id }, data: { order: index } })
@@ -95,6 +97,7 @@ export async function reorderTimeline(orderedIds: string[]) {
 }
 
 export async function toggleTimelineCurrent(id: string, current: boolean) {
+  await requireAdmin();
   await prisma.timelineEntry.update({ where: { id }, data: { current } });
   revalidate();
 }

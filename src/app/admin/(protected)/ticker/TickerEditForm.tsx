@@ -6,7 +6,7 @@ import { FormField } from "@/components/admin/FormField";
 import { LocaleTabs } from "@/components/admin/LocaleTabs";
 import { SubmitButton } from "@/components/admin/SubmitButton";
 import { LOCALES } from "@/data/locale";
-import type { HomeEdit } from "@/data/settings";
+import type { HomeEdit } from "@/data/settings/edit";
 
 export function TickerEditForm({ home }: { home: HomeEdit }) {
   const [error, action] = useActionState(updateTicker, undefined);

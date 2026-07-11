@@ -2,10 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { GhostNumber } from "@/components/ui/GhostNumber";
-import { Section } from "@/components/ui/Section";
-import type { TimelineEntry } from "@/data/timeline";
+import { SectionHeader, GhostNumber, Section, AnimateIn } from "@/components/ui";
+import type { TimelineEntry } from "@/types";
 
 const ROTATE_MS = 5000;
 const FADE_MS = 250;
@@ -47,6 +45,9 @@ export const AboutSection = ({ items }: { items: TimelineEntry[] }) => {
       index++;
     }, ROTATE_MS);
     return () => clearInterval(interval);
+    // `items` is stable server data for the component's lifetime; the rotation
+    // is meant to set up once on mount, so an empty dep array is intentional.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSelect = (id: string) => {
@@ -60,7 +61,7 @@ export const AboutSection = ({ items }: { items: TimelineEntry[] }) => {
     <Section id="about">
       <SectionHeader label={t("sectionLabel")} srTitle={t("sectionLabel")} />
 
-      <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 max-w-4xl relative">
+      <AnimateIn animateOut className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 max-w-4xl relative">
         <GhostNumber>02</GhostNumber>
 
         <div
@@ -111,7 +112,7 @@ export const AboutSection = ({ items }: { items: TimelineEntry[] }) => {
             })}
           </div>
         </div>
-      </div>
+      </AnimateIn>
     </Section>
   );
 };

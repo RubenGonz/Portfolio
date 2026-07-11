@@ -1,9 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import type { StackItem } from "@/types";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { GhostNumber } from "@/components/ui/GhostNumber";
-import { Section } from "@/components/ui/Section";
-import type { StackCategory } from "@/data/stack";
+import { SectionHeader, GhostNumber, Section, AnimateIn } from "@/components/ui";
+import type { StackCategory } from "@/types";
 
 const tierClass: Record<StackItem["tier"], string> = {
   professional: "text-fg border-line/12 bg-line/4 text-xs px-3 py-1.5",
@@ -28,8 +26,9 @@ export const StackSection = async ({ categories }: { categories: StackCategory[]
         <GhostNumber>04</GhostNumber>
 
         <div className="grid grid-cols-1 min-[768px]:grid-cols-2 gap-10 min-[768px]:gap-x-16 min-[768px]:gap-y-12">
-          {categories.map(({ label, items }) => (
-            <div key={label}>
+          {categories.map(({ label, items }, i) => (
+            <AnimateIn key={label} delay={((i % 6) + 1) as 1|2|3|4|5|6} animateOut>
+            <div>
               <div className="mb-4">
                 <div className="flex items-center gap-2 mb-1.5">
                   <div className="w-3 h-px bg-linear-to-r from-brand-sec to-brand" />
@@ -52,6 +51,7 @@ export const StackSection = async ({ categories }: { categories: StackCategory[]
                 ))}
               </div>
             </div>
+            </AnimateIn>
           ))}
         </div>
       </div>

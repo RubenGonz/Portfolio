@@ -1,10 +1,8 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/navigation";
 import { getProjects } from "@/data/projects";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { GhostNumber } from "@/components/ui/GhostNumber";
-import { ProjectCard } from "@/components/ui/ProjectCard";
-import { Section } from "@/components/ui/Section";
+import { SectionHeader, GhostNumber, Section, AnimateIn } from "@/components/ui";
+import { ProjectCard } from "@/components/projects";
 
 const PREVIEW_COUNT = 2;
 
@@ -22,8 +20,10 @@ export const ProjectsSection = async () => {
       <div className="flex flex-col gap-4 md:gap-6 relative">
         <GhostNumber>01</GhostNumber>
 
-        {preview.map((project) => (
-          <ProjectCard key={project.slug} project={project} />
+        {preview.map((project, i) => (
+          <AnimateIn key={project.slug} delay={((i + 1) as 1 | 2)} animateOut>
+            <ProjectCard project={project} />
+          </AnimateIn>
         ))}
 
         {projects.length > PREVIEW_COUNT && (

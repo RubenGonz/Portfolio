@@ -1,5 +1,7 @@
 import { updateHero, updateTicker, updateAvailable, updateContact } from "@/actions/home";
 
+jest.mock("@/lib/auth-guard", () => ({ requireAdmin: jest.fn() }));
+
 const mockUpsert = jest.fn().mockResolvedValue({});
 const mockTransaction = jest.fn().mockResolvedValue([]);
 

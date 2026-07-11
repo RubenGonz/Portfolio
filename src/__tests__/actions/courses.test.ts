@@ -1,5 +1,7 @@
 import { createCourse, updateCourse, deleteCourse, toggleCourseFeatured } from "@/actions/courses";
 
+jest.mock("@/lib/auth-guard", () => ({ requireAdmin: jest.fn() }));
+
 const mockCreate = jest.fn().mockResolvedValue({});
 const mockUpdate = jest.fn().mockResolvedValue({});
 const mockDelete = jest.fn().mockResolvedValue({});
