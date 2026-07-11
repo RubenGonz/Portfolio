@@ -58,7 +58,7 @@ function TierColumn({
 
   return (
     <div
-      className={`flex flex-col gap-2 min-h-[80px] p-2 border transition-colors ${
+      className={`flex flex-col gap-2 min-h-20 p-2 border transition-colors ${
         dragOver ? "border-brand/30 bg-brand/3" : "border-transparent"
       }`}
       onDragOver={onDragOver}
