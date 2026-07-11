@@ -18,7 +18,8 @@ export default auth((req) => {
 });
 
 export const config = {
-  // Match the root and every path except api, next internals and static files.
+  // Match the root and every path except api, next internals, the extensionless
+  // metadata route (opengraph-image) and static files (which carry a dot).
   // /admin is intentionally included so NextAuth can guard it.
-  matcher: ["/", "/((?!api|_next|_vercel|.*\\..*).*)"],
+  matcher: ["/", "/((?!api|_next|_vercel|opengraph-image|.*\\..*).*)"],
 };
