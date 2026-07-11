@@ -11,6 +11,8 @@ jest.mock("next-intl", () => ({
 
 jest.mock("next/image", () => ({
   __esModule: true,
+  // Plain <img> is fine here — this is a test stub for next/image.
+  // eslint-disable-next-line @next/next/no-img-element
   default: ({ src, alt }: { src: string; alt: string }) => <img src={src} alt={alt} />,
 }));
 

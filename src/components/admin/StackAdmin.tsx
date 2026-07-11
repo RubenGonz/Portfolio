@@ -14,14 +14,12 @@ const TIERS = [
 type TierKey = "professional" | "active" | "familiar";
 
 function TierColumn({
-  category,
   tier,
   items,
   onDelete,
   onAdd,
   onDrop,
 }: {
-  category: string;
   tier: TierKey;
   items: StackItemWithId[];
   onDelete: (id: string) => void;
@@ -60,7 +58,7 @@ function TierColumn({
 
   return (
     <div
-      className={`flex flex-col gap-2 min-h-[80px] p-2 border transition-colors ${
+      className={`flex flex-col gap-2 min-h-20 p-2 border transition-colors ${
         dragOver ? "border-brand/30 bg-brand/3" : "border-transparent"
       }`}
       onDragOver={onDragOver}
@@ -147,7 +145,6 @@ export function StackAdmin({ categories }: { categories: StackCategory[] }) {
               {TIERS.map(({ key }) => (
                 <TierColumn
                   key={key}
-                  category={cat.label}
                   tier={key}
                   items={byTier(key)}
                   onDelete={handleDelete}

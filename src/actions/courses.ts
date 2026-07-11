@@ -1,4 +1,5 @@
 "use server";
+import { requireAdmin } from "@/lib/auth-guard";
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -52,6 +53,7 @@ function revalidate(slug?: string) {
 }
 
 export async function createCourse(_: unknown, fd: FormData): Promise<string | undefined> {
+  await requireAdmin();
   const { neutral, translations } = parseForm(fd);
   if (!neutral.slug || !translations[DEFAULT_LOCALE].title) return "Slug and title are required.";
   try {
@@ -72,6 +74,7 @@ export async function createCourse(_: unknown, fd: FormData): Promise<string | u
 }
 
 export async function updateCourse(slug: string, _: unknown, fd: FormData): Promise<string | undefined> {
+  await requireAdmin();
   const { neutral, translations } = parseForm(fd);
   if (!translations[DEFAULT_LOCALE].title) return "Title is required.";
   try {
@@ -100,11 +103,13 @@ export async function updateCourse(slug: string, _: unknown, fd: FormData): Prom
 }
 
 export async function deleteCourse(slug: string) {
+  await requireAdmin();
   await prisma.course.delete({ where: { slug } });
   revalidate();
 }
 
 export async function toggleCourseFeatured(slug: string, featured: boolean): Promise<string | undefined> {
+  await requireAdmin();
   if (featured) {
     const count = await prisma.course.count({ where: { featured: true } });
     if (count >= 2) return "Max 2 featured courses. Unmark one first.";

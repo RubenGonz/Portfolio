@@ -32,6 +32,10 @@ export function useInView<T extends HTMLElement = HTMLElement>({
 
     observer.observe(el);
     return () => observer.disconnect();
+    // observerOptions is spread into a fresh object each render; adding it as a
+    // dep would re-create the observer on every render. Callers pass static
+    // options, so keying only on animateOut is intentional.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [animateOut]);
 
   return { ref, inView };
