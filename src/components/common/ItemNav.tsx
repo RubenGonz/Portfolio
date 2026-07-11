@@ -24,7 +24,6 @@ export const ItemNav = async ({ prev, next, allHref, allLabel }: Props) => {
   return (
   <div className="border-t border-line/5 mt-16 md:mt-24 px-6 md:px-16 py-10 max-w-5xl mx-auto">
 
-    {/* Prev / Next row */}
     <div className="grid grid-cols-2 gap-4 mb-6">
       {prev ? (
         <Link href={prev.href} className={navCard}>
@@ -59,7 +58,6 @@ export const ItemNav = async ({ prev, next, allHref, allLabel }: Props) => {
       )}
     </div>
 
-    {/* View all — always visible */}
     <div className="text-center">
       <Link
         href={allHref}
