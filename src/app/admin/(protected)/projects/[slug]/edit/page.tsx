@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getProjectForEdit } from "@/data/projects";
+import { getProjectForEdit } from "@/data/projects/edit";
 import { DEFAULT_LOCALE } from "@/data/locale";
 import { EditProjectForm } from "./EditProjectForm";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";

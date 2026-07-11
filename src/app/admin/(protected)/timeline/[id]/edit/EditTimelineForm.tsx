@@ -6,7 +6,7 @@ import { FormField, TextareaField } from "@/components/admin/FormField";
 import { LocaleTabs } from "@/components/admin/LocaleTabs";
 import { SubmitButton } from "@/components/admin/SubmitButton";
 import { LOCALES } from "@/data/locale";
-import type { TimelineEntryEdit } from "@/data/timeline";
+import type { TimelineEntryEdit } from "@/data/timeline/edit";
 
 export function EditTimelineForm({ entry }: { entry: TimelineEntryEdit }) {
   const updateWithId = updateTimelineEntry.bind(null, entry.id);

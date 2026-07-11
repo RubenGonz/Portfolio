@@ -8,7 +8,7 @@ import { ImagesEditor } from "@/components/admin/ImagesEditor";
 import { LocaleTabs } from "@/components/admin/LocaleTabs";
 import { SubmitButton } from "@/components/admin/SubmitButton";
 import { LOCALES } from "@/data/locale";
-import type { ProjectEdit } from "@/data/projects";
+import type { ProjectEdit } from "@/data/projects/edit";
 
 const statusOptions = [
   { value: "in-progress", label: "In Progress" },

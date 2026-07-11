@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getTimelineEntryForEdit } from "@/data/timeline";
+import { getTimelineEntryForEdit } from "@/data/timeline/edit";
 import { DEFAULT_LOCALE } from "@/data/locale";
 import { EditTimelineForm } from "./EditTimelineForm";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";

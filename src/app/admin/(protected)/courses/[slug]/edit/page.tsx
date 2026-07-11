@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getCourseForEdit } from "@/data/courses";
+import { getCourseForEdit } from "@/data/courses/edit";
 import { DEFAULT_LOCALE } from "@/data/locale";
 import { EditCourseForm } from "./EditCourseForm";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
